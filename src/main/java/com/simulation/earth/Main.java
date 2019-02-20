@@ -25,17 +25,6 @@ public class Main extends Application {
         Scene scene= new Scene(root, 1200, 600);
         stage.setScene(scene);
         stage.show();
-
-
-//
-//        group.getChildren().add(new Sphere(50));
-//        AnimationTimer timer = new AnimationTimer() {
-//            @Override
-//            public void handle(long now) {
-//                group.setTranslateX(group.getTranslateX()+1);
-//            }
-//        };
-//        timer.start();
     }
 
     public static void main(String[] args) {

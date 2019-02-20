@@ -6,10 +6,7 @@ import javafx.scene.Camera;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.paint.PhongMaterial;
-import javafx.scene.shape.Box;
-import javafx.scene.shape.Cylinder;
-import javafx.scene.shape.Shape3D;
-import javafx.scene.shape.Sphere;
+import javafx.scene.shape.*;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Transform;
 import javafx.scene.transform.Translate;
@@ -84,13 +81,13 @@ public class SatelliteDefault extends Satellite {
 
         getTranslate().setZ(-9000);
         getRotateY().setAngle(-90);
-
     }
 
     private void prepareMaterialCorpus (Shape3D node) {
         PhongMaterial phongMaterialBatare = new PhongMaterial();
         phongMaterialBatare.setDiffuseMap(new Image(getClass().getResourceAsStream("/texturs/corpusSateliteTexture.jpg")));
         node.setMaterial(phongMaterialBatare);
+        LineTo lineTo = new LineTo();
     }
 
     private void prepareMaterialSunBatars (Shape3D node) {

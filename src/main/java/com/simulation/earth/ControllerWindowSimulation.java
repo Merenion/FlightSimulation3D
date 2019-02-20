@@ -1,5 +1,6 @@
 package com.simulation.earth;
 
+import com.simulation.earth.TrajectoryServis.Trajectory;
 import com.simulation.earth.manageSpace.FactorySpace;
 import com.simulation.earth.manageSpace.NearEarthFactory;
 import com.simulation.earth.manageSpace.ParametersSpace;
@@ -83,15 +84,13 @@ public class ControllerWindowSimulation {
         monitorParametrsSimulation();
         preparePoorLighting();
         prepareTableCameras();
-
-//        List<Point3D> points = new ArrayList<>();
-//        points.add(new Point3D(0,0,0));
-//        points.add(new Point3D(0,11000,0));
-//        points.add(new Point3D(0,0,0));
-//        points.add(new Point3D(11000,0,0));
-//
-//        PolyLine3D line = new PolyLine3D(points,0.0001f, Color.RED);
-//        group.getChildren().add(line);
+        Trajectory trajectory = new Trajectory();
+        trajectory.addCoordinat(0,0,0);
+        trajectory.addCoordinat(8000,0,0);
+        trajectory.addCoordinat(8000,8000,0);
+        trajectory.addCoordinat(8000,0,0);
+        trajectory.addCoordinat(0,0,0);
+        group.getChildren().add(trajectory.getTrajectory());
     }
 
     private void monitorParametrsSimulation () {
@@ -152,10 +151,19 @@ public class ControllerWindowSimulation {
     public void onResetSimulation(ActionEvent actionEvent) {    }
 
     public void onOverScale(ActionEvent actionEvent) {
-        for (SpaceObject spaceObject : space.getSpaceObjects()){
-            if (spaceObject instanceof PlanetOrStart) {
-                ((PlanetOrStart) spaceObject).getSphere().setRadius(((PlanetOrStart) spaceObject).getSphere().getRadius() * 20);
-                freeCamera.setTranslateZ(-5_000_000);
+        if (checkOverScale.isSelected()) {
+            for (SpaceObject spaceObject : space.getSpaceObjects()) {
+                if (spaceObject instanceof PlanetOrStart) {
+                    ((PlanetOrStart) spaceObject).getSphere().setRadius(((PlanetOrStart) spaceObject).getSphere().getRadius() * 25);
+                    freeCamera.setTranslateZ(-3_000_000);
+                }
+            }
+        }else {
+            for (SpaceObject spaceObject : space.getSpaceObjects()) {
+                if (spaceObject instanceof PlanetOrStart) {
+                    ((PlanetOrStart) spaceObject).getSphere().setRadius(((PlanetOrStart) spaceObject).getSphere().getRadius() /25);
+                    freeCamera.setTranslateZ(-20000);
+                }
             }
         }
     }
