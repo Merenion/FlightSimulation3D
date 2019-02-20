@@ -12,6 +12,7 @@ import java.util.HashSet;
 public class Main extends Application {
 
     private static Stage stage;
+    private ScreenResolution display = new ScreenResolution();
 
     public static Stage getStage() {
         return stage;
@@ -22,7 +23,7 @@ public class Main extends Application {
         Main.stage = stage;
         Parent root = FXMLLoader.load(getClass().getResource("/windowSimulation.fxml"));
         stage.setTitle("Simulation Cosmos");
-        Scene scene= new Scene(root, 1200, 600);
+        Scene scene= ScreenResolution.getSceneWithSize(root);
         stage.setScene(scene);
         stage.show();
     }

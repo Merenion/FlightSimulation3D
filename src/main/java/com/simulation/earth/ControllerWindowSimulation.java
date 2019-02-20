@@ -19,20 +19,10 @@ import javafx.fxml.FXML;
 import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.PhongMaterial;
-import javafx.scene.shape.Box;
-import javafx.scene.shape.Cylinder;
-import javafx.scene.shape.Line;
-import javafx.scene.shape.Sphere;
 import javafx.stage.Stage;
-import org.fxyz3d.geometry.Point3D;
-import org.fxyz3d.shapes.composites.PolyLine3D;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ControllerWindowSimulation {
 
@@ -61,6 +51,8 @@ public class ControllerWindowSimulation {
     public Label labelTImeInDay;
     @FXML
     public CheckBox checkExtraTImeDisplay;
+    @FXML
+    public ImageView fontImage;
 
 
     private Group group = new Group();
@@ -84,13 +76,13 @@ public class ControllerWindowSimulation {
         monitorParametrsSimulation();
         preparePoorLighting();
         prepareTableCameras();
-        Trajectory trajectory = new Trajectory();
-        trajectory.addCoordinat(0,0,0);
-        trajectory.addCoordinat(8000,0,0);
-        trajectory.addCoordinat(8000,8000,0);
-        trajectory.addCoordinat(8000,0,0);
-        trajectory.addCoordinat(0,0,0);
-        group.getChildren().add(trajectory.getTrajectory());
+//        Trajectory trajectory = new Trajectory();
+//        trajectory.addCoordinat(0,0,0);
+//        trajectory.addCoordinat(8000,0,0);
+//        trajectory.addCoordinat(8000,8000,0);
+//        trajectory.addCoordinat(8000,0,0);
+//        trajectory.addCoordinat(0,0,0);
+//        group.getChildren().add(trajectory.getTrajectory());
     }
 
     private void monitorParametrsSimulation () {
@@ -111,12 +103,20 @@ public class ControllerWindowSimulation {
     }
 
     private void prepareDrawScene (){
+        initSizeScene();
         System.out.println(drawScene.isDepthBuffer());
         freeCamera.setNearClip(parametersSpace.getNearClip());
         freeCamera.setFarClip(parametersSpace.getFarClip());
         drawScene.setCamera(freeCamera);
-        freeCamera.setTranslateZ(-20000);
+        freeCamera.setTranslateZ(-25000);
         drawScene.setRoot(group);
+    }
+
+    private void initSizeScene (){
+        drawScene.setWidth(ScreenResolution.WIDTH());
+        drawScene.setHeight(ScreenResolution.HIGHT());
+        fontImage.setFitHeight(ScreenResolution.HIGHT());
+        fontImage.setFitWidth(ScreenResolution.WIDTH());
     }
 
     private void preparePoorLighting () {
