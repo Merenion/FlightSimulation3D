@@ -1,6 +1,6 @@
 package com.simulation.earth;
 
-import com.simulation.earth.TrajectoryServis.Trajectory;
+import com.simulation.earth.drawLineServis.LineToManager;
 import com.simulation.earth.manageSpace.FactorySpace;
 import com.simulation.earth.manageSpace.NearEarthFactory;
 import com.simulation.earth.manageSpace.ParametersSpace;
@@ -53,7 +53,13 @@ public class ControllerWindowSimulation {
     public CheckBox checkExtraTImeDisplay;
     @FXML
     public ImageView fontImage;
+    @FXML
+    public Button btTest;
 
+    private LineToManager lineToManager = new LineToManager();
+    {
+        lineToManager.setColor(Color.RED);
+    }
 
     private Group group = new Group();
     private Camera freeCamera = new PerspectiveCameraWithName(true,"free Camera");
@@ -76,13 +82,14 @@ public class ControllerWindowSimulation {
         monitorParametrsSimulation();
         preparePoorLighting();
         prepareTableCameras();
-//        Trajectory trajectory = new Trajectory();
-//        trajectory.addCoordinat(0,0,0);
-//        trajectory.addCoordinat(8000,0,0);
-//        trajectory.addCoordinat(8000,8000,0);
-//        trajectory.addCoordinat(8000,0,0);
-//        trajectory.addCoordinat(0,0,0);
-//        group.getChildren().add(trajectory.getTrajectory());
+
+        lineToManager.addCoordinat(0,0,0);
+        lineToManager.addCoordinat(10000,0,0);
+        lineToManager.addCoordinat(0,0,0);
+        lineToManager.addCoordinat(0,10000,0);
+        lineToManager.addCoordinat(0,0,0);
+        lineToManager.addCoordinat(0,0,10000);
+        group.getChildren().add(lineToManager.getTrajectory());
     }
 
     private void monitorParametrsSimulation () {
@@ -182,5 +189,9 @@ public class ControllerWindowSimulation {
             labelTimeInHours.setVisible(false);
             labelTImeInDay.setVisible(false);
         }
+    }
+
+    public void onTest(ActionEvent actionEvent) {
+        lineToManager.changeScaleTrajectory(5);
     }
 }

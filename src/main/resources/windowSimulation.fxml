@@ -45,6 +45,7 @@
                           </columns>
                         </TableView>
                         <CheckBox fx:id="checkExtraTImeDisplay" layoutX="14.0" layoutY="383.0" mnemonicParsing="false" onAction="#onExtraTime" text="Extra time display" />
+                        <Button fx:id="btTest" layoutX="23.0" layoutY="421.0" mnemonicParsing="false" onAction="#onTest" text="Button for tests" />
                      </children></AnchorPane>
             </content>
           </TitledPane>
