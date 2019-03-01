@@ -1,5 +1,7 @@
 package com.simulation.earth.spaceObjects;
 
+import com.simulation.earth.MathModel.IMathModel;
+import com.simulation.earth.MathModel.ImplMathModel;
 import com.simulation.earth.manageSatellite.ParametrsOrbit;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.Camera;
@@ -15,9 +17,13 @@ import java.util.Date;
 
 public class SatelliteDefault extends Satellite {
 
+    float scale = 50000;
+
     {
         prepareSpaceGroup();
     }
+    private float scaleObject=1f;
+
 
     public SatelliteDefault(ParametrsOrbit parametrsOrbit) {
         super(parametrsOrbit);
@@ -29,8 +35,26 @@ public class SatelliteDefault extends Satellite {
     }
 
     @Override
-    public void movement(float deltaTime) {
+    public void prepareStartCootdints() {
+//        getTranslate().setZ(-9000);
+//        getRotateY().setAngle(-90);
+        getTranslate().setX(mathModel.getXga(0));
+        getTranslate().setY(mathModel.getYga(0));
+        getTranslate().setZ(mathModel.getZga(0));
+    }
+    double t =0;
 
+
+    @Override
+    public void movement(float deltaTime) {
+        t+=deltaTime;
+        getTranslate().setX(mathModel.getXga(t));
+        getTranslate().setY(mathModel.getYga(t));
+        getTranslate().setZ(mathModel.getZga(t));
+
+        if (isDrawPath()) {
+            servisDrawTrajectory.addLineInPathIfNeeded((float) getTranslate().getX(), (float) getTranslate().getY(), (float) getTranslate().getZ());
+        }
     }
 
     @Override
@@ -40,26 +64,28 @@ public class SatelliteDefault extends Satellite {
         Group satelite = new Group();
 
         Cylinder cylinder = new Cylinder();
-        cylinder.setHeight(0.01);
-        cylinder.setRadius(0.005);
+        cylinder.setHeight(0.01*scale);
+        cylinder.setRadius(0.005*scale);
+//        cylinder.setHeight(500);
+//        cylinder.setRadius(250);
         Cylinder cylinder2 = new Cylinder();
-        cylinder2.setRadius(0.0025);
-        cylinder2.setHeight(0.01);
-        cylinder2.setTranslateY(0.006);
+        cylinder2.setRadius(0.0025*scale);
+        cylinder2.setHeight(0.01*scale);
+        cylinder2.setTranslateY(0.006*scale);
         Cylinder cylinder3 = new Cylinder();
-        cylinder3.setHeight(0.057);
-        cylinder3.setRadius(0.0005);
+        cylinder3.setHeight(0.057*scale);
+        cylinder3.setRadius(0.0005*scale);
         cylinder3.setRotate(90);
         Box boxLeft = new Box();
-        boxLeft.setHeight(0.0003);
-        boxLeft.setDepth(0.008);
-        boxLeft.setWidth(0.025);
-        boxLeft.setTranslateX(-0.0185);
+        boxLeft.setHeight(0.0003*scale);
+        boxLeft.setDepth(0.008*scale);
+        boxLeft.setWidth(0.025*scale);
+        boxLeft.setTranslateX(-0.0185*scale);
         Box boxRight = new Box();
-        boxRight.setHeight(0.0003);
-        boxRight.setDepth(0.008);
-        boxRight.setWidth(0.025);
-        boxRight.setTranslateX(0.0185);
+        boxRight.setHeight(0.0003*scale);
+        boxRight.setDepth(0.008*scale);
+        boxRight.setWidth(0.0251*scale);
+        boxRight.setTranslateX(0.0185*scale);
 
         prepareMaterialCorpus(cylinder);
         prepareMaterialSunBatars(boxLeft);
@@ -71,16 +97,13 @@ public class SatelliteDefault extends Satellite {
         satelite.getChildren().add(boxLeft);
         satelite.getChildren().add(boxRight);
 
-        satelite.setRotationAxis(Rotate.X_AXIS);
+        satelite.setRotationAxis(Rotate.Y_AXIS);
         satelite.setRotate(90);
 
         getSpaceGroup().getChildren().add(satelite);
 
         initCameraForSurveyEarth(0,0.0011,0);
         initCameraForSurveySatelite();
-
-        getTranslate().setZ(-9000);
-        getRotateY().setAngle(-90);
     }
 
     private void prepareMaterialCorpus (Shape3D node) {
@@ -111,8 +134,8 @@ public class SatelliteDefault extends Satellite {
         PerspectiveCameraWithName camera = new PerspectiveCameraWithName(true,"survey Satelite");
 
         camera.setTranslateX(0);
-        camera.setTranslateY(0.06);
-        camera.setTranslateZ(-0.09);
+        camera.setTranslateY(0.06*scale);
+        camera.setTranslateZ(-0.09*scale);
 
         Rotate rotateX = new Rotate(30,Rotate.X_AXIS);
         Rotate rotateY = new Rotate(-20,Rotate.Z_AXIS);

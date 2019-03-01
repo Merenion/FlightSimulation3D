@@ -10,6 +10,7 @@ public class DefaultSimulation implements ISimulation {
     private double timeSimulation;
     private AnimationTimer timer;
     private boolean runningProcess = false;
+    private boolean drawPath = false;
 
     @Override
     public double getTimeSimulation() {

@@ -21,10 +21,16 @@ public class Moon extends PlanetOrStart {
     }
 
     @Override
+    public void prepareStartCootdints() {
+
+    }
+
+    @Override
     public void movement(float deltaTime) {
         getRotateX().setAxis(new Point3D(1,1,0));
         getRotateX().setAngle(getRotateX().getAngle()-3*deltaTime/10);
         getSphere().setRotate(getSphere().getRotate()+4*deltaTime/10);
+
     }
 
     @Override

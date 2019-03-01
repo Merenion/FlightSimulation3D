@@ -1,6 +1,11 @@
 package com.simulation.earth.spaceObjects;
 
+import com.simulation.earth.MathModel.IMathModel;
+import com.simulation.earth.MathModel.ImplMathModel;
+import com.simulation.earth.pathServis.ManagerDrawPath;
+import com.simulation.earth.pathServis.ServisDrawTrajectory;
 import com.simulation.earth.objectControl.SmartGroup;
+import javafx.scene.Group;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Translate;
 
@@ -19,16 +24,29 @@ public abstract class  SpaceObject {
     public SpaceObject(String name) {
         this.name = name;
     }
+    private boolean drawPath = false;
+    protected ServisDrawTrajectory servisDrawTrajectory;
+    IMathModel mathModel = new ImplMathModel();
+
+
 
     {
         spaceGroup.getTransforms().addAll(rotateZ,rotateY,rotateX,translate);
+        prepareStartCootdints();
+        servisDrawTrajectory = new ManagerDrawPath((float) translate.getX(),(float)translate.getY(),(float) translate.getZ());
+    }
+
+    public Group getTrajectory () {
+        return servisDrawTrajectory.getPath();
     }
 
     SpaceObject(){
     }
 
     public abstract void prepareStartCootdints (Date data);
+    public abstract void prepareStartCootdints ();
     public abstract void movement(float deltaTime) ;
+    protected abstract void prepareSpaceGroup ();
 
     public Rotate getRotateY() {
         return rotateY;
@@ -66,6 +84,14 @@ public abstract class  SpaceObject {
         this.name = name;
     }
 
+    public boolean isDrawPath() {
+        return drawPath;
+    }
+
+    public void setDrawPath(boolean drawPath) {
+        this.drawPath = drawPath;
+    }
+
     public ArrayList<SpaceObject> getObjectsOfReferenceMovement() {
         return objectsOfReferenceMovement;
     }
@@ -75,6 +101,4 @@ public abstract class  SpaceObject {
         if (!name.equals("")) return name;
         else return "Object nameless";
     }
-
-    protected abstract void prepareSpaceGroup ();
 }

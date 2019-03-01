@@ -1,16 +1,16 @@
-package com.simulation.earth.drawLineServis;
+package com.simulation.earth.drawServis;
 
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import org.fxyz3d.geometry.Point3D;
 
-public class LineToManager {
+public class LineToManager implements LineServis{
     private Group lines = new Group();
     private Color color = Color.WHITE;
     private float width = 50;
     private Point3D lastAdded;
-    private FactoryLine factoryLine = new CreaterLine3D();
+    private FactoryLine factoryLine = new CreaterLine3Ddefault();
 
 
     public void addCoordinat (float x, float y, float z){
@@ -30,7 +30,7 @@ public class LineToManager {
         }
     }
 
-    public Node getTrajectory () {
+    public Group getPath() {
         return lines;
     }
 

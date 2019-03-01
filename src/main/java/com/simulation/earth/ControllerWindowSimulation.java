@@ -1,6 +1,6 @@
 package com.simulation.earth;
 
-import com.simulation.earth.drawLineServis.LineToManager;
+import com.simulation.earth.drawServis.LineToManager;
 import com.simulation.earth.manageSpace.FactorySpace;
 import com.simulation.earth.manageSpace.NearEarthFactory;
 import com.simulation.earth.manageSpace.ParametersSpace;
@@ -56,11 +56,6 @@ public class ControllerWindowSimulation {
     @FXML
     public Button btTest;
 
-    private LineToManager lineToManager = new LineToManager();
-    {
-        lineToManager.setColor(Color.RED);
-    }
-
     private Group group = new Group();
     private Camera freeCamera = new PerspectiveCameraWithName(true,"free Camera");
 
@@ -82,14 +77,28 @@ public class ControllerWindowSimulation {
         monitorParametrsSimulation();
         preparePoorLighting();
         prepareTableCameras();
+        initLineSystCoordinat();
+        for (SpaceObject object : space.getSpaceObjects()) {
+            object.setDrawPath(true);
+            group.getChildren().add(object.getTrajectory());
+        }
 
+
+    }
+
+    private void initLineSystCoordinat (){
+        LineToManager lineToManager = new LineToManager();
+        lineToManager.setColor(Color.RED);
+        lineToManager.setWidth(30);
         lineToManager.addCoordinat(0,0,0);
         lineToManager.addCoordinat(10000,0,0);
         lineToManager.addCoordinat(0,0,0);
+        lineToManager.setColor(Color.BLUE);
         lineToManager.addCoordinat(0,10000,0);
         lineToManager.addCoordinat(0,0,0);
+        lineToManager.setColor(Color.GREEN);
         lineToManager.addCoordinat(0,0,10000);
-        group.getChildren().add(lineToManager.getTrajectory());
+        group.getChildren().add(lineToManager.getPath());
     }
 
     private void monitorParametrsSimulation () {
@@ -192,6 +201,6 @@ public class ControllerWindowSimulation {
     }
 
     public void onTest(ActionEvent actionEvent) {
-        lineToManager.changeScaleTrajectory(5);
+
     }
 }

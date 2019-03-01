@@ -24,6 +24,11 @@ public class Sun extends PlanetOrStart{
     }
 
     @Override
+    public void prepareStartCootdints() {
+
+    }
+
+    @Override
     public void movement(float deltaTime) {
         getRotateX().setAxis(Rotate.Y_AXIS);
         getRotateX().setAngle(getRotateX().getAngle()+1*deltaTime/10);

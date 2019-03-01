@@ -1,4 +1,4 @@
-package com.simulation.earth.drawLineServis;
+package com.simulation.earth.drawServis;
 
 
 import javafx.scene.paint.Color;

@@ -26,6 +26,11 @@ public class Earth extends PlanetOrStart {
     }
 
     @Override
+    public void prepareStartCootdints() {
+
+    }
+
+    @Override
     public void movement(float deltaTime) {
         getSpaceGroup().setRotationAxis(Rotate.Y_AXIS);
         getSpaceGroup().setRotate(getSpaceGroup().getRotate()-1*deltaTime/10);
