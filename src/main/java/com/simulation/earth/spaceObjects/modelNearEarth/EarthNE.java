@@ -39,7 +39,7 @@ public class EarthNE extends PlanetOrStart {
         getSphere().setTranslateX(0);
         getSphere().setTranslateY(0);
         getSphere().setTranslateZ(0);
-        getSphere().setRadius(radiusEarth);
+        getSphere().setRadius(radiusEarth*scale);
         getSpaceModel().getChildren().add(getSphere());
         getSphere().setMaterial(prepareMaterial());
     }

@@ -27,8 +27,12 @@ public abstract class  SpaceObject {
     private boolean drawPath = false;
     protected ServisDrawTrajectory servisDrawTrajectory;
     IMathModel mathModel = new ImplMathModel();
+    protected float scale =1;
 
-
+    public void changeScaleModel (float scale){
+        this.scale = scale;
+        prepareSpaceModel();
+    }
 
     {
         spaceModel.getTransforms().addAll(rotateZ,rotateY,rotateX,translate);

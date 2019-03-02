@@ -40,7 +40,7 @@ public class SunNE extends PlanetOrStart {
     protected void prepareSpaceModel() {
         setName("sun");
         getSphere().setTranslateX(distanceOfEarth);
-        getSphere().setRadius(radiusSun);
+        getSphere().setRadius(radiusSun*scale);
         getSphere().setMaterial(prepareMaterial());
         pointLight = new PointLight();
         pointLight.setColor(Color.WHITE);

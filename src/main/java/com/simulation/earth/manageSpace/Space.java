@@ -21,6 +21,14 @@ public abstract class Space {
         this.name = name;
     }
 
+    public SpaceObject getSpaceObject (String name) {
+        for (SpaceObject object: spaceObjects){
+            if (object.getName().equals(name))
+                return object;
+        }
+        return null;
+    }
+
     public Group getSpaceGroup () {
         Group group = new Group();
         for (SpaceObject spaceObject : spaceObjects)

@@ -38,7 +38,7 @@ public class MoonNE extends PlanetOrStart {
     protected void prepareSpaceModel() {
         setName("moon");
         getSphere().setTranslateZ(distanceOfEarthPerigey);
-        getSphere().setRadius(radiusMoon);
+        getSphere().setRadius(radiusMoon*scale);
         getSphere().setMaterial(prepareMaterial());
         getSpaceModel().getChildren().add(getSphere());
     }

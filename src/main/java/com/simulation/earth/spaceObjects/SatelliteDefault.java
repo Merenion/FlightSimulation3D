@@ -11,12 +11,9 @@ import java.util.Date;
 
 public class SatelliteDefault extends Satellite {
 
-    float scale = 50000;
-
     {
         prepareSpaceModel();
     }
-    private float scaleObject=1f;
 
 
     public SatelliteDefault(ParametrsOrbit parametrsOrbit) {
@@ -45,7 +42,6 @@ public class SatelliteDefault extends Satellite {
         getTranslate().setX(mathModel.getXga(t));
         getTranslate().setY(mathModel.getYga(t));
         getTranslate().setZ(mathModel.getZga(t));
-
         if (isDrawPath()) {
             servisDrawTrajectory.addLineInPathIfNeeded((float) getTranslate().getX(), (float) getTranslate().getY(), (float) getTranslate().getZ());
         }
