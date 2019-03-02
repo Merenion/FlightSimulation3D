@@ -2,6 +2,9 @@ package com.simulation.earth.manageSpace;
 
 import com.simulation.earth.manageSatellite.ParametrsOrbit;
 import com.simulation.earth.spaceObjects.*;
+import com.simulation.earth.spaceObjects.modelNearEarth.EarthNE;
+import com.simulation.earth.spaceObjects.modelNearEarth.MoonNE;
+import com.simulation.earth.spaceObjects.modelNearEarth.SunNE;
 
 public class NearEarthSpace extends Space {
     NearEarthSpace() {
@@ -11,9 +14,9 @@ public class NearEarthSpace extends Space {
     @Override
     protected void prepareSpace() {
         getSpaceObjects().clear();
-        getSpaceObjects().add(new Earth());
-        getSpaceObjects().add(new Sun());
-        getSpaceObjects().add(new Moon());
+        getSpaceObjects().add(new EarthNE());
+        getSpaceObjects().add(new SunNE());
+        getSpaceObjects().add(new MoonNE());
         getSpaceObjects().add(new SatelliteDefault(new ParametrsOrbit()));
     }
 }

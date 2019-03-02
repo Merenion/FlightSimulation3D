@@ -1,21 +1,18 @@
-package com.simulation.earth.spaceObjects;
+package com.simulation.earth.spaceObjects.modelNearEarth;
 
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.scene.Group;
+import com.simulation.earth.spaceObjects.PlanetOrStart;
 import javafx.scene.image.Image;
 import javafx.scene.paint.PhongMaterial;
-import javafx.scene.shape.Sphere;
 import javafx.scene.transform.Rotate;
 
 import java.util.Date;
 
-public class Earth extends PlanetOrStart {
+public class EarthNE extends PlanetOrStart {
 
     private final static float radiusEarth = 6371f;
 
-    public Earth() {
-        prepareSpaceGroup();
+    public EarthNE() {
+        prepareSpaceModel();
     }
 
     @Override
@@ -32,18 +29,18 @@ public class Earth extends PlanetOrStart {
 
     @Override
     public void movement(float deltaTime) {
-        getSpaceGroup().setRotationAxis(Rotate.Y_AXIS);
-        getSpaceGroup().setRotate(getSpaceGroup().getRotate()-1*deltaTime/10);
+        getSpaceModel().setRotationAxis(Rotate.Y_AXIS);
+        getSpaceModel().setRotate(getSpaceModel().getRotate()-1*deltaTime/10);
     }
 
     @Override
-    public void prepareSpaceGroup() {
+    public void prepareSpaceModel() {
         setName("earth");
         getSphere().setTranslateX(0);
         getSphere().setTranslateY(0);
         getSphere().setTranslateZ(0);
         getSphere().setRadius(radiusEarth);
-        getSpaceGroup().getChildren().add(getSphere());
+        getSpaceModel().getChildren().add(getSphere());
         getSphere().setMaterial(prepareMaterial());
     }
 

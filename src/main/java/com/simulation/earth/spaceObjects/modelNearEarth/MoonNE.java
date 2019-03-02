@@ -1,18 +1,19 @@
-package com.simulation.earth.spaceObjects;
+package com.simulation.earth.spaceObjects.modelNearEarth;
 
+import com.simulation.earth.spaceObjects.PlanetOrStart;
 import javafx.geometry.Point3D;
 import javafx.scene.image.Image;
 import javafx.scene.paint.PhongMaterial;
 
 import java.util.Date;
 
-public class Moon extends PlanetOrStart {
+public class MoonNE extends PlanetOrStart {
     private final static float radiusMoon = 1737f;
     private final static float distanceOfEarthPerigey = 357_104f;
     private final static float distanceOfEarthApogei = 406_696f;
 
     {
-        prepareSpaceGroup();
+        prepareSpaceModel();
     }
 
     @Override
@@ -34,12 +35,12 @@ public class Moon extends PlanetOrStart {
     }
 
     @Override
-    protected void prepareSpaceGroup() {
+    protected void prepareSpaceModel() {
         setName("moon");
         getSphere().setTranslateZ(distanceOfEarthPerigey);
         getSphere().setRadius(radiusMoon);
         getSphere().setMaterial(prepareMaterial());
-        getSpaceGroup().getChildren().add(getSphere());
+        getSpaceModel().getChildren().add(getSphere());
     }
 
     @Override

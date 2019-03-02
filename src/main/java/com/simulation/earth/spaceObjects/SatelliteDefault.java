@@ -1,17 +1,11 @@
 package com.simulation.earth.spaceObjects;
 
-import com.simulation.earth.MathModel.IMathModel;
-import com.simulation.earth.MathModel.ImplMathModel;
 import com.simulation.earth.manageSatellite.ParametrsOrbit;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.scene.Camera;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.*;
 import javafx.scene.transform.Rotate;
-import javafx.scene.transform.Transform;
-import javafx.scene.transform.Translate;
 
 import java.util.Date;
 
@@ -20,7 +14,7 @@ public class SatelliteDefault extends Satellite {
     float scale = 50000;
 
     {
-        prepareSpaceGroup();
+        prepareSpaceModel();
     }
     private float scaleObject=1f;
 
@@ -58,7 +52,7 @@ public class SatelliteDefault extends Satellite {
     }
 
     @Override
-    protected void prepareSpaceGroup() {
+    protected void prepareSpaceModel() {
         setName("satelite default");
 
         Group satelite = new Group();
@@ -100,7 +94,7 @@ public class SatelliteDefault extends Satellite {
         satelite.setRotationAxis(Rotate.Y_AXIS);
         satelite.setRotate(90);
 
-        getSpaceGroup().getChildren().add(satelite);
+        getSpaceModel().getChildren().add(satelite);
 
         initCameraForSurveyEarth(0,0.0011,0);
         initCameraForSurveySatelite();
@@ -121,7 +115,7 @@ public class SatelliteDefault extends Satellite {
     }
 
     private void initCameraForSurveyEarth(double x, double y, double z){
-        PerspectiveCameraWithName camera = new PerspectiveCameraWithName(true,"survey Earth");
+        PerspectiveCameraWithName camera = new PerspectiveCameraWithName(true,"survey EarthNE");
         camera.setTranslateX(x);
         camera.setTranslateY(y);
         camera.setTranslateZ(z);
@@ -153,7 +147,7 @@ public class SatelliteDefault extends Satellite {
 
 //
 //    @Override
-//    protected void prepareSpaceGroup() {
+//    protected void prepareSpaceModel() {
 //        setName("satelite default");
 //
 //        Group satelite = new Group();
@@ -193,7 +187,7 @@ public class SatelliteDefault extends Satellite {
 //        satelite.setRotationAxis(Rotate.X_AXIS);
 //        satelite.setRotate(90);
 //
-//        getSpaceGroup().getChildren().add(satelite);
+//        getSpaceModel().getChildren().add(satelite);
 //
 //        initCameraForSurveyEarth(0,0.0011,0);
 //        initCameraForSurveySatelite();
@@ -215,7 +209,7 @@ public class SatelliteDefault extends Satellite {
 //    }
 //
 //    private void initCameraForSurveyEarth(double x, double y, double z){
-//        PerspectiveCameraWithName camera = new PerspectiveCameraWithName(true,"survey Earth");
+//        PerspectiveCameraWithName camera = new PerspectiveCameraWithName(true,"survey EarthNE");
 //        camera.setTranslateX(x);
 //        camera.setTranslateY(y);
 //        camera.setTranslateZ(z);

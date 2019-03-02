@@ -24,7 +24,7 @@ public abstract class Space {
     public Group getSpaceGroup () {
         Group group = new Group();
         for (SpaceObject spaceObject : spaceObjects)
-            group.getChildren().addAll(spaceObject.getSpaceGroup());
+            group.getChildren().addAll(spaceObject.getSpaceModel());
         return group;
     }
 

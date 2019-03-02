@@ -1,7 +1,6 @@
 package com.simulation.earth.spaceObjects;
 
 import javafx.scene.Camera;
-import javafx.scene.transform.Transform;
 
 import java.util.ArrayList;
 
@@ -21,7 +20,7 @@ public abstract class ObjectWithCamera extends SpaceObject{
     }
 
     public Camera addCamera (Camera camera){
-        getSpaceGroup().getChildren().add(camera);
+        getSpaceModel().getChildren().add(camera);
         cameras.add(camera);
         return camera;
     }

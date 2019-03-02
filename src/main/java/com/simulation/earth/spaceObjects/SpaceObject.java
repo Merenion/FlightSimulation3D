@@ -16,7 +16,7 @@ public abstract class  SpaceObject {
     private double massa;
     private ArrayList<SpaceObject> objectsOfReferenceMovement = new ArrayList<>();
     private String name = "";
-    private SmartGroup spaceGroup = new SmartGroup();
+    private SmartGroup spaceModel = new SmartGroup();
     private final Rotate rotateX = new Rotate(0,Rotate.X_AXIS);
     private final Rotate rotateY = new Rotate(0,Rotate.Y_AXIS);
     private final Rotate rotateZ = new Rotate(0,Rotate.Z_AXIS);
@@ -31,7 +31,7 @@ public abstract class  SpaceObject {
 
 
     {
-        spaceGroup.getTransforms().addAll(rotateZ,rotateY,rotateX,translate);
+        spaceModel.getTransforms().addAll(rotateZ,rotateY,rotateX,translate);
         prepareStartCootdints();
         servisDrawTrajectory = new ManagerDrawPath((float) translate.getX(),(float)translate.getY(),(float) translate.getZ());
     }
@@ -46,7 +46,7 @@ public abstract class  SpaceObject {
     public abstract void prepareStartCootdints (Date data);
     public abstract void prepareStartCootdints ();
     public abstract void movement(float deltaTime) ;
-    protected abstract void prepareSpaceGroup ();
+    protected abstract void prepareSpaceModel();
 
     public Rotate getRotateY() {
         return rotateY;
@@ -64,8 +64,8 @@ public abstract class  SpaceObject {
         return translate;
     }
 
-    public SmartGroup getSpaceGroup(){
-        return spaceGroup;
+    public SmartGroup getSpaceModel(){
+        return spaceModel;
     }
 
     public double getMassa() {

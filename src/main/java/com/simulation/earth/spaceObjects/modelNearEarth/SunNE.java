@@ -1,5 +1,6 @@
-package com.simulation.earth.spaceObjects;
+package com.simulation.earth.spaceObjects.modelNearEarth;
 
+import com.simulation.earth.spaceObjects.PlanetOrStart;
 import javafx.scene.PointLight;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
@@ -8,14 +9,14 @@ import javafx.scene.transform.Rotate;
 
 import java.util.Date;
 
-public class Sun extends PlanetOrStart{
+public class SunNE extends PlanetOrStart {
     private final static float radiusSun = 695_508;
     private final static double distanceOfEarth = 149_600_000;
 
     private PointLight pointLight;
 
     {
-        prepareSpaceGroup();
+        prepareSpaceModel();
     }
 
     @Override
@@ -36,7 +37,7 @@ public class Sun extends PlanetOrStart{
     }
 
     @Override
-    protected void prepareSpaceGroup() {
+    protected void prepareSpaceModel() {
         setName("sun");
         getSphere().setTranslateX(distanceOfEarth);
         getSphere().setRadius(radiusSun);
@@ -46,8 +47,8 @@ public class Sun extends PlanetOrStart{
         pointLight.setTranslateX(getSphere().getTranslateX());
         pointLight.setTranslateY(getSphere().getTranslateY());
         pointLight.setTranslateZ(getSphere().getTranslateZ());
-        getSpaceGroup().getChildren().add(getSphere());
-        getSpaceGroup().getChildren().add(pointLight);
+        getSpaceModel().getChildren().add(getSphere());
+        getSpaceModel().getChildren().add(pointLight);
     }
 
     @Override
