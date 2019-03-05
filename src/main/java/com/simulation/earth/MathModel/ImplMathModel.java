@@ -26,36 +26,35 @@ public class ImplMathModel implements IMathModel {
     private double ra;              //радиус апогея
     private double e;               //Эксцентриситет орбиты
     private double a;               //Большая полурсь
-    private double p;
+    private double p;               //Фокальный параметр орбиты
     private double r;               //r которая хз
     private double H;               //Высота полета
     private double Tzv;             //Период обращения звездный
-    private double dOmega;
+    private double dOmega;          //Приращение угла восходящего узла орбиты
     private double dw;
 
     //переменные орбиты в полете
     private double omega;           //Текущий угол восходящего узла орбиты, рад
-    private double dt_sr;
-    private double W;
-    private double n;
-    private double t_zv;
-    private double tetaSmall;
-    private double M;
+    private double dt_sr;           //Промежуток среднего времени
+    private double W;               //Текущее значение аргумента перигея
+    private double n;               //Среднее движения
+    private double t_zv;            //Звездное время
+    private double tetaSmall;       //Угол истинной аномалии
+    private double M;               //Средняя Аномалия
     private double M1;
     private double dE;
-    private double cosTetaSmall;
-    private double sinTetaSmall;
-    private double u;
-    private double sinFi;
-    private double cosFi;
-    private double sinlambda;
-    private double coslambda;
-    private double fi;
-    private double fiGa;
-    private double lambdaGa;
-    private double lambda;
-    private double x;
-    private double y;
+    private double cosTetaSmall;    //Синус угла истинной аномалии
+    private double sinTetaSmall;    //Косинус угла истинной аномалии
+    private double u;               //Аргумент широты
+    private double sinFi;           //Синус широты
+    private double cosFi;           //Косинус широты
+    private double sinlambdaGA;     //Синус геодезической долготы
+    private double coslambdaGA;     //Косинус геодезической долготы
+    private double fiGA;            //Широта точки трассы полета
+    private double lambdaGaSH;      //Геодезическая широта
+    private double lambdaGaDL;      //Геодезическая долгота
+    private double x;               //координата X 2D
+    private double y;               //координата Y 2D
 
     //угол между эклиптикой и экватором
     private double dc = 23.343 * Math.PI / 180;
@@ -137,28 +136,28 @@ public class ImplMathModel implements IMathModel {
         u = W + tetaSmall;
         sinFi = Math.sin(iRad) * Math.sin(u);
         cosFi = Math.sqrt(1 - sinFi * sinFi);
-        fi = Math.atan(sinFi / Math.sqrt(1 - sinFi * sinFi));
-        sinlambda = (Math.sin(omega) * Math.cos(u) + Math.cos(omega) * Math.cos(iRad) * Math.sin(u)) / Math.cos(fi);
-        coslambda = (Math.cos(omega) * Math.cos(u) - Math.sin(omega) * Math.cos(iRad) * Math.sin(u)) / Math.cos(fi);
-        if (sinlambda > 0 && coslambda > 0)
-            lambda = Math.atan(sinlambda / Math.sqrt(1 - sinlambda * sinlambda));
-        if (sinlambda > 0 && coslambda < 0)
-            lambda = Math.PI + Math.atan(Math.sqrt(1 - coslambda * coslambda) / coslambda);
-        if (sinlambda < 0 && coslambda < 0)
-            lambda = Math.PI - Math.atan(sinlambda / Math.sqrt(1 - sinlambda * sinlambda));
-        if (sinlambda < 0 && coslambda > 0)
-            lambda = -Math.atan(Math.sqrt(1 - coslambda * coslambda) / coslambda);
-        double kk = lambda;
-        lambda = lambda - omegaZemli * (t - (24 * 3600) * ((int) (t / (24 * 3600)))) - dOmega * t / Tzv; //----------------------------------------------------------
-        if (lambda < -Math.PI) lambda = lambda + 2 * Math.PI;
-        if (lambda < -Math.PI) lambda = lambda + 2 * Math.PI;
-        if (lambda > Math.PI) lambda = lambda - 2 * Math.PI;
-        if (lambda > Math.PI) lambda = lambda - 2 * Math.PI;
-        if (lambda > Math.PI) lambda = lambda - 2 * Math.PI;
-        if (lambda > Math.PI) lambda = lambda - 2 * Math.PI;
+        fiGA = Math.atan(sinFi / Math.sqrt(1 - sinFi * sinFi));
+        sinlambdaGA = (Math.sin(omega) * Math.cos(u) + Math.cos(omega) * Math.cos(iRad) * Math.sin(u)) / Math.cos(fiGA);
+        coslambdaGA = (Math.cos(omega) * Math.cos(u) - Math.sin(omega) * Math.cos(iRad) * Math.sin(u)) / Math.cos(fiGA);
+        if (sinlambdaGA > 0 && coslambdaGA > 0)
+            lambdaGaDL = Math.atan(sinlambdaGA / Math.sqrt(1 - sinlambdaGA * sinlambdaGA));
+        if (sinlambdaGA > 0 && coslambdaGA < 0)
+            lambdaGaDL = Math.PI + Math.atan(Math.sqrt(1 - coslambdaGA * coslambdaGA) / coslambdaGA);
+        if (sinlambdaGA < 0 && coslambdaGA < 0)
+            lambdaGaDL = Math.PI - Math.atan(sinlambdaGA / Math.sqrt(1 - sinlambdaGA * sinlambdaGA));
+        if (sinlambdaGA < 0 && coslambdaGA > 0)
+            lambdaGaDL = -Math.atan(Math.sqrt(1 - coslambdaGA * coslambdaGA) / coslambdaGA);
+        double kk = lambdaGaDL;
+        lambdaGaDL = lambdaGaDL - omegaZemli * (t - (24 * 3600) * ((int) (t / (24 * 3600)))) - dOmega * t / Tzv; //----------------------------------------------------------
+        if (lambdaGaDL < -Math.PI) lambdaGaDL = lambdaGaDL + 2 * Math.PI;
+        if (lambdaGaDL < -Math.PI) lambdaGaDL = lambdaGaDL + 2 * Math.PI;
+        if (lambdaGaDL > Math.PI) lambdaGaDL = lambdaGaDL - 2 * Math.PI;
+        if (lambdaGaDL > Math.PI) lambdaGaDL = lambdaGaDL - 2 * Math.PI;
+        if (lambdaGaDL > Math.PI) lambdaGaDL = lambdaGaDL - 2 * Math.PI;
+        if (lambdaGaDL > Math.PI) lambdaGaDL = lambdaGaDL - 2 * Math.PI;
 
-        x = centerPane.getX0i() + ((int) (centerPane.getmX() * (float) lambda * 180 / Math.PI));
-        y = centerPane.getY0i() - ((int) (centerPane.getmY() * (float) fi * 180 / Math.PI));
+        x = centerPane.getX0i() + ((int) (centerPane.getmX() * (float) lambdaGaDL * 180 / Math.PI));
+        y = centerPane.getY0i() - ((int) (centerPane.getmY() * (float) fiGA * 180 / Math.PI));
         return new Coordinate2D(y, x);
     }
 
@@ -246,8 +245,8 @@ public class ImplMathModel implements IMathModel {
             Dolgota_Zentra_Teti = Math.PI + dolgotaZenitnTochki;
 
         //Условие вхождения КА в тень Земли
-        return Math.abs(Math.acos(Math.sin(Shirota_Zentra_Teti) * Math.sin(fi)
-                + Math.cos(Shirota_Zentra_Teti) * Math.cos(fi) * Math.cos(lambda - Dolgota_Zentra_Teti)))
+        return Math.abs(Math.acos(Math.sin(Shirota_Zentra_Teti) * Math.sin(fiGA)
+                + Math.cos(Shirota_Zentra_Teti) * Math.cos(fiGA) * Math.cos(lambdaGaDL - Dolgota_Zentra_Teti)))
                 < alfa_Ten_Semli;
     }
 
@@ -266,25 +265,25 @@ public class ImplMathModel implements IMathModel {
     @Override
     public double getFi(int t) {
         pereschetParametersIsNeed(t);
-        return fi;
+        return fiGA;
     }
 
     @Override
     public double getLambda(int t) {
         pereschetParametersIsNeed(t);
-        return Math.asin(sinlambda);
+        return Math.asin(sinlambdaGA);
     }
 
     @Override
     public double getSinlambda(int t) {
         pereschetParametersIsNeed(t);
-        return sinlambda;
+        return sinlambdaGA;
     }
 
     @Override
     public double getCoslambda(int t) {
         pereschetParametersIsNeed(t);
-        return coslambda;
+        return coslambdaGA;
     }
 
     @Override
@@ -297,10 +296,10 @@ public class ImplMathModel implements IMathModel {
         pereschetParametersIsNeed(t);
         return "Арг.Пер.= " + okrug(W, 7) +
                 "\nУг.ист.ан.= " + okrug(tetaSmall, 4) +
-                "\nШирота= " + okrug(fi, 4) +
+                "\nШирота= " + okrug(fiGA, 4) +
                 "\nДолгота= " + okrug(getLambda(t), 4) +
-                "\nsinLambda= " + okrug(sinlambda, 4) +
-                "\ncosLambda= " + okrug(coslambda, 4);
+                "\nsinLambda= " + okrug(sinlambdaGA, 4) +
+                "\ncosLambda= " + okrug(coslambdaGA, 4);
     }
 
     @Override

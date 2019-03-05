@@ -3,12 +3,18 @@ package com.simulation.earth.spaceObjects;
 import javafx.scene.Camera;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public abstract class ObjectWithCamera extends SpaceObject{
     private ArrayList<Camera> cameras = new ArrayList<>();
 
     public ArrayList<Camera> getCameras () {
         return cameras;
+    }
+
+    {
+        cameras.addAll(prepareCameras());
+        getSpaceModel().getChildren().addAll(cameras);
     }
 
     public Camera getCamera (String name) {
@@ -19,9 +25,5 @@ public abstract class ObjectWithCamera extends SpaceObject{
         return null;
     }
 
-    public Camera addCamera (Camera camera){
-        getSpaceModel().getChildren().add(camera);
-        cameras.add(camera);
-        return camera;
-    }
+    protected abstract List<Camera> prepareCameras ();
 }

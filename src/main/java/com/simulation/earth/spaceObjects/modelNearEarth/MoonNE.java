@@ -2,19 +2,18 @@ package com.simulation.earth.spaceObjects.modelNearEarth;
 
 import com.simulation.earth.spaceObjects.PlanetOrStart;
 import javafx.geometry.Point3D;
+import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.paint.PhongMaterial;
+import javafx.scene.shape.Sphere;
+import javafx.scene.transform.Rotate;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class MoonNE extends PlanetOrStart {
-    private final static float radiusMoon = 1737f;
-    private final static float distanceOfEarthPerigey = 357_104f;
-    private final static float distanceOfEarthApogei = 406_696f;
-
-    {
-        prepareSpaceModel();
-    }
 
     @Override
     public void prepareStartCootdints(Date data) {
@@ -26,25 +25,29 @@ public class MoonNE extends PlanetOrStart {
 
     }
 
+    private Rotate rotateFlyCircle = new Rotate(0,new Point3D(1,1,0));
+    {
+        getSpaceModel().getTransforms().add(rotateFlyCircle);
+    }
     @Override
     public void movement(float deltaTime) {
-        getRotateX().setAxis(new Point3D(1,1,0));
-        getRotateX().setAngle(getRotateX().getAngle()-3*deltaTime/10);
-        getSphere().setRotate(getSphere().getRotate()+4*deltaTime/10);
-
+        rotateFlyCircle.setAngle(rotateFlyCircle.getAngle()-3*deltaTime/10);
+        rotateX.setAngle(rotateX.getAngle()+4*deltaTime/10);
     }
 
     @Override
-    protected void prepareSpaceModel() {
-        setName("moon");
-        getSphere().setTranslateZ(distanceOfEarthPerigey);
-        getSphere().setRadius(radiusMoon*scale);
-        getSphere().setMaterial(prepareMaterial());
-        getSpaceModel().getChildren().add(getSphere());
+    protected List<Node> modelDescription() {
+        Group group = new Group();
+        List<Node> nodes = new ArrayList<>();
+        Sphere sphere = new Sphere(radiusMoon);
+        group.setTranslateZ(distanceOfEarthPerigey);
+        sphere.setMaterial(prepareMaterial());
+        nodes.add(group);
+        group.getChildren().add(sphere);
+        return nodes;
     }
 
-    @Override
-    protected PhongMaterial prepareMaterial() {
+    private PhongMaterial prepareMaterial() {
         PhongMaterial phongMaterial = new PhongMaterial();
         phongMaterial.setDiffuseMap(new Image(getClass().getResourceAsStream("/texturs/moonTexture.jpg")));
         return phongMaterial;

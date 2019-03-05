@@ -1,23 +1,22 @@
 package com.simulation.earth.spaceObjects.modelNearEarth;
 
 import com.simulation.earth.spaceObjects.PlanetOrStart;
+import javafx.geometry.Point3D;
+import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.PointLight;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
+import javafx.scene.shape.Sphere;
 import javafx.scene.transform.Rotate;
 
+import java.awt.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class SunNE extends PlanetOrStart {
-    private final static float radiusSun = 695_508;
-    private final static double distanceOfEarth = 149_600_000;
-
-    private PointLight pointLight;
-
-    {
-        prepareSpaceModel();
-    }
 
     @Override
     public void prepareStartCootdints(Date data) {
@@ -29,30 +28,38 @@ public class SunNE extends PlanetOrStart {
 
     }
 
+    private Rotate rotateFlyCircle = new Rotate(0,new Point3D(0,1,0));
+    {
+        getSpaceModel().getTransforms().add(rotateFlyCircle);
+    }
     @Override
     public void movement(float deltaTime) {
-        getRotateX().setAxis(Rotate.Y_AXIS);
-        getRotateX().setAngle(getRotateX().getAngle()+1*deltaTime/10);
-        getSphere().setRotate(getSphere().getRotate()+6*deltaTime/10);
+        rotateFlyCircle.setAngle(rotateFlyCircle.getAngle()+1*deltaTime/10);
+        rotateX.setAngle(rotateX.getAngle()+6*deltaTime/10);
+        rotateY.setAngle(rotateY.getAngle()+3*deltaTime/10);
     }
 
     @Override
-    protected void prepareSpaceModel() {
-        setName("sun");
-        getSphere().setTranslateX(distanceOfEarth);
-        getSphere().setRadius(radiusSun*scale);
-        getSphere().setMaterial(prepareMaterial());
-        pointLight = new PointLight();
+    protected List<Node> modelDescription() {
+        Group group = new Group();
+        List<Node> nodes = new ArrayList<>();
+        Sphere sphere = new Sphere(radiusSun);
+
+        group.setTranslateX(distanceOfEarth);
+        sphere.setMaterial(prepareMaterial());
+        PointLight pointLight = new PointLight();
         pointLight.setColor(Color.WHITE);
-        pointLight.setTranslateX(getSphere().getTranslateX());
-        pointLight.setTranslateY(getSphere().getTranslateY());
-        pointLight.setTranslateZ(getSphere().getTranslateZ());
-        getSpaceModel().getChildren().add(getSphere());
-        getSpaceModel().getChildren().add(pointLight);
+        pointLight.setTranslateX(sphere.getTranslateX());
+        pointLight.setTranslateY(sphere.getTranslateY());
+        pointLight.setTranslateZ(sphere.getTranslateZ());
+
+        group.getChildren().addAll(sphere,pointLight);
+        nodes.add(group);
+
+        return nodes;
     }
 
-    @Override
-    protected PhongMaterial prepareMaterial () {
+    private PhongMaterial prepareMaterial() {
         PhongMaterial phongMaterial = new PhongMaterial();
         phongMaterial.setSelfIlluminationMap(new Image(getClass().getResourceAsStream("/texturs/sunTexture.jpg")));
         return phongMaterial;

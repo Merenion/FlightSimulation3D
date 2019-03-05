@@ -1,25 +1,20 @@
 package com.simulation.earth.spaceObjects.modelNearEarth;
 
 import com.simulation.earth.spaceObjects.PlanetOrStart;
+import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.paint.PhongMaterial;
-import javafx.scene.transform.Rotate;
+import javafx.scene.shape.Sphere;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class EarthNE extends PlanetOrStart {
 
-    private final static float radiusEarth = 6371f;
-
-    public EarthNE() {
-        prepareSpaceModel();
-    }
-
     @Override
     public void prepareStartCootdints(Date data) {
-        getSphere().setTranslateX(0);
-        getSphere().setTranslateY(0);
-        getSphere().setTranslateZ(0);
     }
 
     @Override
@@ -29,23 +24,21 @@ public class EarthNE extends PlanetOrStart {
 
     @Override
     public void movement(float deltaTime) {
-        getSpaceModel().setRotationAxis(Rotate.Y_AXIS);
-        getSpaceModel().setRotate(getSpaceModel().getRotate()-1*deltaTime/10);
+        rotateY.setAngle(rotateY.getAngle()-1*deltaTime/10);
     }
 
     @Override
-    public void prepareSpaceModel() {
-        setName("earth");
-        getSphere().setTranslateX(0);
-        getSphere().setTranslateY(0);
-        getSphere().setTranslateZ(0);
-        getSphere().setRadius(radiusEarth*scale);
-        getSpaceModel().getChildren().add(getSphere());
-        getSphere().setMaterial(prepareMaterial());
+    public List<Node> modelDescription() {
+        Group group = new Group();
+        List<Node> nodes = new ArrayList<>();
+        Sphere sphere = new Sphere(radiusEarth);
+        sphere.setMaterial(prepareMaterial());
+        group.getChildren().add(sphere);
+        nodes.add(group);
+        return nodes;
     }
 
-    @Override
-    protected PhongMaterial prepareMaterial () {
+    private PhongMaterial prepareMaterial () {
         PhongMaterial phongMaterial = new PhongMaterial();
         phongMaterial.setDiffuseMap(new Image(getClass().getResourceAsStream("/texturs/earthTexture.jpg")));
         phongMaterial.setSpecularMap(new Image(getClass().getResourceAsStream("/texturs/earthMapReflection.jpg")));

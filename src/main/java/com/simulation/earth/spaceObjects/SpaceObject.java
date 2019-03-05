@@ -6,67 +6,61 @@ import com.simulation.earth.pathServis.ManagerDrawPath;
 import com.simulation.earth.pathServis.ServisDrawTrajectory;
 import com.simulation.earth.objectControl.SmartGroup;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.transform.Rotate;
+import javafx.scene.transform.Transform;
 import javafx.scene.transform.Translate;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public abstract class  SpaceObject {
     private double massa;
     private ArrayList<SpaceObject> objectsOfReferenceMovement = new ArrayList<>();
     private String name = "";
     private SmartGroup spaceModel = new SmartGroup();
-    private final Rotate rotateX = new Rotate(0,Rotate.X_AXIS);
-    private final Rotate rotateY = new Rotate(0,Rotate.Y_AXIS);
-    private final Rotate rotateZ = new Rotate(0,Rotate.Z_AXIS);
-    private final Translate translate = new Translate();
-    public SpaceObject(String name) {
-        this.name = name;
-    }
+    protected final Rotate rotateX = new Rotate(0,Rotate.X_AXIS);
+    protected final Rotate rotateY = new Rotate(0,Rotate.Y_AXIS);
+    protected final Rotate rotateZ = new Rotate(0,Rotate.Z_AXIS);
+    protected final Translate orientation = new Translate();
     private boolean drawPath = false;
     protected ServisDrawTrajectory servisDrawTrajectory;
     IMathModel mathModel = new ImplMathModel();
-    protected float scale =1;
+    private float scaleModel =1;
+
 
     public void changeScaleModel (float scale){
-        this.scale = scale;
-        prepareSpaceModel();
+        changeScaleModel(scale,spaceModel);
+        scaleModel = scale;
     }
 
     {
-        spaceModel.getTransforms().addAll(rotateZ,rotateY,rotateX,translate);
+        spaceModel.getTransforms().add(orientation);
+        spaceModel.getChildren().addAll(modelDescription());
+        prepareRotate();
         prepareStartCootdints();
-        servisDrawTrajectory = new ManagerDrawPath((float) translate.getX(),(float)translate.getY(),(float) translate.getZ());
+        servisDrawTrajectory = new ManagerDrawPath((float) orientation.getX(),(float) orientation.getY(),(float) orientation.getZ());
+        if (name.equals(""))
+            name=this.getClass().getSimpleName();
     }
 
     public Group getTrajectory () {
         return servisDrawTrajectory.getPath();
     }
 
-    SpaceObject(){
+    public SpaceObject(String name) {
+        this.name = name;
+    }
+
+    public SpaceObject() {
     }
 
     public abstract void prepareStartCootdints (Date data);
     public abstract void prepareStartCootdints ();
     public abstract void movement(float deltaTime) ;
-    protected abstract void prepareSpaceModel();
+    protected abstract List<Node> modelDescription();
 
-    public Rotate getRotateY() {
-        return rotateY;
-    }
-
-    public Rotate getRotateZ() {
-        return rotateZ;
-    }
-
-    public Rotate getRotateX() {
-        return rotateX;
-    }
-
-    public Translate getTranslate() {
-        return translate;
-    }
 
     public SmartGroup getSpaceModel(){
         return spaceModel;
@@ -102,7 +96,34 @@ public abstract class  SpaceObject {
 
     @Override
     public String toString() {
-        if (!name.equals("")) return name;
-        else return "Object nameless";
+        return name;
+    }
+
+    private void prepareRotate (){
+        for (Node node: spaceModel.getChildren()){
+            node.getTransforms().addAll(rotateX,rotateY,rotateZ);
+        }
+    }
+
+    private void changeScaleModel (float scale, Group group){
+        for (Node node: group.getChildren()){
+            if (node instanceof Group) {
+                changeScaleModel(scale, (Group) node);
+            }else {
+                node.setScaleX(scale);
+                node.setScaleY(scale);
+                node.setScaleZ(scale);
+                node.setTranslateX(node.getTranslateX() / scaleModel * scale);
+                node.setTranslateY(node.getTranslateY() / scaleModel * scale);
+                node.setTranslateZ(node.getTranslateZ() / scaleModel * scale);
+                for (Transform transform : node.getTransforms()) {
+                    if (transform instanceof Translate) {
+                        ((Translate) transform).setX(((Translate) transform).getX() / scaleModel * scale);
+                        ((Translate) transform).setY(((Translate) transform).getY() / scaleModel * scale);
+                        ((Translate) transform).setZ(((Translate) transform).getZ() / scaleModel * scale);
+                    }
+                }
+            }
+        }
     }
 }

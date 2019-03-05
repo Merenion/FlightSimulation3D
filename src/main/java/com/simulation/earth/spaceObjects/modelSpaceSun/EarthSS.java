@@ -1,15 +1,13 @@
 package com.simulation.earth.spaceObjects.modelSpaceSun;
 
 import com.simulation.earth.spaceObjects.PlanetOrStart;
+import javafx.scene.Node;
 import javafx.scene.paint.PhongMaterial;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class EarthSS extends PlanetOrStart {
-    @Override
-    protected PhongMaterial prepareMaterial() {
-        return null;
-    }
 
     @Override
     public void prepareStartCootdints(Date data) {
@@ -27,7 +25,7 @@ public class EarthSS extends PlanetOrStart {
     }
 
     @Override
-    protected void prepareSpaceModel() {
-
+    protected ArrayList<Node> modelDescription() {
+        return null;
     }
 }

@@ -170,14 +170,14 @@ public class ControllerWindowSimulation {
         if (checkOverScale.isSelected()) {
             for (SpaceObject spaceObject : space.getSpaceObjects()) {
                 if (spaceObject instanceof PlanetOrStart) {
-                    ((PlanetOrStart) spaceObject).getSphere().setRadius(((PlanetOrStart) spaceObject).getSphere().getRadius() * 25);
+                    spaceObject.changeScaleModel(25);
                     freeCamera.setTranslateZ(-3_000_000);
                 }
             }
         }else {
             for (SpaceObject spaceObject : space.getSpaceObjects()) {
                 if (spaceObject instanceof PlanetOrStart) {
-                    ((PlanetOrStart) spaceObject).getSphere().setRadius(((PlanetOrStart) spaceObject).getSphere().getRadius() /25);
+                    spaceObject.changeScaleModel(1);
                     freeCamera.setTranslateZ(-20000);
                 }
             }
@@ -201,6 +201,6 @@ public class ControllerWindowSimulation {
     }
 
     public void onTest(ActionEvent actionEvent) {
-
+        space.getSpaceObject("SatelliteDefault").changeScaleModel(50000);
     }
 }
