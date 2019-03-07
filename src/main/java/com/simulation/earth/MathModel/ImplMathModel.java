@@ -91,9 +91,9 @@ public class ImplMathModel implements IMathModel {
         rpi = Rz + initCh.getHpi();                                     //радиус перигея
         e = (ra - rpi) / (ra + rpi);                                    //Эксцентриситет орбиты
         a = (rpi + ra) / 2;                                             //Большая полурсь
-        p = a * (1 - e * e);                                            //расчет фокального параметра орбиты
-        r = p / (1 + e * Math.cos(tetaSmall));                          //радиус-вектор КА от центра
-        H = r - Rz;                                                     //высота полета
+        p = a * (1 - e * e);                                            //Расчет локального параметра орбиты
+        r = p / (1 + e * Math.cos(tetaSmall));                          //Радиус-вектор КА от центра
+        H = r - Rz;                                                     //Высота полета
         Tzv = 2 * Math.PI * Math.sqrt(Math.pow(a, 3) / mu);             //Период обращения звездный
         //Расчет векового возмущения первого порядка:
         dOmega = -35.052 / 60 * Math.PI / 180 * Math.pow((Rz / p), 2) * Math.cos(iRad);
@@ -147,7 +147,7 @@ public class ImplMathModel implements IMathModel {
             lambdaGaDL = Math.PI - Math.atan(sinlambdaGA / Math.sqrt(1 - sinlambdaGA * sinlambdaGA));
         if (sinlambdaGA < 0 && coslambdaGA > 0)
             lambdaGaDL = -Math.atan(Math.sqrt(1 - coslambdaGA * coslambdaGA) / coslambdaGA);
-        double kk = lambdaGaDL;
+        lambdaGaSH = lambdaGaDL;
         lambdaGaDL = lambdaGaDL - omegaZemli * (t - (24 * 3600) * ((int) (t / (24 * 3600)))) - dOmega * t / Tzv; //----------------------------------------------------------
         if (lambdaGaDL < -Math.PI) lambdaGaDL = lambdaGaDL + 2 * Math.PI;
         if (lambdaGaDL < -Math.PI) lambdaGaDL = lambdaGaDL + 2 * Math.PI;
