@@ -164,7 +164,9 @@ public class ControllerWindowSimulation {
         simulation.enableSimulation(space);
     }
 
-    public void onResetSimulation(ActionEvent actionEvent) {    }
+    public void onResetSimulation(ActionEvent actionEvent) {
+        simulation.resetSimulation(space);
+    }
 
     public void onOverScale(ActionEvent actionEvent) {
         if (checkOverScale.isSelected()) {

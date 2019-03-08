@@ -246,8 +246,8 @@ public class DeterminateParameters {
         double omega = nowAngelVoshodychegoUzla(t);
         double r = hightFlightFromCenter(t, tau);
         double Xga = r * (Math.cos(omega) * Math.cos(u) - Math.sin(omega) * Math.sin(u) * Math.cos(iRad));
-        double Yga = r * (Math.sin(omega) * Math.cos(u) + Math.cos(omega) * Math.sin(u) * Math.cos(iRad));
-        double Zga = r * Math.sin(u) * Math.sin(iRad);
+        double Zga = r * (Math.sin(omega) * Math.cos(u) + Math.cos(omega) * Math.sin(u) * Math.cos(iRad));
+        double Yga = -r * Math.sin(u) * Math.sin(iRad);
         return new Point3D(Xga,Yga,Zga);
     }
 

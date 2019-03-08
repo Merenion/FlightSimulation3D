@@ -4,30 +4,22 @@ import javafx.geometry.Point3D;
 
 public class MathModelSatelite extends DeterminateParameters implements GeodeticLocation{
 
-    double time = 0;
-
-    public MathModelSatelite(OrbitParameters orbitPr, double startTime) {
+    public MathModelSatelite(OrbitParameters orbitPr) {
         super(orbitPr);
-
     }
 
-
-    public Point3D getGeodeticCoordinatsf(double t) {
-    return null;
-    }
     public Point3D getGeodeticCoordinats(double t) {
-        return null;
+        return geodeticСoordinates(t,0);
     }
 
     @Override
     public double getAmountCoil(double t) {
-        return 0;
+        return amountCoil(t);
     }
 
     @Override
     public double getHight(double t) {
-        return 0;
+        return getHight(t);
     }
-
 
 }

@@ -6,8 +6,9 @@ import javafx.animation.AnimationTimer;
 import java.util.Date;
 
 public class DefaultSimulation implements ISimulation {
-    private float deltaTime = 0.1f;
+    private double deltaTime = 0.1f;
     private double timeSimulation;
+    private double startTime;
     private AnimationTimer timer;
     private boolean runningProcess = false;
     private boolean drawPath = false;
@@ -18,12 +19,12 @@ public class DefaultSimulation implements ISimulation {
     }
 
     @Override
-    public float getDeltaTime() {
+    public double getDeltaTime() {
         return deltaTime;
     }
 
     @Override
-    public void setDeltaTime(float delta) {
+    public void setDeltaTime(double delta) {
         deltaTime = delta;
     }
 
@@ -34,8 +35,8 @@ public class DefaultSimulation implements ISimulation {
             timer = new AnimationTimer() {
                 @Override
                 public void handle(long now) {
-                    space.movementObjects(deltaTime);
                     timeSimulation += deltaTime;
+                    space.movementObjects(timeSimulation);
                 }
             };
             timer.start();
@@ -51,8 +52,16 @@ public class DefaultSimulation implements ISimulation {
     }
 
     @Override
-    public void resetSimulation(Space space, Date data) {
-        space.prepareStartCoordinatForObjects(data);
-        timeSimulation =0;
+    public void resetSimulation(Space space) {
+        space.prepareStartCoordinatForObjects(startTime);
+        timeSimulation =startTime;
+    }
+
+    public double getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(double startTime) {
+        this.startTime = startTime;
     }
 }

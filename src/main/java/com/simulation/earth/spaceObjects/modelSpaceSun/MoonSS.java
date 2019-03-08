@@ -10,7 +10,7 @@ import java.util.Date;
 public class MoonSS extends PlanetOrStart {
 
     @Override
-    public void prepareStartCootdints(Date data) {
+    public void prepareStartCootdints(double time) {
 
     }
 
@@ -20,7 +20,7 @@ public class MoonSS extends PlanetOrStart {
     }
 
     @Override
-    public void movement(float deltaTime) {
+    public void movement(double time) {
 
     }
 

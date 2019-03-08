@@ -56,9 +56,9 @@ public abstract class  SpaceObject {
     public SpaceObject() {
     }
 
-    public abstract void prepareStartCootdints (Date data);
+    public abstract void prepareStartCootdints (double time);
     public abstract void prepareStartCootdints ();
-    public abstract void movement(float deltaTime) ;
+    public abstract void movement(double time) ;
     protected abstract List<Node> modelDescription();
 
 

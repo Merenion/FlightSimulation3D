@@ -16,23 +16,29 @@ import java.util.List;
 public class MoonNE extends PlanetOrStart {
 
     @Override
-    public void prepareStartCootdints(Date data) {
-
+    public void prepareStartCootdints(double time) {
+        prepareStartCootdints();
     }
 
     @Override
     public void prepareStartCootdints() {
-
+        rotateX.setAngle(0);
+        if (rotateFlyCircle!= null)
+            rotateFlyCircle.setAngle(0);
     }
 
     private Rotate rotateFlyCircle = new Rotate(0,new Point3D(1,1,0));
     {
         getSpaceModel().getTransforms().add(rotateFlyCircle);
     }
+
+    private double oldTime;
     @Override
-    public void movement(float deltaTime) {
-        rotateFlyCircle.setAngle(rotateFlyCircle.getAngle()-3*deltaTime/10);
-        rotateX.setAngle(rotateX.getAngle()+4*deltaTime/10);
+    public void movement(double time) {
+        double deltaTime = time -oldTime;
+        oldTime = time;
+        rotateFlyCircle.setAngle(rotateFlyCircle.getAngle()-3* deltaTime /10);
+        rotateX.setAngle(rotateX.getAngle()+4* deltaTime /10);
     }
 
     @Override

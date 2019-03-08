@@ -93,4 +93,9 @@ public class ManagerDrawPath implements ServisDrawTrajectory {
     public LineToManager getLineToManager() {
         return lineToManager;
     }
+
+    @Override
+    public void clear() {
+        lineToManager.getPath().getChildren().clear();
+    }
 }

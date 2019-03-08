@@ -8,9 +8,11 @@ import java.util.Date;
 public interface ISimulation {
 
     double getTimeSimulation();
-    float getDeltaTime();
-    void setDeltaTime(float delta);
+    double getDeltaTime();
+    void setDeltaTime(double delta);
     void enableSimulation(Space space);
     void stopSimulation ();
-    void resetSimulation(Space space, Date data);
+    void resetSimulation(Space space);
+    double getStartTime();
+    void setStartTime(double startTime);
 }

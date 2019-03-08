@@ -15,4 +15,5 @@ public interface ServisDrawTrajectory {
     double getDistanceDrawLine();
     void setDistanceDrawLine(double distanceDrawLine);
     LineToManager getLineToManager();
+    void clear ();
 }

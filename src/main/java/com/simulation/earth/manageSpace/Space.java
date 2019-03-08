@@ -40,12 +40,12 @@ public abstract class Space {
         return spaceObjects;
     }
 
-    public void prepareStartCoordinatForObjects (Date date) {
+    public void prepareStartCoordinatForObjects (double time) {
         for (SpaceObject object : spaceObjects)
-            object.prepareStartCootdints(date);
+            object.prepareStartCootdints(time);
     }
 
-    public void movementObjects(float deltaTime) {
+    public void movementObjects(double deltaTime) {
         for (SpaceObject object : spaceObjects)
             object.movement(deltaTime);
     }

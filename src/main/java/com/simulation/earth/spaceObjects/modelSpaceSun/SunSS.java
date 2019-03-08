@@ -16,7 +16,7 @@ public class SunSS extends PlanetOrStart {
     private final static double distanceOfEarth = 149_600_000;
 
     @Override
-    public void prepareStartCootdints(Date data) {
+    public void prepareStartCootdints(double time) {
 
     }
 
@@ -26,7 +26,7 @@ public class SunSS extends PlanetOrStart {
     }
 
     @Override
-    public void movement(float deltaTime) {
+    public void movement(double time) {
 
     }
 

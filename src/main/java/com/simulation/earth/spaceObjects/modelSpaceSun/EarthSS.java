@@ -10,7 +10,7 @@ import java.util.Date;
 public class EarthSS extends PlanetOrStart {
 
     @Override
-    public void prepareStartCootdints(Date data) {
+    public void prepareStartCootdints(double time) {
 
     }
 
@@ -20,7 +20,7 @@ public class EarthSS extends PlanetOrStart {
     }
 
     @Override
-    public void movement(float deltaTime) {
+    public void movement(double time) {
 
     }
 

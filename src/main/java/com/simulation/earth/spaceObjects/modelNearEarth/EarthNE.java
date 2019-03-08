@@ -14,17 +14,21 @@ import java.util.List;
 public class EarthNE extends PlanetOrStart {
 
     @Override
-    public void prepareStartCootdints(Date data) {
+    public void prepareStartCootdints(double time) {
+        prepareStartCootdints();
     }
 
     @Override
     public void prepareStartCootdints() {
-
+        rotateY.setAngle(-90);
     }
 
+    private double oldTime;
     @Override
-    public void movement(float deltaTime) {
-        rotateY.setAngle(rotateY.getAngle()-1*deltaTime/10);
+    public void movement(double time) {
+        double deltaTime = time -oldTime;
+        oldTime = time;
+        rotateY.setAngle(rotateY.getAngle()-1* deltaTime /10);
     }
 
     @Override

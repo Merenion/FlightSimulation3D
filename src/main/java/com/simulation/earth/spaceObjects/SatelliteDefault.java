@@ -1,6 +1,11 @@
 package com.simulation.earth.spaceObjects;
 
+import com.simulation.earth.MathModel.GeodeticLocation;
+import com.simulation.earth.MathModel.IMathModel;
+import com.simulation.earth.MathModel.MathModelSatelite;
+import com.simulation.earth.MathModel.StorageOrbitParameters;
 import com.simulation.earth.manageSatellite.ParametrsOrbit;
+import javafx.geometry.Point3D;
 import javafx.scene.Camera;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -20,27 +25,29 @@ public class SatelliteDefault extends Satellite {
         super(parametrsOrbit);
     }
 
-    @Override
-    public void prepareStartCootdints(Date data) {
+    GeodeticLocation mathModel = new MathModelSatelite(new StorageOrbitParameters());
 
+    @Override
+    public void prepareStartCootdints(double time) {
+
+        Point3D coordinats = (new MathModelSatelite(new StorageOrbitParameters())).getGeodeticCoordinats(time);
+        orientation.setX(coordinats.getX());
+        orientation.setY(coordinats.getY());
+        orientation.setZ(coordinats.getZ());
+        rotateZ.setAngle(90);
     }
 
     @Override
     public void prepareStartCootdints() {
-        orientation.setX(mathModel.getXga(0));
-        orientation.setY(mathModel.getYga(0));
-        orientation.setZ(mathModel.getZga(0));
-        rotateZ.setAngle(90);
+        prepareStartCootdints(0);
     }
 
-    private double t =0;
-
     @Override
-    public void movement(float deltaTime) {
-        t+=deltaTime;
-        orientation.setX(mathModel.getXga(t));
-        orientation.setY(mathModel.getYga(t));
-        orientation.setZ(mathModel.getZga(t));
+    public void movement(double time) {
+        Point3D coordinats = mathModel.getGeodeticCoordinats(time);
+        orientation.setX(coordinats.getX());
+        orientation.setY(coordinats.getY());
+        orientation.setZ(coordinats.getZ());
         if (isDrawPath()) {
             servisDrawTrajectory.addLineInPathIfNeeded((float) orientation.getX(), (float) orientation.getY(), (float) orientation.getZ());
         }
