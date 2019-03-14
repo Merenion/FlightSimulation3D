@@ -58,4 +58,9 @@ public class MoonNE extends PlanetOrStart {
         phongMaterial.setDiffuseMap(new Image(getClass().getResourceAsStream("/texturs/moonTexture.jpg")));
         return phongMaterial;
     }
+
+    @Override
+    public float getRadiusPlanet() {
+        return radiusMoon;
+    }
 }

@@ -1,18 +1,17 @@
 package com.simulation.earth.spaceObjects;
 
-import com.simulation.earth.MathModel.IMathModel;
-import com.simulation.earth.MathModel.ImplMathModel;
 import com.simulation.earth.pathServis.ManagerDrawPath;
 import com.simulation.earth.pathServis.ServisDrawTrajectory;
 import com.simulation.earth.objectControl.SmartGroup;
+import javafx.animation.AnimationTimer;
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.paint.Color;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Transform;
 import javafx.scene.transform.Translate;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public abstract class  SpaceObject {
@@ -25,8 +24,9 @@ public abstract class  SpaceObject {
     protected final Rotate rotateZ = new Rotate(0,Rotate.Z_AXIS);
     protected final Translate orientation = new Translate();
     private boolean drawPath = false;
-    protected ServisDrawTrajectory servisDrawTrajectory;
-    IMathModel mathModel = new ImplMathModel();
+    protected ServisDrawTrajectory servisDrawTrajectory = new ManagerDrawPath();
+    private AnimationTimer listenerChangeCoordinates;
+
     private float scaleModel =1;
 
 
@@ -40,9 +40,15 @@ public abstract class  SpaceObject {
         spaceModel.getChildren().addAll(modelDescription());
         prepareRotate();
         prepareStartCootdints();
-        servisDrawTrajectory = new ManagerDrawPath((float) orientation.getX(),(float) orientation.getY(),(float) orientation.getZ());
         if (name.equals(""))
             name=this.getClass().getSimpleName();
+    }
+
+    {
+        servisDrawTrajectory.setMaxNumberLine(200);
+        onListenerChangeCoordinates();
+        if (drawPath)
+            listenerChangeCoordinates.start();
     }
 
     public Group getTrajectory () {
@@ -86,7 +92,11 @@ public abstract class  SpaceObject {
         return drawPath;
     }
 
-    public void setDrawPath(boolean drawPath) {
+    public void setDrawTrajectory(boolean drawPath) {
+        if (drawPath)
+            listenerChangeCoordinates.start();
+        else
+            listenerChangeCoordinates.stop();
         this.drawPath = drawPath;
     }
 
@@ -103,6 +113,43 @@ public abstract class  SpaceObject {
         for (Node node: spaceModel.getChildren()){
             node.getTransforms().addAll(rotateX,rotateY,rotateZ);
         }
+    }
+
+    private void onListenerChangeCoordinates () {
+        listenerChangeCoordinates = new AnimationTimer() {
+            private double obsoleteX;
+            private double obsoleteY;
+            private double obsoleteZ;
+            @Override
+            public void handle(long now) {
+                if ((obsoleteX!=orientation.getX() || obsoleteY!=orientation.getY() || obsoleteZ!=orientation.getZ())
+                        && (obsoleteX!=0 || obsoleteY!=0 || obsoleteZ!=0))
+                    servisDrawTrajectory.addLineInPathIfNeeded((float) orientation.getX(), (float) orientation.getY(), (float) orientation.getZ());
+                obsoleteX = orientation.getX();
+                obsoleteY = orientation.getY();
+                obsoleteZ = orientation.getZ();
+            }
+            @Override
+            public void start() {
+                servisDrawTrajectory.clear();
+                obsoleteX =0;
+                obsoleteY =0;
+                obsoleteZ =0;
+                super.start();
+            }
+        };
+    }
+
+    public Rotate getRotateX() {
+        return rotateX;
+    }
+
+    public Rotate getRotateY() {
+        return rotateY;
+    }
+
+    public Rotate getRotateZ() {
+        return rotateZ;
     }
 
     private void changeScaleModel (float scale, Group group){

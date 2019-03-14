@@ -1,14 +1,11 @@
 package com.simulation.earth;
 
-import com.simulation.earth.objectControl.SmartGroup;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Objects;
 
 public class Main extends Application {
 
@@ -22,7 +19,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Main.stage = stage;
-        Parent root = FXMLLoader.load(getClass().getResource("/windowSimulation.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/windowSimulationк.fxml"));
         stage.setTitle("Simulation Cosmos");
         Scene scene= ScreenResolution.getSceneWithSize(root);
         stage.setScene(scene);

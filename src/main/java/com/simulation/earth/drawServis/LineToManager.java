@@ -30,6 +30,11 @@ public class LineToManager implements LineServis{
         }
     }
 
+    public void clear () {
+        lines.getChildren().clear();
+        lastAdded = null;
+    }
+
     public Group getPath() {
         return lines;
     }

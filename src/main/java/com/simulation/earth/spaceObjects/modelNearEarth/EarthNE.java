@@ -20,15 +20,15 @@ public class EarthNE extends PlanetOrStart {
 
     @Override
     public void prepareStartCootdints() {
-        rotateY.setAngle(-90);
+//        rotateY.setAngle(-90);
     }
 
-    private double oldTime;
+    private float oldTime;
     @Override
     public void movement(double time) {
-        double deltaTime = time -oldTime;
-        oldTime = time;
-        rotateY.setAngle(rotateY.getAngle()-1* deltaTime /10);
+        float deltaTime = (float) (time -oldTime);
+        oldTime = (float) time;
+        rotateY.setAngle(rotateY.getAngle()+1* deltaTime /(rotationalSpeedEarth/360));
     }
 
     @Override
@@ -47,5 +47,10 @@ public class EarthNE extends PlanetOrStart {
         phongMaterial.setDiffuseMap(new Image(getClass().getResourceAsStream("/texturs/earthTexture.jpg")));
         phongMaterial.setSpecularMap(new Image(getClass().getResourceAsStream("/texturs/earthMapReflection.jpg")));
         return phongMaterial;
+    }
+
+    @Override
+    public float getRadiusPlanet() {
+        return radiusEarth;
     }
 }

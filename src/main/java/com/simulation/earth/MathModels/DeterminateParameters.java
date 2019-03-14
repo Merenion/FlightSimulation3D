@@ -1,4 +1,4 @@
-package com.simulation.earth.MathModel;
+package com.simulation.earth.MathModels;
 
 import javafx.geometry.Point2D;
 import javafx.geometry.Point3D;

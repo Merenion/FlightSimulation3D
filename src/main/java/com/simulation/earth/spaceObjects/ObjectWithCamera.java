@@ -1,6 +1,9 @@
 package com.simulation.earth.spaceObjects;
 
 import javafx.scene.Camera;
+import javafx.scene.Group;
+import javafx.scene.Node;
+import javafx.scene.transform.Rotate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +17,12 @@ public abstract class ObjectWithCamera extends SpaceObject{
 
     {
         cameras.addAll(prepareCameras());
-        getSpaceModel().getChildren().addAll(cameras);
+        for (Camera camera: cameras) {
+            Group group = new Group();
+            group.getChildren().add(camera);
+            group.getTransforms().addAll(rotateX, rotateY, rotateZ);
+            getSpaceModel().getChildren().add(group);
+        }
     }
 
     public Camera getCamera (String name) {

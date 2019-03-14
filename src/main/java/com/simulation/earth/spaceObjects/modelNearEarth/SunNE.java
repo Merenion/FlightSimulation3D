@@ -11,9 +11,7 @@ import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Sphere;
 import javafx.scene.transform.Rotate;
 
-import java.awt.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class SunNE extends PlanetOrStart {
@@ -27,13 +25,15 @@ public class SunNE extends PlanetOrStart {
     public void prepareStartCootdints() {
         rotateX.setAngle(0);
         rotateY.setAngle(0);
-        if (rotateFlyCircle!= null)
-            rotateFlyCircle.setAngle(0);
+        if (rotateFlyCircleY != null)
+            rotateFlyCircleY.setAngle(0);
     }
 
-    private Rotate rotateFlyCircle = new Rotate(0,new Point3D(0,1,0));
+    private Rotate rotateFlyCircleY = new Rotate(0,new Point3D(0,1,0));
+    private Rotate rotateFlyCircleZ = new Rotate(0,new Point3D(0,0,1));
     {
-        getSpaceModel().getTransforms().add(rotateFlyCircle);
+        getSpaceModel().getTransforms().add(rotateFlyCircleY);
+        getSpaceModel().getTransforms().add(rotateFlyCircleZ);
     }
 
     private double oldTime;
@@ -41,7 +41,8 @@ public class SunNE extends PlanetOrStart {
     public void movement(double time) {
         double deltaTime = time - oldTime;
         oldTime = time;
-        rotateFlyCircle.setAngle(rotateFlyCircle.getAngle()+1* deltaTime /10);
+        rotateFlyCircleY.setAngle(rotateFlyCircleY.getAngle()-1* deltaTime /1000);
+//        rotateFlyCircleZ.setAngle(rotateFlyCircleZ.getAngle()-1* deltaTime /2000);
         rotateX.setAngle(rotateX.getAngle()+6* deltaTime /10);
         rotateY.setAngle(rotateY.getAngle()+3* deltaTime /10);
     }
@@ -70,5 +71,10 @@ public class SunNE extends PlanetOrStart {
         PhongMaterial phongMaterial = new PhongMaterial();
         phongMaterial.setSelfIlluminationMap(new Image(getClass().getResourceAsStream("/texturs/sunTexture.jpg")));
         return phongMaterial;
+    }
+
+    @Override
+    public float getRadiusPlanet() {
+        return radiusSun;
     }
 }

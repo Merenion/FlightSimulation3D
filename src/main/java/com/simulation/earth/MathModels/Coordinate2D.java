@@ -1,4 +1,4 @@
-package com.simulation.earth.MathModel;
+package com.simulation.earth.MathModels;
 
 public class Coordinate2D {
 

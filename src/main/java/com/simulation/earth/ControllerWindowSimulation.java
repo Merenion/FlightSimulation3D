@@ -10,7 +10,10 @@ import com.simulation.earth.simulationProcessing.DefaultSimulation;
 import com.simulation.earth.simulationProcessing.ISimulation;
 import com.simulation.earth.spaceObjects.PerspectiveCameraWithName;
 import com.simulation.earth.spaceObjects.PlanetOrStart;
+import com.simulation.earth.spaceObjects.Satellite;
 import com.simulation.earth.spaceObjects.SpaceObject;
+import com.simulation.earth.starBackground.Background;
+import com.simulation.earth.starBackground.Stars;
 import javafx.animation.AnimationTimer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -55,6 +58,14 @@ public class ControllerWindowSimulation {
     public ImageView fontImage;
     @FXML
     public Button btTest;
+    @FXML
+    public Slider sliderSatelliteScale;
+    @FXML
+    public Label labelSateliteScale;
+    @FXML
+    public CheckBox checkSatelliteTrajectory;
+    @FXML
+    public CheckBox checkProjectionPathOnEarth;
 
     private Group group = new Group();
     private Camera freeCamera = new PerspectiveCameraWithName(true,"free Camera");
@@ -67,6 +78,9 @@ public class ControllerWindowSimulation {
     private Space space;
     private ParametersSpace parametersSpace;
 
+    private Satellite satellite;
+
+
     @FXML
     private void initialize (){
         space = factorySpace.getSpace();
@@ -78,12 +92,13 @@ public class ControllerWindowSimulation {
         preparePoorLighting();
         prepareTableCameras();
         initLineSystCoordinat();
-        for (SpaceObject object : space.getSpaceObjects()) {
-            object.setDrawPath(true);
-            group.getChildren().add(object.getTrajectory());
-        }
+        Background background = new Stars();
+        group.getChildren().add(background.getGroup());
 
-
+        satellite = (Satellite) space.getSpaceObject("SatelliteDefault");
+        SpaceObject earth = space.getSpaceObject("EarthNE");
+        group.getChildren().add(satellite.getTrajectory());
+        satellite.initProjection((PlanetOrStart) earth);
     }
 
     private void initLineSystCoordinat (){
@@ -105,17 +120,53 @@ public class ControllerWindowSimulation {
         AnimationTimer threadMonitorSimulation = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                labelTimeSimulation.setText(simulation.getTimeSimulation()+"");
-                simulation.setDeltaTime((float) (0.01*sliderDeltaTimeFactor.getValue()));
-                labelDeltaTime.setText(""+simulation.getDeltaTime());
-                if (checkExtraTImeDisplay.isSelected()) {
-                    lableTimeInMin.setText("MIN : " + (int) simulation.getTimeSimulation()/60 );
-                    labelTimeInHours.setText("HOURS : " + (int) simulation.getTimeSimulation()/3600);
-                    labelTImeInDay.setText("DAY : " + (int) simulation.getTimeSimulation()/86400);
-                }
+                labelTimeSimulation.setText(reduceNumber(simulation.getTimeSimulation(),3)+"");
+                monitorDeltaTime();
+                monitorOnExtraTime();
+                monitorTrajectoryAndProjection();
+                monitorSateliteScale();
             }
         };
         threadMonitorSimulation.start();
+    }
+
+    private void monitorOnExtraTime () {
+        if (checkExtraTImeDisplay.isSelected()) {
+            lableTimeInMin.setText("MIN : " + (int) simulation.getTimeSimulation()/60 );
+            labelTimeInHours.setText("HOURS : " + (int) simulation.getTimeSimulation()/3600);
+            labelTImeInDay.setText("DAY : " + (int) simulation.getTimeSimulation()/86400);
+        }
+    }
+
+    private boolean lastSelectedCheckProjectionPathOnEarth =false;
+    private boolean lastSelectedCheckSatelliteTrajectory =false;
+    private void monitorTrajectoryAndProjection() {
+        if (checkProjectionPathOnEarth.isSelected() && !lastSelectedCheckProjectionPathOnEarth) {
+            satellite.drawProjectionOfTrajectories(true);
+            lastSelectedCheckProjectionPathOnEarth = true;
+        }
+        if (!checkProjectionPathOnEarth.isSelected() && lastSelectedCheckProjectionPathOnEarth){
+            satellite.drawProjectionOfTrajectories(false);
+            lastSelectedCheckProjectionPathOnEarth = false;
+        }
+        if (checkSatelliteTrajectory.isSelected() && !lastSelectedCheckSatelliteTrajectory) {
+            satellite.setDrawTrajectory(true);
+            lastSelectedCheckSatelliteTrajectory = true;
+        }
+        if (!checkSatelliteTrajectory.isSelected() && lastSelectedCheckSatelliteTrajectory){
+            satellite.setDrawTrajectory(false);
+            lastSelectedCheckSatelliteTrajectory = false;
+        }
+    }
+
+    private void monitorDeltaTime () {
+        simulation.setDeltaTime((float) (0.01*sliderDeltaTimeFactor.getValue()));
+        labelDeltaTime.setText(""+reduceNumber(simulation.getDeltaTime(),3));
+    }
+
+    private void monitorSateliteScale () {
+        labelSateliteScale.setText(reduceNumber(sliderSatelliteScale.getValue(),3)+"");
+        satellite.changeScaleModel((float) sliderSatelliteScale.getValue());
     }
 
     private void prepareDrawScene (){
@@ -131,13 +182,11 @@ public class ControllerWindowSimulation {
     private void initSizeScene (){
         drawScene.setWidth(ScreenResolution.WIDTH());
         drawScene.setHeight(ScreenResolution.HIGHT());
-        fontImage.setFitHeight(ScreenResolution.HIGHT());
-        fontImage.setFitWidth(ScreenResolution.WIDTH());
     }
 
     private void preparePoorLighting () {
         AmbientLight light = new AmbientLight();
-        light.setColor(Color.valueOf("101010"));
+        light.setColor(Color.valueOf("090909"));
         group.getChildren().add(light);
     }
 
@@ -203,6 +252,11 @@ public class ControllerWindowSimulation {
     }
 
     public void onTest(ActionEvent actionEvent) {
-        space.getSpaceObject("SatelliteDefault").changeScaleModel(50000);
+        satellite.drawProjectionOfTrajectories(true);
+        satellite.setDrawTrajectory(true);
+    }
+
+    private double reduceNumber (double number, int coll) {
+        return Math.floor(number * Math.pow(10,coll))/Math.pow(10,coll);
     }
 }

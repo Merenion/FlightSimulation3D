@@ -1,4 +1,4 @@
-package com.simulation.earth.MathModel;
+package com.simulation.earth.MathModels;
 
 import javafx.scene.layout.Pane;
 

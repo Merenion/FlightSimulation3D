@@ -1,4 +1,35 @@
-package com.simulation.earth.MathModel;
+package com.simulation.earth.MathModels;
+
+public interface IMathModel {
+    //константы
+    int Rz = 6371; //радиус Земли
+    int mu = 398700; //гравитационный параметр Земли
+    final double omegaZemli = 0.0000729211; //угловая скорость вращения Земли
+    double omegaSolnca = 0.000000199106; //угловая скорость вращения Солнца
+
+    boolean isInTheSun(double t);
+    int getNcoil(int t);
+    Coordinate2D getCoordinate2DMap(int t, CenterPane centerPane);
+    double getW(int t);
+    double getTeta(int t);
+    double getFi(int t);
+    double getLambda(int t);
+    double getSinlambda(int t);
+    double getCoslambda(int t);
+    String getMainParameters(int t);
+    String getOtheParameters(double t);
+    double getXga(double t);
+    double getYga(double t);
+    double getZga(double t);
+}
+
+
+
+
+
+-----------------------------------------------------------------------------------------------------------------------
+
+package com.simulation.earth.MathModels;
 
 import java.util.logging.Logger;
 
@@ -324,5 +355,96 @@ public class ImplMathModel implements IMathModel {
     public double getZga(double t) {
         pereschetParametersIsNeed(t);
         return Zga;
+    }
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+package com.simulation.earth.MathModels;
+
+public class InitialCharacteristics {
+    /**класс для хранения входных параметров полученных с формы характереистик, является singletonOM
+     * так же в этом реализован паттерн подобный builderУ*/
+
+    private static InitialCharacteristics singleton;
+
+    // входные паременные
+    private double i=98.3;       //угол наклона плоскости орбиты
+    private double omega0=0;  //долгота восходящего узла орбиты
+    private double w0=0;      //начальный аргучент перигея орбиты
+    private double Hpi=2000;     //высота перигея орбиты
+    private double Ha=15000;      //высота апогея орбиты
+    private int startTime=0;//начальное время
+
+    private InitialCharacteristics (){};
+
+    public static InitialCharacteristics getInitialCharacteristics () {
+        if (singleton == null) {
+            singleton = new InitialCharacteristics();
+        }
+        return singleton;
+    }
+
+    public InitialCharacteristics setI(double i) {
+        this.i = i;
+        singleton = this;
+        return this;
+    }
+
+    public InitialCharacteristics setOmega0(double omega0) {
+        this.omega0 = omega0;
+        singleton = this;
+        return this;
+    }
+
+    public InitialCharacteristics setW0(double w0) {
+        this.w0 = w0;
+        singleton = this;
+        return this;
+    }
+
+    public InitialCharacteristics setHpi(double hpi) {
+        Hpi = hpi;
+        singleton = this;
+        return this;
+    }
+
+    public InitialCharacteristics setHa(double ha) {
+        Ha = ha;
+        singleton = this;
+        return this;
+    }
+
+    public InitialCharacteristics setStartTime(int startTime) {
+        this.startTime = startTime;
+        singleton = this;
+        return this;
+    }
+
+    public double getI() {
+        return i;
+    }
+
+    public double getOmega0() {
+        return omega0;
+    }
+
+    public double getW0() {
+        return w0;
+    }
+
+    public double getHpi() {
+        return Hpi;
+    }
+
+    public double getHa() {
+        return Ha;
+    }
+
+    public int getStartTime() {
+        return startTime;
     }
 }

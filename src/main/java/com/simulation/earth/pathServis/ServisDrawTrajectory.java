@@ -7,13 +7,12 @@ import org.fxyz3d.geometry.Point3D;
 public interface ServisDrawTrajectory {
     void addLineInPathIfNeeded (float newX, float newY, float newZ);
     Group getPath();
-    boolean isLineNeeded (float newX, float newY, float newZ);
-    Point3D getOldPoint();
-    void setOldPoint(Point3D oldPoint);
-    Point3D getNewPoint();
-    void setNewPoint(Point3D newPoint);
-    double getDistanceDrawLine();
+    boolean isNeededDraw(float newX, float newY, float newZ);
     void setDistanceDrawLine(double distanceDrawLine);
     LineToManager getLineToManager();
     void clear ();
+    void setMaxNumberLine(int maxNumberLine);
+    int getMaxNumberLine();
+    boolean isLimitTerms();
+    void setLimitTerms(boolean limitTerms);
 }

@@ -1,4 +1,4 @@
-package com.simulation.earth.MathModel;
+package com.simulation.earth.MathModels;
 
 import javafx.geometry.Point3D;
 
@@ -12,14 +12,5 @@ public class MathModelSatelite extends DeterminateParameters implements Geodetic
         return geodeticСoordinates(t,0);
     }
 
-    @Override
-    public double getAmountCoil(double t) {
-        return amountCoil(t);
-    }
-
-    @Override
-    public double getHight(double t) {
-        return getHight(t);
-    }
 
 }
