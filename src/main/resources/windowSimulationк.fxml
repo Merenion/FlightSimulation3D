@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="600" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.simulation.earth.ControllerWindowSimulation">
+   <children>
+      <SubScene fx:id="drawScene" depthBuffer="true" depthTest="ENABLE" height="600.0" pickOnBounds="false" width="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <root>
+          <Region />
+        </root>
+      </SubScene>
+      <Accordion fx:id="menu" layoutX="995.0" prefHeight="600.0" prefWidth="205.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <panes>
+          <TitledPane animated="false" text="Simulation control">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Slider fx:id="sliderDeltaTimeFactor" blockIncrement="50.0" layoutX="39.0" layoutY="74.0" majorTickUnit="1.0" max="10000.0" min="1.0" minorTickCount="100" value="200.0" />
+                        <Label layoutX="74.0" layoutY="54.0" text="Delta Time" />
+                        <Label fx:id="labelDeltaTime" layoutX="98.0" layoutY="89.0" text="0.01" />
+                        <Button layoutX="20.0" layoutY="14.0" mnemonicParsing="false" onAction="#onStopSimulation" prefHeight="25.0" prefWidth="76.0" text="Stop" textFill="#0f00b9" />
+                        <Button layoutX="114.0" layoutY="14.0" mnemonicParsing="false" onAction="#onContinueSimulation" prefHeight="25.0" prefWidth="72.0" text="Continue" textFill="#009e0d" />
+                        <Button layoutX="37.0" layoutY="129.0" mnemonicParsing="false" onAction="#onResetSimulation" prefHeight="25.0" prefWidth="130.0" text="Reset Simulation" />
+                        <TableView fx:id="tableCameras" layoutX="6.0" layoutY="171.0" onMouseClicked="#onSelectCamera" prefHeight="200.0" prefWidth="191.0">
+                          <columns>
+                            <TableColumn fx:id="columnCameras" prefWidth="190.0" text="Cameras" />
+                          </columns>
+                        </TableView>
+                        <Button fx:id="btTest" layoutX="57.0" layoutY="474.0" mnemonicParsing="false" onAction="#onTest" text="Button for tests" />
+                        <Slider fx:id="sliderSatelliteScale" layoutX="39.0" layoutY="408.0" max="50000.0" min="1.0" value="1.0" />
+                        <Label layoutX="73.0" layoutY="387.0" text="Satellite scale" />
+                        <Label fx:id="labelSateliteScale" layoutX="99.0" layoutY="422.0" text="1" />
+                     </children></AnchorPane>
+            </content>
+          </TitledPane>
+          <TitledPane animated="false" text="untitled 2">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <CheckBox fx:id="checkSatelliteTrajectory" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Satellite trajectory" />
+                        <CheckBox fx:id="checkProjectionPathOnEarth" layoutX="14.0" layoutY="41.0" mnemonicParsing="false" text="Projection path on earth" />
+                        <CheckBox fx:id="checkOverScale" layoutX="14.0" layoutY="97.0" mnemonicParsing="false" onAction="#onOverScale" text="Over Scale" />
+                        <CheckBox fx:id="checkExtraTImeDisplay" layoutX="14.0" layoutY="69.0" mnemonicParsing="false" onAction="#onExtraTime" text="Extra time display" />
+                     </children></AnchorPane>
+            </content>
+          </TitledPane>
+          <TitledPane animated="false" text="untitled 3">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </TitledPane>
+        </panes>
+      </Accordion>
+      <Label layoutX="24.0" layoutY="21.0" text="TIME SIMULATION: " textFill="#2684ff">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelTimeSimulation" layoutX="157.0" layoutY="21.0" text="0" textFill="#2684ff">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lableTimeInMin" layoutX="41.0" layoutY="47.0" text="MIN : " textFill="#006fff" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelTimeInHours" layoutX="24.0" layoutY="69.0" text="HOURS :  " textFill="#006fff" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelTImeInDay" layoutX="40.0" layoutY="90.0" text="DAY :  " textFill="#006fff" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
