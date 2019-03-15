@@ -19,7 +19,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Main.stage = stage;
-        Parent root = FXMLLoader.load(getClass().getResource("/windowSimulationк.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/windowParametersSatellite.fxml"));
         stage.setTitle("Simulation Cosmos");
         Scene scene= ScreenResolution.getSceneWithSize(root);
         stage.setScene(scene);

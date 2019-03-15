@@ -1,33 +1,27 @@
 package com.simulation.earth.spaceObjects;
 
-import com.simulation.earth.manageSatellite.ParametrsOrbit;
-import com.simulation.earth.pathServis.ManagerDrawPath;
-import com.simulation.earth.pathServis.ServisDrawTrajectory;
+import com.simulation.earth.MathModels.OrbitParameters;
+import com.simulation.earth.trajectoryServis.Drawing;
+import com.simulation.earth.trajectoryServis.ManagerDrawing;
 import javafx.scene.Group;
-import javafx.scene.Node;
 
 public class SateliteWithTrajectoryProjection extends SatelliteDefault{
 
-    protected ServisDrawTrajectory servisDrawTrajectory = new ManagerDrawPath(0,0,0);
+    protected Drawing drawing = new ManagerDrawing(0,0,0);
 
     {
         for (SpaceObject object: getObjectsOfReferenceMovement()){
             if (object instanceof PlanetOrStart) {
-                object.getSpaceModel().getChildren().add(servisDrawTrajectory.getPath());
+                object.getSpaceModel().getChildren().add(drawing.getPath());
                 break;
             }
         }
     }
 
-    public SateliteWithTrajectoryProjection(ParametrsOrbit parametrsOrbit) {
+    public SateliteWithTrajectoryProjection(OrbitParameters parametrsOrbit) {
         super(parametrsOrbit);
     }
 
-    @Override
-    public Group getTrajectory() {
-        super.getTrajectory().getChildren().add(servisDrawTrajectory.getPath());
-        return super.getTrajectory();
-    }
 
 
 }

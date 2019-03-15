@@ -1,4 +1,4 @@
-package com.simulation.earth.pathServis;
+package com.simulation.earth.trajectoryServis;
 
 import com.simulation.earth.drawServis.LineToManager;
 import javafx.scene.Group;
@@ -7,7 +7,7 @@ import org.fxyz3d.geometry.Point3D;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ManagerDrawPath implements ServisDrawTrajectory {
+public class ManagerDrawing implements Drawing {
     private Point3D oldPoint;
     private Point3D newPoint;
     private double distanceDrawLine=600;
@@ -16,12 +16,12 @@ public class ManagerDrawPath implements ServisDrawTrajectory {
     private int maxNumberLine = 300;
     volatile private List<Point3D> points = new ArrayList<>();
 
-    public ManagerDrawPath(float startX, float startY, float startZ) {
+    public ManagerDrawing(float startX, float startY, float startZ) {
         oldPoint = new Point3D(startX,startY,startZ);
         newPoint = new Point3D(startX,startY,startZ);
     }
 
-    public ManagerDrawPath() {
+    public ManagerDrawing() {
         oldPoint = new Point3D(0,0,0);
         newPoint = new Point3D(0,0,0);
     }

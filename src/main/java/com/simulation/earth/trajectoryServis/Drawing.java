@@ -1,10 +1,9 @@
-package com.simulation.earth.pathServis;
+package com.simulation.earth.trajectoryServis;
 
 import com.simulation.earth.drawServis.LineToManager;
 import javafx.scene.Group;
-import org.fxyz3d.geometry.Point3D;
 
-public interface ServisDrawTrajectory {
+public interface Drawing {
     void addLineInPathIfNeeded (float newX, float newY, float newZ);
     Group getPath();
     boolean isNeededDraw(float newX, float newY, float newZ);

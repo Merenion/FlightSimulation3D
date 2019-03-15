@@ -1,12 +1,12 @@
 package com.simulation.earth.spaceObjects;
 
 import com.simulation.earth.MathModels.*;
-import com.simulation.earth.manageSatellite.ParametrsOrbit;
 import javafx.geometry.Point3D;
 import javafx.scene.Camera;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.*;
 import javafx.scene.transform.Rotate;
@@ -17,7 +17,7 @@ import java.util.List;
 public class SatelliteDefault extends Satellite {
 
 
-    public SatelliteDefault(ParametrsOrbit parametrsOrbit) {
+    public SatelliteDefault(OrbitParameters parametrsOrbit) {
         super(parametrsOrbit);
     }
 
@@ -46,7 +46,7 @@ public class SatelliteDefault extends Satellite {
         orientation.setY(coordinats.getY());
         orientation.setZ(coordinats.getZ());
 //        if (isDrawPath()) {
-//            servisDrawTrajectory.addLineInPathIfNeeded((float) orientation.getX(), (float) orientation.getY(), (float) orientation.getZ());
+//            managerDrawingOfTrajectory.addLineInPathIfNeeded((float) orientation.getX(), (float) orientation.getY(), (float) orientation.getZ());
 //        }
 //        if (isDrawPath()) {
 //            servisDrawTrajectory2.addLineInPathIfNeeded((float) coordinatsOnCircle.getX(), (float) coordinatsOnCircle.getY(), (float) coordinatsOnCircle.getZ());
@@ -130,6 +130,7 @@ public class SatelliteDefault extends Satellite {
         Rotate rotateY = new Rotate(-20,Rotate.Z_AXIS);
         camera.getTransforms().add(rotateX);
         camera.getTransforms().add(rotateY);
+        ImageView imageView = new ImageView();
 
         camera.setNearClip(0.01);
         camera.setFarClip(40_000_000);

@@ -96,9 +96,6 @@ public class ControllerWindowSimulation {
         group.getChildren().add(background.getGroup());
 
         satellite = (Satellite) space.getSpaceObject("SatelliteDefault");
-        SpaceObject earth = space.getSpaceObject("EarthNE");
-        group.getChildren().add(satellite.getTrajectory());
-        satellite.initProjection((PlanetOrStart) earth);
     }
 
     private void initLineSystCoordinat (){
@@ -141,20 +138,21 @@ public class ControllerWindowSimulation {
     private boolean lastSelectedCheckProjectionPathOnEarth =false;
     private boolean lastSelectedCheckSatelliteTrajectory =false;
     private void monitorTrajectoryAndProjection() {
+        SpaceObject earth = space.getSpaceObject("EarthNE");
         if (checkProjectionPathOnEarth.isSelected() && !lastSelectedCheckProjectionPathOnEarth) {
-            satellite.drawProjectionOfTrajectories(true);
+            satellite.enableDrawingProjectionOnPlanet((PlanetOrStart) earth, Color.GREEN,150);
             lastSelectedCheckProjectionPathOnEarth = true;
         }
         if (!checkProjectionPathOnEarth.isSelected() && lastSelectedCheckProjectionPathOnEarth){
-            satellite.drawProjectionOfTrajectories(false);
+            satellite.stopDrawingProjectionOnPlanet();
             lastSelectedCheckProjectionPathOnEarth = false;
         }
         if (checkSatelliteTrajectory.isSelected() && !lastSelectedCheckSatelliteTrajectory) {
-            satellite.setDrawTrajectory(true);
+            satellite.enableDrawingOrbit(group,Color.WHITE,150);
             lastSelectedCheckSatelliteTrajectory = true;
         }
         if (!checkSatelliteTrajectory.isSelected() && lastSelectedCheckSatelliteTrajectory){
-            satellite.setDrawTrajectory(false);
+            satellite.stopDrawingOrbit();
             lastSelectedCheckSatelliteTrajectory = false;
         }
     }
@@ -191,11 +189,11 @@ public class ControllerWindowSimulation {
     }
 
     private void prepareTableCameras () {
-        ObservableList<Camera> objects = FXCollections.observableArrayList();
-        objects.addAll(space.getCamerasFromSpaseObjects());
-        objects.add(freeCamera);
+        ObservableList<Camera> cameras = FXCollections.observableArrayList();
+        cameras.addAll(space.getCamerasFromSpaseObjects());
+        cameras.add(freeCamera);
         columnCameras.setCellValueFactory(new PropertyValueFactory<>("name"));
-        tableCameras.setItems(objects);
+        tableCameras.setItems(cameras);
     }
 
     private void initMouseControl () {
@@ -252,8 +250,6 @@ public class ControllerWindowSimulation {
     }
 
     public void onTest(ActionEvent actionEvent) {
-        satellite.drawProjectionOfTrajectories(true);
-        satellite.setDrawTrajectory(true);
     }
 
     private double reduceNumber (double number, int coll) {

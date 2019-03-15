@@ -33,13 +33,10 @@
                           </columns>
                         </TableView>
                         <Button fx:id="btTest" layoutX="57.0" layoutY="474.0" mnemonicParsing="false" onAction="#onTest" text="Button for tests" />
-                        <Slider fx:id="sliderSatelliteScale" layoutX="39.0" layoutY="408.0" max="50000.0" min="1.0" value="1.0" />
-                        <Label layoutX="73.0" layoutY="387.0" text="Satellite scale" />
-                        <Label fx:id="labelSateliteScale" layoutX="99.0" layoutY="422.0" text="1" />
                      </children></AnchorPane>
             </content>
           </TitledPane>
-          <TitledPane animated="false" text="untitled 2">
+          <TitledPane animated="false">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -50,9 +47,20 @@
                      </children></AnchorPane>
             </content>
           </TitledPane>
-          <TitledPane animated="false" text="untitled 3">
+          <TitledPane animated="false" text="Satellites control">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tableSatellites" layoutX="6.0" layoutY="8.0" onMouseClicked="#onSelectCamera" prefHeight="200.0" prefWidth="191.0">
+                           <columns>
+                              <TableColumn fx:id="columnSatellites" prefWidth="190.0" text="Satellites" />
+                           </columns>
+                        </TableView>
+                        <Slider fx:id="sliderSatelliteScale" layoutX="32.0" layoutY="283.0" max="50000.0" min="1.0" value="1.0" />
+                        <Label layoutX="61.0" layoutY="265.0" text="Satellites scale" />
+                        <Label fx:id="labelSateliteScale" layoutX="99.0" layoutY="301.0" text="1" />
+                        <Button layoutX="60.0" layoutY="219.0" mnemonicParsing="false" text="Add Satellite" />
+                     </children></AnchorPane>
             </content>
           </TitledPane>
         </panes>

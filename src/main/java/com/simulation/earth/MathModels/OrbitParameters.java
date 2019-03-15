@@ -9,4 +9,5 @@ public interface OrbitParameters {
     double getHpi();
     double getHa();
     double getW0inRadian();
+    double getStartTime();
 }

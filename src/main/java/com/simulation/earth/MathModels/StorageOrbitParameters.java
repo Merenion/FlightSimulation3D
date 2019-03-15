@@ -7,6 +7,7 @@ public class StorageOrbitParameters implements OrbitParameters{
     private double w0=0;      //начальный аргучент перигея орбиты
     private double Hpi=2000;     //высота перигея орбиты
     private double Ha=15000;      //высота апогея орбиты
+    private double startTime=0; //стартовое время
 
     @Override
     public double getI() {
@@ -67,5 +68,15 @@ public class StorageOrbitParameters implements OrbitParameters{
 
     public void setHa(double ha) {
         Ha = ha;
+    }
+
+
+    @Override
+    public double getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(double startTime) {
+        this.startTime = startTime;
     }
 }
