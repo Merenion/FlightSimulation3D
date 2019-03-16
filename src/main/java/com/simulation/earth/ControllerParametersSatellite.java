@@ -3,6 +3,7 @@ package com.simulation.earth;
 import com.simulation.earth.spaceObjects.Satellite;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Camera;
 import javafx.scene.control.ComboBox;
@@ -22,9 +23,9 @@ public class ControllerParametersSatellite {
     @FXML
     public TextField hightApogey;
     @FXML
-    public ComboBox<Color> colourOrbit;
+    public ComboBox<ColorOrbit> colourOrbit;
     @FXML
-    public ComboBox<Color> colourPathOnEarth;
+    public ComboBox<ColorOrbit> colourPathOnEarth;
     @FXML
     public TextField lengthPathonEarth;
     @FXML
@@ -36,10 +37,14 @@ public class ControllerParametersSatellite {
     }
 
     private void initColoursOrbitAndPath () {
-        ObservableList<Color> colours = FXCollections.observableArrayList();
-        colours.addAll(Color.RED,Color.GREEN,Color.BLUE,Color.WHITE,Color.SKYBLUE,Color.PINK,Color.YELLOW);
-        Color color = Color.GREEN;
-        colourOrbit.setItems(colours);
-//        colourPathOnEarth.setCellFactory(new PropertyValueFactory<>("name"));
+        ObservableList<ColorOrbit> colors = FXCollections.observableArrayList();
+        colors.addAll(ColorOrbit.values());
+        colourOrbit.setItems(colors);
+        colourPathOnEarth.setItems(colors);
+        colourOrbit.setValue(ColorOrbit.WHITE);
+        colourPathOnEarth.setValue(ColorOrbit.GREEN);
+    }
+
+    public void onBtCreatedSatellite(ActionEvent actionEvent) {
     }
 }
