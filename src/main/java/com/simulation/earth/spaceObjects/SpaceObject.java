@@ -25,6 +25,8 @@ public abstract class  SpaceObject {
     private DrawingTrajectory drawingOrbit;
     private float scaleModel =1;
 
+    private Color colorOrbit = Color.WHITE;
+    private int maxLengthOrbit = 175;
 
     {
         spaceModel.getTransforms().add(orientation);
@@ -73,6 +75,25 @@ public abstract class  SpaceObject {
         this.name = name;
     }
 
+    public Color getColorOrbit() {
+        return colorOrbit;
+    }
+
+    public void setColorOrbit(Color colorOrbit) {
+        this.colorOrbit = colorOrbit;
+    }
+
+    public int getMaxLengthOrbit() {
+        return maxLengthOrbit;
+    }
+
+    public void setMaxLengthOrbit(int maxLengthOrbit) {
+        this.maxLengthOrbit = maxLengthOrbit;
+    }
+
+    public DrawingTrajectory getDrawingOrbit() {
+        return drawingOrbit;
+    }
 
     public ArrayList<SpaceObject> getObjectsOfReferenceMovement() {
         return objectsOfReferenceMovement;
@@ -94,7 +115,7 @@ public abstract class  SpaceObject {
         return rotateZ;
     }
 
-    public void enableDrawingOrbit (Group spaceGroup, Color colorOrbit, int maxLengthOrbit) {
+    public void enableDrawingOrbit (Group spaceGroup) {
         if (drawingOrbit!=null)
             drawingOrbit.removeTrajectory();
         drawingOrbit = new DrawingOrbitOfSatellite(spaceGroup,orientation,colorOrbit,maxLengthOrbit);

@@ -1,6 +1,6 @@
 package com.simulation.earth.manageSpace;
 
-import com.simulation.earth.MathModels.StorageOrbitParameters;
+import com.simulation.earth.manageSatellite.StorageOrbitParameters;
 import com.simulation.earth.spaceObjects.*;
 import com.simulation.earth.spaceObjects.modelNearEarth.EarthNE;
 import com.simulation.earth.spaceObjects.modelNearEarth.MoonNE;

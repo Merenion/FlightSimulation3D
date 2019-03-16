@@ -33,7 +33,7 @@
       <Line endX="80.0" layoutX="490.0" layoutY="27.0" startX="-100.0" />
       <Line endX="80.0" layoutX="490.0" layoutY="121.0" startX="-100.0" />
       <Line endX="80.0" layoutX="490.0" layoutY="220.0" startX="-100.0" />
-      <Button layoutX="261.0" layoutY="229.0" mnemonicParsing="false" onAction="#onBtCreatedSatellite" prefHeight="30.0" prefWidth="96.0" text="Создать" textFill="#0067db">
+      <Button fx:id="btCreatedSatellite" layoutX="261.0" layoutY="229.0" mnemonicParsing="false" onAction="#onBtCreatedSatellite" prefHeight="30.0" prefWidth="96.0" text="Принять" textFill="#0067db">
          <effect>
             <ColorAdjust brightness="-0.3" hue="0.16" />
          </effect>

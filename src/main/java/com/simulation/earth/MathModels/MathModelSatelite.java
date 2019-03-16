@@ -1,5 +1,6 @@
 package com.simulation.earth.MathModels;
 
+import com.simulation.earth.manageSatellite.OrbitParameters;
 import javafx.geometry.Point3D;
 
 public class MathModelSatelite extends DeterminateParameters implements GeodeticLocation{

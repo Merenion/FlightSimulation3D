@@ -140,7 +140,7 @@ public class ControllerWindowSimulation {
     private void monitorTrajectoryAndProjection() {
         SpaceObject earth = space.getSpaceObject("EarthNE");
         if (checkProjectionPathOnEarth.isSelected() && !lastSelectedCheckProjectionPathOnEarth) {
-            satellite.enableDrawingProjectionOnPlanet((PlanetOrStart) earth, Color.GREEN,150);
+            satellite.enableDrawingProjectionOnPlanet((PlanetOrStart) earth);
             lastSelectedCheckProjectionPathOnEarth = true;
         }
         if (!checkProjectionPathOnEarth.isSelected() && lastSelectedCheckProjectionPathOnEarth){
@@ -148,7 +148,7 @@ public class ControllerWindowSimulation {
             lastSelectedCheckProjectionPathOnEarth = false;
         }
         if (checkSatelliteTrajectory.isSelected() && !lastSelectedCheckSatelliteTrajectory) {
-            satellite.enableDrawingOrbit(group,Color.WHITE,150);
+            satellite.enableDrawingOrbit(group);
             lastSelectedCheckSatelliteTrajectory = true;
         }
         if (!checkSatelliteTrajectory.isSelected() && lastSelectedCheckSatelliteTrajectory){

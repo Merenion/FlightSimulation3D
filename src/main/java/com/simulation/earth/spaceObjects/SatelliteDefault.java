@@ -1,6 +1,8 @@
 package com.simulation.earth.spaceObjects;
 
 import com.simulation.earth.MathModels.*;
+import com.simulation.earth.manageSatellite.OrbitParameters;
+import com.simulation.earth.manageSatellite.StorageOrbitParameters;
 import javafx.geometry.Point3D;
 import javafx.scene.Camera;
 import javafx.scene.Group;
@@ -22,7 +24,7 @@ public class SatelliteDefault extends Satellite {
     }
 
     GeodeticLocation mathModel = new MathModelSatelite(new StorageOrbitParameters());
-    GeodeticLocation mathMode2 = new satellitePathProjection(new StorageOrbitParameters());
+    GeodeticLocation mathMode2 = new SatellitePathProjection(new StorageOrbitParameters());
 
     @Override
     public void prepareStartCootdints(double time) {

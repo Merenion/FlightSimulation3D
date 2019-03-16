@@ -1,7 +1,7 @@
 package com.simulation.earth.spaceObjects;
 
-import com.simulation.earth.MathModels.OrbitParameters;
-import com.simulation.earth.MathModels.StorageOrbitParameters;
+import com.simulation.earth.manageSatellite.OrbitParameters;
+import com.simulation.earth.manageSatellite.StorageOrbitParameters;
 import com.simulation.earth.trajectoryServis.DrawingPathProjectionSatelliteOnPlanet;
 import com.simulation.earth.trajectoryServis.DrawingTrajectory;
 import javafx.scene.paint.Color;
@@ -10,16 +10,14 @@ import javafx.scene.paint.Color;
 public abstract class Satellite extends ObjectWithCamera{
     private OrbitParameters parametrsOrbit = new StorageOrbitParameters();
     private DrawingTrajectory drawingProjectionOnPlanet;
+    private Color colorProjectionOnPlanet = Color.WHITE;
+    private int maxLengthProjectionOnPlanet = 175;
 
-    public void enableDrawingProjectionOnPlanet (PlanetOrStart planet, Color colorTrjectory, int maxLengthTrajectory) {
+    public void enableDrawingProjectionOnPlanet (PlanetOrStart planet) {
         if (drawingProjectionOnPlanet!=null)
             drawingProjectionOnPlanet.removeTrajectory();
-        drawingProjectionOnPlanet = new DrawingPathProjectionSatelliteOnPlanet(planet,orientation,colorTrjectory,maxLengthTrajectory);
+        drawingProjectionOnPlanet = new DrawingPathProjectionSatelliteOnPlanet(planet,orientation,colorProjectionOnPlanet,maxLengthProjectionOnPlanet);
         drawingProjectionOnPlanet.startDrawTrajectories();
-    }
-
-    public void enableDrawingProjectionOnPlanet (PlanetOrStart planet, Color colorTrjectory) {
-        enableDrawingProjectionOnPlanet(planet, colorTrjectory,175);
     }
 
     public void stopDrawingProjectionOnPlanet () {
@@ -36,6 +34,22 @@ public abstract class Satellite extends ObjectWithCamera{
 
     public OrbitParameters getParametrsOrbit() {
         return parametrsOrbit;
+    }
+
+    public Color getColorProjectionOnPlanet() {
+        return colorProjectionOnPlanet;
+    }
+
+    public void setColorProjectionOnPlanet(Color colorProjectionOnPlanet) {
+        this.colorProjectionOnPlanet = colorProjectionOnPlanet;
+    }
+
+    public int getMaxLengthProjectionOnPlanet() {
+        return maxLengthProjectionOnPlanet;
+    }
+
+    public void setMaxLengthProjectionOnPlanet(int maxLengthProjectionOnPlanet) {
+        this.maxLengthProjectionOnPlanet = maxLengthProjectionOnPlanet;
     }
 
     public void setParametrsOrbit(OrbitParameters parametrsOrbit) {

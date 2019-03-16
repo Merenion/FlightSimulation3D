@@ -17,7 +17,19 @@ public enum ColorOrbit {
 
     private Color color;
 
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
     public Color getColor() {
         return color;
+    }
+
+    public static ColorOrbit matchingColor (Color color) {
+        for (ColorOrbit colorOrbit:ColorOrbit.values()) {
+            if (color.equals(colorOrbit.getColor()))
+                return colorOrbit;
+        }
+        return ColorOrbit.WHITE;
     }
 }
