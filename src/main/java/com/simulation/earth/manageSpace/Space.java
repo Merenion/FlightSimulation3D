@@ -1,17 +1,38 @@
 package com.simulation.earth.manageSpace;
 
-import com.simulation.earth.spaceObjects.ObjectWithCamera;
+import com.simulation.earth.spaceObjects.SpaceObjectWithCamera;
 import com.simulation.earth.spaceObjects.SpaceObject;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.scene.Camera;
 import javafx.scene.Group;
 
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.List;
 
 public abstract class Space {
 
-    private ArrayList<SpaceObject> spaceObjects = new ArrayList<>();
+    private ObservableList<SpaceObject> spaceObjects = FXCollections.observableArrayList();
+    private Group spaseGroup = new Group();
     private String name = "";
+    private ObservableList<Camera> cameras = FXCollections.observableArrayList();
+
+    {
+        spaceObjects.addListener((ListChangeListener<SpaceObject>) c -> {
+            c.next();
+            if (c.wasRemoved()){
+                List<? extends SpaceObject> objecrsRemoved = c.getRemoved();
+                for (SpaceObject object : objecrsRemoved)
+                    spaseGroup.getChildren().remove(object.getSpaceModel());
+            }
+            if (c.wasAdded()) {
+                List<? extends SpaceObject> objectsAdded = c.getAddedSubList();
+                for (SpaceObject object : objectsAdded)
+                    spaseGroup.getChildren().add(object.getSpaceModel());
+            }
+            refreshCameras();
+        });
+    }
 
     public String getName() {
         return name;
@@ -30,13 +51,10 @@ public abstract class Space {
     }
 
     public Group getSpaceGroup () {
-        Group group = new Group();
-        for (SpaceObject spaceObject : spaceObjects)
-            group.getChildren().addAll(spaceObject.getSpaceModel());
-        return group;
+        return spaseGroup;
     }
 
-    public ArrayList<SpaceObject> getSpaceObjects() {
+    public ObservableList<SpaceObject> getSpaceObjects() {
         return spaceObjects;
     }
 
@@ -50,13 +68,16 @@ public abstract class Space {
             object.movement(deltaTime);
     }
 
-    public ArrayList<Camera> getCamerasFromSpaseObjects() {
-        ArrayList<Camera> cameras = new ArrayList<>();
-        for (SpaceObject object : spaceObjects) {
-            if (object instanceof ObjectWithCamera)
-                cameras.addAll(((ObjectWithCamera) object).getCameras());
-        }
+    public ObservableList<Camera> getCamerasFromSpaseObjects() {
         return cameras;
+    }
+
+    private void refreshCameras () {
+        cameras.clear();
+        for (SpaceObject object : spaceObjects) {
+            if (object instanceof SpaceObjectWithCamera)
+                cameras.addAll(((SpaceObjectWithCamera) object).getCameras());
+        }
     }
 
     @Override

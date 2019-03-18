@@ -4,7 +4,7 @@ import com.simulation.earth.manageSatellite.OrbitParameters;
 import com.simulation.earth.trajectoryServis.Drawing;
 import com.simulation.earth.trajectoryServis.ManagerDrawing;
 
-public class SateliteWithTrajectoryProjection extends SatelliteDefault{
+public class SateliteWithTrajectoryProjectionSpace extends SatelliteDefault{
 
     protected Drawing drawing = new ManagerDrawing(0,0,0);
 
@@ -17,7 +17,7 @@ public class SateliteWithTrajectoryProjection extends SatelliteDefault{
         }
     }
 
-    public SateliteWithTrajectoryProjection(OrbitParameters parametrsOrbit) {
+    public SateliteWithTrajectoryProjectionSpace(OrbitParameters parametrsOrbit) {
         super(parametrsOrbit);
     }
 

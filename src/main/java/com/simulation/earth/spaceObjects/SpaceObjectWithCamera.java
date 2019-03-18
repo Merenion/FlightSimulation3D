@@ -8,7 +8,7 @@ import javafx.scene.transform.Rotate;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class ObjectWithCamera extends SpaceObject{
+public abstract class SpaceObjectWithCamera extends SpaceObject{
     private ArrayList<Camera> cameras = new ArrayList<>();
 
     public ArrayList<Camera> getCameras () {
@@ -22,6 +22,7 @@ public abstract class ObjectWithCamera extends SpaceObject{
             group.getChildren().add(camera);
             group.getTransforms().addAll(rotateX, rotateY, rotateZ);
             getSpaceModel().getChildren().add(group);
+
         }
     }
 
@@ -31,6 +32,15 @@ public abstract class ObjectWithCamera extends SpaceObject{
                 return camera;
         }
         return null;
+    }
+
+    @Override
+    public void setName(String name) {
+        super.setName(name);
+        for (Camera camera : cameras){
+            if (camera instanceof PerspectiveCameraWithName)
+                ((PerspectiveCameraWithName) camera).setNameSpaceObject(getName());
+        }
     }
 
     protected abstract List<Camera> prepareCameras ();

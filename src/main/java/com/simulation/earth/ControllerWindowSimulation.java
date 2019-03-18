@@ -1,6 +1,9 @@
 package com.simulation.earth;
 
 import com.simulation.earth.drawServis.LineToManager;
+import com.simulation.earth.manageSatellite.ManageSatellite;
+import com.simulation.earth.manageSatellite.ManagerSatelliteDefault;
+import com.simulation.earth.manageSatellite.StorageOrbitParameters;
 import com.simulation.earth.manageSpace.FactorySpace;
 import com.simulation.earth.manageSpace.NearEarthFactory;
 import com.simulation.earth.manageSpace.ParametersSpace;
@@ -8,21 +11,18 @@ import com.simulation.earth.manageSpace.Space;
 import com.simulation.earth.objectControl.MouseControl;
 import com.simulation.earth.simulationProcessing.DefaultSimulation;
 import com.simulation.earth.simulationProcessing.ISimulation;
-import com.simulation.earth.spaceObjects.PerspectiveCameraWithName;
-import com.simulation.earth.spaceObjects.PlanetOrStart;
-import com.simulation.earth.spaceObjects.Satellite;
-import com.simulation.earth.spaceObjects.SpaceObject;
+import com.simulation.earth.spaceObjects.*;
 import com.simulation.earth.starBackground.Background;
 import com.simulation.earth.starBackground.Stars;
 import javafx.animation.AnimationTimer;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -45,7 +45,7 @@ public class ControllerWindowSimulation {
     @FXML
     public TableColumn<Camera,String> columnCameras;
     @FXML
-    public TableView tableCameras;
+    public TableView<Camera> tableCameras;
     @FXML
     public Label lableTimeInMin;
     @FXML
@@ -54,8 +54,6 @@ public class ControllerWindowSimulation {
     public Label labelTImeInDay;
     @FXML
     public CheckBox checkExtraTImeDisplay;
-    @FXML
-    public ImageView fontImage;
     @FXML
     public Button btTest;
     @FXML
@@ -66,6 +64,10 @@ public class ControllerWindowSimulation {
     public CheckBox checkSatelliteTrajectory;
     @FXML
     public CheckBox checkProjectionPathOnEarth;
+    @FXML
+    public TableColumn<Satellite,String> columnSatellites;
+    @FXML
+    public TableView<Satellite> tableSatellite;
 
     private Group group = new Group();
     private Camera freeCamera = new PerspectiveCameraWithName(true,"free Camera");
@@ -79,6 +81,7 @@ public class ControllerWindowSimulation {
     private ParametersSpace parametersSpace;
 
     private Satellite satellite;
+    ManageSatellite manageSatellite = ManagerSatelliteDefault.getManager();
 
 
     @FXML
@@ -91,11 +94,13 @@ public class ControllerWindowSimulation {
         monitorParametrsSimulation();
         preparePoorLighting();
         prepareTableCameras();
+        prepareTableSatellites();
         initLineSystCoordinat();
         Background background = new Stars();
         group.getChildren().add(background.getGroup());
 
         satellite = (Satellite) space.getSpaceObject("SatelliteDefault");
+
     }
 
     private void initLineSystCoordinat (){
@@ -140,19 +145,19 @@ public class ControllerWindowSimulation {
     private void monitorTrajectoryAndProjection() {
         SpaceObject earth = space.getSpaceObject("EarthNE");
         if (checkProjectionPathOnEarth.isSelected() && !lastSelectedCheckProjectionPathOnEarth) {
-            satellite.enableDrawingProjectionOnPlanet((PlanetOrStart) earth);
+            manageSatellite.enableDrawingProjectionSatellites((PlanetOrStart) earth);
             lastSelectedCheckProjectionPathOnEarth = true;
         }
         if (!checkProjectionPathOnEarth.isSelected() && lastSelectedCheckProjectionPathOnEarth){
-            satellite.stopDrawingProjectionOnPlanet();
+            manageSatellite.stopDrawingProjectionSatellites();
             lastSelectedCheckProjectionPathOnEarth = false;
         }
         if (checkSatelliteTrajectory.isSelected() && !lastSelectedCheckSatelliteTrajectory) {
-            satellite.enableDrawingOrbit(group);
+            manageSatellite.enableDrawingOrbitSatellites(group);
             lastSelectedCheckSatelliteTrajectory = true;
         }
         if (!checkSatelliteTrajectory.isSelected() && lastSelectedCheckSatelliteTrajectory){
-            satellite.stopDrawingOrbit();
+            manageSatellite.stopDrawingOrbitSatellites();
             lastSelectedCheckSatelliteTrajectory = false;
         }
     }
@@ -164,7 +169,7 @@ public class ControllerWindowSimulation {
 
     private void monitorSateliteScale () {
         labelSateliteScale.setText(reduceNumber(sliderSatelliteScale.getValue(),3)+"");
-        satellite.changeScaleModel((float) sliderSatelliteScale.getValue());
+        manageSatellite.changeScalellites((float) sliderSatelliteScale.getValue());
     }
 
     private void prepareDrawScene (){
@@ -188,12 +193,24 @@ public class ControllerWindowSimulation {
         group.getChildren().add(light);
     }
 
+    //добавить сканирование
     private void prepareTableCameras () {
-        ObservableList<Camera> cameras = FXCollections.observableArrayList();
-        cameras.addAll(space.getCamerasFromSpaseObjects());
+        ObservableList<Camera> cameras = space.getCamerasFromSpaseObjects();
+        cameras.addListener((ListChangeListener<Camera>) c -> {
+            c.next();
+            if (!c.getList().contains(freeCamera)){
+                cameras.add(freeCamera);
+            }
+        });
         cameras.add(freeCamera);
-        columnCameras.setCellValueFactory(new PropertyValueFactory<>("name"));
+        columnCameras.setCellValueFactory(new PropertyValueFactory<>("fullName"));
         tableCameras.setItems(cameras);
+    }
+
+    private void prepareTableSatellites () {
+        columnSatellites.setCellValueFactory(new PropertyValueFactory<>("name"));
+        tableSatellite.setItems(manageSatellite.getAllSatelites());
+
     }
 
     private void initMouseControl () {
@@ -234,7 +251,8 @@ public class ControllerWindowSimulation {
     }
 
     public void onSelectCamera(MouseEvent mouseEvent) {
-        drawScene.setCamera((Camera) tableCameras.getSelectionModel().getSelectedItem());
+        if (tableCameras.getSelectionModel().getSelectedItem()!= null)
+        drawScene.setCamera(tableCameras.getSelectionModel().getSelectedItem());
     }
 
     public void onExtraTime(ActionEvent actionEvent) {
@@ -250,9 +268,20 @@ public class ControllerWindowSimulation {
     }
 
     public void onTest(ActionEvent actionEvent) {
+//        manageSatellite.createSatellite(new StorageOrbitParameters(),group,"mySatellite");
     }
 
     private double reduceNumber (double number, int coll) {
         return Math.floor(number * Math.pow(10,coll))/Math.pow(10,coll);
+    }
+
+    public void onSelectSatellite(MouseEvent mouseEvent) {
+        if (tableSatellite.getSelectionModel().getSelectedItem()!=null)
+        ControllerParametersSatellite.openWindowModalityEditor(tableSatellite.getScene().getWindow()
+                , tableSatellite.getSelectionModel().getSelectedItem());
+    }
+
+    public void onAddSatellite(ActionEvent actionEvent) {
+        ControllerParametersSatellite.openWindowModalityCreator(tableSatellite.getScene().getWindow(),space);
     }
 }

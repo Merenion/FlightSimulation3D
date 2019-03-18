@@ -7,11 +7,12 @@ import com.simulation.earth.trajectoryServis.DrawingTrajectory;
 import javafx.scene.paint.Color;
 
 
-public abstract class Satellite extends ObjectWithCamera{
+public abstract class Satellite extends SpaceObjectWithCamera {
     private OrbitParameters parametrsOrbit = new StorageOrbitParameters();
     private DrawingTrajectory drawingProjectionOnPlanet;
     private Color colorProjectionOnPlanet = Color.WHITE;
     private int maxLengthProjectionOnPlanet = 175;
+
 
     public void enableDrawingProjectionOnPlanet (PlanetOrStart planet) {
         if (drawingProjectionOnPlanet!=null)
@@ -29,6 +30,7 @@ public abstract class Satellite extends ObjectWithCamera{
     public Satellite(OrbitParameters parametrsOrbit) {
         this.parametrsOrbit = parametrsOrbit;
     }
+
 
     public Satellite(){};
 

@@ -17,6 +17,6 @@ public class NearEarthSpace extends Space {
         getSpaceObjects().add(new EarthNE());
         getSpaceObjects().add(new SunNE());
         getSpaceObjects().add(new MoonNE());
-        getSpaceObjects().add(new SatelliteDefault(new StorageOrbitParameters()));
+//        getSpaceObjects().add(new SatelliteDefault(new StorageOrbitParameters()));
     }
 }

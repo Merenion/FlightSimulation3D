@@ -4,6 +4,7 @@ import com.simulation.earth.manageSatellite.OrbitParameters;
 import com.simulation.earth.manageSatellite.ManageSatellite;
 import com.simulation.earth.manageSatellite.ManagerSatelliteDefault;
 import com.simulation.earth.manageSatellite.StorageOrbitParameters;
+import com.simulation.earth.manageSpace.Space;
 import com.simulation.earth.spaceObjects.Satellite;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -40,12 +41,8 @@ public class ControllerParametersSatellite {
     public TextField lengthPathonEarth;
     @FXML
     public TextField lengthOrbit;
-
-    private ManageSatellite manageSatellite = ManagerSatelliteDefault.getManager();
-    private static Satellite satellite;
-    private static boolean editorWindow = false;
-    private static Group group;
-
+    @FXML
+    public TextField nameSatellite;
     @FXML
     private void initialize (){
         initColoursOrbitAndPath();
@@ -53,14 +50,21 @@ public class ControllerParametersSatellite {
             matchingParametersOrbitInWindow();
             matchingColorTrajectories();
             matchingMaxLengthTrajectories();
+            nameSatellite.setText(satellite.getName());
         }
     }
 
-    public static void openWindowModalityCreator(Window parentWindow,Group group) {
+    private static Space space;
+    private ManageSatellite manageSatellite = ManagerSatelliteDefault.getManager();
+    private static Satellite satellite;
+    private static boolean editorWindow = false;
+
+
+    public static void openWindowModalityCreator(Window parentWindow, Space space) {
         openWindow(parentWindow);
         editorWindow = false;
         satellite = null;
-        ControllerParametersSatellite.group= group;
+        ControllerParametersSatellite.space = space;
     }
 
     public static void openWindowModalityEditor (Window parentWindow, Satellite satellite) {
@@ -123,12 +127,23 @@ public class ControllerParametersSatellite {
 
     public void onBtCreatedSatellite(ActionEvent actionEvent) {
         final OrbitParameters orbitParameters;
+        final Satellite satellite;
         if (editorWindow){
+            satellite = ControllerParametersSatellite.satellite;
             orbitParameters = satellite.getParametrsOrbit();
+            matchingParametersOrbitFromWindow(orbitParameters);
         }else {
             orbitParameters = new StorageOrbitParameters();
             matchingParametersOrbitFromWindow(orbitParameters);
-            manageSatellite.createSatellite(orbitParameters,group);
+            satellite = manageSatellite.createSatellite(orbitParameters,nameSatellite.getText());
+            space.getSpaceObjects().add(satellite);
         }
+        satellite.setColorProjectionOnPlanet(colourPathOnEarth.getValue().getColor());
+        satellite.setColorOrbit(colourOrbit.getValue().getColor());
+        satellite.setMaxLengthProjectionOnPlanet(Integer.parseInt(lengthPathonEarth.getText()));
+        satellite.setMaxLengthOrbit(Integer.parseInt(lengthOrbit.getText()));
+        satellite.setName(nameSatellite.getText());
+        Stage stage = (Stage) nameSatellite.getScene().getWindow();
+        stage.close();
     }
 }

@@ -34,7 +34,7 @@ public class DrawingPathProjectionSatelliteOnPlanet implements  DrawingTrajector
         initThreadDrawingProjection();
         managerDrawPathProjection.getLineToManager().setColor(colorTrajectory);
         managerDrawPathProjection.getLineToManager().setWidth(23);
-        managerDrawPathProjection.setDistanceDrawLine(15);
+        managerDrawPathProjection.setDistanceDrawLine(27);
         managerDrawPathProjection.setMaxNumberLine(maxLengthTrajectory);
         managerDrawPathProjection.setLimitTerms(true);
     }

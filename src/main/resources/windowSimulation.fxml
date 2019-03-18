@@ -33,6 +33,7 @@
                           </columns>
                         </TableView>
                         <Button fx:id="btTest" layoutX="57.0" layoutY="474.0" mnemonicParsing="false" onAction="#onTest" text="Button for tests" />
+                        <CheckBox fx:id="checkExtraTImeDisplay" layoutX="41.0" layoutY="391.0" mnemonicParsing="false" onAction="#onExtraTime" text="Extra time display" />
                      </children></AnchorPane>
             </content>
           </TitledPane>
@@ -40,10 +41,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <CheckBox fx:id="checkSatelliteTrajectory" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Satellite trajectory" />
-                        <CheckBox fx:id="checkProjectionPathOnEarth" layoutX="14.0" layoutY="41.0" mnemonicParsing="false" text="Projection path on earth" />
                         <CheckBox fx:id="checkOverScale" layoutX="14.0" layoutY="97.0" mnemonicParsing="false" onAction="#onOverScale" text="Over Scale" />
-                        <CheckBox fx:id="checkExtraTImeDisplay" layoutX="14.0" layoutY="69.0" mnemonicParsing="false" onAction="#onExtraTime" text="Extra time display" />
                      </children></AnchorPane>
             </content>
           </TitledPane>
@@ -51,7 +49,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="tableSatellites" layoutX="6.0" layoutY="8.0" onMouseClicked="#onSelectCamera" prefHeight="200.0" prefWidth="191.0">
+                        <TableView fx:id="tableSatellite" layoutX="6.0" layoutY="8.0" onMouseClicked="#onSelectSatellite" prefHeight="200.0" prefWidth="191.0">
                            <columns>
                               <TableColumn fx:id="columnSatellites" prefWidth="190.0" text="Satellites" />
                            </columns>
@@ -59,7 +57,9 @@
                         <Slider fx:id="sliderSatelliteScale" layoutX="32.0" layoutY="283.0" max="50000.0" min="1.0" value="1.0" />
                         <Label layoutX="61.0" layoutY="265.0" text="Satellites scale" />
                         <Label fx:id="labelSateliteScale" layoutX="99.0" layoutY="301.0" text="1" />
-                        <Button layoutX="60.0" layoutY="219.0" mnemonicParsing="false" text="Add Satellite" />
+                        <Button layoutX="60.0" layoutY="219.0" mnemonicParsing="false" onAction="#onAddSatellite" text="Add Satellite" />
+                        <CheckBox fx:id="checkSatelliteTrajectory" layoutX="24.0" layoutY="356.0" mnemonicParsing="false" text="Satellite Orbit" />
+                        <CheckBox fx:id="checkProjectionPathOnEarth" layoutX="24.0" layoutY="330.0" mnemonicParsing="false" text="Projection path on earth" />
                      </children></AnchorPane>
             </content>
           </TitledPane>

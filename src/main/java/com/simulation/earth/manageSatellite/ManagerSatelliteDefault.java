@@ -1,5 +1,6 @@
 package com.simulation.earth.manageSatellite;
 
+import com.simulation.earth.spaceObjects.PlanetOrStart;
 import com.simulation.earth.spaceObjects.Satellite;
 import com.simulation.earth.spaceObjects.SatelliteDefault;
 import com.simulation.earth.spaceObjects.SpaceObject;
@@ -27,10 +28,45 @@ public class ManagerSatelliteDefault implements ManageSatellite{
     }
 
     @Override
-    public SpaceObject createSatellite(OrbitParameters parametrsOrbit,Group group) {
+    public Satellite createSatellite(OrbitParameters parametrsOrbit,String name) {
         Satellite satellite = new SatelliteDefault(parametrsOrbit);
+        satellite.setName(name);
         satellites.add(satellite);
-        group.getChildren().add(satellite.getSpaceModel());
         return satellite;
+    }
+
+    @Override
+    public ObservableList<Satellite> getAllSatelites() {
+        return satellites;
+    }
+
+    @Override
+    public void changeScalellites(float scale) {
+        for (Satellite satellite :satellites)
+            satellite.changeScaleModel(scale);
+    }
+
+    @Override
+    public void enableDrawingOrbitSatellites(Group homeGroup) {
+        for (Satellite satellite :satellites)
+            satellite.enableDrawingOrbit(homeGroup);
+    }
+
+    @Override
+    public void stopDrawingOrbitSatellites() {
+        for (Satellite satellite :satellites)
+            satellite.stopDrawingOrbit();
+    }
+
+    @Override
+    public void enableDrawingProjectionSatellites(PlanetOrStart planet) {
+        for (Satellite satellite :satellites)
+            satellite.enableDrawingProjectionOnPlanet(planet);
+    }
+
+    @Override
+    public void stopDrawingProjectionSatellites() {
+        for (Satellite satellite :satellites)
+            satellite.stopDrawingProjectionOnPlanet();
     }
 }

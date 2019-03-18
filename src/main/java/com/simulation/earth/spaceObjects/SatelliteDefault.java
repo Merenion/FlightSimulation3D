@@ -23,8 +23,8 @@ public class SatelliteDefault extends Satellite {
         super(parametrsOrbit);
     }
 
-    GeodeticLocation mathModel = new MathModelSatelite(new StorageOrbitParameters());
-    GeodeticLocation mathMode2 = new SatellitePathProjection(new StorageOrbitParameters());
+
+    GeodeticLocation mathModel = new MathModelSatelite(getParametrsOrbit());
 
     @Override
     public void prepareStartCootdints(double time) {
@@ -43,16 +43,9 @@ public class SatelliteDefault extends Satellite {
     @Override
     public void movement(double time) {
         Point3D coordinats = mathModel.getGeodeticCoordinats(time);
-        Point3D coordinatsOnCircle = mathMode2.getGeodeticCoordinats(time);
         orientation.setX(coordinats.getX());
         orientation.setY(coordinats.getY());
         orientation.setZ(coordinats.getZ());
-//        if (isDrawPath()) {
-//            managerDrawingOfTrajectory.addLineInPathIfNeeded((float) orientation.getX(), (float) orientation.getY(), (float) orientation.getZ());
-//        }
-//        if (isDrawPath()) {
-//            servisDrawTrajectory2.addLineInPathIfNeeded((float) coordinatsOnCircle.getX(), (float) coordinatsOnCircle.getY(), (float) coordinatsOnCircle.getZ());
-//        }
     }
 
     @Override

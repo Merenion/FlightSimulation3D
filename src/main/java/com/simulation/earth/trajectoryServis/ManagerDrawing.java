@@ -60,7 +60,7 @@ public class ManagerDrawing implements Drawing {
         if (points.size()>10) {
             Point3D firstPoint = points.get(0);
             double distance = Math.sqrt(Math.pow((firstPoint.x - newX), 2) + Math.pow((firstPoint.y - newY), 2) + Math.pow((firstPoint.z - newZ), 2));
-            if (getPath().getChildren().size() > maxNumberLine || distance < distanceDrawLine*8) {
+            if (getPath().getChildren().size() > maxNumberLine || distance < distanceDrawLine*2) {
                 getPath().getChildren().remove(0);
                 points.remove(0);
             }

@@ -3,6 +3,7 @@ package com.simulation.earth.spaceObjects;
 import com.simulation.earth.trajectoryServis.DrawingOrbitOfSatellite;
 import com.simulation.earth.trajectoryServis.DrawingTrajectory;
 import com.simulation.earth.objectControl.SmartGroup;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.paint.Color;
@@ -16,7 +17,7 @@ import java.util.List;
 public abstract class  SpaceObject {
     private double massa;
     private ArrayList<SpaceObject> objectsOfReferenceMovement = new ArrayList<>();
-    private String name = "";
+    private SimpleStringProperty name = new SimpleStringProperty("rfrfr");
     private SmartGroup spaceModel = new SmartGroup();
     protected final Rotate rotateX = new Rotate(0,Rotate.X_AXIS);
     protected final Rotate rotateY = new Rotate(0,Rotate.Y_AXIS);
@@ -33,8 +34,8 @@ public abstract class  SpaceObject {
         spaceModel.getChildren().addAll(modelDescription());
         prepareRotate();
         prepareStartCootdints();
-        if (name.equals(""))
-            name=this.getClass().getSimpleName();
+        if (name.getValue().equals(""));
+            name.setValue(this.getClass().getSimpleName());
     }
 
     public void changeScaleModel (float scale){
@@ -43,7 +44,7 @@ public abstract class  SpaceObject {
     }
 
     public SpaceObject(String name) {
-        this.name = name;
+        this.name.setValue(name);
     }
 
     public SpaceObject() {
@@ -68,11 +69,11 @@ public abstract class  SpaceObject {
     }
 
     public String getName() {
-        return name;
+        return name.getValue();
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name.setValue(name);
     }
 
     public Color getColorOrbit() {
@@ -152,6 +153,6 @@ public abstract class  SpaceObject {
 
     @Override
     public String toString() {
-        return name;
+        return name.getValue();
     }
 }

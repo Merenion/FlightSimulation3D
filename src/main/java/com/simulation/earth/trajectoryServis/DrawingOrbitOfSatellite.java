@@ -17,6 +17,7 @@ public class DrawingOrbitOfSatellite implements DrawingTrajectory{
         this.groupTrajectory = groupTrajectory;
         groupTrajectory.getChildren().add(managerDrawingOfTrajectory.getPath());
         initThreadDrawingTrajectory();
+        managerDrawingOfTrajectory.setDistanceDrawLine(500);
         managerDrawingOfTrajectory.setMaxNumberLine(maxLengthOrbit);
         managerDrawingOfTrajectory.getLineToManager().setColor(colorTrajectory);
     }

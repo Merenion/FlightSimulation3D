@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="273.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.simulation.earth.ControllerParametersSatellite">
+<AnchorPane prefHeight="289.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.simulation.earth.ControllerParametersSatellite">
    <children>
       <Label layoutX="102.0" layoutY="29.0" text="Угол наклона плоскости орбиты в градусах" />
       <Label layoutX="102.0" layoutY="71.0" text="Долгота восходящего узла орбиты" />
@@ -32,8 +32,8 @@
       <Label layoutX="416.0" layoutY="29.0" text="Прорисовка Проекции" />
       <Line endX="80.0" layoutX="490.0" layoutY="27.0" startX="-100.0" />
       <Line endX="80.0" layoutX="490.0" layoutY="121.0" startX="-100.0" />
-      <Line endX="80.0" layoutX="490.0" layoutY="220.0" startX="-100.0" />
-      <Button fx:id="btCreatedSatellite" layoutX="261.0" layoutY="229.0" mnemonicParsing="false" onAction="#onBtCreatedSatellite" prefHeight="30.0" prefWidth="96.0" text="Принять" textFill="#0067db">
+      <Line endX="80.0" layoutX="490.0" layoutY="226.0" startX="-100.0" />
+      <Button layoutX="432.0" layoutY="241.0" mnemonicParsing="false" onAction="#onBtCreatedSatellite" prefHeight="30.0" prefWidth="96.0" text="Принять" textFill="#0067db">
          <effect>
             <ColorAdjust brightness="-0.3" hue="0.16" />
          </effect>
@@ -41,5 +41,12 @@
             <Font size="14.0" />
          </font>
       </Button>
+      <TextField fx:id="nameSatellite" layoutX="28.0" layoutY="243.0" text="nameless">
+         <effect>
+            <ColorAdjust contrast="-0.26" />
+         </effect>
+      </TextField>
+      <Line endX="100.0" layoutX="390.0" layoutY="127.0" rotate="90.0" startX="-100.0" />
+      <Label layoutX="185.0" layoutY="247.0" text="Наименование спутника" />
    </children>
 </AnchorPane>
