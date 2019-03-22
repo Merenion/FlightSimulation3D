@@ -21,19 +21,19 @@
       <TextField fx:id="startingArgumentPerigee" layoutX="26.0" layoutY="111.0" prefHeight="25.0" prefWidth="68.0" text="0" />
       <TextField fx:id="hightPerigee" layoutX="26.0" layoutY="155.0" prefHeight="25.0" prefWidth="68.0" text="2000" />
       <TextField fx:id="hightApogey" layoutX="26.0" layoutY="199.0" prefHeight="25.0" prefWidth="68.0" text="15000" />
-      <ComboBox fx:id="colourOrbit" layoutX="402.0" layoutY="54.0" prefHeight="25.0" prefWidth="155.0" promptText="Colour Orbit" />
+      <ComboBox fx:id="colourPathOnEarth" layoutX="402.0" layoutY="54.0" prefHeight="25.0" prefWidth="155.0" promptText="Colour Orbit" />
       <TextField fx:id="lengthPathonEarth" layoutX="402.0" layoutY="184.0" prefHeight="25.0" prefWidth="58.0" text="150" />
       <Label layoutX="468.0" layoutY="188.0" text="Макс. длина" />
       <Label layoutX="466.0" layoutY="142.0" />
       <TextField fx:id="lengthOrbit" layoutX="402.0" layoutY="85.0" prefHeight="25.0" prefWidth="58.0" text="150" />
       <Label layoutX="466.0" layoutY="89.0" text="Макс. длина" />
-      <ComboBox fx:id="colourPathOnEarth" layoutX="402.0" layoutY="151.0" prefHeight="25.0" prefWidth="155.0" promptText="Colour Orbit" />
+      <ComboBox fx:id="colourOrbit" layoutX="402.0" layoutY="151.0" prefHeight="25.0" prefWidth="155.0" promptText="Colour Orbit" />
       <Label layoutX="423.0" layoutY="127.0" text="Прорисовка Орбиты" />
       <Label layoutX="416.0" layoutY="29.0" text="Прорисовка Проекции" />
       <Line endX="80.0" layoutX="490.0" layoutY="27.0" startX="-100.0" />
       <Line endX="80.0" layoutX="490.0" layoutY="121.0" startX="-100.0" />
       <Line endX="80.0" layoutX="490.0" layoutY="226.0" startX="-100.0" />
-      <Button layoutX="432.0" layoutY="241.0" mnemonicParsing="false" onAction="#onBtCreatedSatellite" prefHeight="30.0" prefWidth="96.0" text="Принять" textFill="#0067db">
+      <Button layoutX="383.0" layoutY="241.0" mnemonicParsing="false" onAction="#onBtCreatedSatellite" prefHeight="30.0" prefWidth="96.0" text="Принять" textFill="#0067db">
          <effect>
             <ColorAdjust brightness="-0.3" hue="0.16" />
          </effect>
@@ -48,5 +48,13 @@
       </TextField>
       <Line endX="100.0" layoutX="390.0" layoutY="127.0" rotate="90.0" startX="-100.0" />
       <Label layoutX="185.0" layoutY="247.0" text="Наименование спутника" />
+      <Button fx:id="btDelete" layoutX="486.0" layoutY="241.0" mnemonicParsing="false" onAction="#onBtDelete" prefHeight="30.0" prefWidth="96.0" text="Удалить" textFill="#ff007f">
+         <effect>
+            <ColorAdjust brightness="-0.3" hue="0.16" />
+         </effect>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

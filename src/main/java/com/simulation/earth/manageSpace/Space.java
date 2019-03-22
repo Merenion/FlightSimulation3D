@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.Camera;
 import javafx.scene.Group;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Space {
@@ -16,6 +17,7 @@ public abstract class Space {
     private Group spaseGroup = new Group();
     private String name = "";
     private ObservableList<Camera> cameras = FXCollections.observableArrayList();
+
 
     {
         spaceObjects.addListener((ListChangeListener<SpaceObject>) c -> {
@@ -32,6 +34,10 @@ public abstract class Space {
             }
             refreshCameras();
         });
+    }
+
+    {
+        spaceObjects.addAll(prepareSpace());
     }
 
     public String getName() {
@@ -87,5 +93,5 @@ public abstract class Space {
         else return "Space nameless";
     }
 
-    protected abstract void prepareSpace ();
+    protected abstract ArrayList<SpaceObject> prepareSpace ();
 }

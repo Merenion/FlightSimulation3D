@@ -2,7 +2,7 @@ package com.simulation.earth;
 
 import com.simulation.earth.manageSatellite.OrbitParameters;
 import com.simulation.earth.manageSatellite.ManageSatellite;
-import com.simulation.earth.manageSatellite.ManagerSatelliteDefault;
+import com.simulation.earth.manageSatellite.ManagerSatelliteEarth;
 import com.simulation.earth.manageSatellite.StorageOrbitParameters;
 import com.simulation.earth.manageSpace.Space;
 import com.simulation.earth.spaceObjects.Satellite;
@@ -11,9 +11,9 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
@@ -34,15 +34,18 @@ public class ControllerParametersSatellite {
     @FXML
     public TextField hightApogey;
     @FXML
-    public ComboBox<ColorOrbit> colourOrbit;
+    public ComboBox<ColorSmart> colourOrbit;
     @FXML
-    public ComboBox<ColorOrbit> colourPathOnEarth;
+    public ComboBox<ColorSmart> colourPathOnEarth;
     @FXML
     public TextField lengthPathonEarth;
     @FXML
     public TextField lengthOrbit;
     @FXML
     public TextField nameSatellite;
+    @FXML
+    public Button btDelete;
+
     @FXML
     private void initialize (){
         initColoursOrbitAndPath();
@@ -51,26 +54,29 @@ public class ControllerParametersSatellite {
             matchingColorTrajectories();
             matchingMaxLengthTrajectories();
             nameSatellite.setText(satellite.getName());
+        }else {
+            btDelete.setVisible(false);
+            btDelete.setDisable(true);
         }
     }
 
     private static Space space;
-    private ManageSatellite manageSatellite = ManagerSatelliteDefault.getManager();
+    private ManageSatellite manageSatellite = ManagerSatelliteEarth.getManager();
     private static Satellite satellite;
     private static boolean editorWindow = false;
 
 
     public static void openWindowModalityCreator(Window parentWindow, Space space) {
-        openWindow(parentWindow);
         editorWindow = false;
         satellite = null;
         ControllerParametersSatellite.space = space;
+        openWindow(parentWindow);
     }
 
     public static void openWindowModalityEditor (Window parentWindow, Satellite satellite) {
-        openWindow(parentWindow);
-        ControllerParametersSatellite.satellite = satellite;
         editorWindow = true;
+        ControllerParametersSatellite.satellite = satellite;
+        openWindow(parentWindow);
     }
 
     private static void openWindow (Window parentWindow) {
@@ -90,12 +96,12 @@ public class ControllerParametersSatellite {
     }
 
     private void initColoursOrbitAndPath () {
-        ObservableList<ColorOrbit> colors = FXCollections.observableArrayList();
-        colors.addAll(ColorOrbit.values());
+        ObservableList<ColorSmart> colors = FXCollections.observableArrayList();
+        colors.addAll(ColorSmart.values());
         colourOrbit.setItems(colors);
         colourPathOnEarth.setItems(colors);
-        colourOrbit.setValue(ColorOrbit.WHITE);
-        colourPathOnEarth.setValue(ColorOrbit.GREEN);
+        colourOrbit.setValue(ColorSmart.WHITE);
+        colourPathOnEarth.setValue(ColorSmart.GREEN);
     }
 
     private void matchingParametersOrbitInWindow(){
@@ -116,8 +122,8 @@ public class ControllerParametersSatellite {
     }
 
     private void matchingColorTrajectories () {
-        colourOrbit.setValue(ColorOrbit.matchingColor(satellite.getColorOrbit()));
-        colourPathOnEarth.setValue(ColorOrbit.matchingColor(satellite.getColorProjectionOnPlanet()));
+        colourOrbit.setValue(ColorSmart.matchingColor(satellite.getColorOrbit()));
+        colourPathOnEarth.setValue(ColorSmart.matchingColor(satellite.getColorProjectionOnPlanet()));
     }
 
     private void matchingMaxLengthTrajectories () {
@@ -143,6 +149,13 @@ public class ControllerParametersSatellite {
         satellite.setMaxLengthProjectionOnPlanet(Integer.parseInt(lengthPathonEarth.getText()));
         satellite.setMaxLengthOrbit(Integer.parseInt(lengthOrbit.getText()));
         satellite.setName(nameSatellite.getText());
+        Stage stage = (Stage) nameSatellite.getScene().getWindow();
+        stage.close();
+    }
+
+    public void onBtDelete(ActionEvent actionEvent) {
+        space.getSpaceObjects().remove(satellite);
+        manageSatellite.deleteSatellite(satellite);
         Stage stage = (Stage) nameSatellite.getScene().getWindow();
         stage.close();
     }

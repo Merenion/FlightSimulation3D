@@ -1,6 +1,6 @@
 package com.simulation.earth.trajectoryServis;
 
-import com.simulation.earth.drawServis.LineToManager;
+import com.simulation.earth.drawServis.LineTo3D;
 import javafx.scene.Group;
 
 public interface Drawing {
@@ -8,7 +8,7 @@ public interface Drawing {
     Group getPath();
     boolean isNeededDraw(float newX, float newY, float newZ);
     void setDistanceDrawLine(double distanceDrawLine);
-    LineToManager getLineToManager();
+    LineTo3D getLineTo3D();
     void clear ();
     void setMaxNumberLine(int maxNumberLine);
     int getMaxNumberLine();

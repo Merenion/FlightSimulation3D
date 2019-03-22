@@ -2,7 +2,7 @@ package com.simulation.earth;
 
 import javafx.scene.paint.Color;
 
-public enum ColorOrbit {
+public enum ColorSmart {
     RED(Color.RED),
     GREEN(Color.GREEN),
     BLUE(Color.BLUE),
@@ -11,7 +11,7 @@ public enum ColorOrbit {
     PINK(Color.PINK),
     YELLOW(Color.YELLOW);
 
-    ColorOrbit(Color color) {
+    ColorSmart(Color color) {
         this.color = color;
     }
 
@@ -25,11 +25,11 @@ public enum ColorOrbit {
         return color;
     }
 
-    public static ColorOrbit matchingColor (Color color) {
-        for (ColorOrbit colorOrbit:ColorOrbit.values()) {
-            if (color.equals(colorOrbit.getColor()))
-                return colorOrbit;
+    public static ColorSmart matchingColor (Color color) {
+        for (ColorSmart colorSmart : ColorSmart.values()) {
+            if (color.equals(colorSmart.getColor()))
+                return colorSmart;
         }
-        return ColorOrbit.WHITE;
+        return ColorSmart.WHITE;
     }
 }

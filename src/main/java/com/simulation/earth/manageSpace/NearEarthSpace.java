@@ -6,17 +6,19 @@ import com.simulation.earth.spaceObjects.modelNearEarth.EarthNE;
 import com.simulation.earth.spaceObjects.modelNearEarth.MoonNE;
 import com.simulation.earth.spaceObjects.modelNearEarth.SunNE;
 
+import java.util.ArrayList;
+
 public class NearEarthSpace extends Space {
     NearEarthSpace() {
         prepareSpace();
     }
 
     @Override
-    protected void prepareSpace() {
-        getSpaceObjects().clear();
-        getSpaceObjects().add(new EarthNE());
-        getSpaceObjects().add(new SunNE());
-        getSpaceObjects().add(new MoonNE());
-//        getSpaceObjects().add(new SatelliteDefault(new StorageOrbitParameters()));
+    protected ArrayList<SpaceObject> prepareSpace() {
+        ArrayList<SpaceObject> spaceObjects = new ArrayList<>();
+        spaceObjects.add(new EarthNE());
+        spaceObjects.add(new SunNE());
+        spaceObjects.add(new MoonNE());
+        return spaceObjects;
     }
 }

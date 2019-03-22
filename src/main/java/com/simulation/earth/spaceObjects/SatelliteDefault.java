@@ -1,6 +1,7 @@
 package com.simulation.earth.spaceObjects;
 
 import com.simulation.earth.MathModels.*;
+import com.simulation.earth.PerspectiveCameraWithName;
 import com.simulation.earth.manageSatellite.OrbitParameters;
 import com.simulation.earth.manageSatellite.StorageOrbitParameters;
 import javafx.geometry.Point3D;
@@ -28,11 +29,16 @@ public class SatelliteDefault extends Satellite {
 
     @Override
     public void prepareStartCootdints(double time) {
+//        refreshProjectionOnPlanet();
+//        refreshDrawingOrbit();
         Point3D coordinats = (new MathModelSatelite(new StorageOrbitParameters())).getGeodeticCoordinats(time);
         orientation.setX(coordinats.getX());
         orientation.setY(coordinats.getY());
         orientation.setZ(coordinats.getZ());
-        rotateZ.setAngle(90);
+//        rotateX.setAngle(90);
+//        rotateX.setAngle(Math.asin(coordinats.getY()/coordinats.getZ())*Math.PI/180);
+//        rotateY.setAngle(Math.asin(coordinats.getZ()/coordinats.getX())*Math.PI/180);
+//        rotateZ.setAngle(Math.asin(coordinats.getY()/coordinats.getX())*Math.PI/180+90);
     }
 
     @Override
@@ -46,6 +52,26 @@ public class SatelliteDefault extends Satellite {
         orientation.setX(coordinats.getX());
         orientation.setY(coordinats.getY());
         orientation.setZ(coordinats.getZ());
+//        if ((coordinats.getX()>1 || coordinats.getX()<1)  && (coordinats.getY()>1 || coordinats.getY()<1) && (coordinats.getZ()>1 || coordinats.getZ()<1)) {
+//            System.out.println("__________");
+//            System.out.println(coordinats.getY());
+//            System.out.println(coordinats.getZ());
+//            System.out.println(coordinats.getY() / coordinats.getZ());
+//            System.out.println(coordinats.getZ() / coordinats.getX());
+//            System.out.println(coordinats.getY() / coordinats.getX());
+            System.out.println("---");
+            System.out.println(Math.atan(coordinats.getZ() / coordinats.getX()) *  180/Math.PI);
+            System.out.println(Math.atan(coordinats.getY() / coordinats.getX()) *  180/Math.PI);
+//            rotateX.setAngle(Math.atan(coordinats.getY()/coordinats.getZ())*180/Math.PI);
+        if (Math.atan(coordinats.getZ() / coordinats.getX()) *  180/Math.PI<0 && Math.atan(coordinats.getY() / coordinats.getX()) *  180/Math.PI<0) {
+            rotateY.setAngle(Math.atan(coordinats.getZ() / coordinats.getX()) * 180 / Math.PI);
+            rotateZ.setAngle(Math.atan(coordinats.getY() / coordinats.getX()) * 180 / Math.PI + 90);
+        }
+        if (Math.atan(coordinats.getZ() / coordinats.getX()) *  180/Math.PI>0 && Math.atan(coordinats.getY() / coordinats.getX()) *  180/Math.PI>0) {
+            rotateY.setAngle(Math.atan(coordinats.getZ() / coordinats.getX()) * 180 / Math.PI);
+            rotateZ.setAngle(Math.atan(coordinats.getY() / coordinats.getX()) * 180 / Math.PI + 90+180);
+        }
+
     }
 
     @Override

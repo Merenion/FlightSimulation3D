@@ -1,6 +1,6 @@
 package com.simulation.earth.trajectoryServis;
 
-public interface DrawingTrajectory {
+public interface DrawingPath {
     void startDrawTrajectories();
     void stopDrawTrajectories();
     Drawing getServisDrawTrajectories();

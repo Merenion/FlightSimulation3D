@@ -3,10 +3,12 @@ package com.simulation.earth.drawServis;
 import javafx.scene.Node;
 import javafx.scene.paint.Color;
 
-public interface LineServis {
-    void addCoordinat (float x, float y, float z);
-    void changeScaleTrajectory (float coefficient);
-    Node getPath();
+/**
+ * Интерфейс для создания цепочки прямых
+ */
+public interface LineTo {
+    void addCoordinats(float x, float y, float z);
+    void changeScaleLines(float coefficient);
     Color getColor();
     void setColor(Color color);
     float getWidth();

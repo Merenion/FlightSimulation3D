@@ -10,7 +10,7 @@ import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Transform;
 import javafx.scene.transform.Translate;
 
-public class DrawingPathProjectionSatelliteOnPlanet implements  DrawingTrajectory{
+public class DrawingPathProjectionSatelliteOnPlanet implements DrawingPath {
 
     private AnimationTimer listenerChangeCoordinatesProjection;
     private Drawing managerDrawPathProjection = new ManagerDrawing();
@@ -21,8 +21,8 @@ public class DrawingPathProjectionSatelliteOnPlanet implements  DrawingTrajector
         this.planet = planet;
         this.orientationSatelite = orientationSatelite;
         initThreadDrawingProjection();
-        managerDrawPathProjection.getLineToManager().setColor(colorTrajectory);
-        managerDrawPathProjection.getLineToManager().setWidth(23);
+        managerDrawPathProjection.getLineTo3D().setColor(colorTrajectory);
+        managerDrawPathProjection.getLineTo3D().setWidth(23);
         managerDrawPathProjection.setDistanceDrawLine(15);
         managerDrawPathProjection.setMaxNumberLine(150);
         managerDrawPathProjection.setLimitTerms(true);
@@ -32,8 +32,8 @@ public class DrawingPathProjectionSatelliteOnPlanet implements  DrawingTrajector
         this.planet = planet;
         this.orientationSatelite = orientationSatelite;
         initThreadDrawingProjection();
-        managerDrawPathProjection.getLineToManager().setColor(colorTrajectory);
-        managerDrawPathProjection.getLineToManager().setWidth(23);
+        managerDrawPathProjection.getLineTo3D().setColor(colorTrajectory);
+        managerDrawPathProjection.getLineTo3D().setWidth(23);
         managerDrawPathProjection.setDistanceDrawLine(27);
         managerDrawPathProjection.setMaxNumberLine(maxLengthTrajectory);
         managerDrawPathProjection.setLimitTerms(true);

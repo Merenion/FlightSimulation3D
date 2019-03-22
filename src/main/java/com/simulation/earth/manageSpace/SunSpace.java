@@ -1,13 +1,15 @@
 package com.simulation.earth.manageSpace;
 
+import com.simulation.earth.spaceObjects.SpaceObject;
+
+import java.util.ArrayList;
+
 public class SunSpace extends Space{
 
-    public SunSpace() {
-        prepareSpace();
-    }
+
 
     @Override
-    protected void prepareSpace() {
-
+    protected ArrayList<SpaceObject> prepareSpace() {
+        return null;
     }
 }

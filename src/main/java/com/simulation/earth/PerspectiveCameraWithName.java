@@ -1,4 +1,4 @@
-package com.simulation.earth.spaceObjects;
+package com.simulation.earth;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.PerspectiveCamera;

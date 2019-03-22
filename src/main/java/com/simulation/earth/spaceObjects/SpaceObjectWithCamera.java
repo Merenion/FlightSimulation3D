@@ -1,9 +1,8 @@
 package com.simulation.earth.spaceObjects;
 
+import com.simulation.earth.PerspectiveCameraWithName;
 import javafx.scene.Camera;
 import javafx.scene.Group;
-import javafx.scene.Node;
-import javafx.scene.transform.Rotate;
 
 import java.util.ArrayList;
 import java.util.List;

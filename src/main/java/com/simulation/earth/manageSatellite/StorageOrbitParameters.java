@@ -2,11 +2,16 @@ package com.simulation.earth.manageSatellite;
 
 public class StorageOrbitParameters implements OrbitParameters{
 
-    private double i=98.3;       //угол наклона плоскости орбиты в градусах
-    private double omega0=0;  //долгота восходящего узла орбиты
-    private double w0=0;      //начальный аргучент перигея орбиты
+    /**высота перигея орбиты*/
     private double Hpi=2000;     //высота перигея орбиты
+    /**начальный аргучент перигея орбиты*/
+    private double w0=0;      //начальный аргучент перигея орбиты
+    /**высота апогея орбиты*/
     private double Ha=15000;      //высота апогея орбиты
+    /**Угол наклона плоскости орбиты в градусах*/
+    private double i=98.3;       //угол наклона плоскости орбиты в градусах
+    /**долгота восходящего узла орбиты*/
+    private double omega0=0;  //долгота восходящего узла орбиты
 
     @Override
     public double getI() {

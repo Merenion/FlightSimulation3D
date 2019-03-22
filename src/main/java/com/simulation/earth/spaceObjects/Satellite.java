@@ -3,13 +3,13 @@ package com.simulation.earth.spaceObjects;
 import com.simulation.earth.manageSatellite.OrbitParameters;
 import com.simulation.earth.manageSatellite.StorageOrbitParameters;
 import com.simulation.earth.trajectoryServis.DrawingPathProjectionSatelliteOnPlanet;
-import com.simulation.earth.trajectoryServis.DrawingTrajectory;
+import com.simulation.earth.trajectoryServis.DrawingPath;
 import javafx.scene.paint.Color;
 
 
 public abstract class Satellite extends SpaceObjectWithCamera {
     private OrbitParameters parametrsOrbit = new StorageOrbitParameters();
-    private DrawingTrajectory drawingProjectionOnPlanet;
+    private DrawingPath drawingProjectionOnPlanet;
     private Color colorProjectionOnPlanet = Color.WHITE;
     private int maxLengthProjectionOnPlanet = 175;
 
@@ -25,6 +25,11 @@ public abstract class Satellite extends SpaceObjectWithCamera {
         if (drawingProjectionOnPlanet != null) {
             drawingProjectionOnPlanet.stopDrawTrajectories();
         }
+    }
+
+    public void refreshProjectionOnPlanet () {
+        if (drawingProjectionOnPlanet!=null)
+            drawingProjectionOnPlanet.removeTrajectory();
     }
 
     public Satellite(OrbitParameters parametrsOrbit) {

@@ -1,9 +1,8 @@
 package com.simulation.earth;
 
-import com.simulation.earth.drawServis.LineToManager;
+import com.simulation.earth.drawServis.LineTo3D;
 import com.simulation.earth.manageSatellite.ManageSatellite;
-import com.simulation.earth.manageSatellite.ManagerSatelliteDefault;
-import com.simulation.earth.manageSatellite.StorageOrbitParameters;
+import com.simulation.earth.manageSatellite.ManagerSatelliteEarth;
 import com.simulation.earth.manageSpace.FactorySpace;
 import com.simulation.earth.manageSpace.NearEarthFactory;
 import com.simulation.earth.manageSpace.ParametersSpace;
@@ -15,7 +14,6 @@ import com.simulation.earth.spaceObjects.*;
 import com.simulation.earth.starBackground.Background;
 import com.simulation.earth.starBackground.Stars;
 import javafx.animation.AnimationTimer;
-import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -77,45 +75,44 @@ public class ControllerWindowSimulation {
     private MouseControl mouseControl = new MouseControl();
     private Stage stage = Main.getStage();
 
-    private Space space;
-    private ParametersSpace parametersSpace;
+    private Space space = factorySpace.getSpace();
+    private ParametersSpace parametersSpace  = factorySpace.getParametersSpace();
 
-    private Satellite satellite;
-    ManageSatellite manageSatellite = ManagerSatelliteDefault.getManager();
+    ManageSatellite manageSatellite = ManagerSatelliteEarth.getManager();
 
 
     @FXML
     private void initialize (){
-        space = factorySpace.getSpace();
-        parametersSpace = factorySpace.getParametersSpace();
         group.getChildren().add(space.getSpaceGroup());
-        prepareDrawScene();
         initMouseControl();
-        monitorParametrsSimulation();
+
+        prepareDrawScene();
         preparePoorLighting();
         prepareTableCameras();
         prepareTableSatellites();
-        initLineSystCoordinat();
-        Background background = new Stars();
-        group.getChildren().add(background.getGroup());
+        prepareBackground();
+        prepareLineSystCoordinat();
 
-        satellite = (Satellite) space.getSpaceObject("SatelliteDefault");
-
+        monitorParametrsSimulation();
     }
 
-    private void initLineSystCoordinat (){
-        LineToManager lineToManager = new LineToManager();
-        lineToManager.setColor(Color.RED);
-        lineToManager.setWidth(30);
-        lineToManager.addCoordinat(0,0,0);
-        lineToManager.addCoordinat(10000,0,0);
-        lineToManager.addCoordinat(0,0,0);
-        lineToManager.setColor(Color.BLUE);
-        lineToManager.addCoordinat(0,10000,0);
-        lineToManager.addCoordinat(0,0,0);
-        lineToManager.setColor(Color.GREEN);
-        lineToManager.addCoordinat(0,0,10000);
-        group.getChildren().add(lineToManager.getPath());
+    private void prepareLineSystCoordinat(){
+        LineTo3D x = new LineTo3D();
+        LineTo3D y = new LineTo3D();
+        LineTo3D z = new LineTo3D();
+        x.setColor(Color.RED);
+        x.setWidth(30);
+        x.addCoordinats(0,0,0);
+        x.addCoordinats(10000,0,0);
+        y.setColor(Color.BLUE);
+        y.setWidth(30);
+        y.addCoordinats(0,0,0);
+        y.addCoordinats(0,10000,0);
+        z.setColor(Color.GREEN);
+        z.setWidth(30);
+        z.addCoordinats(0,0,0);
+        z.addCoordinats(0,0,10000);
+        group.getChildren().addAll(x,y,z);
     }
 
     private void monitorParametrsSimulation () {
@@ -169,7 +166,12 @@ public class ControllerWindowSimulation {
 
     private void monitorSateliteScale () {
         labelSateliteScale.setText(reduceNumber(sliderSatelliteScale.getValue(),3)+"");
-        manageSatellite.changeScalellites((float) sliderSatelliteScale.getValue());
+        manageSatellite.changeScaleSatellites((float) sliderSatelliteScale.getValue());
+    }
+
+    private void prepareBackground (){
+        Background background = new Stars();
+        group.getChildren().add(background.getGroup());
     }
 
     private void prepareDrawScene (){
@@ -189,7 +191,7 @@ public class ControllerWindowSimulation {
 
     private void preparePoorLighting () {
         AmbientLight light = new AmbientLight();
-        light.setColor(Color.valueOf("090909"));
+        light.setColor(Color.valueOf("101010"));
         group.getChildren().add(light);
     }
 
@@ -268,7 +270,6 @@ public class ControllerWindowSimulation {
     }
 
     public void onTest(ActionEvent actionEvent) {
-//        manageSatellite.createSatellite(new StorageOrbitParameters(),group,"mySatellite");
     }
 
     private double reduceNumber (double number, int coll) {

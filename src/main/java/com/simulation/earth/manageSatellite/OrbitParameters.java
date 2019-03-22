@@ -1,5 +1,8 @@
 package com.simulation.earth.manageSatellite;
 
+/**
+ * Интерфейс для работы с параметрами орбиты
+ */
 public interface OrbitParameters {
     double getI();                      //угол наклона плоскости орбиты в градусах
     double getIinRadian();

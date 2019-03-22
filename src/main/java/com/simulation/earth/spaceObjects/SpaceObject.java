@@ -1,7 +1,7 @@
 package com.simulation.earth.spaceObjects;
 
 import com.simulation.earth.trajectoryServis.DrawingOrbitOfSatellite;
-import com.simulation.earth.trajectoryServis.DrawingTrajectory;
+import com.simulation.earth.trajectoryServis.DrawingPath;
 import com.simulation.earth.objectControl.SmartGroup;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.Group;
@@ -23,7 +23,7 @@ public abstract class  SpaceObject {
     protected final Rotate rotateY = new Rotate(0,Rotate.Y_AXIS);
     protected final Rotate rotateZ = new Rotate(0,Rotate.Z_AXIS);
     protected final Translate orientation = new Translate();
-    private DrawingTrajectory drawingOrbit;
+    private DrawingPath drawingOrbit;
     private float scaleModel =1;
 
     private Color colorOrbit = Color.WHITE;
@@ -92,7 +92,7 @@ public abstract class  SpaceObject {
         this.maxLengthOrbit = maxLengthOrbit;
     }
 
-    public DrawingTrajectory getDrawingOrbit() {
+    public DrawingPath getDrawingOrbit() {
         return drawingOrbit;
     }
 
@@ -127,6 +127,10 @@ public abstract class  SpaceObject {
         if (drawingOrbit != null) {
             drawingOrbit.stopDrawTrajectories();
         }
+    }
+
+    public void refreshDrawingOrbit() {
+        drawingOrbit.removeTrajectory();
     }
 
     private void changeScaleModel (float scale, Group group){

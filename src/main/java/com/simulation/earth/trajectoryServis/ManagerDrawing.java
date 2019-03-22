@@ -1,6 +1,6 @@
 package com.simulation.earth.trajectoryServis;
 
-import com.simulation.earth.drawServis.LineToManager;
+import com.simulation.earth.drawServis.LineTo3D;
 import javafx.scene.Group;
 import org.fxyz3d.geometry.Point3D;
 
@@ -11,7 +11,7 @@ public class ManagerDrawing implements Drawing {
     private Point3D oldPoint;
     private Point3D newPoint;
     private double distanceDrawLine=600;
-    volatile private LineToManager lineToManager = new LineToManager();
+    volatile private LineTo3D lineTo3D = new LineTo3D();
     private boolean limitTerms = true;
     private int maxNumberLine = 300;
     volatile private List<Point3D> points = new ArrayList<>();
@@ -36,12 +36,12 @@ public class ManagerDrawing implements Drawing {
             oldPoint.x = newX;
             oldPoint.y = newY;
             oldPoint.z = newZ;
-            lineToManager.addCoordinat(newX, newY, newZ);
+            lineTo3D.addCoordinats(newX, newY, newZ);
             points.add(new Point3D(newX,newY,newZ));
             starting = true;
         }
         if (isNeededDraw(newX,newY,newZ)) {
-            lineToManager.addCoordinat(newX, newY, newZ);
+            lineTo3D.addCoordinats(newX, newY, newZ);
             points.add(new Point3D(newX,newY,newZ));
             oldPoint.x = newX;
             oldPoint.y = newY;
@@ -69,7 +69,7 @@ public class ManagerDrawing implements Drawing {
 
     @Override
     public Group getPath(){
-        return  lineToManager.getPath();
+        return  lineTo3D;
     }
 
     @Override
@@ -100,13 +100,13 @@ public class ManagerDrawing implements Drawing {
     }
 
     @Override
-    public LineToManager getLineToManager() {
-        return lineToManager;
+    public LineTo3D getLineTo3D() {
+        return lineTo3D;
     }
 
     @Override
     public void clear() {
-        lineToManager.clear();
+        lineTo3D.clear();
         points.clear();
         starting = false;
     }

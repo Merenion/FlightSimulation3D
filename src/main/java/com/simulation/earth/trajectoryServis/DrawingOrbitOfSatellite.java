@@ -5,7 +5,7 @@ import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.transform.Translate;
 
-public class DrawingOrbitOfSatellite implements DrawingTrajectory{
+public class DrawingOrbitOfSatellite implements DrawingPath {
 
     private AnimationTimer listenerChangeCoordinates;
     private Translate orientation;
@@ -19,7 +19,7 @@ public class DrawingOrbitOfSatellite implements DrawingTrajectory{
         initThreadDrawingTrajectory();
         managerDrawingOfTrajectory.setDistanceDrawLine(500);
         managerDrawingOfTrajectory.setMaxNumberLine(maxLengthOrbit);
-        managerDrawingOfTrajectory.getLineToManager().setColor(colorTrajectory);
+        managerDrawingOfTrajectory.getLineTo3D().setColor(colorTrajectory);
     }
 
     private void initThreadDrawingTrajectory() {
