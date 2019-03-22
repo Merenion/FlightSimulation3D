@@ -10,6 +10,7 @@ import org.fxyz3d.geometry.Point3D;
  * использует Line и FactoryLine.
  * Реализованно на основе Group с добавлением
  * прямых.
+ * Используется как обычный Node
  */
 public class LineTo3D extends Group implements LineTo {
     /**Цвет*/

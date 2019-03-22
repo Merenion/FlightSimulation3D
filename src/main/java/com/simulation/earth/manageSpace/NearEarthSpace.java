@@ -8,11 +8,16 @@ import com.simulation.earth.spaceObjects.modelNearEarth.SunNE;
 
 import java.util.ArrayList;
 
+/**
+ * Околоземное пространство.
+ * Имеет все методы пространства
+ */
 public class NearEarthSpace extends Space {
-    NearEarthSpace() {
-        prepareSpace();
-    }
 
+    /**
+     * Задает обьекты пространства по умолчанию, которые будут добавленны при инициализации
+     * @return коллекция содержащая обьекты пространства
+     */
     @Override
     protected ArrayList<SpaceObject> prepareSpace() {
         ArrayList<SpaceObject> spaceObjects = new ArrayList<>();
