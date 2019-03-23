@@ -10,7 +10,7 @@ import org.fxyz3d.geometry.Point3D;
  * использует Line и FactoryLine.
  * Реализованно на основе Group с добавлением
  * прямых.
- * Используется как обычный Node
+ * используется как обычный Node
  */
 public class LineTo3D extends Group implements LineTo {
     /**Цвет*/
@@ -40,9 +40,8 @@ public class LineTo3D extends Group implements LineTo {
     }
 
     /**
-     * Изменяет масштаб ширины прямой
-     * @param coefficient коэффициент на который будет
-     * домноженно значение ширины линии
+     * изменение размера модели спутника
+     * @param coefficient необходимый масштаб
      */
     public void changeScaleLines(float coefficient){
         for (Node line : getChildren()){

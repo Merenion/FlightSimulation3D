@@ -3,6 +3,9 @@ package com.simulation.earth.trajectoryServis;
 import com.simulation.earth.drawServis.LineTo3D;
 import javafx.scene.Group;
 
+/**
+ * интерфейс позволяющий работать с сервисом рисования
+ */
 public interface Drawing {
     void addLineInPathIfNeeded (float newX, float newY, float newZ);
     Group getPath();

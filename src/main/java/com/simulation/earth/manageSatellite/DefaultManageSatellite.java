@@ -26,8 +26,8 @@ public abstract class DefaultManageSatellite implements ManageSatellite{
     }
 
     /**
-     * Изменение размера модели всех спутников
-     * @param scale необходимый масштаб спутника
+     * изменяет масштаб модели спутника
+     * @param scale необходимый масштаб
      */
     @Override
     public void changeScaleSatellites(float scale) {
@@ -89,11 +89,12 @@ public abstract class DefaultManageSatellite implements ManageSatellite{
     }
 
     /**
-     * Удаление спутника отовсюду
+     * Удаление спутника из коллекции спутников, из этого сервиса. НО НЕ ИЗ ГРУППЫ ГДЕ ОН НАХОДИТСЯ
      * @param satellite спутник который следует удалить
      */
     @Override
     public void deleteSatellite(Satellite satellite) {
+        satellite.getParentGroup().getChildren().remove(satellite);
         satellite.refreshProjectionOnPlanet();
         satellites.remove(satellite);
     }

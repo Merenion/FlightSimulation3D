@@ -83,7 +83,7 @@ public class ControllerWindowSimulation {
 
     @FXML
     private void initialize (){
-        group.getChildren().add(space.getSpaceGroup());
+        group.getChildren().add(space);
         initMouseControl();
 
         prepareDrawScene();

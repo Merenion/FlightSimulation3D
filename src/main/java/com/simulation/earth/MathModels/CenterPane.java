@@ -2,6 +2,9 @@ package com.simulation.earth.MathModels;
 
 import javafx.scene.layout.Pane;
 
+/**
+ * класс предназначенный для расчета координат отображения на плоскости, математической моделью
+ */
 public class CenterPane {
 
     private double x0i = 450;             //центр по X

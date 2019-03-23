@@ -10,11 +10,9 @@ public class DrawingOrbitOfSatellite implements DrawingPath {
     private AnimationTimer listenerChangeCoordinates;
     private Translate orientation;
     private Drawing managerDrawingOfTrajectory = new ManagerDrawing();
-    private Group groupTrajectory;
 
     public DrawingOrbitOfSatellite(Group groupTrajectory, Translate orientation, Color colorTrajectory, int maxLengthOrbit) {
         this.orientation = orientation;
-        this.groupTrajectory = groupTrajectory;
         groupTrajectory.getChildren().add(managerDrawingOfTrajectory.getPath());
         initThreadDrawingTrajectory();
         managerDrawingOfTrajectory.setDistanceDrawLine(500);

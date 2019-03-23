@@ -12,6 +12,9 @@ import javafx.scene.input.ScrollEvent;
 import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 
+/**
+ * Класс предназначен для управления обьектами мышкой (кручение приближение и т.д.)
+ */
 public class MouseControl {
 
     private double anchorX, anchorY;  //координаты в которых произошло зажатие мыши

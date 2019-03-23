@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 /**
  * Солнечное пространство.
- * Имеет все методы пространства
+ * имеет все методы пространства
  */
 public class SunSpace extends Space{
 

@@ -13,7 +13,13 @@ import javafx.scene.transform.Translate;
 
 import java.util.ArrayList;
 
+/**
+ * фон реализованный на стенках представляющих прямой параллепипед на который наложена текстура
+ * Пространство находится внутри ящика
+ */
 public class Stars extends Background{
+
+    /**расстояние от центра по дефолту*/
     private static double distance = 180_000_000;
     private static double wallSize = distance*2;
 

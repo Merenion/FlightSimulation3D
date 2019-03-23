@@ -5,6 +5,9 @@ import com.simulation.earth.spaceObjects.SpaceObject;
 
 import java.util.Date;
 
+/**
+ * интерфейс для управления симуляцией. Передвижение обьектов в зависимости от времени
+ */
 public interface ISimulation {
 
     double getTimeSimulation();

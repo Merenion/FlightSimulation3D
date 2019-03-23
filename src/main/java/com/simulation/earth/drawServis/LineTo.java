@@ -4,7 +4,7 @@ import javafx.scene.Node;
 import javafx.scene.paint.Color;
 
 /**
- * Интерфейс для создания цепочки прямых
+ * интерфейс для создания цепочки прямых
  */
 public interface LineTo {
     void addCoordinats(float x, float y, float z);

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 /**
  * Околоземное пространство.
- * Имеет все методы пространства
+ * имеет все методы пространства
  */
 public class NearEarthSpace extends Space {
 

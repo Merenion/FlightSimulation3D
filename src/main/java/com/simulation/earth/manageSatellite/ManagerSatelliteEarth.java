@@ -4,6 +4,7 @@ import com.simulation.earth.spaceObjects.FactorySatellite;
 import com.simulation.earth.spaceObjects.Satellite;
 import com.simulation.earth.spaceObjects.SatelliteDefault;
 import com.simulation.earth.spaceObjects.modelNearEarth.FactoryNearEarth;
+import javafx.scene.Group;
 
 /**
  * Класс который определяет создание спутника по умолчанию
@@ -31,7 +32,7 @@ public class ManagerSatelliteEarth extends DefaultManageSatellite {
 
     /**
      * Создание спутника по умолчанию
-     * Используется Фабрика Спутников
+     * используется Фабрика Спутников
      * @param parametrsOrbit параметры орбиты спутника
      * @param name имя спутника
      * @return созданный спутник
@@ -41,6 +42,7 @@ public class ManagerSatelliteEarth extends DefaultManageSatellite {
         Satellite satellite = (Satellite) factorySatellite.createDeaultSatellite(parametrsOrbit);
         satellite.setName(name);
         satellites.add(satellite);
+
         return satellite;
     }
 }

@@ -6,7 +6,7 @@ import javafx.scene.transform.Rotate;
 import org.fxyz3d.geometry.Point3D;
 
 /**
- * Интерфейс фабрики для создания графичиских обьектов связвнных с прямыми
+ * интерфейс фабрики для создания обьектов, описывающие различные прямые
  */
 public interface FactoryLine {
     Line createLine (Point3D point1, Point3D point2, float width, Color color);

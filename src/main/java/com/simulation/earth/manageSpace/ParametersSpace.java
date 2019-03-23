@@ -2,14 +2,22 @@ package com.simulation.earth.manageSpace;
 
 import javafx.scene.image.Image;
 
+/**
+ * Класс отдающий различные параметры пространства
+ */
 public abstract class ParametersSpace {
 
+    /*
+    использует абстрактный метод подготовки параметров пространства
+     */
     {
         prepareSpace();
     }
+
+    /**наиближайшее растояние от свободной камеры на котором будут отображаться обьекты*/
     protected double nearClip;
+    /**максимальное растояние от камеры на котором будут видны обьекты*/
     protected double farClip;
-    protected Image fondImage;
 
     public double getNearClip() {
         return nearClip;
@@ -17,10 +25,6 @@ public abstract class ParametersSpace {
 
     public double getFarClip() {
         return farClip;
-    }
-
-    public Image getFondImage() {
-        return fondImage;
     }
 
     protected abstract void prepareSpace();

@@ -4,6 +4,7 @@ import com.simulation.earth.manageSatellite.OrbitParameters;
 import com.simulation.earth.manageSatellite.StorageOrbitParameters;
 import com.simulation.earth.trajectoryServis.DrawingPathProjectionSatelliteOnPlanet;
 import com.simulation.earth.trajectoryServis.DrawingPath;
+import javafx.scene.Group;
 import javafx.scene.paint.Color;
 
 
@@ -12,6 +13,7 @@ public abstract class Satellite extends SpaceObjectWithCamera {
     private DrawingPath drawingProjectionOnPlanet;
     private Color colorProjectionOnPlanet = Color.WHITE;
     private int maxLengthProjectionOnPlanet = 175;
+    private Group parentGroup = new Group();
 
 
     public void enableDrawingProjectionOnPlanet (PlanetOrStart planet) {
@@ -57,6 +59,15 @@ public abstract class Satellite extends SpaceObjectWithCamera {
 
     public void setMaxLengthProjectionOnPlanet(int maxLengthProjectionOnPlanet) {
         this.maxLengthProjectionOnPlanet = maxLengthProjectionOnPlanet;
+    }
+
+    public Group getParentGroup() {
+        return parentGroup;
+    }
+
+    public void setParentGroup(Group parentGroup) {
+        this.parentGroup = parentGroup;
+
     }
 
     public void setParametrsOrbit(OrbitParameters parametrsOrbit) {

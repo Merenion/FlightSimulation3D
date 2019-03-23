@@ -68,6 +68,13 @@ public class ManagerDrawing implements Drawing {
     }
 
     @Override
+    public void clear() {
+        lineTo3D.clear();
+        points.clear();
+        starting = false;
+    }
+
+    @Override
     public Group getPath(){
         return  lineTo3D;
     }
@@ -102,12 +109,5 @@ public class ManagerDrawing implements Drawing {
     @Override
     public LineTo3D getLineTo3D() {
         return lineTo3D;
-    }
-
-    @Override
-    public void clear() {
-        lineTo3D.clear();
-        points.clear();
-        starting = false;
     }
 }

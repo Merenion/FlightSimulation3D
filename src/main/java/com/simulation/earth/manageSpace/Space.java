@@ -14,17 +14,17 @@ import java.util.List;
 /**
  * Абстрактный класс описывающий пространство, хранит все обьекты (SpaceObject),
  * которые необходимо отображать в приложении.
- * Имеется абстрактный метод для сазадия обьектов по дефолту.
+ * Основан на Group.
+ * имеется абстрактный метод для сазадия обьектов по дефолту.
  * Реализация представляет с собой две колекции, одна из которых
- * хранит обьекты пространства (@See #SpaceObject) и их модели, которые
- * добавляются и удаляются вместе с обьктами пространства автоматически.
+ * хранит обьекты пространства (@See #SpaceObject) и коллекция
+ * родительского класса (Group), хранящая их модели.
+ * Модели добавляются и удаляются вместе с обьктами пространства автоматически.
  */
-public abstract class Space {
+public abstract class Space extends Group {
 
     /**Коллекция которая хранит в себе обьекты пространства*/
     private ObservableList<SpaceObject> spaceObjects = FXCollections.observableArrayList();
-    /**Группа которая хранит в себе модели обьектов пространства*/
-    private Group spaseGroup = new Group();
     /**Наименование пространства*/
     private String name = "";
     /**Коллекция хранит все камеры установленные в обьекты пространства типа SpaceObjectWithCamera*/
@@ -40,12 +40,12 @@ public abstract class Space {
             if (c.wasRemoved()){
                 List<? extends SpaceObject> objecrsRemoved = c.getRemoved();
                 for (SpaceObject object : objecrsRemoved)
-                    spaseGroup.getChildren().remove(object.getSpaceModel());
+                    getChildren().remove(object.getSpaceModel());
             }
             if (c.wasAdded()) {
                 List<? extends SpaceObject> objectsAdded = c.getAddedSubList();
                 for (SpaceObject object : objectsAdded)
-                    spaseGroup.getChildren().add(object.getSpaceModel());
+                    getChildren().add(object.getSpaceModel());
             }
             refreshCameras();
         });
@@ -54,7 +54,7 @@ public abstract class Space {
     /*
       Автоматически добавляет стандартные обьекты в коллекцию обьктов пространства
       при инициализации.
-      Использует абстрактный метод реализуемый в наследниках
+      использует абстрактный метод реализуемый в наследниках
      */
     {
         spaceObjects.addAll(prepareSpace());
@@ -62,7 +62,7 @@ public abstract class Space {
 
     /**
      * Метод для определения обьктов пространства, необходимые по умолчанию в @see #spaceObjects
-     * @return
+     * @return обьекты
      */
     protected abstract ArrayList<SpaceObject> prepareSpace ();
 
@@ -77,10 +77,6 @@ public abstract class Space {
                 return object;
         }
         return null;
-    }
-
-    public Group getSpaceGroup () {
-        return spaseGroup;
     }
 
     public ObservableList<SpaceObject> getSpaceObjects() {

@@ -4,6 +4,11 @@ import com.simulation.earth.manageSatellite.OrbitParameters;
 import javafx.geometry.Point2D;
 import javafx.geometry.Point3D;
 
+/**
+ * Класс содержит все формулы различных параметров полета спутника.
+ * Через содержащиеся методы можно найти любой параметр полета,
+ * задав парамметры орбиты и время
+ */
 public class DeterminateParameters {
 
     private OrbitParameters orbitPr;

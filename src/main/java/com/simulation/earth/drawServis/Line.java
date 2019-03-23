@@ -7,7 +7,7 @@ import javafx.scene.paint.Color;
 import org.fxyz3d.geometry.Point3D;
 
 /**
- * Интерфейс для работы с прямыми
+ * интерфейс для работы с прямыми
  */
 public interface Line extends EventTarget, Styleable {
 

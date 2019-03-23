@@ -24,7 +24,7 @@ public class CreaterLine3Ddefault implements FactoryLine{
 
     /**
      * Создает Линию которую можно продолжать другими линиями, добавляя координаты
-     * @return
+     * @return Созданная линия
      */
     @Override
     public LineTo creteLineTo() {
