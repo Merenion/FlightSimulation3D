@@ -1,4 +1,4 @@
-package com.simulation.earth.spaceObjects.modelNearEarth;
+package com.simulation.earth.spaceObjects;
 
 import com.simulation.earth.spaceObjects.PlanetOrStart;
 import javafx.geometry.Point3D;
@@ -13,6 +13,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Класс реализующий луну (для околоземного пространства)
+ * Описание методов которые не задокументированы искать в родителях класса
+ */
 public class MoonNE extends PlanetOrStart {
 
     @Override
@@ -27,12 +31,28 @@ public class MoonNE extends PlanetOrStart {
             rotateFlyCircle.setAngle(0);
     }
 
+    /**
+     * поворот для вращение вокруг центра, автоматически помещается в модель
+     */
     private Rotate rotateFlyCircle = new Rotate(0,new Point3D(1,1,0));
+
+    /*
+    тут классы для повората автоматически помещаются в модель
+    #rotateFlyCircle
+     */
     {
         getSpaceModel().getTransforms().add(rotateFlyCircle);
     }
 
+    /**время на которое уже совершенно перемещение #movement(double time)*/
     private double oldTime;
+
+    /**
+     * Математической модели НЕТУ ОРБИТЫ ПЕРЕМЕЩЕНИ НЕ будет,
+     * перемещение реализованно при помощи поворота сферы вокруг центра координат
+     * через delta time
+     * (#rotateFlyCircle - через него она и вертится)
+     */
     @Override
     public void movement(double time) {
         double deltaTime = time -oldTime;

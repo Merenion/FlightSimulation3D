@@ -6,8 +6,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Group;
 
-import java.util.ArrayList;
-
 /**
  * Абстрактный класс реализующий основные методы управления спутниками
  */
@@ -42,7 +40,7 @@ public abstract class DefaultManageSatellite implements ManageSatellite{
     @Override
     public void enableDrawingOrbitSatellites(Group homeGroup) {
         for (Satellite satellite :satellites)
-            satellite.enableDrawingOrbit(homeGroup);
+            satellite.enableDrawingMovementPath(homeGroup);
     }
 
     /**
@@ -51,7 +49,7 @@ public abstract class DefaultManageSatellite implements ManageSatellite{
     @Override
     public void stopDrawingOrbitSatellites() {
         for (Satellite satellite :satellites)
-            satellite.stopDrawingOrbit();
+            satellite.stopDrawingMovementPath();
     }
 
     /**
@@ -89,13 +87,25 @@ public abstract class DefaultManageSatellite implements ManageSatellite{
     }
 
     /**
-     * Удаление спутника из коллекции спутников, из этого сервиса. НО НЕ ИЗ ГРУППЫ ГДЕ ОН НАХОДИТСЯ
+     * Удаление спутника из коллекции спутников, из этого сервиса. НО НЕ иЗ ГРУППЫ ГДЕ ОН НАХОДиТСЯ
      * @param satellite спутник который следует удалить
      */
     @Override
     public void deleteSatellite(Satellite satellite) {
-        satellite.getParentGroup().getChildren().remove(satellite);
         satellite.refreshProjectionOnPlanet();
+        satellite.refreshDrawingMovementPath();
         satellites.remove(satellite);
+    }
+
+    @Override
+    public void refreshDrawingOrbit() {
+        for (Satellite satellite :satellites)
+            satellite.refreshDrawingMovementPath();
+    }
+
+    @Override
+    public void refreshProjectionOnPlanet() {
+        for (Satellite satellite :satellites)
+            satellite.refreshProjectionOnPlanet();
     }
 }

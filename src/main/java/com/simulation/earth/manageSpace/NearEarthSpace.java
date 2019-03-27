@@ -1,10 +1,9 @@
 package com.simulation.earth.manageSpace;
 
-import com.simulation.earth.manageSatellite.StorageOrbitParameters;
 import com.simulation.earth.spaceObjects.*;
-import com.simulation.earth.spaceObjects.modelNearEarth.EarthNE;
-import com.simulation.earth.spaceObjects.modelNearEarth.MoonNE;
-import com.simulation.earth.spaceObjects.modelNearEarth.SunNE;
+import com.simulation.earth.spaceObjects.EarthNE;
+import com.simulation.earth.spaceObjects.MoonNE;
+import com.simulation.earth.spaceObjects.SunNE;
 
 import java.util.ArrayList;
 

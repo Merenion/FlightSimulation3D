@@ -23,6 +23,10 @@ public class Stars extends Background{
     private static double distance = 180_000_000;
     private static double wallSize = distance*2;
 
+    /**
+     * создаем стенки, поворачивая их определенным образом
+     * @return ящик в котором длолжно находиться пространство для корректного отображения фона
+     */
     @Override
     ArrayList<Node> prepareBackground() {
         ArrayList<Node> nodes = new ArrayList<>();
@@ -35,6 +39,10 @@ public class Stars extends Background{
         return nodes;
     }
 
+    /**
+     * Подкачивает текстуры
+     * @return параметры отображения объекта
+     */
     private PhongMaterial prepareMaterial () {
         PhongMaterial phongMaterial = new PhongMaterial();
         phongMaterial.setDiffuseMap(new Image(getClass().getResourceAsStream(getPathTexture())));
@@ -43,6 +51,14 @@ public class Stars extends Background{
         return phongMaterial;
     }
 
+    /**
+     * создание стенки
+     * @param wallSize размер стенки (квадрат)
+     * @param translate класс расположения стенки в пространстве
+     * @param axis ось
+     * @param angel угол на который развернуть относительно основной системы координат
+     * @return cntyrf
+     */
     private Node createWall (double wallSize, Translate translate, Point3D axis, int angel) {
         Box top = new Box();
         top.setRotationAxis(axis);
@@ -55,6 +71,12 @@ public class Stars extends Background{
         return top;
     }
 
+    /**
+     * упрощенное создание стенки
+     * @param wallSize размер стенки (квадрат)
+     * @param translate (расположение стенки в пространстве)
+     * @return стенка
+     */
     private Node createWall (double wallSize, Translate translate) {
         return createWall(wallSize, translate,new Point3D(0,0,0),0);
     }

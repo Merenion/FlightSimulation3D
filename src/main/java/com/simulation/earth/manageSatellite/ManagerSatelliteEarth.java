@@ -2,9 +2,7 @@ package com.simulation.earth.manageSatellite;
 
 import com.simulation.earth.spaceObjects.FactorySatellite;
 import com.simulation.earth.spaceObjects.Satellite;
-import com.simulation.earth.spaceObjects.SatelliteDefault;
-import com.simulation.earth.spaceObjects.modelNearEarth.FactoryNearEarth;
-import javafx.scene.Group;
+import com.simulation.earth.spaceObjects.FactoryNearEarth;
 
 /**
  * Класс который определяет создание спутника по умолчанию
@@ -42,7 +40,6 @@ public class ManagerSatelliteEarth extends DefaultManageSatellite {
         Satellite satellite = (Satellite) factorySatellite.createDeaultSatellite(parametrsOrbit);
         satellite.setName(name);
         satellites.add(satellite);
-
         return satellite;
     }
 }

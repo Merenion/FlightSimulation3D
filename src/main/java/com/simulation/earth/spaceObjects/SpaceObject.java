@@ -14,21 +14,60 @@ import javafx.scene.transform.Translate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Класс космического обьекта - описывает его передвижение, модель
+ * физические параметры, дополнительное поведение
+ */
 public abstract class  SpaceObject {
+
+    /**Масса космического обьекта (пока не где не используется)*/
     private double massa;
+    /**коллекция обьектов позволяющих перемещаться относительно их месторасположения (сейчас не где не используется)*/
     private ArrayList<SpaceObject> objectsOfReferenceMovement = new ArrayList<>();
+    /**наименнование космического обьекта*/
     private SimpleStringProperty name = new SimpleStringProperty("rfrfr");
-    private SmartGroup spaceModel = new SmartGroup();
+    /**Группа содержащая представляющая модель космического обьекта*/
+    private Group spaceModel = new Group();
+    /**Поворот модели Космического обьекта относительно собственной оси X*/
     protected final Rotate rotateX = new Rotate(0,Rotate.X_AXIS);
+    /**Поворот модели Космического обьекта относительно собственной оси Y*/
     protected final Rotate rotateY = new Rotate(0,Rotate.Y_AXIS);
+    /**Поворот модели Космического обьекта относительно собственной оси Z*/
     protected final Rotate rotateZ = new Rotate(0,Rotate.Z_AXIS);
+    /**поле для изменения расположения космического обьекта относительно основной системы координат*/
     protected final Translate orientation = new Translate();
-    private DrawingPath drawingOrbit;
+    /**масштаб модели*/
     private float scaleModel =1;
 
+    /**поле для рисования орбиты или Пути перемещения*/
+    private DrawingPath drawingOrbit;
+    /**цвет орбиты или питу передвижения объкта*/
     private Color colorOrbit = Color.WHITE;
+    /**максимальная дляна нарисованного пути или орбиты*/
     private int maxLengthOrbit = 175;
 
+    /**
+     * Простой конструктор с заданием наименование космического обьекта
+     * @param name наименование
+     */
+    public SpaceObject(String name) {
+        this.name.setValue(name);
+    }
+
+    /**
+     * пустой конструктор
+     */
+    public SpaceObject() {
+    }
+
+    /*
+    инициализация #orientation для модели
+    и добавление инициализируемой модели в
+    #spaceGroup. Модель инициализируется абстрактным
+    методом #modelDescription().
+    Установка модели на стартовые координаты
+    абстрактным методом #prepareStartCootdints()
+     */
     {
         spaceModel.getTransforms().add(orientation);
         spaceModel.getChildren().addAll(modelDescription());
@@ -38,25 +77,127 @@ public abstract class  SpaceObject {
             name.setValue(this.getClass().getSimpleName());
     }
 
+    /**
+     * метод для изменения масштаба модели космического обьекта
+     * @param scale необходимый масштаб модели
+     */
     public void changeScaleModel (float scale){
         changeScaleModel(scale,spaceModel);
         scaleModel = scale;
     }
 
-    public SpaceObject(String name) {
-        this.name.setValue(name);
-    }
-
-    public SpaceObject() {
-    }
-
+    /**
+     * перемещает обьект на координаты соответствующие заданному времени
+     * @param time время от которого зависит расположение обьекта
+     */
     public abstract void prepareStartCootdints (double time);
+
+    /**
+     * перемещает обьект на стартовые координаты по дефолту
+     * Реализацию метода необходимо проводить строго в рамках метода или
+     * с использованием полей SpaceObject
+     * Другими словами не задействуя поля класса в котором реализован
+     * данный метод так как он вызывается при инициализации в его родителе.
+     * (ИБО инициализаци происходит с родителя (если что))
+     * Так же можно обработать NullPointException для другого подхода
+     * после инициализации класса
+     */
     public abstract void prepareStartCootdints ();
+
+    /**
+     * метод в котором описывается перемещение
+     * нвся математика с использованием поля #orientation
+     * и углов повората используется в нем.
+     * как правило в нем подкрепляются математические модели и прочее
+     * Метод вызывается при симуляции космического пространства
+     * @param time время симуляции
+     */
     public abstract void movement(double time) ;
+
+    /**
+     * В этом методе создается сама модель обьекта
+     * или ее составляющие которые возвращаются в виде
+     * коллекции и используются постоянно в течении использования обьекта
+     * в группе #spaceModel которая их объединяет
+     * @return лист составляющих модели космического обьекта
+     */
     protected abstract List<Node> modelDescription();
 
 
-    public SmartGroup getSpaceModel(){
+    /**
+     * подготавливает поля Rotate по всем осям
+     * (#rotateX  #rotateY  #rotateZ)
+     * помещая их в составляющие модели #spaceModel
+     */
+    private void prepareRotate (){
+        for (Node node: spaceModel.getChildren()){
+            node.getTransforms().addAll(rotateX,rotateY,rotateZ);
+        }
+    }
+
+    /**
+     * Включает прорисовку Орбиты или пути перемещения космического объекта.
+     * Удаляет весь нарисованный путь до вызова метода
+     * @param spaceGroup группа где будет храниться прорисованный путь
+     */
+    public void enableDrawingMovementPath(Group spaceGroup) {
+        if (drawingOrbit!=null)
+            drawingOrbit.removeTrajectory();
+        drawingOrbit = new DrawingOrbitOfSatellite(spaceGroup,orientation,colorOrbit,maxLengthOrbit);
+        drawingOrbit.startDrawTrajectories();
+    }
+
+    /**
+     * Останавливает прорисовку Орбиты или пути перемещения космического объекта
+     */
+    public void stopDrawingMovementPath() {
+        if (drawingOrbit != null) {
+            drawingOrbit.stopDrawTrajectories();
+        }
+    }
+
+    /**
+     * метод для изменения масштаба обьектов группы (расположени группы относительно
+     * родительской системы координат не менется)
+     * @param scale необходимый масштаб
+     * @param group группа составляющие которой необходимо изменить.
+     */
+    private void changeScaleModel (float scale, Group group){
+        for (Node node: group.getChildren()){
+            if (node instanceof Group) {
+                changeScaleModel(scale, (Group) node);
+            }else {
+                node.setScaleX(scale);
+                node.setScaleY(scale);
+                node.setScaleZ(scale);
+                node.setTranslateX(node.getTranslateX() / scaleModel * scale);
+                node.setTranslateY(node.getTranslateY() / scaleModel * scale);
+                node.setTranslateZ(node.getTranslateZ() / scaleModel * scale);
+                for (Transform transform : node.getTransforms()) {
+                    if (transform instanceof Translate) {
+                        ((Translate) transform).setX(((Translate) transform).getX() / scaleModel * scale);
+                        ((Translate) transform).setY(((Translate) transform).getY() / scaleModel * scale);
+                        ((Translate) transform).setZ(((Translate) transform).getZ() / scaleModel * scale);
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * удаляет весь нарисованный путь движения обьект
+     */
+    public void refreshDrawingMovementPath() {
+        if (drawingOrbit!=null)
+        drawingOrbit.removeTrajectory();
+    }
+
+    @Override
+    public String toString() {
+        return name.getValue();
+    }
+
+    public Group getSpaceModel(){
         return spaceModel;
     }
 
@@ -100,63 +241,15 @@ public abstract class  SpaceObject {
         return objectsOfReferenceMovement;
     }
 
-    private void prepareRotate (){
-        for (Node node: spaceModel.getChildren()){
-            node.getTransforms().addAll(rotateX,rotateY,rotateZ);
-        }
-    }
-
     public Rotate getRotateX() {
         return rotateX;
     }
+
     public Rotate getRotateY() {
         return rotateY;
     }
+
     public Rotate getRotateZ() {
         return rotateZ;
-    }
-
-    public void enableDrawingOrbit (Group spaceGroup) {
-        if (drawingOrbit!=null)
-            drawingOrbit.removeTrajectory();
-        drawingOrbit = new DrawingOrbitOfSatellite(spaceGroup,orientation,colorOrbit,maxLengthOrbit);
-        drawingOrbit.startDrawTrajectories();
-    }
-
-    public void stopDrawingOrbit () {
-        if (drawingOrbit != null) {
-            drawingOrbit.stopDrawTrajectories();
-        }
-    }
-
-    public void refreshDrawingOrbit() {
-        drawingOrbit.removeTrajectory();
-    }
-
-    private void changeScaleModel (float scale, Group group){
-        for (Node node: group.getChildren()){
-            if (node instanceof Group) {
-                changeScaleModel(scale, (Group) node);
-            }else {
-                node.setScaleX(scale);
-                node.setScaleY(scale);
-                node.setScaleZ(scale);
-                node.setTranslateX(node.getTranslateX() / scaleModel * scale);
-                node.setTranslateY(node.getTranslateY() / scaleModel * scale);
-                node.setTranslateZ(node.getTranslateZ() / scaleModel * scale);
-                for (Transform transform : node.getTransforms()) {
-                    if (transform instanceof Translate) {
-                        ((Translate) transform).setX(((Translate) transform).getX() / scaleModel * scale);
-                        ((Translate) transform).setY(((Translate) transform).getY() / scaleModel * scale);
-                        ((Translate) transform).setZ(((Translate) transform).getZ() / scaleModel * scale);
-                    }
-                }
-            }
-        }
-    }
-
-    @Override
-    public String toString() {
-        return name.getValue();
     }
 }

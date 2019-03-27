@@ -25,8 +25,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+/**
+ * Контроллер GUI
+ */
 public class ControllerWindowSimulation {
-
 
     @FXML
     public SubScene drawScene;
@@ -67,20 +69,31 @@ public class ControllerWindowSimulation {
     @FXML
     public TableView<Satellite> tableSatellite;
 
+    /**основная группа в которой хранится все объекты (модели, орбиты сис.коорд.) для отображения*/
     private Group group = new Group();
+    /**Свободная камера*/
     private Camera freeCamera = new PerspectiveCameraWithName(true,"free Camera");
 
+    /**фабрика пространства*/
     private FactorySpace factorySpace = new NearEarthFactory();
+    /**сервис симуляции*/
     private ISimulation simulation  = new DefaultSimulation();
+    /**управление мышкой*/
     private MouseControl mouseControl = new MouseControl();
+    /**получаем как статический (для простаты)*/
     private Stage stage = Main.getStage();
 
+    /**Пространство для содержания моделей космических объектов (управление ими - перемещение и прочее)*/
     private Space space = factorySpace.getSpace();
+    /**параметры пространства*/
     private ParametersSpace parametersSpace  = factorySpace.getParametersSpace();
 
-    ManageSatellite manageSatellite = ManagerSatelliteEarth.getManager();
+    /**сервис создиния и управления спутниками*/
+    private ManageSatellite manageSatellite = ManagerSatelliteEarth.getManager();
 
-
+    /**
+     * инициализация GUI
+     */
     @FXML
     private void initialize (){
         group.getChildren().add(space);
@@ -96,6 +109,9 @@ public class ControllerWindowSimulation {
         monitorParametrsSimulation();
     }
 
+    /**
+     * инициализация отображения основной системы координат
+     */
     private void prepareLineSystCoordinat(){
         LineTo3D x = new LineTo3D();
         LineTo3D y = new LineTo3D();
@@ -115,6 +131,10 @@ public class ControllerWindowSimulation {
         group.getChildren().addAll(x,y,z);
     }
 
+    /**
+     * Метод создает поток, который следит за изменением различных
+     * парамметров заданных на GUI
+     */
     private void monitorParametrsSimulation () {
         AnimationTimer threadMonitorSimulation = new AnimationTimer() {
             @Override
@@ -129,6 +149,9 @@ public class ControllerWindowSimulation {
         threadMonitorSimulation.start();
     }
 
+    /**
+     * слушатель включения отображения дополнительных параметров времени
+     */
     private void monitorOnExtraTime () {
         if (checkExtraTImeDisplay.isSelected()) {
             lableTimeInMin.setText("MIN : " + (int) simulation.getTimeSimulation()/60 );
@@ -137,8 +160,14 @@ public class ControllerWindowSimulation {
         }
     }
 
+
+    /**для метода #monitorTrajectoryAndProjection*/
     private boolean lastSelectedCheckProjectionPathOnEarth =false;
+    /**для метода #monitorTrajectoryAndProjection*/
     private boolean lastSelectedCheckSatelliteTrajectory =false;
+    /**
+     * Слушатель включения прорисовки орбиты и пути подспутниковой точки
+     */
     private void monitorTrajectoryAndProjection() {
         SpaceObject earth = space.getSpaceObject("EarthNE");
         if (checkProjectionPathOnEarth.isSelected() && !lastSelectedCheckProjectionPathOnEarth) {
@@ -147,6 +176,7 @@ public class ControllerWindowSimulation {
         }
         if (!checkProjectionPathOnEarth.isSelected() && lastSelectedCheckProjectionPathOnEarth){
             manageSatellite.stopDrawingProjectionSatellites();
+            manageSatellite.refreshProjectionOnPlanet();
             lastSelectedCheckProjectionPathOnEarth = false;
         }
         if (checkSatelliteTrajectory.isSelected() && !lastSelectedCheckSatelliteTrajectory) {
@@ -155,28 +185,41 @@ public class ControllerWindowSimulation {
         }
         if (!checkSatelliteTrajectory.isSelected() && lastSelectedCheckSatelliteTrajectory){
             manageSatellite.stopDrawingOrbitSatellites();
+            manageSatellite.refreshDrawingOrbit();
             lastSelectedCheckSatelliteTrajectory = false;
         }
     }
 
+    /**мониторинг изменения ползунка устанавливающего deltaTIme симуляции*/
     private void monitorDeltaTime () {
         simulation.setDeltaTime((float) (0.01*sliderDeltaTimeFactor.getValue()));
         labelDeltaTime.setText(""+reduceNumber(simulation.getDeltaTime(),3));
     }
 
+    /**
+     * мониторинг ползунка масштаба спутников
+     */
     private void monitorSateliteScale () {
         labelSateliteScale.setText(reduceNumber(sliderSatelliteScale.getValue(),3)+"");
         manageSatellite.changeScaleSatellites((float) sliderSatelliteScale.getValue());
     }
 
+    /**
+     * подговка фона пространства
+     */
     private void prepareBackground (){
         Background background = new Stars();
         group.getChildren().add(background.getGroup());
     }
 
+    /**
+     * подготовка сцены:
+     * свободной камеры,
+     * ее глубины и координат
+     * установка в сцену основную группу
+     */
     private void prepareDrawScene (){
         initSizeScene();
-        System.out.println(drawScene.isDepthBuffer());
         freeCamera.setNearClip(parametersSpace.getNearClip());
         freeCamera.setFarClip(parametersSpace.getFarClip());
         drawScene.setCamera(freeCamera);
@@ -184,11 +227,17 @@ public class ControllerWindowSimulation {
         drawScene.setRoot(group);
     }
 
+    /**
+     * установка размеров окна GUI
+     */
     private void initSizeScene (){
         drawScene.setWidth(ScreenResolution.WIDTH());
         drawScene.setHeight(ScreenResolution.HIGHT());
     }
 
+    /**
+     * подготовка общего источника света для пространства
+     */
     private void preparePoorLighting () {
         AmbientLight light = new AmbientLight();
         light.setColor(Color.valueOf("101010"));
@@ -196,6 +245,10 @@ public class ControllerWindowSimulation {
     }
 
     //добавить сканирование
+
+    /**
+     * подготовка таблицы доступных камер
+     */
     private void prepareTableCameras () {
         ObservableList<Camera> cameras = space.getCamerasFromSpaseObjects();
         cameras.addListener((ListChangeListener<Camera>) c -> {
@@ -209,12 +262,18 @@ public class ControllerWindowSimulation {
         tableCameras.setItems(cameras);
     }
 
+    /**
+     * подготовка таблици существующих спутников
+     */
     private void prepareTableSatellites () {
         columnSatellites.setCellValueFactory(new PropertyValueFactory<>("name"));
         tableSatellite.setItems(manageSatellite.getAllSatelites());
 
     }
 
+    /**
+     * инициализация управления свободной камерой с помощью мышки
+     */
     private void initMouseControl () {
         Group freeCameraGroup = new Group();
         freeCameraGroup.getChildren().add(freeCamera);
@@ -222,18 +281,34 @@ public class ControllerWindowSimulation {
         mouseControl.initScrollControl(freeCamera,stage,50);
     }
 
+    /**
+     * остановить симуляциию
+     * @param actionEvent нажатие по кнопке
+     */
     public void onStopSimulation(ActionEvent actionEvent) {
         simulation.stopSimulation();
     }
 
+    /**
+     * включить симуляцию
+     * @param actionEvent нажатие по кнопке
+     */
     public void onContinueSimulation(ActionEvent actionEvent) {
         simulation.enableSimulation(space);
     }
 
+    /**
+     * сбросить симуляцию
+     * @param actionEvent нажатие по кнопке
+     */
     public void onResetSimulation(ActionEvent actionEvent) {
         simulation.resetSimulation(space);
     }
 
+    /**
+     * функция сильного увеличения обьектов пространства
+     * @param actionEvent включение функции
+     */
     public void onOverScale(ActionEvent actionEvent) {
         if (checkOverScale.isSelected()) {
             for (SpaceObject spaceObject : space.getSpaceObjects()) {
@@ -252,11 +327,20 @@ public class ControllerWindowSimulation {
         }
     }
 
+    /**
+     * действие при нажатии на камеру из таблици
+     * @param mouseEvent параметр нажатия
+     */
     public void onSelectCamera(MouseEvent mouseEvent) {
         if (tableCameras.getSelectionModel().getSelectedItem()!= null)
         drawScene.setCamera(tableCameras.getSelectionModel().getSelectedItem());
     }
 
+    /**
+     * действие при включении дополнительного времени
+     * (делает видимым label)
+     * @param actionEvent
+     */
     public void onExtraTime(ActionEvent actionEvent) {
         if (checkExtraTImeDisplay.isSelected()){
             lableTimeInMin.setVisible(true);
@@ -269,19 +353,41 @@ public class ControllerWindowSimulation {
         }
     }
 
+    /**
+     * тестовая кнопка на время разработики
+     * @param actionEvent
+     */
     public void onTest(ActionEvent actionEvent) {
     }
 
+    /**
+     * округление
+     * @param number чмсло которое нужно округлить
+     * @param coll необходимое число цифр после запятой
+     * @return
+     */
     private double reduceNumber (double number, int coll) {
         return Math.floor(number * Math.pow(10,coll))/Math.pow(10,coll);
     }
 
+    /**
+     * действие при нажатии на спутник из таблици спутников.
+     * открывается окно редактирования
+     * @param mouseEvent переменая нажатия
+     */
     public void onSelectSatellite(MouseEvent mouseEvent) {
         if (tableSatellite.getSelectionModel().getSelectedItem()!=null)
         ControllerParametersSatellite.openWindowModalityEditor(tableSatellite.getScene().getWindow()
                 , tableSatellite.getSelectionModel().getSelectedItem());
     }
 
+    /**
+     * действие при нажатии на кнопку создания спутника.
+     * Открывает окно параметров создания(GUI).
+     * Передавая туда оcновное окно GUI
+     * для создания модального окна и объект пространства.
+     * @param actionEvent
+     */
     public void onAddSatellite(ActionEvent actionEvent) {
         ControllerParametersSatellite.openWindowModalityCreator(tableSatellite.getScene().getWindow(),space);
     }

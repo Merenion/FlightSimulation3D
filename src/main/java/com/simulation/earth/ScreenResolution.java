@@ -6,6 +6,10 @@ import javafx.scene.Scene;
 import javax.lang.model.SourceVersion;
 import java.awt.*;
 
+/**
+ * Класс определяет разрешение экрана
+ * и выдает созданную сцену с уже определенными размерами окна GUI
+ */
 public class ScreenResolution {
 
     private static Dimension displaySize;
@@ -30,6 +34,11 @@ public class ScreenResolution {
         return WIDTH;
     }
 
+    /**
+     * Размер окна GUI
+     * @param root которую необходимо запихнуть в Scene
+     * @return сцена в которую уже заложены размеры окна
+     */
     public static Scene getSceneWithSize (Parent root) {
         return new Scene(root,WIDTH-100,HIGHT-100);
     }

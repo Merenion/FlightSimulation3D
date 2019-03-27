@@ -1,11 +1,11 @@
-package com.simulation.earth.spaceObjects.modelNearEarth;
+package com.simulation.earth.spaceObjects;
 
 import com.simulation.earth.manageSatellite.OrbitParameters;
-import com.simulation.earth.spaceObjects.FactoryPlanet;
-import com.simulation.earth.spaceObjects.FactorySatellite;
-import com.simulation.earth.spaceObjects.SatelliteDefault;
-import com.simulation.earth.spaceObjects.SpaceObject;
 
+/**
+ * Реализация фабрики создания космических объектов типа планета и земля
+ * реализовн как singleton
+ */
 public class FactoryNearEarth implements FactoryPlanet, FactorySatellite {
 
     private static FactoryNearEarth singleton;

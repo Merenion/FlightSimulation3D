@@ -20,6 +20,8 @@ public interface ManageSatellite {
     void stopDrawingOrbitSatellites ();
     void enableDrawingProjectionSatellites (PlanetOrStart planet);
     void stopDrawingProjectionSatellites ();
+    void refreshDrawingOrbit();
+    void refreshProjectionOnPlanet();
     void deleteSatellite(Satellite satellite);
 
 }

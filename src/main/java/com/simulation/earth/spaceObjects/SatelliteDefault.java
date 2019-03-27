@@ -17,35 +17,56 @@ import javafx.scene.transform.Rotate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * реализация космического обьекта- простого спутника
+ */
 public class SatelliteDefault extends Satellite {
 
+    /** математическая модель полета спутника*/
+    GeodeticLocation mathModel = new MathModelSatelite(getParametrsOrbit());
 
+    /**
+     * единственный конструктор - без параметров орбиты создание обьекта невозможно
+     * @param parametrsOrbit параметры орбиты спутника
+     */
     public SatelliteDefault(OrbitParameters parametrsOrbit) {
         super(parametrsOrbit);
     }
 
-
-    GeodeticLocation mathModel = new MathModelSatelite(getParametrsOrbit());
-
+    /**
+     * установка объекта на координаты по времени
+     * @param time время от которого зависит расположение обьекта
+     */
     @Override
     public void prepareStartCootdints(double time) {
-//        refreshProjectionOnPlanet();
-//        refreshDrawingOrbit();
-        Point3D coordinats = (new MathModelSatelite(new StorageOrbitParameters())).getGeodeticCoordinats(time);
+        Point3D coordinats;
+        if (mathModel != null) {
+            coordinats = mathModel.getGeodeticCoordinats(time);
+            refreshProjectionOnPlanet();
+            refreshDrawingMovementPath();
+        } else {
+            coordinats = (new MathModelSatelite(new StorageOrbitParameters())).getGeodeticCoordinats(time);
+        }
         orientation.setX(coordinats.getX());
         orientation.setY(coordinats.getY());
         orientation.setZ(coordinats.getZ());
-//        rotateX.setAngle(90);
-//        rotateX.setAngle(Math.asin(coordinats.getY()/coordinats.getZ())*Math.PI/180);
-//        rotateY.setAngle(Math.asin(coordinats.getZ()/coordinats.getX())*Math.PI/180);
-//        rotateZ.setAngle(Math.asin(coordinats.getY()/coordinats.getX())*Math.PI/180+90);
+        rotateX.setAngle(90);
+
     }
 
+    /**
+     * перемещение спутника на стартовые координаты по дефолту
+     */
     @Override
     public void prepareStartCootdints() {
         prepareStartCootdints(0);
     }
 
+    /**
+     * метод ля симуляции полета - перемещение спутника по времени.
+     * более подробно описанно в родительском абстрактном классе
+     * @param time время симуляции
+     */
     @Override
     public void movement(double time) {
         Point3D coordinats = mathModel.getGeodeticCoordinats(time);
@@ -59,9 +80,9 @@ public class SatelliteDefault extends Satellite {
 //            System.out.println(coordinats.getY() / coordinats.getZ());
 //            System.out.println(coordinats.getZ() / coordinats.getX());
 //            System.out.println(coordinats.getY() / coordinats.getX());
-            System.out.println("---");
-            System.out.println(Math.atan(coordinats.getZ() / coordinats.getX()) *  180/Math.PI);
-            System.out.println(Math.atan(coordinats.getY() / coordinats.getX()) *  180/Math.PI);
+//            System.out.println("---");
+//            System.out.println(Math.atan(coordinats.getZ() / coordinats.getX()) *  180/Math.PI);
+//            System.out.println(Math.atan(coordinats.getY() / coordinats.getX()) *  180/Math.PI);
 //            rotateX.setAngle(Math.atan(coordinats.getY()/coordinats.getZ())*180/Math.PI);
         if (Math.atan(coordinats.getZ() / coordinats.getX()) *  180/Math.PI<0 && Math.atan(coordinats.getY() / coordinats.getX()) *  180/Math.PI<0) {
             rotateY.setAngle(Math.atan(coordinats.getZ() / coordinats.getX()) * 180 / Math.PI);
@@ -74,6 +95,11 @@ public class SatelliteDefault extends Satellite {
 
     }
 
+
+    /**
+     * Создание модели обьъекта
+     * @return составляющие модели
+     */
     @Override
     protected List<Node> modelDescription() {
         Group satelite = new Group();
@@ -110,6 +136,10 @@ public class SatelliteDefault extends Satellite {
         return nodes;
     }
 
+    /**
+     * подготовка камер для спутника
+     * @return установленные камеры
+     */
     @Override
     protected List<Camera> prepareCameras() {
         List<Camera> cameras = new ArrayList<>();
@@ -118,12 +148,20 @@ public class SatelliteDefault extends Satellite {
         return cameras;
     }
 
+    /**
+     * наложение текстур корпуса
+     * @param node любая составляющая модели
+     */
     private void prepareMaterialCorpus (Shape3D node) {
         PhongMaterial phongMaterialBatare = new PhongMaterial();
         phongMaterialBatare.setDiffuseMap(new Image(getClass().getResourceAsStream("/texturs/corpusSateliteTexture.jpg")));
         node.setMaterial(phongMaterialBatare);
     }
 
+    /**
+     * наложение текстур солнечной батареи
+     * @param node любая составляющая модели
+     */
     private void prepareMaterialSunBatars (Shape3D node) {
         PhongMaterial phongMaterialCorpus = new PhongMaterial();
         phongMaterialCorpus.setDiffuseMap(new Image(getClass().getResourceAsStream("/texturs/sunBatareTexture.jpg")));
@@ -131,6 +169,11 @@ public class SatelliteDefault extends Satellite {
         node.setMaterial(phongMaterialCorpus);
     }
 
+    /**
+     * создание камеры которая должна смотреть в сторону земли при
+     * перемещении спутника по орбите
+     * @return камера направленная на землю
+     */
     private Camera initCameraForSurveyEarth(){
         PerspectiveCameraWithName camera = new PerspectiveCameraWithName(true,"survey EarthNE");
         camera.setTranslateY(0.0011);
@@ -140,6 +183,10 @@ public class SatelliteDefault extends Satellite {
         return camera;
     }
 
+    /**
+     * создание камеры котиорая смотрит на спутник со стороны
+     * @return камера направленная на спутник
+     */
     private Camera initCameraForSurveySatelite() {
         PerspectiveCameraWithName camera = new PerspectiveCameraWithName(true,"survey Satelite");
 

@@ -1,4 +1,4 @@
-package com.simulation.earth.spaceObjects.modelNearEarth;
+package com.simulation.earth.spaceObjects;
 
 import com.simulation.earth.spaceObjects.PlanetOrStart;
 import javafx.geometry.Point3D;
@@ -14,6 +14,7 @@ import javafx.scene.transform.Rotate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**класс описывающий солнце (для околоземного пространства)*/
 public class SunNE extends PlanetOrStart {
 
     @Override
@@ -29,14 +30,36 @@ public class SunNE extends PlanetOrStart {
             rotateFlyCircleY.setAngle(0);
     }
 
+    /**
+     * поворот для вращение вокруг центра, автоматически помещается в модель
+     */
     private Rotate rotateFlyCircleY = new Rotate(0,new Point3D(0,1,0));
+    /**
+     * поворот для вращение вокруг центра, автоматически помещается в модель
+     */
     private Rotate rotateFlyCircleZ = new Rotate(0,new Point3D(0,0,1));
+
+    /*
+    тут классы для повората автоматически помещаются в модель
+    #rotateFlyCircleY
+    #rotateFlyCircleZ
+     */
     {
         getSpaceModel().getTransforms().add(rotateFlyCircleY);
         getSpaceModel().getTransforms().add(rotateFlyCircleZ);
     }
 
+    /**время на которое уже совершенно перемещение #movement(double time)*/
     private double oldTime;
+
+    /**
+     * Математической модели НЕТУ ОРБИТЫ ПЕРЕМЕЩЕНИ НЕ будет,
+     * перемещение реализованно при помощи поворота сферы вокруг центра координат
+     * через delta time
+     * #rotateFlyCircleY
+     * #rotateFlyCircleZ
+     * через них она и вертится
+     */
     @Override
     public void movement(double time) {
         double deltaTime = time - oldTime;

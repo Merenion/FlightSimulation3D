@@ -1,4 +1,4 @@
-package com.simulation.earth.spaceObjects.modelNearEarth;
+package com.simulation.earth.spaceObjects;
 
 import com.simulation.earth.spaceObjects.PlanetOrStart;
 import javafx.scene.Group;
@@ -11,6 +11,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Класс реализующий землю (для околоземного пространства)
+ * Описание методов которые не задокументированы искать в родителях класса
+ */
 public class EarthNE extends PlanetOrStart {
 
     @Override
@@ -20,17 +24,23 @@ public class EarthNE extends PlanetOrStart {
 
     @Override
     public void prepareStartCootdints() {
-//        rotateY.setAngle(-90);
+        rotateY.setAngle(-90);
     }
 
+
+    /**время на которое уже совершенно перемещение #movement(double time)*/
     private float oldTime;
+    /**
+     * Математической модели НЕТУ ОРБИТЫ ПЕРЕМЕЩЕНИ НЕ будет,
+     * перемещение реализованно при помощи поворота сферы вокруг центра координат
+     * через delta time
+     */
     @Override
     public void movement(double time) {
         float deltaTime = (float) (time -oldTime);
         oldTime = (float) time;
         rotateY.setAngle(rotateY.getAngle()+1* deltaTime /(rotationalSpeedEarth/360));
     }
-
     @Override
     public List<Node> modelDescription() {
         Group group = new Group();

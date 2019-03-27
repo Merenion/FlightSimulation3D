@@ -4,7 +4,7 @@ import com.simulation.earth.drawServis.LineTo3D;
 import javafx.scene.Group;
 
 /**
- * интерфейс позволяющий работать с сервисом рисования
+ * интерфейс для работы с рисованием
  */
 public interface Drawing {
     void addLineInPathIfNeeded (float newX, float newY, float newZ);

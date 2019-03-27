@@ -7,39 +7,52 @@ import com.simulation.earth.trajectoryServis.DrawingPath;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 
-
+/**
+ * класс описывает спутники и их функции
+ */
 public abstract class Satellite extends SpaceObjectWithCamera {
+
+    /**поле параметров орбиты спутника*/
     private OrbitParameters parametrsOrbit = new StorageOrbitParameters();
+    /**сервис позволяющий рисовать путь подспутников точки*/
     private DrawingPath drawingProjectionOnPlanet;
+    /**цвет пути подспутниковой точки*/
     private Color colorProjectionOnPlanet = Color.WHITE;
+    /**длина пути подспутниковой точки*/
     private int maxLengthProjectionOnPlanet = 175;
-    private Group parentGroup = new Group();
 
+    public Satellite(OrbitParameters parametrsOrbit) {
+        this.parametrsOrbit = parametrsOrbit;
+    }
 
+    /**
+     * Включает прорисовку пути подспутниковой точки.
+     * Удаляет весь нарисованный путь до вызова метода
+     * @param planet планета на которую проецируется подспутниковая точка
+     */
     public void enableDrawingProjectionOnPlanet (PlanetOrStart planet) {
         if (drawingProjectionOnPlanet!=null)
-            drawingProjectionOnPlanet.removeTrajectory();
+        drawingProjectionOnPlanet.removeTrajectory();
         drawingProjectionOnPlanet = new DrawingPathProjectionSatelliteOnPlanet(planet,orientation,colorProjectionOnPlanet,maxLengthProjectionOnPlanet);
         drawingProjectionOnPlanet.startDrawTrajectories();
     }
 
+    /**
+     * Останавливает прорисовку пути подспутниковой точки
+     */
     public void stopDrawingProjectionOnPlanet () {
         if (drawingProjectionOnPlanet != null) {
             drawingProjectionOnPlanet.stopDrawTrajectories();
         }
     }
 
+    /**
+     * удаляет весь нарисованный путь подспутниковой точки
+     */
     public void refreshProjectionOnPlanet () {
         if (drawingProjectionOnPlanet!=null)
-            drawingProjectionOnPlanet.removeTrajectory();
+        drawingProjectionOnPlanet.removeTrajectory();
     }
-
-    public Satellite(OrbitParameters parametrsOrbit) {
-        this.parametrsOrbit = parametrsOrbit;
-    }
-
-
-    public Satellite(){};
 
     public OrbitParameters getParametrsOrbit() {
         return parametrsOrbit;
@@ -59,15 +72,6 @@ public abstract class Satellite extends SpaceObjectWithCamera {
 
     public void setMaxLengthProjectionOnPlanet(int maxLengthProjectionOnPlanet) {
         this.maxLengthProjectionOnPlanet = maxLengthProjectionOnPlanet;
-    }
-
-    public Group getParentGroup() {
-        return parentGroup;
-    }
-
-    public void setParentGroup(Group parentGroup) {
-        this.parentGroup = parentGroup;
-
     }
 
     public void setParametrsOrbit(OrbitParameters parametrsOrbit) {

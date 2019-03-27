@@ -3,6 +3,12 @@ package com.simulation.earth;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.PerspectiveCamera;
 
+/**
+ * Камера - та же перспиктивная камера (наследник)
+ * Добавленны поля имени камеры и наименнование обьекта к которому она
+ * принадлежит
+ * Переопределен toString для вывода названия камеры и его принадлежность к объекту
+ */
 public class PerspectiveCameraWithName extends PerspectiveCamera {
     private SimpleStringProperty name = new SimpleStringProperty("");
     private String nameSpaceObject ="";
