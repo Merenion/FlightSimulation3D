@@ -1,0 +1,11 @@
+com.simulation.earth
+com.simulation.earth.drawServis
+com.simulation.earth.manageSatellite
+com.simulation.earth.manageSpace
+com.simulation.earth.MathModels
+com.simulation.earth.objectControl
+com.simulation.earth.simulationProcessing
+com.simulation.earth.spaceObjects
+com.simulation.earth.spaceObjects.modelNearEarth
+com.simulation.earth.starBackground
+com.simulation.earth.trajectoryServis
