@@ -50,8 +50,7 @@ public class SatelliteDefault extends Satellite {
         orientation.setX(coordinats.getX());
         orientation.setY(coordinats.getY());
         orientation.setZ(coordinats.getZ());
-        rotateX.setAngle(90);
-
+        rotateZ.setAngle(90);
     }
 
     /**
@@ -84,17 +83,47 @@ public class SatelliteDefault extends Satellite {
 //            System.out.println(Math.atan(coordinats.getZ() / coordinats.getX()) *  180/Math.PI);
 //            System.out.println(Math.atan(coordinats.getY() / coordinats.getX()) *  180/Math.PI);
 //            rotateX.setAngle(Math.atan(coordinats.getY()/coordinats.getZ())*180/Math.PI);
-        if (Math.atan(coordinats.getZ() / coordinats.getX()) *  180/Math.PI<0 && Math.atan(coordinats.getY() / coordinats.getX()) *  180/Math.PI<0) {
-            rotateY.setAngle(Math.atan(coordinats.getZ() / coordinats.getX()) * 180 / Math.PI);
-            rotateZ.setAngle(Math.atan(coordinats.getY() / coordinats.getX()) * 180 / Math.PI + 90);
-        }
-        if (Math.atan(coordinats.getZ() / coordinats.getX()) *  180/Math.PI>0 && Math.atan(coordinats.getY() / coordinats.getX()) *  180/Math.PI>0) {
-            rotateY.setAngle(Math.atan(coordinats.getZ() / coordinats.getX()) * 180 / Math.PI);
-            rotateZ.setAngle(Math.atan(coordinats.getY() / coordinats.getX()) * 180 / Math.PI + 90+180);
-        }
 
+        rotationOnEarth();
     }
 
+    /**
+     * осущесвление поворота спутника (камерой в центр)
+     */
+    private void rotationOnEarth (){
+        if (orientation.getX()>0 && orientation.getY()>0 && orientation.getZ()>0){
+            rotateZ.setAngle(Math.atan(Math.abs(orientation.getY()/orientation.getX()))*180/Math.PI +90);
+            rotateY.setAngle(Math.atan(-Math.abs(orientation.getZ()/orientation.getX()))*180/Math.PI);
+        }
+        if (orientation.getX()>0 && orientation.getY()>0 && orientation.getZ()<0){
+            rotateZ.setAngle(Math.atan(Math.abs(orientation.getY()/orientation.getX()))*180/Math.PI+90);
+            rotateY.setAngle(Math.atan(Math.abs(orientation.getZ()/orientation.getX()))*180/Math.PI);
+        }
+        if (orientation.getX()>0 && orientation.getY()<0 && orientation.getZ()>0){
+            rotateZ.setAngle(Math.atan(-Math.abs(orientation.getY()/orientation.getX()))*180/Math.PI+90);
+            rotateY.setAngle(Math.atan(-Math.abs(orientation.getZ()/orientation.getX()))*180/Math.PI);
+        }
+        if (orientation.getX()>0 && orientation.getY()<0 && orientation.getZ()<0){
+            rotateZ.setAngle(Math.atan(-Math.abs(orientation.getY()/orientation.getX()))*180/Math.PI+90);
+            rotateY.setAngle(Math.atan(Math.abs(orientation.getZ()/orientation.getX()))*180/Math.PI);
+        }
+        if (orientation.getX()<0 && orientation.getY()>0 && orientation.getZ()>0){
+            rotateZ.setAngle(Math.atan(-Math.abs(orientation.getY()/orientation.getX()))*180/Math.PI-180+90);
+            rotateY.setAngle(Math.atan(Math.abs(orientation.getZ()/orientation.getX()))*180/Math.PI);
+        }
+        if (orientation.getX()<0 && orientation.getY()>0 && orientation.getZ()<0){
+            rotateZ.setAngle(Math.atan(-Math.abs(orientation.getY()/orientation.getX()))*180/Math.PI-180+90);
+            rotateY.setAngle(Math.atan(-Math.abs(orientation.getZ()/orientation.getX()))*180/Math.PI);
+        }
+        if (orientation.getX()<0 && orientation.getY()<0 && orientation.getZ()>0){
+            rotateZ.setAngle(Math.atan(Math.abs(orientation.getY()/orientation.getX()))*180/Math.PI+180+90);
+            rotateY.setAngle(Math.atan(Math.abs(orientation.getZ()/orientation.getX()))*180/Math.PI);
+        }
+        if (orientation.getX()<0 && orientation.getY()<0 && orientation.getZ()<0){
+            rotateZ.setAngle(Math.atan(Math.abs(orientation.getY()/orientation.getX()))*180/Math.PI-180+90);
+            rotateY.setAngle(Math.atan(-Math.abs(orientation.getZ()/orientation.getX()))*180/Math.PI);
+        }
+    }
 
     /**
      * Создание модели обьъекта
@@ -178,7 +207,7 @@ public class SatelliteDefault extends Satellite {
         PerspectiveCameraWithName camera = new PerspectiveCameraWithName(true,"survey EarthNE");
         camera.setTranslateY(0.0011);
         camera.setNearClip(1);
-        camera.setFarClip(40_000_000);
+        camera.setFarClip(2000_000_000);
         camera.getTransforms().add(new Rotate(-90,Rotate.X_AXIS));
         return camera;
     }
@@ -201,7 +230,7 @@ public class SatelliteDefault extends Satellite {
         ImageView imageView = new ImageView();
 
         camera.setNearClip(0.01);
-        camera.setFarClip(40_000_000);
+        camera.setFarClip(400_000_000);
         return camera;
     }
 }

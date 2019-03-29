@@ -7,6 +7,7 @@ import javafx.scene.transform.Transform;
 public class SmartGroup extends Group {
     private Rotate rotate;                          //Создаем тут потому что так правильнее
     private Transform transform = new Rotate();     //Создаем тут один раз чтоб не где больше не создавать
+    private String name = "";
 
     public void rotateByX (int angel){
         rotate = new Rotate(angel,Rotate.X_AXIS);
@@ -27,5 +28,13 @@ public class SmartGroup extends Group {
         transform = transform.createConcatenation(rotate);
         getTransforms().clear();
         getTransforms().add(transform);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

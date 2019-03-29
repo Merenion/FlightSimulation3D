@@ -1,5 +1,6 @@
 package com.simulation.earth;
 
+import com.simulation.earth.drawServis.Line3D;
 import com.simulation.earth.drawServis.LineTo3D;
 import com.simulation.earth.manageSatellite.ManageSatellite;
 import com.simulation.earth.manageSatellite.ManagerSatelliteEarth;
@@ -8,6 +9,7 @@ import com.simulation.earth.manageSpace.NearEarthFactory;
 import com.simulation.earth.manageSpace.ParametersSpace;
 import com.simulation.earth.manageSpace.Space;
 import com.simulation.earth.objectControl.MouseControl;
+import com.simulation.earth.objectControl.SmartGroup;
 import com.simulation.earth.simulationProcessing.DefaultSimulation;
 import com.simulation.earth.simulationProcessing.ISimulation;
 import com.simulation.earth.spaceObjects.*;
@@ -21,9 +23,15 @@ import javafx.fxml.FXML;
 import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.PhongMaterial;
+import javafx.scene.shape.Box;
+import javafx.scene.shape.Shape3D;
+import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
+import org.fxyz3d.geometry.Point3D;
 
 /**
  * Контроллер GUI
@@ -68,6 +76,13 @@ public class ControllerWindowSimulation {
     public TableColumn<Satellite,String> columnSatellites;
     @FXML
     public TableView<Satellite> tableSatellite;
+    @FXML
+    public CheckBox checkSystCoordinat;
+    @FXML
+    public CheckBox checkOverLightLevel;
+    public CheckBox checkEclipticPlane;
+    public CheckBox checkEquatorialPlane;
+    public CheckBox checkRotationAxisOfTheEarth;
 
     /**основная группа в которой хранится все объекты (модели, орбиты сис.коорд.) для отображения*/
     private Group group = new Group();
@@ -91,6 +106,8 @@ public class ControllerWindowSimulation {
     /**сервис создиния и управления спутниками*/
     private ManageSatellite manageSatellite = ManagerSatelliteEarth.getManager();
 
+    /**общий источник света*/
+    AmbientLight light;
     /**
      * инициализация GUI
      */
@@ -107,19 +124,49 @@ public class ControllerWindowSimulation {
         prepareLineSystCoordinat();
 
         monitorParametrsSimulation();
+
+//        Box box = new Box();
+//        box.setDepth(20000);
+//        box.setHeight(10);
+//        box.setWidth(20000);
+//
+//
+//        PhongMaterial phongMaterial = new PhongMaterial();
+//        phongMaterial.setDiffuseMap(new Image(getClass().getResourceAsStream("/texturs/ecliptic plane.png")));
+//        phongMaterial.setSelfIlluminationMap(new Image(getClass().getResourceAsStream("/texturs/ecliptic plane.png")));
+//        box.setMaterial(phongMaterial);
+//        group.getChildren().add(box);
+
+
+//        Box box = new Box();
+//        box.setWidth(600);
+//        box.setHeight(300);
+//        box.setDepth(300);
+//        box.getTransforms().add(new Translate(-9000,-9000,-9000));
+////        box.getTransforms().add(new Rotate(45,Rotate.Z_AXIS));
+//
+//        Line3D line = new Line3D(new Point3D(0,0,0),new Point3D(-9000,-9000,-9000));
+//
+//        group.getChildren().add(line);
+//        group.getChildren().add(box);
     }
 
     /**
      * инициализация отображения основной системы координат
+     * Создает группу в которую помещает прямые (оси) системы координат
+     * группе задается имя "sysCoordinat", для того чтобы ее можно было
+     * по надобности найти и удалить
      */
     private void prepareLineSystCoordinat(){
+        SmartGroup group = new SmartGroup();
+        group.setName("sysCoordinat");
         LineTo3D x = new LineTo3D();
         LineTo3D y = new LineTo3D();
         LineTo3D z = new LineTo3D();
         x.setColor(Color.RED);
         x.setWidth(30);
         x.addCoordinats(0,0,0);
-        x.addCoordinats(10000,0,0);
+        x.addCoordinats(12000,0,0);
         y.setColor(Color.BLUE);
         y.setWidth(30);
         y.addCoordinats(0,0,0);
@@ -129,6 +176,7 @@ public class ControllerWindowSimulation {
         z.addCoordinats(0,0,0);
         z.addCoordinats(0,0,10000);
         group.getChildren().addAll(x,y,z);
+        this.group.getChildren().add(group);
     }
 
     /**
@@ -239,7 +287,7 @@ public class ControllerWindowSimulation {
      * подготовка общего источника света для пространства
      */
     private void preparePoorLighting () {
-        AmbientLight light = new AmbientLight();
+        light = new AmbientLight();
         light.setColor(Color.valueOf("101010"));
         group.getChildren().add(light);
     }
@@ -390,5 +438,112 @@ public class ControllerWindowSimulation {
      */
     public void onAddSatellite(ActionEvent actionEvent) {
         ControllerParametersSatellite.openWindowModalityCreator(tableSatellite.getScene().getWindow(),space);
+    }
+
+    /**
+     * активирует отображение системы координат при нажатии на галку
+     * Удаление происходит путем удаления группы в которой находятся прямые (оси)
+     * системы гоординат. Группа ищется по ее названию
+     * @param actionEvent
+     */
+    public void onSystCoordinat(ActionEvent actionEvent) {
+        if (checkSystCoordinat.isSelected()) {
+            prepareLineSystCoordinat();
+        }else {
+            for (Node node :group.getChildren()) {
+                if (node instanceof SmartGroup) {
+                    if (((SmartGroup) node).getName().equals("sysCoordinat")){
+                        group.getChildren().remove(node);
+                        return;
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * активирует общее очвещение космических объектов при нажатии на галку
+     * @param actionEvent
+     */
+    public void onOverLightLevel(ActionEvent actionEvent) {
+        if (checkOverLightLevel.isSelected())
+            light.setColor(Color.valueOf("707070"));
+        else
+            light.setColor(Color.valueOf("101010"));
+
+    }
+
+    /**плоскость эклиптики. используется в методе #onEclipticPlane(ActionEvent actionEvent)*/
+    private Box planeEcliptic = createPlaneBox();
+    /**
+     * активирует отображение плоскости эклиптики
+     * @param actionEvent
+     */
+    public void onEclipticPlane(ActionEvent actionEvent) {
+        if (checkEclipticPlane.isSelected()){
+            planeEcliptic = createPlaneBox();
+            planeEcliptic.getTransforms().add(new Rotate(23.989,Rotate.X_AXIS));
+            materialPlane(planeEcliptic,"/texturs/ecliptic plane.png");
+            group.getChildren().add(planeEcliptic);
+        }else {
+            if (group.getChildren().contains(planeEcliptic))
+                group.getChildren().remove(planeEcliptic);
+        }
+    }
+
+    /**плоскость экватора. используется в методе #onEquatorialPlane(ActionEvent actionEvent)*/
+    private Box planeEquatorial = createPlaneBox();
+    /**
+     * активирует отображение плоскости экватора
+     * @param actionEvent
+     */
+    public void onEquatorialPlane(ActionEvent actionEvent) {
+        if (checkEquatorialPlane.isSelected()){
+            planeEquatorial = createPlaneBox();
+            materialPlane(planeEquatorial,"/texturs/equatorial plane.png");
+            group.getChildren().add(planeEquatorial);
+        }else {
+            if (group.getChildren().contains(planeEquatorial))
+                group.getChildren().remove(planeEquatorial);
+        }
+    }
+
+    /**Ось вращения земли. используется в методе #onRotationAxisOfTheEarth(ActionEvent actionEvent)*/
+    private Line3D lineRotationAxisOfTheEarth = new Line3D(new Point3D(0,-13000,0),new Point3D(0,13000,0),40,Color.CYAN);
+    /**
+     * активирует отображение оси вращения земли
+     * @param actionEvent
+     */
+    public void onRotationAxisOfTheEarth(ActionEvent actionEvent) {
+        if (checkRotationAxisOfTheEarth.isSelected())
+            group.getChildren().add(lineRotationAxisOfTheEarth);
+        else {
+            if (group.getChildren().contains(lineRotationAxisOfTheEarth))
+                group.getChildren().remove(lineRotationAxisOfTheEarth);
+        }
+    }
+
+    /**
+     * добавляет указаную текстуру на плоскость (подсвечивается сама)
+     * @param plane плоскость
+     * @param pathTexture путь к текстуре
+     */
+    private void materialPlane (Shape3D plane, String pathTexture){
+        PhongMaterial phongMaterial = new PhongMaterial();
+        phongMaterial.setDiffuseMap(new Image(getClass().getResourceAsStream(pathTexture)));
+        phongMaterial.setSelfIlluminationMap(new Image(getClass().getResourceAsStream(pathTexture)));
+        plane.setMaterial(phongMaterial);
+    }
+
+    /**
+     * создает плоскость из прямого параллепипеда
+     * @return плоскость
+     */
+    private Box createPlaneBox() {
+        Box box = new Box();
+        box.setDepth(20000);
+        box.setHeight(10);
+        box.setWidth(20000);
+        return box;
     }
 }

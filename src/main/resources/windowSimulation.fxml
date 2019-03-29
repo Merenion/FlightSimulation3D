@@ -41,7 +41,12 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <CheckBox fx:id="checkOverScale" layoutX="14.0" layoutY="97.0" mnemonicParsing="false" onAction="#onOverScale" text="Over Scale" />
+                        <CheckBox fx:id="checkOverScale" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onOverScale" text="Over Scale" />
+                        <CheckBox fx:id="checkSystCoordinat" layoutX="14.0" layoutY="39.0" mnemonicParsing="false" onAction="#onSystCoordinat" selected="true" text="Show coordinate system" />
+                        <CheckBox fx:id="checkOverLightLevel" layoutX="14.0" layoutY="63.0" mnemonicParsing="false" onAction="#onOverLightLevel" text="Over light level" />
+                        <CheckBox fx:id="checkEclipticPlane" layoutX="14.0" layoutY="88.0" mnemonicParsing="false" onAction="#onEclipticPlane" text="Ecliptic plane" />
+                        <CheckBox fx:id="checkEquatorialPlane" layoutX="14.0" layoutY="113.0" mnemonicParsing="false" onAction="#onEquatorialPlane" text="Equatorial plane" />
+                        <CheckBox fx:id="checkRotationAxisOfTheEarth" layoutX="14.0" layoutY="138.0" mnemonicParsing="false" onAction="#onRotationAxisOfTheEarth" text="Rotation axis of the earth" />
                      </children></AnchorPane>
             </content>
           </TitledPane>

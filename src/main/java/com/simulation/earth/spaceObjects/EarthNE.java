@@ -39,7 +39,7 @@ public class EarthNE extends PlanetOrStart {
     public void movement(double time) {
         float deltaTime = (float) (time -oldTime);
         oldTime = (float) time;
-        rotateY.setAngle(rotateY.getAngle()+1* deltaTime /(rotationalSpeedEarth/360));
+        rotateY.setAngle(rotateY.getAngle()-1* deltaTime /(rotationalSpeedEarth/360));
     }
     @Override
     public List<Node> modelDescription() {

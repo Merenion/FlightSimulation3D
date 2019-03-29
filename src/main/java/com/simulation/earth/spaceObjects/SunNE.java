@@ -33,11 +33,8 @@ public class SunNE extends PlanetOrStart {
     /**
      * поворот для вращение вокруг центра, автоматически помещается в модель
      */
-    private Rotate rotateFlyCircleY = new Rotate(0,new Point3D(0,1,0));
-    /**
-     * поворот для вращение вокруг центра, автоматически помещается в модель
-     */
-    private Rotate rotateFlyCircleZ = new Rotate(0,new Point3D(0,0,1));
+    private Rotate rotateFlyCircleY = new Rotate(0,new Point3D(0,1,0.445));
+
 
     /*
     тут классы для повората автоматически помещаются в модель
@@ -46,7 +43,7 @@ public class SunNE extends PlanetOrStart {
      */
     {
         getSpaceModel().getTransforms().add(rotateFlyCircleY);
-        getSpaceModel().getTransforms().add(rotateFlyCircleZ);
+
     }
 
     /**время на которое уже совершенно перемещение #movement(double time)*/
@@ -63,11 +60,9 @@ public class SunNE extends PlanetOrStart {
     @Override
     public void movement(double time) {
         double deltaTime = time - oldTime;
+        double ugolZaOneSecond = 360/31556926d;
         oldTime = time;
-        rotateFlyCircleY.setAngle(rotateFlyCircleY.getAngle()-1* deltaTime /1000);
-//        rotateFlyCircleZ.setAngle(rotateFlyCircleZ.getAngle()-1* deltaTime /2000);
-        rotateX.setAngle(rotateX.getAngle()+6* deltaTime /10);
-        rotateY.setAngle(rotateY.getAngle()+3* deltaTime /10);
+        rotateFlyCircleY.setAngle(rotateFlyCircleY.getAngle()-ugolZaOneSecond*deltaTime);
     }
 
     @Override
