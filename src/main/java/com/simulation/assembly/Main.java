@@ -1,8 +1,10 @@
-package com.simulation.earth;
+package com.simulation.assembly;
 
+import com.simulation.earth.ScreenResolution;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.*;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -19,9 +21,9 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Main.stage = stage;
-        Parent root = FXMLLoader.load(getClass().getResource("/earth/windowSimulation.fxml"));
-        stage.setTitle("Simulation Cosmos");
-        Scene scene= ScreenResolution.getSceneWithSize(root);
+        Parent root = FXMLLoader.load(getClass().getResource("/assembly/windowMainAssembly.fxml"));
+        stage.setTitle("ввввв");
+        Scene scene= new Scene(root,1000,700);
         stage.setScene(scene);
         stage.show();
     }

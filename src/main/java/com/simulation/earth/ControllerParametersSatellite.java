@@ -107,7 +107,7 @@ public class ControllerParametersSatellite {
     private static void openWindow (Window parentWindow) {
         try {
             Stage stage =new Stage();
-            Parent root = FXMLLoader.load(ControllerParametersSatellite.class.getResource("/windowParametersSatellite.fxml"));
+            Parent root = FXMLLoader.load(ControllerParametersSatellite.class.getResource("/earth/windowParametersSatellite.fxml"));
             stage.setTitle("Parameters satellite");
             stage.setResizable(false);           //запрет растягивание окна
             Scene scene = new Scene(root,600,273);
