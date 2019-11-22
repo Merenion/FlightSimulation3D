@@ -1,7 +1,7 @@
-package com.simulation.assembly.validateRestriction;
+package com.simulation.assembly.validateRestrictionSimple;
 
-import com.simulation.assembly.DataSimpleCalculation;
-import com.simulation.assembly.Validate;
+import com.simulation.assembly.dataCalculation.simple.DataSimpleCalculation;
+import com.simulation.assembly.ValidateValue;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.ColorAdjust;
 
@@ -19,21 +19,25 @@ public class ValidateCaCc implements ValidateRestriction {
 
     @Override
     public boolean validate(DataSimpleCalculation objectData) {
-        if (Validate.validFloat(editCAmassaCaCc.getText())){
+        boolean result = true;
+        if (ValidateValue.validFloat(editCAmassaCaCc.getText())){
             objectData.setMassaCa(Float.valueOf(editCAmassaCaCc.getText()));
         } else {
             editCAmassaCaCc.setEffect(new ColorAdjust(0,0.2,0,0));
+            result = false;
         }
-        if (Validate.validFloat(editPlotnCaCc.getText())){
+        if (ValidateValue.validFloat(editPlotnCaCc.getText())){
             objectData.setPlotnost(Float.valueOf(editPlotnCaCc.getText()));
         } else {
             editPlotnCaCc.setEffect(new ColorAdjust(0,0.2,0,0));
+            result = false;
         }
-        if (Validate.validFloat(editUdlinCaCc.getText())){
+        if (ValidateValue.validFloat(editUdlinCaCc.getText())){
             objectData.setUdlinenie(Float.valueOf(editUdlinCaCc.getText()));
         } else {
             editUdlinCaCc.setEffect(new ColorAdjust(0,0.2,0,0));
+            result = false;
         }
-        return false;
+        return result;
     }
 }

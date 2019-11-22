@@ -1,7 +1,7 @@
-package com.simulation.assembly.validateRestriction;
+package com.simulation.assembly.validateRestrictionSimple;
 
-import com.simulation.assembly.DataSimpleCalculation;
-import com.simulation.assembly.Validate;
+import com.simulation.assembly.dataCalculation.simple.DataSimpleCalculation;
+import com.simulation.assembly.ValidateValue;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.ColorAdjust;
 
@@ -21,26 +21,31 @@ public class ValidateKaCaDd implements ValidateRestriction{
 
     @Override
     public boolean validate(DataSimpleCalculation objectData) {
-        if (Validate.validFloat(editKAMassaKaCaDd.getText())){
+        boolean result = true;
+        if (ValidateValue.validFloat(editKAMassaKaCaDd.getText())){
             objectData.setMassaKa(Float.valueOf(editKAMassaKaCaDd.getText()));
         } else {
             editKAMassaKaCaDd.setEffect(new ColorAdjust(0,0.2,0,0));
+            result = false;
         }
-        if (Validate.validFloat(editDiametrKaCaDd.getText())){
+        if (ValidateValue.validFloat(editDiametrKaCaDd.getText())){
             objectData.setDiametr(Float.valueOf(editDiametrKaCaDd.getText()));
         } else {
             editDiametrKaCaDd.setEffect(new ColorAdjust(0,0.2,0,0));
+            result = false;
         }
-        if (Validate.validFloat(editDlinaKaCaDd.getText())){
+        if (ValidateValue.validFloat(editDlinaKaCaDd.getText())){
             objectData.setDlina(Float.valueOf(editDlinaKaCaDd.getText()));
         } else {
             editDlinaKaCaDd.setEffect(new ColorAdjust(0,0.2,0,0));
+            result = false;
         }
-        if (Validate.validFloat(editCAMassaKaCaDd.getText())){
+        if (ValidateValue.validFloat(editCAMassaKaCaDd.getText())){
             objectData.setMassaCa(Float.valueOf(editCAMassaKaCaDd.getText()));
         } else {
             editCAMassaKaCaDd.setEffect(new ColorAdjust(0,0.2,0,0));
+            result = false;
         }
-        return false;
+        return result;
     }
 }

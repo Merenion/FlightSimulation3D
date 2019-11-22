@@ -1,6 +1,6 @@
 package com.simulation.assembly;
 
-public class Validate {
+public class ValidateValue {
 
     /**
      * можно ли текст преообразовать в float
