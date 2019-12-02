@@ -26,6 +26,10 @@ public class CalculationKA implements Calculation {
     private DataActivSOTR dataActivSOTR;
     private DataPasivSOTR dataPasivSOTR;
     private DataSOTR dataSOTR;
+    private DataElectHaraktSEP dataElectHaraktSEP;
+    private DataAcumBetSEP dataAcumBetSEP;
+    private DataKAS dataKAS;
+    private DataSumBetSEP dataSumBetSEP;
 
     private CalculationKA() {
         init();
@@ -183,6 +187,10 @@ public class CalculationKA implements Calculation {
         dataActivSOTR = new DataActivSOTR();
         dataPasivSOTR = new DataPasivSOTR();
         dataSOTR = new DataSOTR();
+        dataElectHaraktSEP = new DataElectHaraktSEP();
+        dataAcumBetSEP= new DataAcumBetSEP();
+        dataKAS = new DataKAS();
+        dataSumBetSEP = new DataSumBetSEP();
     }
 
     public static CalculationKA getInstance() {
@@ -334,5 +342,37 @@ public class CalculationKA implements Calculation {
 
     public void setDataSOTR(DataSOTR dataSOTR) {
         this.dataSOTR = dataSOTR;
+    }
+
+    public DataElectHaraktSEP getDataElectHaraktSEP() {
+        return dataElectHaraktSEP;
+    }
+
+    public void setDataElectHaraktSEP(DataElectHaraktSEP dataElectHaraktSEP) {
+        this.dataElectHaraktSEP = dataElectHaraktSEP;
+    }
+
+    public DataAcumBetSEP getDataAcumBetSEP() {
+        return dataAcumBetSEP;
+    }
+
+    public void setDataAcumBetSEP(DataAcumBetSEP dataAcumBetSEP) {
+        this.dataAcumBetSEP = dataAcumBetSEP;
+    }
+
+    public DataKAS getDataKAS() {
+        return dataKAS;
+    }
+
+    public void setDataKAS(DataKAS dataKAS) {
+        this.dataKAS = dataKAS;
+    }
+
+    public DataSumBetSEP getDataSumBetSEP() {
+        return dataSumBetSEP;
+    }
+
+    public void setDataSumBetSEP(DataSumBetSEP dataSumBetSEP) {
+        this.dataSumBetSEP = dataSumBetSEP;
     }
 }
