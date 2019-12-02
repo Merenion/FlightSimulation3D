@@ -8,18 +8,22 @@ import com.simulation.assembly.dataCalculation.sintez.DataCommonParameters;
 
 public class CalculationSimpleSintez implements Calculation {
     @Override
-    public Object calculation(Object object) {
+    public Object calculation(Object object) throws Exception {
         try {
-            DataCommonParameters.dKA0 = (float) (DataCommonParameters.dzPN0*Math.exp(1/3*Math.log(DataCommonParameters.knzpOBT)));
-            DataCommonParameters.lKA0= (float) (DataCommonParameters.lzPN0*Math.exp(1/3*Math.log(DataCommonParameters.knzpOBT)));
+            DataCommonParameters d = CalculationKA.getInstance().getDataCommonParameters();
+            d.dKA0 = (float) (d.dzPN0*Math.exp(Math.log(d.knzpOBT)/3));
+            d.lKA0= (float) (d.lzPN0*Math.exp(Math.log(d.knzpOBT)/3));
+//            d.dKA0 = (float) (d.lzPN0*Math.exp(Math.log(d.knzpOBT)/3));
+//            d.lKA0= (float) (d.dzPN0*Math.exp(Math.log(d.knzpOBT)/3));
             //Средний объем КА, м3
-            DataCommonParameters.vKA0= (float) (Math.PI*DataCommonParameters.dKA0*DataCommonParameters.dKA0/4*DataCommonParameters.lKA0);
+            d.vKA0= (float) (Math.PI*d.dKA0*d.dKA0/4*d.lKA0);
             //Средняя плотность компоновки КА, кг/м3
-            DataCommonParameters.splkKA0=DataCommonParameters.mKA0/DataCommonParameters.vKA0;
-            DataCommonParameters.jKA0= (float) (DataCommonParameters.mKA0/DataCommonParameters.krkKA*(Math.pow(DataCommonParameters.dKA0,2)/16+Math.pow(DataCommonParameters.lKA0,2)/12));
+            d.splkKA0=d.mKA0/d.vKA0;
+            d.jKA0= (float) (d.mKA0/d.krkKA*(Math.pow(d.dKA0,2)/16+Math.pow(d.lKA0,2)/12));
             ControllerAssembly.addMessInConsoleSintez(MessegeType.INFO, "Расчет Прикидочный по ограничениям Успешен! ", TabTypeSintez.RESTRICTION);
         } catch (Exception e) {
             ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR,"Не верно введенные данные!", TabTypeSintez.RESTRICTION);
+            throw new Exception();
         }
         return object;
     }

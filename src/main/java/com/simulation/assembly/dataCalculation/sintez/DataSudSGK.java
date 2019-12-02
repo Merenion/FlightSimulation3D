@@ -34,6 +34,9 @@ public class DataSudSGK {
     public float uW_SGK;     //Удельная мощность потребления электричества СГК
     public float pEB;        //Плотность электронного блока гироприбора
 
+    public float vSGK; //Обьем СГК
+    public float jSGK; //Момент СГК
+
 
 
 }

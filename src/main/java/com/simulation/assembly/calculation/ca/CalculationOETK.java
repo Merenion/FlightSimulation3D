@@ -10,10 +10,11 @@ import com.simulation.assembly.dataCalculation.sintez.TypeKa;
 
 public class CalculationOETK implements Calculation {
     @Override
-    public Object calculation(Object object) {
+    public Object calculation(Object object) throws Exception {
 
         try {
-            DataOETK d = (DataOETK) object;
+            DataOETK d = CalculationKA.getInstance().getDataOETK();
+            DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
 
             //Расчет
             if (d.typeKA.equals(TypeKa.BIG)) {
@@ -24,28 +25,28 @@ public class CalculationOETK implements Calculation {
 
                 //Средняя длина, рассчитанная из условий ограничений, м
 
-                if (DataCommonParameters.isHaveRestriction && d.lOETK > DataCommonParameters.lKA0) {
+                if (dc.isHaveRestriction && d.lOETK > dc.lKA0) {
                     ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Ошибка! Длина ОЭТК больше чем длина КА! Измение ИД по ОЭТК", TabTypeSintez.OETK);
                     return d;
                 }
 
                 d.dOETK = d.fOETK / d.oO;
 
-                if (DataCommonParameters.isHaveRestriction && d.dOETK > DataCommonParameters.dKA0) {
+                if (dc.isHaveRestriction && d.dOETK > dc.dKA0) {
                     ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Ошибка! Диаметр ОЭТК больше чем диаметр КА! Измение ИД по ОЭТК ", TabTypeSintez.OETK);
                     return d;
                 }
 
                 d.vOETK = (float) (Math.PI * Math.pow(d.dOETK, 2) / 4 * d.lOETK);
 
-                if (DataCommonParameters.isHaveRestriction && d.vOETK > DataCommonParameters.vKA0) {
+                if (dc.isHaveRestriction && d.vOETK > dc.vKA0) {
                     ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Ошибка! Объем ОЭТК больше чем объем КА! Измение ИД по ОЭТК ", TabTypeSintez.OETK);
                     return d;
                 }
 
                 d.mOETK = d.plOETK * d.vOETK;
 
-                if (DataCommonParameters.isHaveRestriction && d.mOETK > DataCommonParameters.mKA0) {
+                if (dc.isHaveRestriction && d.mOETK > dc.mKA0) {
                     ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Ошибка! Масса ОЭТК больше чем масса КА! Измение ИД по ОЭТК ", TabTypeSintez.OETK);
                     return d;
                 }
@@ -90,7 +91,7 @@ public class CalculationOETK implements Calculation {
                 d.dOETK = d.fOETK / d.oO;
                 d.vOETK = (float) (Math.PI * Math.pow(d.dOETK, 2) / 4 * d.lOETK);
                 //Измененный расчет
-                d.mOETK = (float) (51.812 * Math.exp(-6707 * Math.log(d.Det)));
+                d.mOETK = (float) (51.812 * Math.exp(-0.6707 * Math.log(d.Det)));
 
                 d.jOETK = (float) (d.mOETK / d.krkOETK * (Math.pow(d.dOETK, 2) / 16 + Math.pow(d.lOETK, 2) / 12));
                 d.wOETK = d.uwOETK * d.mOETK;
@@ -110,8 +111,8 @@ public class CalculationOETK implements Calculation {
             return d;
         } catch (Exception e) {
             ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные! Ошибка при расчете", TabTypeSintez.OETK);
+            throw new Exception();
         }
 
-        return object;
     }
 }

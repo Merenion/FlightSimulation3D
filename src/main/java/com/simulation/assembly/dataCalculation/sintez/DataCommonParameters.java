@@ -2,21 +2,25 @@ package com.simulation.assembly.dataCalculation.sintez;
 
 public class DataCommonParameters {
 
-    public static boolean isHaveRestriction = true;
-    public static float mKA0; //максимальная масса ка
-    public static float dzPN0; //максимальный диаметр зоны ПН
-    public static float lzPN0; //максимальный длина зоны ПН
-    public static float knzpOBT; //Коэф. учитывающий неполноту заполнения зоны ПН под обтекателем
-    public static float krkKA; //Коэффициент рациональности компоновки
-    public static float kpoPO; //Плотность заполнения приборных отсеков аппаратурой %
-    public static float udlKA; //Удлинение КА
+    public  boolean isHaveRestriction = true;
+    public  float mKA0; //максимальная масса ка
+    public  float dzPN0; //максимальный диаметр зоны ПН
+    public  float lzPN0; //максимальный длина зоны ПН
+    public  float knzpOBT; //Коэф. учитывающий неполноту заполнения зоны ПН под обтекателем
+    public  float krkKA; //Коэффициент рациональности компоновки
+    public  float kpoPO; //Плотность заполнения приборных отсеков аппаратурой %
+    public  float udlKA; //Удлинение КА
 
-    public static float dKA0; //Средний диаметр КА
-    public static float lKA0; //Средняя длина КА
-    public static float vKA0; //Средний обьем КА
-    public static float splkKA0; //Средняя плотность компоновки
-    public static float jKA0; //Максимальный приведенный момент инерции КА
+    public  float dKA0; //Средний диаметр КА
+    public  float lKA0; //Средняя длина КА
+    public  float vKA0; //Средний обьем КА
+    public  float splkKA0; //Средняя плотность компоновки
+    public  float jKA0; //Максимальный приведенный момент инерции КА
 
-    public static float vSGK; //Обьем СГК
-    public static float jSGK; //Момент СГК
+    public  float mKA;
+    public  float vKA;
+    public  float dKA;
+    public  float lKA;
+    public  float jKA;
+    public  float wKA_wsSEP; //Среднесуточная мощность целевой аппаратуры, Вт
 }

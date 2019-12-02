@@ -1,6 +1,7 @@
 package com.simulation.assembly;
 
 import com.simulation.assembly.calculation.*;
+import com.simulation.assembly.calculation.ca.CalculationKA;
 import com.simulation.assembly.calculation.ca.CalculationOETK;
 import com.simulation.assembly.calculation.ca.CalculationSGK;
 import com.simulation.assembly.calculation.ca.CalculationSimpleSintez;
@@ -390,10 +391,9 @@ public class ControllerAssembly {
     private Calculation<DataCommonParameters> calculationSimpSintez;
     private Calculation<DataOETK> calculationOETK;
     private Calculation<DataSudSGK> calculationSGK;
+    private CalculationKA calculationKA;
 
     private DataSimpleCalculation dataSimpleCalculation = new DataSimpleCalculation();
-    private DataOETK dataOETK = new DataOETK();
-    private DataSudSGK dataSGK = new DataSudSGK();
 
     private static List<String> messConsoleSimple = new ArrayList<>();
     private static List<String> messConsoleSintez = new ArrayList<>();
@@ -408,6 +408,7 @@ public class ControllerAssembly {
         calculationSimpSintez = new CalculationSimpleSintez();
         calculationOETK = new CalculationOETK();
         calculationSGK = new CalculationSGK();
+        calculationKA = CalculationKA.getInstance();
         calculationSumBs();
     }
 
@@ -692,54 +693,54 @@ public class ControllerAssembly {
      * показать результаты прикидочного расчета
      */
     private void showSimpleSintezResult() {
-        ouT_dKA0.setText(String.valueOf(DataCommonParameters.dKA0));
-        ouT_lKA0.setText(String.valueOf(DataCommonParameters.lKA0));
-        ouT_splkKA0.setText(String.valueOf(DataCommonParameters.splkKA0));
-        ouT_jKA0.setText(String.valueOf(DataCommonParameters.jKA0));
-        ouT_vKA0.setText(String.valueOf(DataCommonParameters.vKA0));
+        ouT_dKA0.setText(String.valueOf(calculationKA.getDataCommonParameters().dKA0));
+        ouT_lKA0.setText(String.valueOf(calculationKA.getDataCommonParameters().lKA0));
+        ouT_splkKA0.setText(String.valueOf(calculationKA.getDataCommonParameters().splkKA0));
+        ouT_jKA0.setText(String.valueOf(calculationKA.getDataCommonParameters().jKA0));
+        ouT_vKA0.setText(String.valueOf(calculationKA.getDataCommonParameters().vKA0));
     }
 
     /**
      * показать результаты ОЕТК
      */
     private void showOetkResult() {
-        ouT_fOETK.setText(String.valueOf(dataOETK.fOETK));
-        ouT_lOETK.setText(String.valueOf(dataOETK.lOETK));
-        ouT_mOETK.setText(String.valueOf(dataOETK.mOETK));
-        ouT_vOETK.setText(String.valueOf(dataOETK.vOETK));
-        ouT_jOETK.setText(String.valueOf(dataOETK.jOETK));
-        ouT_wOETK.setText(String.valueOf(dataOETK.wOETK));
-        ouT_dkSO_OETK.setText(String.valueOf(dataOETK.dkSO_OETK));
-        ouT_lkSO_OETK.setText(String.valueOf(dataOETK.lkSO_OETK));
-        ouT_vkSO_OETK.setText(String.valueOf(dataOETK.vkSO_OETK));
-        ouT_dOETK.setText(String.valueOf(dataOETK.dOETK));
+        ouT_fOETK.setText(String.valueOf(calculationKA.getDataOETK().fOETK));
+        ouT_lOETK.setText(String.valueOf(calculationKA.getDataOETK().lOETK));
+        ouT_mOETK.setText(String.valueOf(calculationKA.getDataOETK().mOETK));
+        ouT_vOETK.setText(String.valueOf(calculationKA.getDataOETK().vOETK));
+        ouT_jOETK.setText(String.valueOf(calculationKA.getDataOETK().jOETK));
+        ouT_wOETK.setText(String.valueOf(calculationKA.getDataOETK().wOETK));
+        ouT_dkSO_OETK.setText(String.valueOf(calculationKA.getDataOETK().dkSO_OETK));
+        ouT_lkSO_OETK.setText(String.valueOf(calculationKA.getDataOETK().lkSO_OETK));
+        ouT_vkSO_OETK.setText(String.valueOf(calculationKA.getDataOETK().vkSO_OETK));
+        ouT_dOETK.setText(String.valueOf(calculationKA.getDataOETK().dOETK));
     }
 
     /**
      * показать результаты ОЕТК
      */
     private void showSgkResult() {
-        ouT_t1.setText(String.valueOf(dataSGK.t1));
-        ouT_eKA.setText(String.valueOf(dataSGK.eKA));
-        ouT_wKA.setText(String.valueOf(dataSGK.wKA));
-        ouT_umKA.setText(String.valueOf(dataSGK.umKA));
-        ouT_kmKA.setText(String.valueOf(dataSGK.kmKA));
-        ouT_kmRGP.setText(String.valueOf(dataSGK.kmRGP));
-        ouT_JRGP.setText(String.valueOf(dataSGK.JRGP));
+        ouT_t1.setText(String.valueOf(calculationKA.getDataSudSGK().t1));
+        ouT_eKA.setText(String.valueOf(calculationKA.getDataSudSGK().eKA));
+        ouT_wKA.setText(String.valueOf(calculationKA.getDataSudSGK().wKA));
+        ouT_umKA.setText(String.valueOf(calculationKA.getDataSudSGK().umKA));
+        ouT_kmKA.setText(String.valueOf(calculationKA.getDataSudSGK().kmKA));
+        ouT_kmRGP.setText(String.valueOf(calculationKA.getDataSudSGK().kmRGP));
+        ouT_JRGP.setText(String.valueOf(calculationKA.getDataSudSGK().JRGP));
 
-        ouT_rRGP.setText(String.valueOf(dataSGK.rRGP));
-        ouT_vRGP.setText(String.valueOf(dataSGK.vRGP));
-        ouT_mRGP.setText(String.valueOf(dataSGK.mRGP));
-        ouT_mGP.setText(String.valueOf(dataSGK.mGP));
+        ouT_rRGP.setText(String.valueOf(calculationKA.getDataSudSGK().rRGP));
+        ouT_vRGP.setText(String.valueOf(calculationKA.getDataSudSGK().vRGP));
+        ouT_mRGP.setText(String.valueOf(calculationKA.getDataSudSGK().mRGP));
+        ouT_mGP.setText(String.valueOf(calculationKA.getDataSudSGK().mGP));
 
-        ouT_mEB.setText(String.valueOf(dataSGK.mEB));
-        ouT_mEB_GP.setText(String.valueOf(dataSGK.mEB_GP));
-        ouT_mSGK.setText(String.valueOf(dataSGK.mSGK));
+        ouT_mEB.setText(String.valueOf(calculationKA.getDataSudSGK().mEB));
+        ouT_mEB_GP.setText(String.valueOf(calculationKA.getDataSudSGK().mEB_GP));
+        ouT_mSGK.setText(String.valueOf(calculationKA.getDataSudSGK().mSGK));
 
-        ouT_vGP.setText(String.valueOf(dataSGK.vGP));
-        ouT_vEB.setText(String.valueOf(dataSGK.vEB));
-        ouT_wSGK.setText(String.valueOf(dataSGK.wSGK));
-        ouT_dGP.setText(String.valueOf(dataSGK.dGP));
+        ouT_vGP.setText(String.valueOf(calculationKA.getDataSudSGK().vGP));
+        ouT_vEB.setText(String.valueOf(calculationKA.getDataSudSGK().vEB));
+        ouT_wSGK.setText(String.valueOf(calculationKA.getDataSudSGK().wSGK));
+        ouT_dGP.setText(String.valueOf(calculationKA.getDataSudSGK().dGP));
     }
 
     /**
@@ -749,18 +750,18 @@ public class ControllerAssembly {
      */
     private boolean validateSimpleSintez() {
         try {
-            DataCommonParameters.isHaveRestriction = isHaveRestriction.isSelected();
+            calculationKA.getDataCommonParameters().isHaveRestriction = isHaveRestriction.isSelected();
             if (isHaveRestriction.isSelected()) {
-                DataCommonParameters.mKA0 = ValidateValue.conversionTextToFloat(iN_mKA0.getText());
-                DataCommonParameters.dzPN0 = ValidateValue.conversionTextToFloat(iN_dzPN0.getText());
-                DataCommonParameters.lzPN0 = ValidateValue.conversionTextToFloat(iN_lzPN0.getText());
-                DataCommonParameters.knzpOBT = ValidateValue.conversionTextToFloat(iN_knzpOBT.getText());
-                DataCommonParameters.krkKA = ValidateValue.conversionTextToFloat(iN_krkKA.getText());
-                DataCommonParameters.kpoPO = ValidateValue.conversionTextToFloat(String.valueOf(iN_kpoPO.getText()));
+                calculationKA.getDataCommonParameters().mKA0 = ValidateValue.conversionTextToFloat(iN_mKA0.getText());
+                calculationKA.getDataCommonParameters().dzPN0 = ValidateValue.conversionTextToFloat(iN_dzPN0.getText());
+                calculationKA.getDataCommonParameters().lzPN0 = ValidateValue.conversionTextToFloat(iN_lzPN0.getText());
+                calculationKA.getDataCommonParameters().knzpOBT = ValidateValue.conversionTextToFloat(iN_knzpOBT.getText());
+                calculationKA.getDataCommonParameters().krkKA = ValidateValue.conversionTextToFloat(iN_krkKA.getText());
+                calculationKA.getDataCommonParameters().kpoPO = ValidateValue.conversionTextToFloat(String.valueOf(iN_kpoPO.getText()));
             } else {
-                DataCommonParameters.udlKA = ValidateValue.conversionTextToFloat(iN_nonRes_udlKA.getText());
-                DataCommonParameters.krkKA = ValidateValue.conversionTextToFloat(iN_nonRes_krkKA.getText());
-                DataCommonParameters.kpoPO = ValidateValue.conversionTextToFloat(String.valueOf(iN_nonRes_kpoPO.getValue()));
+                calculationKA.getDataCommonParameters().udlKA = ValidateValue.conversionTextToFloat(iN_nonRes_udlKA.getText());
+                calculationKA.getDataCommonParameters().krkKA = ValidateValue.conversionTextToFloat(iN_nonRes_krkKA.getText());
+                calculationKA.getDataCommonParameters().kpoPO = ValidateValue.conversionTextToFloat(String.valueOf(iN_nonRes_kpoPO.getValue()));
             }
         } catch (Exception e) {
             addMessInConsoleSintez(MessegeType.ERROR, "Ошибка введеных данных.", TabTypeSintez.RESTRICTION);
@@ -775,23 +776,23 @@ public class ControllerAssembly {
      */
     private boolean validateOETK() {
         try {
-            dataOETK.Det = ValidateValue.conversionTextToFloat(iN_Det.getText());
-            dataOETK.H = ValidateValue.conversionTextToFloat(iN_H.getText());
-            dataOETK.rELPZS = ValidateValue.conversionTextToFloat(iN_rELPZS.getText());
-            dataOETK.kUD = ValidateValue.conversionTextToFloat(iN_kUD.getText());
-            dataOETK.oO = ValidateValue.conversionTextToFloat(iN_oO.getText());
-            dataOETK.plOETK = ValidateValue.conversionTextToFloat(iN_plOETK.getText());
-            dataOETK.uwOETK = ValidateValue.conversionTextToFloat(iN_uwOETK.getText());
-            dataOETK.krkOETK = ValidateValue.conversionTextToFloat(iN_krkOETK.getText());
-            dataOETK.kp2dOETK = ValidateValue.conversionTextToFloat(iN_kp2dOETK.getText());
-            dataOETK.kp2lOETK = ValidateValue.conversionTextToFloat(iN_kp2lOETK.getText());
+            calculationKA.getDataOETK().Det = ValidateValue.conversionTextToFloat(iN_Det.getText());
+            calculationKA.getDataOETK().H = ValidateValue.conversionTextToFloat(iN_H.getText());
+            calculationKA.getDataOETK().rELPZS = ValidateValue.conversionTextToFloat(iN_rELPZS.getText());
+            calculationKA.getDataOETK().kUD = ValidateValue.conversionTextToFloat(iN_kUD.getText());
+            calculationKA.getDataOETK().oO = ValidateValue.conversionTextToFloat(iN_oO.getText());
+            calculationKA.getDataOETK().plOETK = ValidateValue.conversionTextToFloat(iN_plOETK.getText());
+            calculationKA.getDataOETK().uwOETK = ValidateValue.conversionTextToFloat(iN_uwOETK.getText());
+            calculationKA.getDataOETK().krkOETK = ValidateValue.conversionTextToFloat(iN_krkOETK.getText());
+            calculationKA.getDataOETK().kp2dOETK = ValidateValue.conversionTextToFloat(iN_kp2dOETK.getText());
+            calculationKA.getDataOETK().kp2lOETK = ValidateValue.conversionTextToFloat(iN_kp2lOETK.getText());
 
             if (iN_smmal_KA.isSelected()) {
-                dataOETK.typeKA = TypeKa.SAMLL;
+                calculationKA.getDataOETK().typeKA = TypeKa.SAMLL;
             } else if (iN_middle_KA.isSelected()) {
-                dataOETK.typeKA = TypeKa.MIDDLE;
+                calculationKA.getDataOETK().typeKA = TypeKa.MIDDLE;
             } else if (iN_big_KA.isSelected()) {
-                dataOETK.typeKA = TypeKa.BIG;
+                calculationKA.getDataOETK().typeKA = TypeKa.BIG;
             }
 
         } catch (Exception e) {
@@ -807,16 +808,16 @@ public class ControllerAssembly {
      */
     private boolean validateSGK() {
         try {
-            dataSGK.Pr1 = ValidateValue.conversionTextToFloat(iN_Pr1.getText());
-            dataSGK.Tzr = ValidateValue.conversionTextToFloat(iN_Tzr.getText());
-            dataSGK.uKA = ValidateValue.conversionTextToFloat(iN_uKA.getText());
-            dataSGK.wPrez = ValidateValue.conversionTextToFloat(iN_wPrez.getText());
-            dataSGK.wRGP = ValidateValue.conversionTextToFloat(iN_wRGP.getText());
-            dataSGK.plRGP = ValidateValue.conversionTextToFloat(iN_plRGP.getText());
-            dataSGK.kmGP_RGP = ValidateValue.conversionTextToFloat(iN_kmGP_RGP.getText());
-            dataSGK.kmEB_mGP = ValidateValue.conversionTextToFloat(iN_kmEB_mGP.getText());
-            dataSGK.uW_SGK = ValidateValue.conversionTextToFloat(iN_uW_SGK.getText());
-            dataSGK.pEB = ValidateValue.conversionTextToFloat(iN_pEB.getText());
+            calculationKA.getDataSudSGK().Pr1 = ValidateValue.conversionTextToFloat(iN_Pr1.getText());
+            calculationKA.getDataSudSGK().Tzr = ValidateValue.conversionTextToFloat(iN_Tzr.getText());
+            calculationKA.getDataSudSGK().uKA = ValidateValue.conversionTextToFloat(iN_uKA.getText());
+            calculationKA.getDataSudSGK().wPrez = ValidateValue.conversionTextToFloat(iN_wPrez.getText());
+            calculationKA.getDataSudSGK().wRGP = ValidateValue.conversionTextToFloat(iN_wRGP.getText());
+            calculationKA.getDataSudSGK().plRGP = ValidateValue.conversionTextToFloat(iN_plRGP.getText());
+            calculationKA.getDataSudSGK().kmGP_RGP = ValidateValue.conversionTextToFloat(iN_kmGP_RGP.getText());
+            calculationKA.getDataSudSGK().kmEB_mGP = ValidateValue.conversionTextToFloat(iN_kmEB_mGP.getText());
+            calculationKA.getDataSudSGK().uW_SGK = ValidateValue.conversionTextToFloat(iN_uW_SGK.getText());
+            calculationKA.getDataSudSGK().pEB = ValidateValue.conversionTextToFloat(iN_pEB.getText());
         } catch (Exception e) {
             addMessInConsoleSintez(MessegeType.ERROR, "Ошибка введеных данных.", TabTypeSintez.SUD_SGK);
             return false;
@@ -832,7 +833,7 @@ public class ControllerAssembly {
     public void actionCal_Restriction(ActionEvent actionEvent) {
         try {
             if (validateSimpleSintez()){
-                calculationSimpSintez.calculation(new DataCommonParameters());
+                calculationSimpSintez.calculation(calculationKA.getDataCommonParameters());
                 showSimpleSintezResult();
             }
         } catch (Exception e) {
@@ -848,7 +849,7 @@ public class ControllerAssembly {
     public void actionCal_OETK(ActionEvent actionEvent) {
         try {
             if (validateOETK()){
-                calculationOETK.calculation(dataOETK);
+                calculationOETK.calculation(calculationKA.getDataOETK());
                 showOetkResult();
             }
         } catch (Exception e) {
@@ -864,7 +865,7 @@ public class ControllerAssembly {
     public void actionCal_SGK(ActionEvent actionEvent) {
         try {
             if (validateSGK()){
-                calculationSGK.calculation(dataSGK);
+                calculationSGK.calculation(calculationKA.getDataSudSGK());
                 showSgkResult();
             }
         } catch (Exception e) {
@@ -890,5 +891,11 @@ public class ControllerAssembly {
             pane_finishData_SGK.setVisible(true);
             labelNonAcces.setVisible(false);
         }
+    }
+
+    public void actionClearConsole(ActionEvent actionEvent) {
+        messConsoleSintez.clear();
+        messConsoleSimple.clear();
+        consoleSimple.clear();
     }
 }
