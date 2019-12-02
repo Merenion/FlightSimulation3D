@@ -1,0 +1,37 @@
+package com.simulation.assembly.calculation.ca;
+
+import com.simulation.assembly.ControllerAssembly;
+import com.simulation.assembly.MessegeType;
+import com.simulation.assembly.TabTypeSintez;
+import com.simulation.assembly.calculation.Calculation;
+import com.simulation.assembly.dataCalculation.sintez.*;
+
+public class CalculationSOTR implements Calculation {
+
+    @Override
+    public Object calculation(Object object) throws Exception {
+        try {
+            DataSOTR d = CalculationKA.getInstance().getDataSOTR();
+            DataPasivSOTR dataPasivSOTR = CalculationKA.getInstance().getDataPasivSOTR();
+            DataActivSOTR dataActivSOTR = CalculationKA.getInstance().getDataActivSOTR();
+            DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
+
+            d.mSOTR=dataPasivSOTR.mEVTI+dataActivSOTR.mtnSTR+dataActivSOTR.mSTRbtn;
+            //Масса СОТР без теплоносителя, кг
+            d.mSOTRbtn=d.mSOTR-dataActivSOTR.mtnSTR;
+            //Масса теплоносителя СТР, кг
+            d.mtnSTR = dataActivSOTR.mtnSTR;
+            //Объем ЭВТИ, приборов и агрегатов СТР, м3
+            d.vSOTR=dataPasivSOTR.vEVTI+dataActivSOTR.vSTR;
+            //Приведенный момент инерци СОТР, кг м2
+            d.jSOTR=d.mSOTR*((dc.dKA*dc.dKA)/16+(dc.lKA*dc.lKA)/12);
+            //Мощность приборов и агрегатов СТР, Вт/кг
+            d.wSTR = dataActivSOTR.wSTR;
+
+        } catch (Exception e) {
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные! Ошибка при расчете", TabTypeSintez.CA);
+            throw new Exception();
+        }
+        return object;
+    }
+}

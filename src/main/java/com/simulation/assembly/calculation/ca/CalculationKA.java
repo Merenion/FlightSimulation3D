@@ -23,6 +23,9 @@ public class CalculationKA implements Calculation {
     private DataBVS dataBVS;
     private DataOtherBKU dataOtherBKU;
     private DataBKU dataBKU;
+    private DataActivSOTR dataActivSOTR;
+    private DataPasivSOTR dataPasivSOTR;
+    private DataSOTR dataSOTR;
 
     private CalculationKA() {
         init();
@@ -177,6 +180,9 @@ public class CalculationKA implements Calculation {
         dataBVS = new DataBVS();
         dataOtherBKU = new DataOtherBKU();
         dataBKU = new DataBKU();
+        dataActivSOTR = new DataActivSOTR();
+        dataPasivSOTR = new DataPasivSOTR();
+        dataSOTR = new DataSOTR();
     }
 
     public static CalculationKA getInstance() {
@@ -304,5 +310,29 @@ public class CalculationKA implements Calculation {
 
     public void setDataBKU(DataBKU dataBKU) {
         this.dataBKU = dataBKU;
+    }
+
+    public DataActivSOTR getDataActivSOTR() {
+        return dataActivSOTR;
+    }
+
+    public void setDataActivSOTR(DataActivSOTR dataActivSOTR) {
+        this.dataActivSOTR = dataActivSOTR;
+    }
+
+    public DataPasivSOTR getDataPasivSOTR() {
+        return dataPasivSOTR;
+    }
+
+    public void setDataPasivSOTR(DataPasivSOTR dataPasivSOTR) {
+        this.dataPasivSOTR = dataPasivSOTR;
+    }
+
+    public DataSOTR getDataSOTR() {
+        return dataSOTR;
+    }
+
+    public void setDataSOTR(DataSOTR dataSOTR) {
+        this.dataSOTR = dataSOTR;
     }
 }
