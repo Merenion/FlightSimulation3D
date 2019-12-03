@@ -30,6 +30,9 @@ public class CalculationKA implements Calculation {
     private DataAcumBetSEP dataAcumBetSEP;
     private DataKAS dataKAS;
     private DataSumBetSEP dataSumBetSEP;
+    private DataSpeed dataSpeed;
+    private DataMassTopl dataMassTopl;
+    private DataKDU dataKDU;
 
     private CalculationKA() {
         init();
@@ -191,6 +194,9 @@ public class CalculationKA implements Calculation {
         dataAcumBetSEP= new DataAcumBetSEP();
         dataKAS = new DataKAS();
         dataSumBetSEP = new DataSumBetSEP();
+        dataSpeed = new DataSpeed();
+        dataMassTopl = new DataMassTopl();
+        dataKDU = new DataKDU();
     }
 
     public static CalculationKA getInstance() {
@@ -374,5 +380,29 @@ public class CalculationKA implements Calculation {
 
     public void setDataSumBetSEP(DataSumBetSEP dataSumBetSEP) {
         this.dataSumBetSEP = dataSumBetSEP;
+    }
+
+    public DataSpeed getDataSpeed() {
+        return dataSpeed;
+    }
+
+    public void setDataSpeed(DataSpeed dataSpeed) {
+        this.dataSpeed = dataSpeed;
+    }
+
+    public DataMassTopl getDataMassTopl() {
+        return dataMassTopl;
+    }
+
+    public void setDataMassTopl(DataMassTopl dataMassTopl) {
+        this.dataMassTopl = dataMassTopl;
+    }
+
+    public DataKDU getDataKDU() {
+        return dataKDU;
+    }
+
+    public void setDataKDU(DataKDU dataKDU) {
+        this.dataKDU = dataKDU;
     }
 }
