@@ -1,6 +1,23 @@
 package com.simulation.assembly.dataCalculation.sintez;
 
-public class DataSudSGK {
+import com.simulation.assembly.TabTypeSintez;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "DataSudSGK")
+public class DataSudSGK  extends DataElement{
+
+    private final static TabTypeSintez type =TabTypeSintez.SUD_SGK;
+
+    @Override
+    public TabTypeSintez getType() {
+        return type;
+    }
 
     //выходные
     public float t1;         //Cреднее время, потребное на обсервацию одного объекта, с (Среднее время между съемками цедей, с)

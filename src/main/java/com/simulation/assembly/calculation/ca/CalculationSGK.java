@@ -18,15 +18,15 @@ public class CalculationSGK implements Calculation {
             d.t1=60*d.Tzr/d.Pr1;
             d.eKA= (float) (2*(d.uKA/2)/Math.pow((d.t1/2),2));
             d.wKA=d.eKA*(d.t1/2);
-            d.umKA= (float) (dc.jKA0*d.eKA*Math.PI/180);
+            d.umKA= (float) (dc.jKA*d.eKA*Math.PI/180);
             //if 12=1
-            d.kmKA= (float) (dc.jKA0*d.wKA*Math.PI/180); //jka - может быть ошибка
+            d.kmKA= (float) (dc.jKA*d.wKA*Math.PI/180); //jka - может быть ошибка
 
             d.kmRGP= (float) (d.umKA/(d.wPrez*Math.PI/180));
             d.JRGP= (float) (d.kmRGP/(2*Math.PI*d.wRGP/60));
             d.rRGP= (float) Math.exp(0.2*Math.log(15*d.JRGP/(8*Math.PI*d.plRGP)));
             d.rRGP= (float) Math.exp(0.2*Math.log(2*d.JRGP/(Math.PI*d.plRGP)));
-            d.vRGP= (float) (4/3*Math.PI*d.rRGP*d.rRGP*d.rRGP);
+            d.vRGP= (float) ((4f/3f)*Math.PI*d.rRGP*d.rRGP*d.rRGP);
             d.mRGP= (float) (0.75*d.plRGP*d.vRGP);
             d.mGP=d.kmGP_RGP*d.mRGP;
             d.mEB=d.kmEB_mGP/100*d.mGP;
@@ -37,9 +37,12 @@ public class CalculationSGK implements Calculation {
             d.vSGK=d.vRGP+d.vGP;          //Объем СГК, м3
             //Расчет мощности СГК
             d.wSGK=d.uW_SGK*d.mSGK;
-            d.dGP= (float) (2*Math.exp((1/3)*Math.log((3/4)/Math.PI*d.vGP)));  //Расчет среднего радиуса гироприбора
-            d.jSGK= (float) (d.mSGK*(Math.pow(dc.dKA0,2)/16+Math.pow(dc.lKA0,2)/12));
+            d.dGP= (float) (2*Math.exp((1f/3f)*Math.log((3f/4f)/Math.PI*d.vGP)));  //Расчет среднего радиуса гироприбора
+            d.jSGK= (float) (d.mSGK*(Math.pow(dc.dKA,2)/16+Math.pow(dc.lKA0,2)/12));
+            CalculationKA.getInstance().calculation(new Object());
+
             ControllerAssembly.addMessInConsoleSintez(MessegeType.INFO, "Расчет СГК Успешен! ", TabTypeSintez.SUD_SGK);
+
         } catch (Exception e) {
             ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные! Ошибка при расчете", TabTypeSintez.SUD_SGK);
             throw new Exception();

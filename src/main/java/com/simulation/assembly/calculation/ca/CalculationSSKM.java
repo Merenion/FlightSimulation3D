@@ -23,8 +23,12 @@ public class CalculationSSKM implements Calculation {
             d.vSSKM=d.vaSSKM+d.vsSSKM;     //Объем ССКМ, м3
             d.wSSKM=d.uwSSKM*d.maSSKM;
             d.jSSKM=d.mSSKM*((dc.dKA*dc.dKA)/16+(dc.lKA* dc.lKA)/12);
+            CalculationKA.getInstance().calculation(new Object());
+
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.INFO, "Расчет Успешен! ", TabTypeSintez.SUD_SSKM);
+
         } catch (Exception e) {
-            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR,"Не верно введенные данные!", TabTypeSintez.RESTRICTION);
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR,"Не верно введенные данные!", TabTypeSintez.SUD_SSKM);
             throw new Exception();
         }
         return object;

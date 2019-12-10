@@ -1,6 +1,24 @@
 package com.simulation.assembly.dataCalculation.sintez;
 
-public class DataSumBetSEP {
+import com.simulation.assembly.TabTypeSintez;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "DataSumBetSEP")
+public class DataSumBetSEP  extends DataElement{
+
+    private final static TabTypeSintez type =TabTypeSintez.SUN_BATTERIES;
+
+    @Override
+    public TabTypeSintez getType() {
+        return type;
+    }
+
     public float uwFP; //удельная мощность ФП
     public float kzPSB;//Коэффициент заполнения площади панелей СБ фотоэлементами
     public float kp;   //Поправочный коэффициент

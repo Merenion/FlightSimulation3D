@@ -19,9 +19,12 @@ public class CalculationBAKES implements Calculation {
             d.vKIS=d.mKIS/d.plKIS;
             d.wKIS=d.uwKIS*d.mKIS;
             d.jKIS=d.mKIS*((dc.dKA*dc.dKA)/16+(dc.lKA*dc.lKA)/12);
+            CalculationKA.getInstance().calculation(new Object());
+
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.INFO, "Расчет Успешен! ", TabTypeSintez.BAKIS);
 
         } catch (Exception e) {
-            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные! Ошибка при расчете", TabTypeSintez.CA);
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные! Ошибка при расчете", TabTypeSintez.BAKIS);
             throw new Exception();
         }
         return object;

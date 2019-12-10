@@ -24,9 +24,12 @@ public class CalculationOtherBKU implements Calculation {
             dc.vPrBKU=dc.mPrBKU/dc.plPrBKU;
             dc.wPrBKU=dc.uwPrBKU*dc.mPrBKU;
             dc.jPrBKU=dc.mPrBKU*((dc0.dKA*dc0.dKA)/16+(dc0.lKA*dc0.lKA)/12);
+            CalculationKA.getInstance().calculation(new Object());
+
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.INFO, "Расчет Успешен! ", TabTypeSintez.OTHER_ELEMENTS_BKU);
 
         } catch (Exception e) {
-            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные! Ошибка при расчете", TabTypeSintez.CA);
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные! Ошибка при расчете", TabTypeSintez.OTHER_ELEMENTS_BKU);
             throw new Exception();
         }
         return object;

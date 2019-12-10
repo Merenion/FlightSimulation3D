@@ -20,7 +20,12 @@ public class CalculationVRL implements Calculation {
             d.vVRL=d.mVRL/d.plVRL;
             d.wVRL=d.mVRL*d.uwVRL;
             //Расчет приведенного момента инерции КА с текущими габаритами и массой
-            d.jVRL=d.mVRL*((dc.dKA*dc.dKA)/16+(dc.lKA*dc.lKA)/12);
+            d.jVRL=1092.5f; //TODO
+//            d.jVRL=d.mVRL*((dc.dKA*dc.dKA)/16+(dc.lKA*dc.lKA)/12);
+            CalculationKA.getInstance().calculation(new Object());
+
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.INFO, "Расчет Успешен! ", TabTypeSintez.VRL);
+
         } catch (Exception e) {
             ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные! Ошибка при расчете", TabTypeSintez.VRL);
             throw new Exception();

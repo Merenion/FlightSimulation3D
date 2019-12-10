@@ -52,13 +52,13 @@ public class CalculationKaCaCc implements Calculation {
         //Расчет седнего объем КА, м3
         dsc.res_vKA0 = dsc.massaKa/dsc.plotnost;
         //Расчет среднего диаметра КА
-        dsc.res_dKA0 = (float) Math.exp(1 / 3 * Math.log(4 * dsc.res_vKA0 / (Math.PI * dsc.udlinenie)));
+        dsc.res_dKA0 = (float) Math.exp((1f / 3f) * Math.log(4 * dsc.res_vKA0 / (Math.PI * dsc.udlinenie)));
 
         //Расчет средней длины КА
         dsc.res_lKA0 = dsc.res_dKA0*dsc.udlinenie;
         //Расчет габаритов обтекателя
-        dsc.res_dzPN0 = (float) (dsc.res_dKA0 / Math.exp(1 / 3 * Math.log(dsc.koefNepolnZapoln)));
-        dsc.res_lzPN0 = (float) (dsc.res_lKA0/Math.exp(1/3*Math.log(dsc.koefNepolnZapoln)));
+        dsc.res_dzPN0 = (float) (dsc.res_dKA0 / Math.exp((1f / 3f) * Math.log(dsc.koefNepolnZapoln)));
+        dsc.res_lzPN0 = (float) (dsc.res_lKA0/Math.exp((1f/3f)*Math.log(dsc.koefNepolnZapoln)));
         //Расчет приведенного момента инерции КА
         //(КА представлен в виде цилиндра с "размазанной" массой по объемв КА), кг/м3
         dsc.res_jKA0 = (float) (dsc.massaKa/dsc.koefRacKom*(Math.pow(dsc.res_dKA0,2)/16+Math.pow(dsc.res_lKA0,2)/12));

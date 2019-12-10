@@ -1,6 +1,23 @@
 package com.simulation.assembly.dataCalculation.sintez;
 
-public class DataOETK {
+import com.simulation.assembly.TabTypeSintez;
+import com.sun.xml.txw2.annotation.XmlAttribute;
+import com.sun.xml.txw2.annotation.XmlElement;
+import javafx.beans.property.SimpleStringProperty;
+
+import javax.xml.bind.annotation.*;
+
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "DataOETK")
+public class DataOETK  extends DataElement{
+
+    private final static TabTypeSintez type =TabTypeSintez.OETK;
+
+    @Override
+    public TabTypeSintez getType() {
+        return type;
+    }
 
     //выходные параметры
     public float fOETK;        //Фокусное расстояние
@@ -26,5 +43,5 @@ public class DataOETK {
     public float krkOETK;  //коэффициент рациональности компоновки ОЭТК
     public float kp2dOETK; //Коэффициент превышения диаметра корпуса спецотсека КА над диматром корпуса ОЭТК
     public float kp2lOETK; //Коэффициент превышения длины корпуса спецотсека КА над длиной корпуса ОЭТК
-    public TypeKa typeKA; //большой, маленький, средний
+    public TypeKa typeKA = TypeKa.BIG; //большой, маленький, средний
 }

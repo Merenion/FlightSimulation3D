@@ -19,9 +19,12 @@ public class CalculationBVS implements Calculation {
             d.vBVS=d.mBVS/d.plBVS;
             d.wBVS=d.uwBVS*d.mBVS;
             d.jBVS=d.mBVS*((dc.dKA*dc.dKA)/16+(dc.lKA*dc.lKA)/12);
+            CalculationKA.getInstance().calculation(new Object());
+
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.INFO, "Расчет Успешен! ", TabTypeSintez.BVS);
 
         } catch (Exception e) {
-            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные! Ошибка при расчете", TabTypeSintez.CA);
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные! Ошибка при расчете", TabTypeSintez.BVS);
             throw new Exception();
         }
         return object;

@@ -22,12 +22,15 @@ public class CalculationAcumBetSEP implements Calculation {
             d.mAB1=d.mAB/d.nAB;
             d.vAB1=d.mAB1/d.plAB;
             d.vAB=d.mAB/d.plAB;
-            d.lAB= (float) Math.exp((1/3)*Math.log(d.vAB1));
+            d.lAB= (float) Math.exp((1f/3f)*Math.log(d.vAB1));
             d.jAB1=d.mAB1*(d.lAB*d.lAB)/6;
             d.jAB_KA= (float) (d.nAB*(d.jAB1+d.mAB1*(0.75*dc.dKA/2)*(0.75*dc.dKA/2)));
+            CalculationKA.getInstance().calculation(new Object());
+
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.INFO, "Расчет Успешен! ", TabTypeSintez.AKUM_BATTERIES);
 
         } catch (Exception e) {
-            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные! Ошибка при расчете", TabTypeSintez.CA);
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные! Ошибка при расчете", TabTypeSintez.AKUM_BATTERIES);
             throw new Exception();
         }
         return object;

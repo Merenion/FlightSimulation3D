@@ -1,7 +1,25 @@
 package com.simulation.assembly.dataCalculation.sintez;
 
-public class DataElectHaraktSEP {
+import com.simulation.assembly.TabTypeSintez;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "DataElectHaraktSEP")
+public class DataElectHaraktSEP  extends DataElement{
+
+    private final static TabTypeSintez type =TabTypeSintez.ELECTROTEH_PARAM;
+
+    @Override
+    public TabTypeSintez getType() {
+        return type;
+    }
+
+    public float wNomInCep; //Номинальное напряжение в цепи
     public float kspSEP; //Кэффициент собственного потребления СЭП
     public float TobrKA; //Период обращения КА за один виток, мин
     public float tZRKA;  //Время целевой работы КА на одном витке, мин

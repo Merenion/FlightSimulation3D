@@ -1,6 +1,23 @@
 package com.simulation.assembly.dataCalculation.sintez;
 
-public class DataCommonParameters {
+import com.simulation.assembly.TabTypeSintez;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "DataCommonParameters")
+public class DataCommonParameters  extends DataElement{
+
+    private final static TabTypeSintez type =TabTypeSintez.RESTRICTION;
+
+    @Override
+    public TabTypeSintez getType() {
+        return type;
+    }
 
     public  boolean isHaveRestriction = true;
     public  float mKA0; //максимальная масса ка

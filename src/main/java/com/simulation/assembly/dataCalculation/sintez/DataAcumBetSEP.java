@@ -1,6 +1,24 @@
 package com.simulation.assembly.dataCalculation.sintez;
 
-public class DataAcumBetSEP {
+import com.simulation.assembly.TabTypeSintez;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "DataAcumBetSEP")
+public class DataAcumBetSEP  extends DataElement{
+
+    private final static TabTypeSintez type =TabTypeSintez.AKUM_BATTERIES;
+
+    @Override
+    public TabTypeSintez getType() {
+        return type;
+    }
+
     public float uwAB;   //Удельная мощность АБ, А час/кг
     public float nAB;    //кол батарей
     public float plAB;   //Плотность компоновки АБ, кг/м3

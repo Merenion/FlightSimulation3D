@@ -33,9 +33,12 @@ public class CalculationKDU implements Calculation {
             d.JyKDU=d.mKDU*((d.dKDU*d.dKDU)/16+(d.hKDU*d.hKDU)/12);
             d.jKDU=d.mKDU/dc.krkKA*((dc.dKA*dc.dKA)/16+(dc.lKA*dc.lKA)/12);
             d.wKDU=d.umKDU*d.mKDU;
+            CalculationKA.getInstance().calculation(new Object());
+
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.INFO, "Расчет Успешен! ", TabTypeSintez.MASOGABARITN_AND_ENERGET_PARAMETERS);
 
         } catch (Exception e) {
-            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные! Ошибка при расчете", TabTypeSintez.CA);
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные! Ошибка при расчете", TabTypeSintez.MASOGABARITN_AND_ENERGET_PARAMETERS);
             throw new Exception();
         }
         return object;

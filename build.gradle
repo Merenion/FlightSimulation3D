@@ -46,6 +46,14 @@ dependencies {
     compile "org.openjfx:javafx-base:11:$platform"
     compile "org.openjfx:javafx-graphics:11:$platform"
     compile "org.openjfx:javafx-controls:11:$platform"
+// https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api
+    compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.0'
+// https://mvnrepository.com/artifact/com.sun.xml.bind/jaxb-core
+    compile group: 'com.sun.xml.bind', name: 'jaxb-core', version: '2.3.0'
+// https://mvnrepository.com/artifact/com.sun.xml.bind/jaxb-impl
+    compile group: 'com.sun.xml.bind', name: 'jaxb-impl', version: '2.3.0'
+
+
 
     compile 'org.fxyz3d:fxyz3d:0.4.0'
 }

@@ -1,402 +1,77 @@
 package com.simulation.assembly;
 
 import com.simulation.assembly.calculation.*;
-import com.simulation.assembly.calculation.ca.CalculationKA;
-import com.simulation.assembly.calculation.ca.CalculationOETK;
-import com.simulation.assembly.calculation.ca.CalculationSGK;
-import com.simulation.assembly.calculation.ca.CalculationSimpleSintez;
+import com.simulation.assembly.calculation.ca.*;
 import com.simulation.assembly.calculation.simple.*;
 import com.simulation.assembly.dataCalculation.simple.DataSimpleCalculation;
-import com.simulation.assembly.dataCalculation.sintez.DataCommonParameters;
-import com.simulation.assembly.dataCalculation.sintez.DataOETK;
-import com.simulation.assembly.dataCalculation.sintez.DataSudSGK;
-import com.simulation.assembly.dataCalculation.sintez.TypeKa;
+import com.simulation.assembly.dataCalculation.sintez.*;
 import com.simulation.assembly.validateRestrictionSimple.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.MenuItem;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 
+import javax.xml.bind.JAXBException;
+import java.awt.*;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
  */
-public class ControllerAssembly {
+public class ControllerAssembly extends ControllerImport {
 
-    /**
-     * выбор ограничений
-     */
-    @FXML
-    public CheckBox checkKa;
-    @FXML
-    public CheckBox checkCa;
-    @FXML
-    public CheckBox checkDd;
-
-    /**
-     * панель ограничения по массе КА , плотность и удлинение
-     */
-    @FXML
-    public Pane kaCc;
-    @FXML
-    public TextField editKAmassaKaCc;
-    @FXML
-    public TextField editPlotnKaCc;
-    @FXML
-    public TextField editUdlinKaCc;
-
-    /**
-     * панель ограничения по массе ЦА , плотность и удлинение
-     */
-    @FXML
-    public Pane caCc;
-    @FXML
-    public TextField editCAmassaCaCc;
-    @FXML
-    public TextField editPlotnCaCc;
-    @FXML
-    public TextField editUdlinCaCc;
-
-    /**
-     * панель ограничения по массе КА и ЦА , плотность и удлинение
-     */
-    @FXML
-    public Pane kaCaCc;
-    @FXML
-    public TextField editKAmassaKaCaCc;
-    @FXML
-    public TextField editPlotnKaCaCc;
-    @FXML
-    public TextField editUdlinKaCaCc;
-    @FXML
-    public TextField editCAmassaKaCaCc;
-
-    /**
-     * панель ограничения по массе КА и ЦА , диаметр и длина
-     */
-    @FXML
-    public Pane kaCaDd;
-    @FXML
-    public TextField editKAMassaKaCaDd;
-    @FXML
-    public TextField editDiametrKaCaDd;
-    @FXML
-    public TextField editDlinaKaCaDd;
-    @FXML
-    public TextField editCAMassaKaCaDd;
-
-    /**
-     * панель ограничения по массе КА , диаметр и длина
-     */
-    @FXML
-    public Pane kaDd;
-    @FXML
-    public TextField editKAmassaKaDd;
-    @FXML
-    public TextField editDiametrKaDd;
-    @FXML
-    public TextField editDlinaKaDd;
-
-    /**
-     * панель ограничения по массе ЦА , диаметр и длина
-     */
-    @FXML
-    public Pane caDd;
-    @FXML
-    public TextField editDiametrCaDd;
-    @FXML
-    public TextField editDlinaCaDd;
-    @FXML
-    public TextField editCAmassaCaDd;
-
-    /**
-     * Суммы масс
-     */
-    @FXML
-    public TextField editProcCA;
-    @FXML
-    public TextField editProcBKU;
-    @FXML
-    public TextField editProcSOTR;
-    @FXML
-    public TextField editProcSEP;
-    @FXML
-    public TextField editProcKDU;
-    @FXML
-    public TextField editProcTOPLIVO;
-    @FXML
-    public TextField editProcKONSTR;
-    @FXML
-    public TextField editProcAFU;
-    @FXML
-    public TextField editProcOTHERMAS;
-    @FXML
-    public TextField editProcREZERV;
-    @FXML
-    public Label labelSummaBS;
-    @FXML
-    public Label labelSummaValueBS;
-
-    /**
-     * коэфициенты для прикидочного расчета
-     */
-    public TextField editSimpleKoefRacKom;
-    public TextField editSimpleKoefNepolnZapoln;
-
-    /**
-     * результаты прикидочного расчета
-     */
-    @FXML
-    public Label simplResCA;
-    @FXML
-    public Label simpleResBKU;
-    @FXML
-    public Label simplResSOTR;
-    @FXML
-    public Label simplResSEP;
-    @FXML
-    public Label simplResKDU;
-    @FXML
-    public Label simplResToplKDU;
-    @FXML
-    public Label simplResKonstr;
-    @FXML
-    public Label simplResBKSafu;
-    @FXML
-    public Label simplResOtherMass;
-    @FXML
-    public Label simplResRetherv;
-    @FXML
-    public Label simplResMassKA;
-    @FXML
-    public Label simplResDiametrKA;
-    @FXML
-    public Label simplResDlinaKA;
-    @FXML
-    public Label simplResObiem;
-    @FXML
-    public Label simplResPlotn;
-    @FXML
-    public Label simplResMoment;
-    @FXML
-    public Label simplResDlinaPN;
-    @FXML
-    public Label simplResDiametrPN;
-    @FXML
-    public TextArea consoleSimple;
-
-    /**
-     * синтез
-     * таба Ограничения
-     */
-    @FXML
-    public Tab tab_Restriction;
-    @FXML
-    public AnchorPane paneRestriction;
-    @FXML
-    public CheckBox isHaveRestriction;
-    @FXML
-    public AnchorPane paneStartDataRestriction;
-    @FXML
-    public AnchorPane paneRestrictionCalculation;
-
-    @FXML
-    public TextField iN_mKA0;
-    @FXML
-    public TextField iN_dzPN0;
-    @FXML
-    public TextField iN_lzPN0;
-    @FXML
-    public TextField iN_knzpOBT;
-    @FXML
-    public TextField iN_krkKA;
-    @FXML
-    public TextField iN_kpoPO;
-
-    @FXML
-    public TextField iN_nonRes_udlKA;
-    @FXML
-    public TextField iN_nonRes_krkKA;
-    @FXML
-    public Spinner iN_nonRes_kpoPO;
-
-    @FXML
-    public Label ouT_dKA0;
-    @FXML
-    public Label ouT_lKA0;
-    @FXML
-    public Label ouT_splkKA0;
-    @FXML
-    public Label ouT_jKA0;
-    @FXML
-    public Label ouT_vKA0;
-
-    @FXML
-    public Button bt_calcul_Restriction;
-
-
-    /**
-     * таба ОЕТК
-     */
-    @FXML
-    public Tab tab_OETK;
-    @FXML
-    public AnchorPane pane_startData_OETK;
-    @FXML
-    public AnchorPane pane_finishData_OETK;
-
-    @FXML
-    public Label ouT_fOETK;
-    @FXML
-    public Label ouT_lOETK;
-    @FXML
-    public Label ouT_mOETK;
-    @FXML
-    public Label ouT_vOETK;
-    @FXML
-    public Label ouT_jOETK;
-    @FXML
-    public Label ouT_wOETK;
-    @FXML
-    public Label ouT_dkSO_OETK;
-    @FXML
-    public Label ouT_lkSO_OETK;
-    @FXML
-    public Label ouT_vkSO_OETK;
-    @FXML
-    public Label ouT_dOETK;
-
-    @FXML
-    public TextField iN_Det;
-    @FXML
-    public TextField iN_H;
-    @FXML
-    public TextField iN_rELPZS;
-    @FXML
-    public TextField iN_kUD;
-    @FXML
-    public TextField iN_oO;
-    @FXML
-    public TextField iN_plOETK;
-    @FXML
-    public TextField iN_uwOETK;
-    @FXML
-    public TextField iN_krkOETK;
-    @FXML
-    public TextField iN_kp2dOETK;
-    @FXML
-    public TextField iN_kp2lOETK;
-
-    @FXML
-    public ToggleGroup choiseTypeKA;
-    @FXML
-    public RadioButton iN_smmal_KA;
-    @FXML
-    public RadioButton iN_big_KA;
-    @FXML
-    public RadioButton iN_middle_KA;
-
-    @FXML
-    public Button bt_calcul_OETK;
-
-    /**
-     * таба СГК
-     */
-    @FXML
-    public Tab tab_SGK;
-    @FXML
-    public AnchorPane pane_startData_SGK;
-    @FXML
-    public AnchorPane pane_finishData_SGK;
-
-    @FXML
-    public TextField iN_Pr1;
-    @FXML
-    public TextField iN_Tzr;
-    @FXML
-    public TextField iN_uKA;
-    @FXML
-    public TextField iN_wPrez;
-    @FXML
-    public TextField iN_wRGP;
-    @FXML
-    public TextField iN_plRGP;
-    @FXML
-    public TextField iN_kmGP_RGP;
-    @FXML
-    public TextField iN_kmEB_mGP;
-    @FXML
-    public TextField iN_uW_SGK;
-    @FXML
-    public TextField iN_pEB;
-
-    @FXML
-    public Label ouT_t1;
-    @FXML
-    public Label ouT_eKA;
-    @FXML
-    public Label ouT_wKA;
-    @FXML
-    public Label ouT_umKA;
-    @FXML
-    public Label ouT_kmKA;
-    @FXML
-    public Label ouT_kmRGP;
-    @FXML
-    public Label ouT_JRGP;
-    @FXML
-    public Label ouT_rRGP;
-    @FXML
-    public Label ouT_vRGP;
-    @FXML
-    public Label ouT_mRGP;
-    @FXML
-    public Label ouT_mGP;
-    @FXML
-    public Label ouT_mEB;
-    @FXML
-    public Label ouT_mEB_GP;
-    @FXML
-    public Label ouT_mSGK;
-    @FXML
-    public Label ouT_vGP;
-    @FXML
-    public Label ouT_vEB;
-    @FXML
-    public Label ouT_wSGK;
-    @FXML
-    public Label ouT_dGP;
-
-    @FXML
-    public Button bt_calcul_SGK;
-    @FXML
-    public RadioButton typeSgk;
-    @FXML
-    public RadioButton typeDm;
-    @FXML
-    public RadioButton typeBdus;
-    @FXML
-    public RadioButton typeLg;
-    @FXML
-    public Label labelNonAcces;
-
+    public MenuItem btSaveProject;
 
     private ValidateRestriction validateRestriction;
     private Calculation<DataSimpleCalculation> calculationSimp;
     private Calculation<DataCommonParameters> calculationSimpSintez;
     private Calculation<DataOETK> calculationOETK;
     private Calculation<DataSudSGK> calculationSGK;
-    private CalculationKA calculationKA;
+    private Calculation<DataSPPE> calculationSPPE;
+    private Calculation<DataVRL> calculationVRL;
+    private Calculation<DataOtherCA> calculationOtherCA;
+    private Calculation<DataCa> calculationCA;
+    private Calculation<DataSSKM> calculationSSKM;
+    private Calculation<DataSTKRP> calculationSTKRP;
+    private Calculation<DataBAKES> calculationBAKES;
+    private Calculation<DataBETS> calculationBETS;
+    private Calculation<DataBVS> calculationBVS;
+    private Calculation<DataOtherBKU> calculationOtherBKU;
+    private Calculation<DataBKU> calculationBKU;
+    private Calculation<DataPasivSOTR> calculationPasivSOTR;
+    private Calculation<DataActivSOTR> calculationActivSOTR;
+    private Calculation<DataSOTR> calculationSOTR;
+    private Calculation<DataElectHaraktSEP> calculationElectrTehnSEP;
+    private Calculation<DataAcumBetSEP> calculationAcumBet;
+    private Calculation<DataKAS> calculationKAS;
+    private Calculation<DataSumBetSEP> calculationSUNbet;
+    private Calculation<DataSpeed> calculationSpeed;
+    private Calculation<DataMassTopl> calculationMTop;
+    private Calculation<DataKDU> calculationKDU;
+    private Calculation<DataKonstrKA> calculationKonstrKA;
+    private Calculation<DataBKSandAFU> calculationBKSandAFU;
+    private Calculation<DataOtherKA> calculationOtherKA;
+    private Calculation<DataRezervKA> calculationRezerv;
 
     private DataSimpleCalculation dataSimpleCalculation = new DataSimpleCalculation();
 
     private static List<String> messConsoleSimple = new ArrayList<>();
     private static List<String> messConsoleSintez = new ArrayList<>();
+    private String pathOpenFile;
+    private Desktop desktop = Desktop.getDesktop();
+
+    private static ControllerAssembly controllerAssembly;
+
+    public static ControllerAssembly getInstance() {
+        return controllerAssembly;
+    }
 
     /**
      * Метод инициализации окна.
@@ -408,7 +83,34 @@ public class ControllerAssembly {
         calculationSimpSintez = new CalculationSimpleSintez();
         calculationOETK = new CalculationOETK();
         calculationSGK = new CalculationSGK();
-        calculationKA = CalculationKA.getInstance();
+        calculationSPPE = new CalculationSPPE();
+        calculationVRL = new CalculationVRL();
+        calculationOtherCA = new CalculationOtherCA();
+        calculationCA = new CalculationCa();
+        calculationSSKM = new CalculationSSKM();
+        calculationSTKRP = new CalculationSTKRP();
+        calculationBAKES = new CalculationBAKES();
+        calculationBETS = new CalculationBETS();
+        calculationBVS = new CalculationBVS();
+        calculationOtherBKU = new CalculationOtherBKU();
+        calculationBKU = new CalculationBKU();
+        calculationPasivSOTR = new CalculationPasivSOTR();
+        calculationActivSOTR = new CalculationActivSOTR();
+        calculationSOTR = new CalculationSOTR();
+        calculationElectrTehnSEP = new CalculationElectHaraktSEP();
+        calculationAcumBet = new CalculationAcumBetSEP();
+        calculationKAS = new CalculationKAS();
+        calculationSUNbet = new CalculationSumBetSEP();
+        calculationSpeed = new CalculationSpeed();
+        calculationMTop = new CalculationMassTopl();
+        calculationKDU = new CalculationKDU();
+        calculationKonstrKA = new CalculationKonstrKA();
+        calculationBKSandAFU = new CalkulationBKSandAFU();
+        calculationOtherKA = new CalculationOtherKA();
+        calculationRezerv = new CalculationRezervKA();
+
+        controllerAssembly = this;
+
         calculationSumBs();
     }
 
@@ -669,220 +371,86 @@ public class ControllerAssembly {
         }
     }
 
-    /**
-     * Выбор формы на вкладке ОГРАНИЧЕНИЯ - синтез (есть ограничения, нету)
-     *
-     * @param actionEvent
-     */
-    public void choiseActionHaveRestriction(ActionEvent actionEvent) {
-        if (isHaveRestriction.isSelected()) {
-            paneRestriction.setVisible(true);
-            paneStartDataRestriction.setVisible(false);
-            paneRestrictionCalculation.setVisible(true);
-        } else {
-            paneRestriction.setVisible(false);
-            paneStartDataRestriction.setVisible(true);
-            paneRestrictionCalculation.setVisible(false);
-        }
-    }
-
-
     //sintez
-
-    /**
-     * показать результаты прикидочного расчета
-     */
-    private void showSimpleSintezResult() {
-        ouT_dKA0.setText(String.valueOf(calculationKA.getDataCommonParameters().dKA0));
-        ouT_lKA0.setText(String.valueOf(calculationKA.getDataCommonParameters().lKA0));
-        ouT_splkKA0.setText(String.valueOf(calculationKA.getDataCommonParameters().splkKA0));
-        ouT_jKA0.setText(String.valueOf(calculationKA.getDataCommonParameters().jKA0));
-        ouT_vKA0.setText(String.valueOf(calculationKA.getDataCommonParameters().vKA0));
-    }
-
-    /**
-     * показать результаты ОЕТК
-     */
-    private void showOetkResult() {
-        ouT_fOETK.setText(String.valueOf(calculationKA.getDataOETK().fOETK));
-        ouT_lOETK.setText(String.valueOf(calculationKA.getDataOETK().lOETK));
-        ouT_mOETK.setText(String.valueOf(calculationKA.getDataOETK().mOETK));
-        ouT_vOETK.setText(String.valueOf(calculationKA.getDataOETK().vOETK));
-        ouT_jOETK.setText(String.valueOf(calculationKA.getDataOETK().jOETK));
-        ouT_wOETK.setText(String.valueOf(calculationKA.getDataOETK().wOETK));
-        ouT_dkSO_OETK.setText(String.valueOf(calculationKA.getDataOETK().dkSO_OETK));
-        ouT_lkSO_OETK.setText(String.valueOf(calculationKA.getDataOETK().lkSO_OETK));
-        ouT_vkSO_OETK.setText(String.valueOf(calculationKA.getDataOETK().vkSO_OETK));
-        ouT_dOETK.setText(String.valueOf(calculationKA.getDataOETK().dOETK));
-    }
-
-    /**
-     * показать результаты ОЕТК
-     */
-    private void showSgkResult() {
-        ouT_t1.setText(String.valueOf(calculationKA.getDataSudSGK().t1));
-        ouT_eKA.setText(String.valueOf(calculationKA.getDataSudSGK().eKA));
-        ouT_wKA.setText(String.valueOf(calculationKA.getDataSudSGK().wKA));
-        ouT_umKA.setText(String.valueOf(calculationKA.getDataSudSGK().umKA));
-        ouT_kmKA.setText(String.valueOf(calculationKA.getDataSudSGK().kmKA));
-        ouT_kmRGP.setText(String.valueOf(calculationKA.getDataSudSGK().kmRGP));
-        ouT_JRGP.setText(String.valueOf(calculationKA.getDataSudSGK().JRGP));
-
-        ouT_rRGP.setText(String.valueOf(calculationKA.getDataSudSGK().rRGP));
-        ouT_vRGP.setText(String.valueOf(calculationKA.getDataSudSGK().vRGP));
-        ouT_mRGP.setText(String.valueOf(calculationKA.getDataSudSGK().mRGP));
-        ouT_mGP.setText(String.valueOf(calculationKA.getDataSudSGK().mGP));
-
-        ouT_mEB.setText(String.valueOf(calculationKA.getDataSudSGK().mEB));
-        ouT_mEB_GP.setText(String.valueOf(calculationKA.getDataSudSGK().mEB_GP));
-        ouT_mSGK.setText(String.valueOf(calculationKA.getDataSudSGK().mSGK));
-
-        ouT_vGP.setText(String.valueOf(calculationKA.getDataSudSGK().vGP));
-        ouT_vEB.setText(String.valueOf(calculationKA.getDataSudSGK().vEB));
-        ouT_wSGK.setText(String.valueOf(calculationKA.getDataSudSGK().wSGK));
-        ouT_dGP.setText(String.valueOf(calculationKA.getDataSudSGK().dGP));
-    }
-
-    /**
-     * ввод Ограничения
-     *
-     * @return
-     */
-    private boolean validateSimpleSintez() {
-        try {
-            calculationKA.getDataCommonParameters().isHaveRestriction = isHaveRestriction.isSelected();
-            if (isHaveRestriction.isSelected()) {
-                calculationKA.getDataCommonParameters().mKA0 = ValidateValue.conversionTextToFloat(iN_mKA0.getText());
-                calculationKA.getDataCommonParameters().dzPN0 = ValidateValue.conversionTextToFloat(iN_dzPN0.getText());
-                calculationKA.getDataCommonParameters().lzPN0 = ValidateValue.conversionTextToFloat(iN_lzPN0.getText());
-                calculationKA.getDataCommonParameters().knzpOBT = ValidateValue.conversionTextToFloat(iN_knzpOBT.getText());
-                calculationKA.getDataCommonParameters().krkKA = ValidateValue.conversionTextToFloat(iN_krkKA.getText());
-                calculationKA.getDataCommonParameters().kpoPO = ValidateValue.conversionTextToFloat(String.valueOf(iN_kpoPO.getText()));
-            } else {
-                calculationKA.getDataCommonParameters().udlKA = ValidateValue.conversionTextToFloat(iN_nonRes_udlKA.getText());
-                calculationKA.getDataCommonParameters().krkKA = ValidateValue.conversionTextToFloat(iN_nonRes_krkKA.getText());
-                calculationKA.getDataCommonParameters().kpoPO = ValidateValue.conversionTextToFloat(String.valueOf(iN_nonRes_kpoPO.getValue()));
-            }
-        } catch (Exception e) {
-            addMessInConsoleSintez(MessegeType.ERROR, "Ошибка введеных данных.", TabTypeSintez.RESTRICTION);
-            return false;
-        }
-        return true;
-    }
-
-    /**
-     * ввод ОЭТК
-     * @return
-     */
-    private boolean validateOETK() {
-        try {
-            calculationKA.getDataOETK().Det = ValidateValue.conversionTextToFloat(iN_Det.getText());
-            calculationKA.getDataOETK().H = ValidateValue.conversionTextToFloat(iN_H.getText());
-            calculationKA.getDataOETK().rELPZS = ValidateValue.conversionTextToFloat(iN_rELPZS.getText());
-            calculationKA.getDataOETK().kUD = ValidateValue.conversionTextToFloat(iN_kUD.getText());
-            calculationKA.getDataOETK().oO = ValidateValue.conversionTextToFloat(iN_oO.getText());
-            calculationKA.getDataOETK().plOETK = ValidateValue.conversionTextToFloat(iN_plOETK.getText());
-            calculationKA.getDataOETK().uwOETK = ValidateValue.conversionTextToFloat(iN_uwOETK.getText());
-            calculationKA.getDataOETK().krkOETK = ValidateValue.conversionTextToFloat(iN_krkOETK.getText());
-            calculationKA.getDataOETK().kp2dOETK = ValidateValue.conversionTextToFloat(iN_kp2dOETK.getText());
-            calculationKA.getDataOETK().kp2lOETK = ValidateValue.conversionTextToFloat(iN_kp2lOETK.getText());
-
-            if (iN_smmal_KA.isSelected()) {
-                calculationKA.getDataOETK().typeKA = TypeKa.SAMLL;
-            } else if (iN_middle_KA.isSelected()) {
-                calculationKA.getDataOETK().typeKA = TypeKa.MIDDLE;
-            } else if (iN_big_KA.isSelected()) {
-                calculationKA.getDataOETK().typeKA = TypeKa.BIG;
-            }
-
-        } catch (Exception e) {
-            addMessInConsoleSintez(MessegeType.ERROR, "Ошибка введеных данных.", TabTypeSintez.OETK);
-            return false;
-        }
-        return true;
-    }
-
-    /**
-     * ввод СГК
-     * @return
-     */
-    private boolean validateSGK() {
-        try {
-            calculationKA.getDataSudSGK().Pr1 = ValidateValue.conversionTextToFloat(iN_Pr1.getText());
-            calculationKA.getDataSudSGK().Tzr = ValidateValue.conversionTextToFloat(iN_Tzr.getText());
-            calculationKA.getDataSudSGK().uKA = ValidateValue.conversionTextToFloat(iN_uKA.getText());
-            calculationKA.getDataSudSGK().wPrez = ValidateValue.conversionTextToFloat(iN_wPrez.getText());
-            calculationKA.getDataSudSGK().wRGP = ValidateValue.conversionTextToFloat(iN_wRGP.getText());
-            calculationKA.getDataSudSGK().plRGP = ValidateValue.conversionTextToFloat(iN_plRGP.getText());
-            calculationKA.getDataSudSGK().kmGP_RGP = ValidateValue.conversionTextToFloat(iN_kmGP_RGP.getText());
-            calculationKA.getDataSudSGK().kmEB_mGP = ValidateValue.conversionTextToFloat(iN_kmEB_mGP.getText());
-            calculationKA.getDataSudSGK().uW_SGK = ValidateValue.conversionTextToFloat(iN_uW_SGK.getText());
-            calculationKA.getDataSudSGK().pEB = ValidateValue.conversionTextToFloat(iN_pEB.getText());
-        } catch (Exception e) {
-            addMessInConsoleSintez(MessegeType.ERROR, "Ошибка введеных данных.", TabTypeSintez.SUD_SGK);
-            return false;
-        }
-        return true;
-    }
 
 
     /**
      * Кнопка расчет прикидочный - синтез
+     *
      * @param actionEvent
      */
     public void actionCal_Restriction(ActionEvent actionEvent) {
         try {
-            if (validateSimpleSintez()){
-                calculationSimpSintez.calculation(calculationKA.getDataCommonParameters());
+            if (validateSimpleSintez()) {
+                calculationSimpSintez.calculation(CalculationKA.getInstance().getDataCommonParameters());
                 showSimpleSintezResult();
             }
         } catch (Exception e) {
-            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR,"Не верно введенные данные!", TabTypeSintez.RESTRICTION);
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.RESTRICTION);
         }
         showConsoleSintezDebug();
     }
 
     /**
      * Кнопка ОЕТК - синтез
+     *
      * @param actionEvent
      */
     public void actionCal_OETK(ActionEvent actionEvent) {
         try {
-            if (validateOETK()){
-                calculationOETK.calculation(calculationKA.getDataOETK());
+            if (validateOETK()) {
+                calculationOETK.calculation(CalculationKA.getInstance().getDataOETK());
                 showOetkResult();
             }
         } catch (Exception e) {
-            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR,"Не верно введенные данные!", TabTypeSintez.OETK);
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.OETK);
         }
         showConsoleSintezDebug();
     }
 
     /**
      * Кнопка расчет СГК - синтез
+     *
      * @param actionEvent
      */
     public void actionCal_SGK(ActionEvent actionEvent) {
         try {
-            if (validateSGK()){
-                calculationSGK.calculation(calculationKA.getDataSudSGK());
+            if (validateSGK()) {
+                calculationSGK.calculation(CalculationKA.getInstance().getDataSudSGK());
                 showSgkResult();
             }
         } catch (Exception e) {
-            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR,"Не верно введенные данные!", TabTypeSintez.SUD_SGK);
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.SUD_SGK);
         }
         showConsoleSintezDebug();
     }
 
 
     private void showConsoleSintezDebug() {
+        consoleSimple.clear();
         for (String error : messConsoleSintez) {
-            consoleSimple.setText(consoleSimple.getText() + "\n" + error);
+            if (consoleSimple.getText()== null || "".equals(consoleSimple.getText())){
+                consoleSimple.setText(error);
+            }else {
+                consoleSimple.setText(consoleSimple.getText() + "\n" + error);
+            }
         }
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                consoleSimple.scrollTopProperty().set(1000000);
+            }
+        });
+        thread.start();
     }
 
     public void actionSelectTypeSGK(ActionEvent actionEvent) {
-        if (!typeSgk.isSelected()||!typeBdus.isSelected()){
+        if (!typeSgk.isSelected() || !typeBdus.isSelected()) {
             pane_startData_SGK.setVisible(false);
             pane_finishData_SGK.setVisible(false);
             labelNonAcces.setVisible(true);
@@ -897,5 +465,406 @@ public class ControllerAssembly {
         messConsoleSintez.clear();
         messConsoleSimple.clear();
         consoleSimple.clear();
+    }
+
+    public void actionCal_SPPE(ActionEvent actionEvent) {
+        try {
+            if (validateSPPE()) {
+                calculationSPPE.calculation(CalculationKA.getInstance().getDataSPPE());
+                showSPEEResult();
+            }
+        } catch (Exception e) {
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.SPPE);
+        }
+        showConsoleSintezDebug();
+    }
+
+    public void actionCal_VRL(ActionEvent actionEvent) {
+        try {
+            if (validateVRL()) {
+                calculationVRL.calculation(CalculationKA.getInstance().getDataVRL());
+                showVRLResult();
+            }
+        } catch (Exception e) {
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.VRL);
+        }
+        showConsoleSintezDebug();
+    }
+
+    public void actionCal_OtherCa(ActionEvent actionEvent) {
+        try {
+            if (validateOtherCA()) {
+                calculationOtherCA.calculation(CalculationKA.getInstance().getDataOtherCA());
+                showOtherCAResult();
+            }
+        } catch (Exception e) {
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.OTHER_ELEMENTS_CA);
+        }
+        showConsoleSintezDebug();
+    }
+
+    public void actionCal_CA(ActionEvent actionEvent) {
+        try {
+            calculationCA.calculation(CalculationKA.getInstance().getDataCa());
+            showCAResult();
+        } catch (Exception e) {
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.CA);
+        }
+        showConsoleSintezDebug();
+    }
+
+    public void bt_calcul_SSKM(ActionEvent actionEvent) {
+        try {
+            if (validateSSKM()) {
+                calculationSSKM.calculation(CalculationKA.getInstance().getDataSSKM());
+                showSSKMResult();
+            }
+        } catch (Exception e) {
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.SUD_SSKM);
+        }
+        showConsoleSintezDebug();
+    }
+
+    public void bt_calcul_STKRP(ActionEvent actionEvent) {
+        try {
+            if (validateSTKRP()) {
+                calculationSTKRP.calculation(CalculationKA.getInstance().getDataSTKRP());
+                showSTKRPResult();
+            }
+        } catch (Exception e) {
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.STKRP);
+        }
+        showConsoleSintezDebug();
+    }
+
+    public void bt_calcul_BAKES(ActionEvent actionEvent) {
+        try {
+            if (validateBAKES()) {
+                calculationBAKES.calculation(CalculationKA.getInstance().getDataBAKES());
+                showKISResult();
+            }
+        } catch (Exception e) {
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.BAKIS);
+        }
+        showConsoleSintezDebug();
+    }
+
+    public void bt_calcul_BETS(ActionEvent actionEvent) {
+        try {
+            if (validateBETS()) {
+                calculationBETS.calculation(CalculationKA.getInstance().getDataBETS());
+                showBETSResult();
+            }
+        } catch (Exception e) {
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.BETS);
+        }
+        showConsoleSintezDebug();
+    }
+
+    public void bt_calcul_BVS(ActionEvent actionEvent) {
+        try {
+            if (validateBVS()) {
+                calculationBVS.calculation(CalculationKA.getInstance().getDataBVS());
+                showBVSResult();
+            }
+        } catch (Exception e) {
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.BVS);
+        }
+        showConsoleSintezDebug();
+    }
+
+    public void bt_calcul_OtherBKU(ActionEvent actionEvent) {
+        try {
+            if (validateOtherBKU()) {
+                calculationOtherBKU.calculation(CalculationKA.getInstance().getDataOtherBKU());
+                showOtherBKUResult();
+            }
+        } catch (Exception e) {
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.OTHER_ELEMENTS_BKU);
+        }
+        showConsoleSintezDebug();
+    }
+
+    public void bt_calcul_BKU(ActionEvent actionEvent) {
+        try {
+                calculationBKU.calculation(CalculationKA.getInstance().getDataBKU());
+                showBKUResult();
+        } catch (Exception e) {
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.BKU);
+        }
+        showConsoleSintezDebug();
+    }
+
+    public void bt_calcul_PasivSOTR(ActionEvent actionEvent) {
+        try {
+            if (validatePasivSOTR()) {
+                calculationPasivSOTR.calculation(CalculationKA.getInstance().getDataPasivSOTR());
+                showPasivSOTRResult();
+            }
+        } catch (Exception e) {
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.PASSIV_ELEMENT_SOTR);
+        }
+        showConsoleSintezDebug();
+    }
+
+    public void bt_calcul_ActivSOTR(ActionEvent actionEvent) {
+        try {
+            if (validateActivSOTR()) {
+                calculationActivSOTR.calculation(CalculationKA.getInstance().getDataActivSOTR());
+                showActivSOTRResult();
+            }
+        } catch (Exception e) {
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.ACTIV_ELEMENT_SOTR);
+        }
+        showConsoleSintezDebug();
+    }
+
+    public void bt_calcul_SOTR(ActionEvent actionEvent) {
+        try {
+                calculationSOTR.calculation(CalculationKA.getInstance().getDataSOTR());
+                showSOTRResult();
+        } catch (Exception e) {
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.SOTR);
+        }
+        showConsoleSintezDebug();
+    }
+
+    public void bt_calcul_electrTehnSEP(ActionEvent actionEvent) {
+        try {
+            if (validateElectTehHarakSEP()) {
+                calculationElectrTehnSEP.calculation(CalculationKA.getInstance().getDataElectHaraktSEP());
+                showElectTehHarakSEPResult();
+            }
+        } catch (Exception e) {
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.ELECTROTEH_PARAM);
+        }
+        showConsoleSintezDebug();
+    }
+
+    public void bt_calcul_AcumBet(ActionEvent actionEvent) {
+        try {
+            if (validateAcumBat()) {
+                calculationAcumBet.calculation(CalculationKA.getInstance().getDataAcumBetSEP());
+                showAcumBat();
+            }
+        } catch (Exception e) {
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.AKUM_BATTERIES);
+        }
+        showConsoleSintezDebug();
+    }
+
+    public void bt_calcul_KAS(ActionEvent actionEvent) {
+        try {
+            if (validateKAS()) {
+                calculationKAS.calculation(CalculationKA.getInstance().getDataKAS());
+                showKAS();
+            }
+        } catch (Exception e) {
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.KAS);
+        }
+        showConsoleSintezDebug();
+    }
+
+    public void bt_calcul_SunBet(ActionEvent actionEvent) {
+        try {
+            if (validateSunBet()) {
+                calculationSUNbet.calculation(CalculationKA.getInstance().getDataSumBetSEP());
+                showSunBet();
+            }
+        } catch (Exception e) {
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.SUN_BATTERIES);
+        }
+        showConsoleSintezDebug();
+    }
+
+    public void bt_calcul_speed(ActionEvent actionEvent) {
+        try {
+            if (validateSpeed()) {
+                calculationSpeed.calculation(CalculationKA.getInstance().getDataSpeed());
+                showSpeed();
+            }
+        } catch (Exception e) {
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.SPEED);
+        }
+        showConsoleSintezDebug();
+    }
+
+    public void bt_calcul_mTop(ActionEvent actionEvent) {
+        try {
+            if (validateMassTopl()) {
+                calculationMTop.calculation(CalculationKA.getInstance().getDataMassTopl());
+                showMassTopl();
+            }
+        } catch (Exception e) {
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.MASS_TOPLIVA);
+        }
+        showConsoleSintezDebug();
+    }
+
+    public void bt_calcul_KDU(ActionEvent actionEvent) {
+        try {
+            if (validateKDU()) {
+                calculationKDU.calculation(CalculationKA.getInstance().getDataKDU());
+                showKDU();
+            }
+        } catch (Exception e) {
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.MASOGABARITN_AND_ENERGET_PARAMETERS);
+        }
+        showConsoleSintezDebug();
+    }
+
+    public void bt_calcul_konstr(ActionEvent actionEvent) {
+        try {
+            if (validateKonstrKA()) {
+                calculationKonstrKA.calculation(CalculationKA.getInstance().getDataKonstrKA());
+                showKonstrKA();
+            }
+        } catch (Exception e) {
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.KONSTR);
+        }
+        showConsoleSintezDebug();
+    }
+
+    public void bt_calcul_BKSandAFU(ActionEvent actionEvent) {
+        try {
+            if (validateBKSandAFU()) {
+                calculationBKSandAFU.calculation(CalculationKA.getInstance().getDataBKSandAFU());
+                showBKSandAFU();
+            }
+        } catch (Exception e) {
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.BKS_AND_AFU);
+        }
+        showConsoleSintezDebug();
+    }
+
+    public void bt_calcul_OtherKA(ActionEvent actionEvent) {
+        try {
+            if (validateOtherKA()) {
+                calculationOtherKA.calculation(CalculationKA.getInstance().getDataOtherKA());
+                showOtherKA();
+            }
+        } catch (Exception e) {
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.OTHER_ELEMENT_KA);
+        }
+        showConsoleSintezDebug();
+    }
+
+    public void bt_calcul_Rezerv(ActionEvent actionEvent) {
+        try {
+            if (validateRezerv()) {
+                calculationRezerv.calculation(CalculationKA.getInstance().getDataRezervKA());
+                showRezerv();
+            }
+        } catch (Exception e) {
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.RETHERV);
+        }
+        showConsoleSintezDebug();
+    }
+
+    public void bt_calcul_Rezult_all(ActionEvent actionEvent) {
+        try {
+                CalculationKA.getInstance().calculation(new Object());
+                showSinezKA();
+        } catch (Exception e) {
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Неизвестная ошибка", TabTypeSintez.RESULT);
+        }
+        showConsoleSintezDebug();
+    }
+
+    public void actionTest(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();//Класс работы с диалогом выборки и сохранения
+        fileChooser.setTitle("Save Document");//Заголовок диалога
+        FileChooser.ExtensionFilter extFilter =
+                new FileChooser.ExtensionFilter("project", "*.sintez");//Расширение
+        fileChooser.getExtensionFilters().add(extFilter);
+        File file = fileChooser.showSaveDialog(Main.getStage());
+    }
+
+    private void updateSaveBt () {
+        if (pathOpenFile == null){
+            btSaveProject.setDisable(true);
+        }else {
+            btSaveProject.setDisable(false);
+        }
+    }
+
+    public void actionNewProject(ActionEvent actionEvent) {
+        pathOpenFile = null;
+        CalculationKA.getInstance().init();
+        updateSaveBt();
+        showALL();
+        startShowALL();
+        showInfo("Новый проект создан.");
+    }
+
+    public void actionOpenProject(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Project");//Заголовок диалога
+
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("sintez", "*.sintez"));
+        File file = fileChooser.showOpenDialog(Main.getStage());
+        if (file!= null){
+            System.out.println("!!!"+file.getName());
+            if (file.getName().contains(".sintez")){
+                SaveXmlObject<CalculationKA> saveXmlObject = new SaveXmlObject<>();
+                try {
+                    CalculationKA calculationKA = (CalculationKA) saveXmlObject.readObject(file,CalculationKA.class);
+                    CalculationKA.setKA(calculationKA);
+                    showALL();
+                    startShowALL();
+                    showInfo("Проект открыт");
+                } catch (JAXBException e) {
+                    showError("Этот файл не поддерживается\nВыберите файл с расширением .sintez");
+                }
+            }else {
+                showError("Этот файл не поддерживается\nВыберите файл с расширением .sintez");
+            }
+        }
+
+    }
+
+    public void actionSaveProject(ActionEvent actionEvent) {
+    }
+
+    public void actionSaveAsProject(ActionEvent actionEvent) {
+        try {
+            FileChooser fileChooser = new FileChooser();//Класс работы с диалогом выборки и сохранения
+            fileChooser.setTitle("Save Document");//Заголовок диалога
+            FileChooser.ExtensionFilter extFilter =
+                    new FileChooser.ExtensionFilter("sintez", "*.sintez");//Расширение
+            fileChooser.getExtensionFilters().add(extFilter);
+            File file = fileChooser.showSaveDialog(Main.getStage());
+            if (file!=null) {
+                SaveXmlObject<CalculationKA> saveXmlObject = new SaveXmlObject<>();
+                saveXmlObject.saveObject(file, CalculationKA.getInstance());
+                showInfo("Проект сохранен.");
+            }
+        }catch (Exception e) {
+            showError("Не удалось сохранить.");
+        }
+    }
+
+    public void actionCloseProject(ActionEvent actionEvent) {
+    }
+
+    public void actionQuit(ActionEvent actionEvent) {
+        System.exit(0);
+    }
+
+    public static void showInfo (String mess) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText(null);
+        alert.setContentText(mess);
+        alert.showAndWait();
+    }
+
+    public static void showError (String mess) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText(mess);
+        alert.showAndWait();
     }
 }

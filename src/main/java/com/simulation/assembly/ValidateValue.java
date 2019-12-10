@@ -22,10 +22,14 @@ public class ValidateValue {
      * @return
      */
     public static Float conversionTextToFloat (String text){
+        if (text.equals("")){
+            return 0f;
+        }
         if (text.contains(",")){
             String[] textArray = text.split(",");
             text = textArray[0]+"."+textArray[1];
         }
+
         return Float.parseFloat(text);
     }
 

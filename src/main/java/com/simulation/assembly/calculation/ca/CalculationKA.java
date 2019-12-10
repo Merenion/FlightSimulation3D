@@ -5,6 +5,14 @@ import com.simulation.assembly.MessegeType;
 import com.simulation.assembly.calculation.Calculation;
 import com.simulation.assembly.dataCalculation.sintez.*;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "CalculationKA")
 public class CalculationKA implements Calculation {
 
     private static CalculationKA singl;
@@ -33,8 +41,12 @@ public class CalculationKA implements Calculation {
     private DataSpeed dataSpeed;
     private DataMassTopl dataMassTopl;
     private DataKDU dataKDU;
+    private DataKonstrKA dataKonstrKA;
+    private DataBKSandAFU dataBKSandAFU;
+    private DataOtherKA dataOtherKA;
+    private DataRezervKA dataRezervKA;
 
-    private CalculationKA() {
+    public CalculationKA() {
         init();
     }
 
@@ -44,71 +56,65 @@ public class CalculationKA implements Calculation {
                 //Масса целевой аппаратуры, кг
                 +dataOETK.mOETK                                      //Масса ОЭТК, кг
                         +dataSPPE.mSPPI                                      //Масса СППИ
-//                        +mVRL                                       //Масса ВРЛ
-//                        +mPrZA                                      //Масса прочих элементов ЦА
-                        //Масса БКУ, кг
+                        +dataVRL.mVRL                                       //Масса ВРЛ
+                        +dataOtherCA.mPrZA                                      //Масса прочих элементов ЦА
+//                        Масса БКУ, кг
                         + dataSudSGK.mSGK                                       //Масса СГК
                         + dataSSKM.mSSKM                                      //Масса ССКМ, кг
-//                        +mSTKRP                                     //Масса СТКРП, кг
-//                        +mKIS                                       //Масса КИС, кг
-//                        +mBITS                                      //Масса БИТС, кг
-//                        +mBVS                                       //Масса КИС, кг
-//                        +mPrBKU                                     //Масса прочих элементов БКУ
+                        +dataSTKRP.mSTKRP                                     //Масса СТКРП, кг
+                        +dataBAKES.mKIS                                       //Масса КИС, кг
+                        +dataBETS.mBITS                                      //Масса БИТС, кг
+                        +dataBVS.mBVS                                       //Масса КИС, кг
+                        +dataOtherBKU.mPrBKU                                     //Масса прочих элементов БКУ
 //                        Масса СОТР
-//                        +mEVTI                                         //Масса ЭВТИ, кг
-//                        +mSTR                                          //Масса СТР, кг
+                        +dataPasivSOTR.mEVTI                                         //Масса ЭВТИ, кг
+                        +dataActivSOTR.mSTR                                          //Масса СТР, кг
 //                        Масса СЭП
-//                        +mAB                                           //Масса всех АБ, кг
-//                        +mKASsum   //Суммарная масса КАС с корпусными частями и проч. эл-тами
-//                        +mPSB                                          //Масса панелей СБ
+                        +dataAcumBetSEP.mAB                                           //Масса всех АБ, кг
+                        +dataKAS.mKASsum   //Суммарная масса КАС с корпусными частями и проч. эл-тами
+                        +dataSumBetSEP.mPSB                                          //Масса панелей СБ
 //                        Масса КДУ
-//                        +mTKDU                                         //Масса топлива КДУ
-//                        +mkKDU                                         //Масса конструкции КДУ
-//                        +mkKA                                          //Масса конструкции КА
-//                        +mBKS_AFU                                     //Масса БКС и АФУ, кг
-//                        +mPrKA
-//                        +mRmKA
+                        +dataMassTopl.mTKDU                                         //Масса топлива КДУ
+                        +dataKDU.mkKDU                                         //Масса конструкции КДУ
+                        +dataKonstrKA.mkKA                                          //Масса конструкции КА
+                        +dataBKSandAFU.mBKS_AFU                                     //Масса БКС и АФУ, кг
+                        +dataOtherKA.mPrKA
+                        +dataRezervKA.mRmKA
         ;
-
-        if (dataCommonParameters.mKA == 0) {
-            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не один из компонентов КА не расчитан");
-        }
 
         //Расчет текущих объемов КА
         dataCommonParameters.vKA =
                 +dataOETK.vkSO_OETK                             //Объем корпуса спецотсека КА
                 +(dataSPPE.vSPPI                                 //Объем СППИ
-//                +vVRL                                  //Объем ВРЛ
-//                +vPrZA                                 //Объем прочих элементов ЦА
-                        //Масса БКУ, кг
+                +dataVRL.vVRL                                  //Объем ВРЛ
+                +dataOtherCA.vPrZA                                 //Объем прочих элементов ЦА
+//                        Масса БКУ, кг
                         + dataSudSGK.vSGK                                  //Объем СГК
                         + dataSSKM.vSSKM                                 //Объем ССКМ, м3
-//                +vSTKRP                                 //Объем СТКРП, м3
-//                +vKIS                                   //Объем КИС, м3
-//                +vBITS                                  //Объем БИТС, м3
-//                +vBVS                                   //Объем КИС, м3
-//                +vPrBKU)                                 //Объем прочих элементов БКУ
-//                /(kpoPO/100)
-        //Объем СОТР
-//                +vEVTI                                  //Объем ЭВТИ, м3
-//                +vSTR                                   //Объем СОТР, м3
-//                /(kpoPO/100)
-        //объем СЭП
-//                +vAB                                    //Объем всех АБ
-//                +vKASsum         //Объем КАС с учетом корпусных частей и прочих элементов
-//                /(kpoPO/100)
-//                +V_OKA_KDU       //Объем Отсека КА, где располагается КДУ
-//                +vkKA                                   //Объем конструкции КА
-//                +(vBKS_AFU
-//                +vPrKA
-//                +vRmKA)                              //Объем БКС и АФУ, м3
-//                /(kpoPO/100)
-                )
-        ;
+                +dataSTKRP.vSTKRP                                 //Объем СТКРП, м3
+                +dataBAKES.vKIS                                   //Объем КИС, м3
+                +dataBETS.vBITS                                  //Объем БИТС, м3
+                +dataBVS.vBVS                                   //Объем КИС, м3
+                +dataOtherBKU.vPrBKU)                                 //Объем прочих элементов БКУ
+                /(dataCommonParameters.kpoPO/100)
+//        Объем СОТР
+                +dataPasivSOTR.vEVTI                                  //Объем ЭВТИ, м3
+                +dataActivSOTR.vSTR                                   //Объем СОТР, м3
+                /(dataCommonParameters.kpoPO/100)
+//        объем СЭП
+                +dataAcumBetSEP.vAB                                    //Объем всех АБ
+                +dataKAS.vKASsum         //Объем КАС с учетом корпусных частей и прочих элементов
+                /(dataCommonParameters.kpoPO/100)
+                +dataKDU.V_OKA_KDU       //Объем Отсека КА, где располагается КДУ
+                +dataKonstrKA.vkKA                                   //Объем конструкции КА
+                +(dataBKSandAFU.vBKS_AFU
+                +dataOtherKA.vPrKA
+                +dataRezervKA.vRmKA)                              //Объем БКС и АФУ, м3
+                /(dataCommonParameters.kpoPO/100);
 
         //Расчет текущих габаритов КА
         //Расчет среднего диаметра КА
-        dataCommonParameters.dKA = (float) Math.exp((1 / 3) * Math.log(4 * dataCommonParameters.vKA / (Math.PI * dataCommonParameters.udlKA)));
+        dataCommonParameters.dKA = (float) Math.exp((1f / 3f) * Math.log(4 * dataCommonParameters.vKA / (Math.PI * dataCommonParameters.udlKA)));
         //Расчет средней длины КА
         dataCommonParameters.lKA = dataCommonParameters.dKA * dataCommonParameters.udlKA;
 
@@ -117,33 +123,33 @@ public class CalculationKA implements Calculation {
                 //Приведенный момент инерци целевой аппаратуры, кг
                 (dataOETK.jOETK     //Момент инерции ОЭТК, кг м2
                 +dataSPPE.jSPPI     //Момент инерции СППИ
-//                +jVRL      //Момент инерции ВРЛ
-//                +jPrZA     //Момент инерции прочих элементов ЦА
+                +dataVRL.jVRL      //Момент инерции ВРЛ
+                +dataOtherCA.jPrZA     //Момент инерции прочих элементов ЦА
                         //Приведенный момент инерции БКУ, кг м2
                         + dataSudSGK.jSGK      //Момент инерции СГК
                         + dataSSKM.jSSKM     //Момент инерции ССКМ, кг м2
-//                +jSTKRP    //Момент инерции СТКРП, кг м2
-//                +jKIS      //Момент инерции КИС, кг м2
-//                +jBITS     //Момент инерции БИТС, кг м2
-//                +jBVS      //Момент инерции КИС, кг м2
-//                +jPrBKU    //Момент инерции прочих элементов БКУ
+                +dataSTKRP.jSTKRP    //Момент инерции СТКРП, кг м2
+                +dataBAKES.jKIS      //Момент инерции КИС, кг м2
+                +dataBETS.jBITS     //Момент инерции БИТС, кг м2
+                +dataBVS.jBVS      //Момент инерции КИС, кг м2
+                +dataOtherBKU.jPrBKU    //Момент инерции прочих элементов БКУ
                         //Момент инерции СОТР
-//                +jEVTI     //Момент инерции ЭВТИ, кг м2
-//                +jSOTR     //Максимальное значение момента инерции СОТР,
+                +dataPasivSOTR.jEVTI     //Момент инерции ЭВТИ, кг м2
+                +dataSOTR.jSOTR     //Максимальное значение момента инерции СОТР,
                         //приведенного к габаритам КА, кг м2
                         //Момент инерции СЭП
-//                +jAB_KA    //Момент инерции АБ в форме куба относительно поперечной оси КА
-//                +jKASsum   //Приведенный момент инерции КАС с корпусом и прочими элеметами
-//                +jPSB_KA   //Момент инерции всех панелей СБ относительно поперечной оси КА
+                +dataAcumBetSEP.jAB_KA    //Момент инерции АБ в форме куба относительно поперечной оси КА
+                +dataKAS.jKASsum   //Приведенный момент инерции КАС с корпусом и прочими элеметами
+                +dataSumBetSEP.jPSB_KA   //Момент инерции всех панелей СБ относительно поперечной оси КА
                         //Момент инерции КДУ
-//                +jKDU
+                +dataKDU.jKDU
                 )
                         / dataCommonParameters.krkKA
-//                +jkKA      //Момент инерции  конструкции КА
-//                +jBKS      //Приведенный момент инерции БКС
-//                +jAFU     //Приведенный момент инерции АФУ
-//                +jPrKA
-//                +jRmKA
+                +dataKonstrKA.jkKA      //Момент инерции  конструкции КА
+                +dataBKSandAFU.jBKS      //Приведенный момент инерции БКС
+                +dataBKSandAFU.jAFU     //Приведенный момент инерции АФУ
+                +dataOtherKA.jPrKA
+                +dataRezervKA.jRmKA
         ;
 
         //Расчет текущего значения среднесуточной мощности электропотребления КА
@@ -152,22 +158,21 @@ public class CalculationKA implements Calculation {
                 //Среднесуточная мощность целевой аппаратуры, Вт
                 +dataOETK.wOETK     //Среднесуточная мощность ОЭТК, Вт
                 +dataSPPE.wSPPI     //Среднесуточная мощность СППИ
-//                +wVRL      //Среднесуточная мощность ВРЛ
-//                +wPrZA     //Среднесуточная мощность прочих элементов ЦА
+                +dataVRL.wVRL      //Среднесуточная мощность ВРЛ
+                +dataOtherCA.wPrZA     //Среднесуточная мощность прочих элементов ЦА
                         //Масса БКУ, кг
                         + dataSudSGK.wSGK      //Среднесуточная мощность СГК
                         + dataSSKM.wSSKM    //Среднесуточная мощность ССКМ, Вт
-//                +vSTKRP    //Среднесуточная мощность СТКРП, Вт
-//                +wKIS      //Среднесуточная мощность КИС, Вт
-//                +wBITS     //Среднесуточная мощность БИТС, Вт
-//                +wBVS      //Среднесуточная мощность КИС, Вт
-//                +wPrBKU    //Среднесуточная мощность прочих элементов БКУ
+                +dataSTKRP.vSTKRP    //Среднесуточная мощность СТКРП, Вт
+                +dataBAKES.wKIS      //Среднесуточная мощность КИС, Вт
+                +dataBETS.wBITS     //Среднесуточная мощность БИТС, Вт
+                +dataBVS.wBVS      //Среднесуточная мощность КИС, Вт
+                +dataOtherBKU.wPrBKU    //Среднесуточная мощность прочих элементов БКУ
 
-//                +wSTR      //Среднесуточная мощность СОТР, Вт
-//                +wKDU     //Среднесуточная мощность автоматики КДУ
-//                +wPrKA
-//                +wRmKA;
-        ;
+                +dataActivSOTR.wSTR      //Среднесуточная мощность СОТР, Вт
+                +dataKDU.wKDU     //Среднесуточная мощность автоматики КДУ
+                +dataOtherKA.wPrKA
+                +dataRezervKA.wRmKA;
 
         return null;
     }
@@ -197,6 +202,11 @@ public class CalculationKA implements Calculation {
         dataSpeed = new DataSpeed();
         dataMassTopl = new DataMassTopl();
         dataKDU = new DataKDU();
+        dataKonstrKA = new DataKonstrKA();
+        dataBKSandAFU = new DataBKSandAFU();
+        dataOtherKA = new DataOtherKA();
+        dataRezervKA = new DataRezervKA();
+        dataBAKES = new DataBAKES();
     }
 
     public static CalculationKA getInstance() {
@@ -246,11 +256,7 @@ public class CalculationKA implements Calculation {
         this.dataSPPE = dataSPPE;
     }
 
-    public static CalculationKA getSingl() {
-        return singl;
-    }
-
-    public static void setSingl(CalculationKA singl) {
+    public static void setKA(CalculationKA singl) {
         CalculationKA.singl = singl;
     }
 
@@ -404,5 +410,37 @@ public class CalculationKA implements Calculation {
 
     public void setDataKDU(DataKDU dataKDU) {
         this.dataKDU = dataKDU;
+    }
+
+    public DataKonstrKA getDataKonstrKA() {
+        return dataKonstrKA;
+    }
+
+    public void setDataKonstrKA(DataKonstrKA dataKonstrKA) {
+        this.dataKonstrKA = dataKonstrKA;
+    }
+
+    public DataBKSandAFU getDataBKSandAFU() {
+        return dataBKSandAFU;
+    }
+
+    public void setDataBKSandAFU(DataBKSandAFU dataBKSandAFU) {
+        this.dataBKSandAFU = dataBKSandAFU;
+    }
+
+    public DataOtherKA getDataOtherKA() {
+        return dataOtherKA;
+    }
+
+    public void setDataOtherKA(DataOtherKA dataOtherKA) {
+        this.dataOtherKA = dataOtherKA;
+    }
+
+    public DataRezervKA getDataRezervKA() {
+        return dataRezervKA;
+    }
+
+    public void setDataRezervKA(DataRezervKA dataRezervKA) {
+        this.dataRezervKA = dataRezervKA;
     }
 }

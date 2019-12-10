@@ -1,6 +1,23 @@
 package com.simulation.assembly.dataCalculation.sintez;
 
-public class DataPasivSOTR {
+import com.simulation.assembly.TabTypeSintez;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "DataPasivSOTR")
+public class DataPasivSOTR  extends DataElement{
+
+    private final static TabTypeSintez type =TabTypeSintez.PASSIV_ELEMENT_SOTR;
+
+    @Override
+    public TabTypeSintez getType() {
+        return type;
+    }
 
     public float umEVTI; //Удельная масса мтов ЭВТИ, кг/м2
     public float tEVTI;  //Средняя толщина матов ЭВТИ, мм

@@ -1,6 +1,23 @@
 package com.simulation.assembly.dataCalculation.sintez;
 
-public class DataSpeed {
+import com.simulation.assembly.TabTypeSintez;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "DataSpeed")
+public class DataSpeed   extends DataElement{
+
+    private final static TabTypeSintez type =TabTypeSintez.SPEED;
+
+    @Override
+    public TabTypeSintez getType() {
+        return type;
+    }
 
     public float V1=7910;  //первая космическая скоость (м/с)
     public float Rs=6371;  //Радиус Земли, км

@@ -58,6 +58,7 @@ public class CalculationOETK implements Calculation {
                 d.dkSO_OETK = d.kp2dOETK * d.dOETK;
                 d.lkSO_OETK = d.kp2lOETK * d.lOETK;
                 d.vkSO_OETK = (float) (Math.PI * Math.pow(d.dkSO_OETK, 2) / 4 * d.lkSO_OETK);//Объем корпуса спецотсека КА
+                CalculationKA.getInstance().calculation(new Object());
 
                 ControllerAssembly.addMessInConsoleSintez(MessegeType.INFO, "Расчет ОЭТК Успешен! ", TabTypeSintez.OETK);
                 return d;
@@ -79,6 +80,7 @@ public class CalculationOETK implements Calculation {
                 d.dkSO_OETK = d.kp2dOETK * d.dOETK;
                 d.lkSO_OETK = d.kp2lOETK * d.lOETK;
                 d.vkSO_OETK = (float) (Math.PI * Math.pow(d.dkSO_OETK, 2) / 4 * d.lkSO_OETK);//Объем корпуса спецотсека КА
+                CalculationKA.getInstance().calculation(new Object());
 
                 ControllerAssembly.addMessInConsoleSintez(MessegeType.INFO, "Расчет ОЭТК Успешен! ", TabTypeSintez.OETK);
                 return d;
@@ -100,6 +102,8 @@ public class CalculationOETK implements Calculation {
                 d.dkSO_OETK = d.kp2dOETK * d.dOETK;
                 d.lkSO_OETK = d.kp2lOETK * d.lOETK;
                 d.vkSO_OETK = (float) (Math.PI * Math.pow(d.dkSO_OETK, 2) / 4 * d.lkSO_OETK);//Объем корпуса спецотсека КА
+                CalculationKA.getInstance().calculation(new Object());
+
 
                 ControllerAssembly.addMessInConsoleSintez(MessegeType.INFO, "Расчет ОЭТК Успешен! ", TabTypeSintez.OETK);
                 return d;

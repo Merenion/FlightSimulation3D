@@ -39,9 +39,12 @@ public class CalculationElectHaraktSEP implements Calculation {
             d.cAB=(d.kzAC+d.kzSR)/100*d.cABmin+d.cABmin;
             //Расчет емкости АБ с учетом изменения мощности за срок АС
             d.cAB_AS=d.cAB/(d.kdowAB/100);
+            CalculationKA.getInstance().calculation(new Object());
+
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.INFO, "Расчет Успешен! ", TabTypeSintez.ELECTROTEH_PARAM);
 
         } catch (Exception e) {
-            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные! Ошибка при расчете", TabTypeSintez.CA);
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные! Ошибка при расчете", TabTypeSintez.ELECTROTEH_PARAM);
             throw new Exception();
         }
         return object;

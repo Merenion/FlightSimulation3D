@@ -1,6 +1,23 @@
 package com.simulation.assembly.dataCalculation.sintez;
 
-public class DataKDU {
+import com.simulation.assembly.TabTypeSintez;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "DataKDU")
+public class DataKDU  extends DataElement{
+
+    private final static TabTypeSintez type =TabTypeSintez.MASOGABARITN_AND_ENERGET_PARAMETERS;
+
+    @Override
+    public TabTypeSintez getType() {
+        return type;
+    }
 
     public float s;
     public float kNTB;         //Коэффициент незаполнения топливных баков, %

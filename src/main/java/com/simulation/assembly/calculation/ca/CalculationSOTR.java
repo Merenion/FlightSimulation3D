@@ -27,9 +27,12 @@ public class CalculationSOTR implements Calculation {
             d.jSOTR=d.mSOTR*((dc.dKA*dc.dKA)/16+(dc.lKA*dc.lKA)/12);
             //Мощность приборов и агрегатов СТР, Вт/кг
             d.wSTR = dataActivSOTR.wSTR;
+            CalculationKA.getInstance().calculation(new Object());
+
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.INFO, "Расчет Успешен! ", TabTypeSintez.SOTR);
 
         } catch (Exception e) {
-            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные! Ошибка при расчете", TabTypeSintez.CA);
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные! Ошибка при расчете", TabTypeSintez.SOTR);
             throw new Exception();
         }
         return object;

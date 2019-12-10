@@ -19,9 +19,12 @@ public class CalculationBETS implements Calculation {
             d.vBITS=d.mBITS/d.plBITS;
             d.wBITS=d.uwBITS*d.mBITS;
             d.jBITS=d.mBITS*((dc.dKA*dc.dKA)/16+(dc.lKA*dc.lKA)/12);
+            CalculationKA.getInstance().calculation(new Object());
+
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.INFO, "Расчет Успешен! ", TabTypeSintez.BETS);
 
         } catch (Exception e) {
-            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные! Ошибка при расчете", TabTypeSintez.CA);
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные! Ошибка при расчете", TabTypeSintez.BETS);
             throw new Exception();
         }
         return object;

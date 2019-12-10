@@ -45,9 +45,12 @@ public class CalculationSpeed implements Calculation {
             //захоронения КА
             //Расчет общей характеристической скорости
             d.dV=d.dV1+d.dV2+d.dV3+d.dV5+d.dV6;
+            CalculationKA.getInstance().calculation(new Object());
+
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.INFO, "Расчет Успешен! ", TabTypeSintez.SPEED);
 
         } catch (Exception e) {
-            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные! Ошибка при расчете", TabTypeSintez.CA);
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные! Ошибка при расчете", TabTypeSintez.SPEED);
             throw new Exception();
         }
         return object;

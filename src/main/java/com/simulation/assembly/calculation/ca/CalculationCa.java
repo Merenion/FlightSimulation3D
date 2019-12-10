@@ -40,6 +40,9 @@ public class CalculationCa implements Calculation {
                     +dataSPPE.wSPPI   //Мощность аппаратуры СППИ, Вт
                     +dataVRL.wVRL    //Мощность аппаратуры ВРЛ, Вт
                     +dataOtherCA.wPrZA;    //Мощность прочих элементов ЦА, Вт
+            CalculationKA.getInstance().calculation(new Object());
+
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.INFO, "Расчет Успешен! ", TabTypeSintez.CA);
 
         } catch (Exception e) {
             ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные! Ошибка при расчете", TabTypeSintez.CA);

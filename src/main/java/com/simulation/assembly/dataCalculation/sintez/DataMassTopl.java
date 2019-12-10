@@ -1,10 +1,27 @@
 package com.simulation.assembly.dataCalculation.sintez;
 
-public class DataMassTopl {
+import com.simulation.assembly.TabTypeSintez;
 
-    public String nameGoruchee;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "DataMassTopl")
+public class DataMassTopl   extends DataElement{
+
+    private final static TabTypeSintez type =TabTypeSintez.MASS_TOPLIVA;
+
+    @Override
+    public TabTypeSintez getType() {
+        return type;
+    }
+
+    public String nameGoruchee = "";
     public float pLG;
-    public String nameOkis;
+    public String nameOkis = "";
     public float pLO;
     public float jT;
     public float kOG;

@@ -33,8 +33,12 @@ public class CalculationKAS implements Calculation {
             d.mKASsum=d.mKAS+d.mkKas;
             d.vKASsum=(1+d.ProzV_vKAS/100)*d.vKAS;
             d.jKASsum=d.mKASsum*((dc.dKA*dc.dKA)/16+(dc.lKA*dc.lKA)/12);
+            CalculationKA.getInstance().calculation(new Object());
+
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.INFO, "Расчет Успешен! ", TabTypeSintez.KAS);
+
         } catch (Exception e) {
-            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные! Ошибка при расчете", TabTypeSintez.CA);
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные! Ошибка при расчете", TabTypeSintez.KAS);
             throw new Exception();
         }
         return object;

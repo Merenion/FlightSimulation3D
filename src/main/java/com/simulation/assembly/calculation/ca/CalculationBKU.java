@@ -11,7 +11,7 @@ public class CalculationBKU implements Calculation {
     public Object calculation(Object object) throws Exception {
         try {
 
-            DataBKU dataBKU = new DataBKU();
+            DataBKU dataBKU = CalculationKA.getInstance().getDataBKU();
             DataSudSGK dataSudSGK = CalculationKA.getInstance().getDataSudSGK();
             DataSSKM dataSSKM = CalculationKA.getInstance().getDataSSKM();
             DataSTKRP dataSTKRP = CalculationKA.getInstance().getDataSTKRP();
@@ -51,9 +51,12 @@ public class CalculationBKU implements Calculation {
                     +dataBETS.wBITS      //Мощность аппаратуры БИТС, Вт
                     +dataBVS.wBVS       //Мощность аппаратуры БВС, Вт
                     +dc.wPrBKU;    //Мощность прочих элементов БКУ, Вт
+            CalculationKA.getInstance().calculation(new Object());
+
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.INFO, "Расчет Успешен! ", TabTypeSintez.BKU);
 
         } catch (Exception e) {
-            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные! Ошибка при расчете", TabTypeSintez.CA);
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные! Ошибка при расчете", TabTypeSintez.BKU);
             throw new Exception();
         }
         return object;

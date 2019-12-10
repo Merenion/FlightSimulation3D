@@ -1,6 +1,23 @@
 package com.simulation.assembly.dataCalculation.sintez;
 
-public class DataSSKM {
+import com.simulation.assembly.TabTypeSintez;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "DataSSKM")
+public class DataSSKM  extends DataElement{
+
+    private final static TabTypeSintez type =TabTypeSintez.SUD_SSKM;
+
+    @Override
+    public TabTypeSintez getType() {
+        return type;
+    }
 
     public float kmSSKM;  //Доля масса ССКМ от массы КА, %
     public float uwSSKM;      //Удельная мощность аппаратуры ССКМ, Вт/кг

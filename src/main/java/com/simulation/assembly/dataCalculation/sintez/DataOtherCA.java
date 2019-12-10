@@ -1,6 +1,24 @@
 package com.simulation.assembly.dataCalculation.sintez;
 
-public class DataOtherCA {
+import com.simulation.assembly.TabTypeSintez;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "DataOtherCA")
+public class DataOtherCA  extends DataElement{
+
+    private final static TabTypeSintez type =TabTypeSintez.OTHER_ELEMENTS_CA;
+
+    @Override
+    public TabTypeSintez getType() {
+        return type;
+    }
+
     //выходные параметры
     public float kPrZA;                                         //Доля по массе прочих элементов ЦА, %
     public float uwPrZA;                                        //удельная мощность электропотребления прочих элементов ЦА, Вт/кг

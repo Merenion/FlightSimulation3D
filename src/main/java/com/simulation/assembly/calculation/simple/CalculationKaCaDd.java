@@ -42,9 +42,9 @@ public class CalculationKaCaDd implements Calculation {
         dsc.res_lzPN0 = dsc.dlina;
 
         //Расчет среднего диаметра КА
-        dsc.res_dKA0 = (float) (dsc.res_dzPN0*Math.exp(1/3*Math.log(dsc.koefNepolnZapoln)));
+        dsc.res_dKA0 = (float) (dsc.res_dzPN0*Math.exp((1f/3f)*Math.log(dsc.koefNepolnZapoln)));
         //Расчет средней длины КА
-        dsc.res_lKA0 = (float) (dsc.res_lzPN0*Math.exp(1/3*Math.log(dsc.koefNepolnZapoln)));
+        dsc.res_lKA0 = (float) (dsc.res_lzPN0*Math.exp((1f/3f)*Math.log(dsc.koefNepolnZapoln)));
         //Расчет седнего объем КА, м3
         dsc.res_vKA0 = (float) (Math.PI*dsc.res_dKA0*dsc.res_dKA0/4*dsc.res_lKA0);
         //Плотность

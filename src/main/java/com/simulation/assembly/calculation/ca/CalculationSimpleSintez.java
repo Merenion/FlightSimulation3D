@@ -20,6 +20,8 @@ public class CalculationSimpleSintez implements Calculation {
             //Средняя плотность компоновки КА, кг/м3
             d.splkKA0=d.mKA0/d.vKA0;
             d.jKA0= (float) (d.mKA0/d.krkKA*(Math.pow(d.dKA0,2)/16+Math.pow(d.lKA0,2)/12));
+            CalculationKA.getInstance().calculation(new Object());
+
             ControllerAssembly.addMessInConsoleSintez(MessegeType.INFO, "Расчет Прикидочный по ограничениям Успешен! ", TabTypeSintez.RESTRICTION);
         } catch (Exception e) {
             ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR,"Не верно введенные данные!", TabTypeSintez.RESTRICTION);

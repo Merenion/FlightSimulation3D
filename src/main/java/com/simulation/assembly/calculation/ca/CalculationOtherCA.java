@@ -23,6 +23,10 @@ public class CalculationOtherCA implements Calculation {
             d.wPrZA=d.uwPrZA*d.mPrZA;
             //Расчет приведенного момента инерции КА с текущими габаритами и массой
             d.jPrZA=d.mPrZA*((dc.dKA*dc.dKA)/16+(dc.lKA*dc.lKA)/12);
+            CalculationKA.getInstance().calculation(new Object());
+
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.INFO, "Расчет Успешен! ", TabTypeSintez.OTHER_ELEMENTS_CA);
+
         } catch (Exception e) {
             ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные! Ошибка при расчете", TabTypeSintez.OTHER_ELEMENTS_CA);
             throw new Exception();

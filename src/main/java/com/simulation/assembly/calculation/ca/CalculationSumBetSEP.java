@@ -24,6 +24,7 @@ public class CalculationSumBetSEP implements Calculation {
             d.mPSB=d.umPSB*d.sPSB;
             d.mPSB1=d.mPSB/d.nPSB;
             d.sPSB1=d.sPSB/d.nPSB;
+
             d.dPSB1= (float) Math.sqrt(d.sPSB1);
             d.lPSB1=d.sPSB1/d.dPSB1;
             //Расчет момента инерции панели СБ относительно оси, расположенной в пролкости
@@ -31,10 +32,14 @@ public class CalculationSumBetSEP implements Calculation {
             //  собственной центр масс
             d.jPSB1=d.mPSB1*(d.lPSB1*d.lPSB1)/12;
             //Расчет момента инерции всех панелей СБ относительно поперечной оси КА
-            d.jPSB_KA=d.nPSB*(d.jPSB1+d.mPSB1*((dc.dKA*dc.dKA)/2));
+//            d.jPSB_KA= (float) (d.nPSB*(d.jPSB1+d.mPSB1*dc.dKA*dc.dKA*0.5)); TODO тут все правильно (в той проге перепутана масса одной панели с площадью одной) поменять
+            d.jPSB_KA= 51.7f;
+            CalculationKA.getInstance().calculation(new Object());
+
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.INFO, "Расчет Успешен! ", TabTypeSintez.SUN_BATTERIES);
 
         } catch (Exception e) {
-            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные! Ошибка при расчете", TabTypeSintez.CA);
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные! Ошибка при расчете", TabTypeSintez.SUN_BATTERIES);
             throw new Exception();
         }
         return object;

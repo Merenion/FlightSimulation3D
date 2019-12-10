@@ -29,9 +29,12 @@ public class CalculationMassTopl implements Calculation {
             d.mTKDU=d.mTKAxnzg+d.mTKAskm;
             d.mO=d.mTKDU*d.kOG/(1+d.kOG);
             d.mG=d.mTKDU*1/(1+d.kOG);
+            CalculationKA.getInstance().calculation(new Object());
+
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.INFO, "Расчет Успешен! ", TabTypeSintez.MASS_TOPLIVA);
 
         } catch (Exception e) {
-            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные! Ошибка при расчете", TabTypeSintez.CA);
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные! Ошибка при расчете", TabTypeSintez.MASS_TOPLIVA);
             throw new Exception();
         }
         return object;
