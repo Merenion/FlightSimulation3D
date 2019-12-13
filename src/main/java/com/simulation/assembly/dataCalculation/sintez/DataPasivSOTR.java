@@ -12,11 +12,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "DataPasivSOTR")
 public class DataPasivSOTR  extends DataElement{
 
-    private final static TabTypeSintez type =TabTypeSintez.PASSIV_ELEMENT_SOTR;
-
     @Override
     public TabTypeSintez getType() {
-        return type;
+        return TabTypeSintez.PASSIV_ELEMENT_SOTR;
     }
 
     public float umEVTI; //Удельная масса мтов ЭВТИ, кг/м2

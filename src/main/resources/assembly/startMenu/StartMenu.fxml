@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="forma" prefHeight="225.0" prefWidth="301.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.simulation.startMenu.StartMenu">
+  <children>
+    <Button layoutX="14.0" layoutY="21.0" mnemonicParsing="false" onAction="#onBtProgram1" prefHeight="39.0" prefWidth="186.0" text="Проектные характеристики">
+      <effect>
+        <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="25.08" surfaceScale="0.0">
+          <bumpInput>
+            <Shadow />
+          </bumpInput>
+          <light>
+            <javafx.scene.effect.Light.Distant color="#5781ff" />
+          </light>
+        </Lighting>
+      </effect>
+    </Button>
+    <Button layoutX="14.0" layoutY="93.0" mnemonicParsing="false" onAction="#onBtProgram2" prefHeight="39.0" prefWidth="186.0" text="Имитация полета">
+         <effect>
+            <Lighting diffuseConstant="1.47" specularExponent="16.28" surfaceScale="0.0">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <javafx.scene.effect.Light.Distant color="#4fc1ff" />
+               </light>
+            </Lighting>
+         </effect></Button>
+    <Button layoutX="14.0" layoutY="165.0" mnemonicParsing="false" onAction="#onBtHelp" prefHeight="39.0" prefWidth="186.0" text="О программе">
+         <effect>
+            <Lighting diffuseConstant="1.4" specularConstant="0.23" specularExponent="16.74" surfaceScale="0.0">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <javafx.scene.effect.Light.Distant color="#20e1ff" />
+               </light>
+            </Lighting>
+         </effect></Button>
+      <ImageView fitHeight="50.0" fitWidth="66.0" layoutX="215.0" layoutY="88.0">
+         <image>
+            <Image url="@з-оровая-зем-я-яр-ык-eco-79125526.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="50.0" fitWidth="66.0" layoutX="214.0" layoutY="156.0">
+         <image>
+            <Image url="@depositphotos_183865644-stock-photo-barbell-and-question-on-white.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="50.0" fitWidth="83.0" layoutX="206.0" layoutY="16.0">
+         <image>
+            <Image url="@6575752-sputnik-one-first-of-earth-satellites-gray-icon.jpg" />
+         </image>
+      </ImageView>
+  </children>
+   <effect>
+      <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="7.91" surfaceScale="0.0">
+         <bumpInput>
+            <Shadow />
+         </bumpInput>
+         <light>
+            <javafx.scene.effect.Light.Distant color="#fefeff" />
+         </light>
+      </Lighting>
+   </effect>
+</AnchorPane>

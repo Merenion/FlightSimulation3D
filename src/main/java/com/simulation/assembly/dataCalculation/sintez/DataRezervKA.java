@@ -12,11 +12,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "DataRezervKA")
 public class DataRezervKA  extends DataElement{
 
-    private final static TabTypeSintez type =TabTypeSintez.RETHERV;
-
     @Override
     public TabTypeSintez getType() {
-        return type;
+        return TabTypeSintez.RETHERV;
     }
 
     public float omRmKA; //Относительная масса резерва масс КА, %

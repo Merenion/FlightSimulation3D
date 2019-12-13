@@ -3,7 +3,7 @@ package com.simulation.assembly.calculation.simple;
 import com.simulation.assembly.dataCalculation.simple.DataSimpleCalculation;
 import com.simulation.assembly.calculation.Calculation;
 
-public class CalculationCaDd implements Calculation {
+public class CalculationCaDd extends Calculation {
     @Override
     public Object calculation(Object object) {
         if (!(object instanceof DataSimpleCalculation))
@@ -52,5 +52,10 @@ public class CalculationCaDd implements Calculation {
         //(КА представлен в виде цилиндра с "размазанной" массой по объемв КА), кг/м3
         dsc.res_jKA0 = (float) (dsc.massaKa/dsc.koefRacKom*(Math.pow(dsc.res_dKA0,2)/16+Math.pow(dsc.res_lKA0,2)/12));
         return dsc;
+    }
+
+    @Override
+    public Object calculationSingle(Object object) throws Exception {
+        return null;
     }
 }

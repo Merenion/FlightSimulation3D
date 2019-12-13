@@ -11,11 +11,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "dataVrl")
 public class DataVRL  extends DataElement{
 
-    private final static TabTypeSintez type =TabTypeSintez.VRL;
-
     @Override
     public TabTypeSintez getType() {
-        return type;
+        return TabTypeSintez.VRL;
     }
 
     //входные

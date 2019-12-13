@@ -8,6 +8,7 @@ public abstract class DataElement {
 
     private long id;
     private String nameElement = "non name";
+    private boolean importData = false;
 
     public DataElement() {
         id = ((int) (Math.random() * 1000000000));
@@ -30,6 +31,14 @@ public abstract class DataElement {
     }
 
     public abstract TabTypeSintez getType();
+
+    public boolean isImportData() {
+        return importData;
+    }
+
+    public void setImportData(boolean importData) {
+        this.importData = importData;
+    }
 
     @Override
     public boolean equals(Object o) {

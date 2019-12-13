@@ -8,17 +8,34 @@ import com.simulation.assembly.dataCalculation.sintez.DataBVS;
 import com.simulation.assembly.dataCalculation.sintez.DataCommonParameters;
 import com.simulation.assembly.dataCalculation.sintez.DataOETK;
 
-public class CalculationBVS implements Calculation {
+public class CalculationBVS extends Calculation {
+
+    @Override
+    public TabTypeSintez getType() {
+        return TabTypeSintez.BVS;
+    }
+
     @Override
     public Object calculation(Object object) throws Exception {
-        try {
-            DataBVS d = CalculationKA.getInstance().getDataBVS();
-            DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
+        super.calculation(object);
+        calculationSingle(object);
+        return object;
+    }
 
-            d.mBVS=d.kmBVS/100*dc.mKA;
-            d.vBVS=d.mBVS/d.plBVS;
-            d.wBVS=d.uwBVS*d.mBVS;
-            d.jBVS=d.mBVS*((dc.dKA*dc.dKA)/16+(dc.lKA*dc.lKA)/12);
+    @Override
+    public Object calculationSingle(Object object) throws Exception {
+
+        try {
+            if (!getType().getDataElement().isImportData()) {
+
+                DataBVS d = CalculationKA.getInstance().getDataBVS();
+                DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
+
+                d.mBVS = d.kmBVS / 100 * dc.mKA;
+                d.vBVS = d.mBVS / d.plBVS;
+                d.wBVS = d.uwBVS * d.mBVS;
+                d.jBVS = d.mBVS * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
+            }
             CalculationKA.getInstance().calculation(new Object());
 
             ControllerAssembly.addMessInConsoleSintez(MessegeType.INFO, "Расчет Успешен! ", TabTypeSintez.BVS);

@@ -12,11 +12,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "DataBVS")
 public class DataBVS  extends DataElement{
 
-    private final static TabTypeSintez type =TabTypeSintez.BVS;
-
     @Override
     public TabTypeSintez getType() {
-        return type;
+        return TabTypeSintez.BVS;
     }
 
     public float kmBVS;  //Доля масса БВС от массы КА, %

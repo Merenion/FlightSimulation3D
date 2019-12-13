@@ -65,11 +65,19 @@ public class ImportBVS extends ImportElement {
             ControllerAssembly.showError("Не выбрано не одного элемента.");
             return;
         }
-        CalculationKA.getInstance().setDataBVS(data);                                                      //
+        try {
+            data.getType().getCalculation().predCalculation();
+        } catch (Exception e) {
+            ControllerAssembly.showError("Не удалось добавить элемент.");
+            return;
+        }
+        CalculationKA.getInstance().setDataBVS(data);                                                      //                                                   //
+        CalculationKA.getInstance().calculation(new Object());
         ControllerAssembly.getInstance().showALL();
         ControllerAssembly.getInstance().startShowALL();
         Stage stage = (Stage) btSelect.getScene().getWindow();
         stage.close();
+        ControllerAssembly.getInstance().onLabelZaimBvs(data.getNameElement());
     }
 
     @FXML

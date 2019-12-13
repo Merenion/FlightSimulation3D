@@ -6,40 +6,55 @@ import com.simulation.assembly.TabTypeSintez;
 import com.simulation.assembly.calculation.Calculation;
 import com.simulation.assembly.dataCalculation.sintez.*;
 
-public class CalculationCa implements Calculation {
+public class CalculationCa extends Calculation {
+
+    @Override
+    public TabTypeSintez getType() {
+        return TabTypeSintez.CA;
+    }
+
     @Override
     public Object calculation(Object object) throws Exception {
+        super.calculation(object);
+        calculationSingle(object);
+        return object;
+    }
+
+    @Override
+    public Object calculationSingle(Object object) throws Exception {
 
         try {
+            if (!getType().getDataElement().isImportData()) {
 
-            DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
-            DataOETK dataOETK = CalculationKA.getInstance().getDataOETK();
-            DataSPPE dataSPPE = CalculationKA.getInstance().getDataSPPE();
-            DataVRL dataVRL = CalculationKA.getInstance().getDataVRL();
-            DataOtherCA dataOtherCA = CalculationKA.getInstance().getDataOtherCA();
-            DataCa dataCa = CalculationKA.getInstance().getDataCa();
+                DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
+                DataOETK dataOETK = CalculationKA.getInstance().getDataOETK();
+                DataSPPE dataSPPE = CalculationKA.getInstance().getDataSPPE();
+                DataVRL dataVRL = CalculationKA.getInstance().getDataVRL();
+                DataOtherCA dataOtherCA = CalculationKA.getInstance().getDataOtherCA();
+                DataCa dataCa = CalculationKA.getInstance().getDataCa();
 
-            dataCa.mZA =          //Масса целевой аппаратуры, кг
-                    dataOETK.mOETK     //Масса ОЭТК, кг
-                    +dataSPPE.mSPPI    //Масса СППИ
-                    +dataVRL.mVRL     //Масса ВРЛ
-                    +dataOtherCA.mPrZA;     //Масса прочих элементов ЦА
+                dataCa.mZA =          //Масса целевой аппаратуры, кг
+                        dataOETK.mOETK     //Масса ОЭТК, кг
+                                + dataSPPE.mSPPI    //Масса СППИ
+                                + dataVRL.mVRL     //Масса ВРЛ
+                                + dataOtherCA.mPrZA;     //Масса прочих элементов ЦА
 
-            //Расчет объема ЦА
-            dataCa.vZA=          //Объем целвойаппаратуры, м3
-                    dataOETK.vOETK     //Объем ОЭТК, м3
-                    +dataSPPE.vSPPI     //Объеи аппаратуры СППИ, м3
-                    +dataVRL.vVRL      //Объеи аппаратуры ВРЛ, м3
-                    +dataOtherCA.vPrZA;      //Объем прочих элементов ЦА, м3
+                //Расчет объема ЦА
+                dataCa.vZA =          //Объем целвойаппаратуры, м3
+                        dataOETK.vOETK     //Объем ОЭТК, м3
+                                + dataSPPE.vSPPI     //Объеи аппаратуры СППИ, м3
+                                + dataVRL.vVRL      //Объеи аппаратуры ВРЛ, м3
+                                + dataOtherCA.vPrZA;      //Объем прочих элементов ЦА, м3
 
-            //Расчет мометна инерции ЦА
-            dataCa.jZA=dataCa.mZA*((dc.dKA*dc.dKA)/16+(dc.lKA*dc.lKA)/12);
+                //Расчет мометна инерции ЦА
+                dataCa.jZA = dataCa.mZA * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
 
-            dataCa.wZA=         //Мощность энергопотребления ЦА, Вт
-                    dataOETK.wOETK    //Мощность энергопотребления ОЭТК, Вт
-                    +dataSPPE.wSPPI   //Мощность аппаратуры СППИ, Вт
-                    +dataVRL.wVRL    //Мощность аппаратуры ВРЛ, Вт
-                    +dataOtherCA.wPrZA;    //Мощность прочих элементов ЦА, Вт
+                dataCa.wZA =         //Мощность энергопотребления ЦА, Вт
+                        dataOETK.wOETK    //Мощность энергопотребления ОЭТК, Вт
+                                + dataSPPE.wSPPI   //Мощность аппаратуры СППИ, Вт
+                                + dataVRL.wVRL    //Мощность аппаратуры ВРЛ, Вт
+                                + dataOtherCA.wPrZA;    //Мощность прочих элементов ЦА, Вт
+            }
             CalculationKA.getInstance().calculation(new Object());
 
             ControllerAssembly.addMessInConsoleSintez(MessegeType.INFO, "Расчет Успешен! ", TabTypeSintez.CA);
@@ -48,6 +63,6 @@ public class CalculationCa implements Calculation {
             ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные! Ошибка при расчете", TabTypeSintez.CA);
             throw new Exception();
         }
-            return object;
+        return object;
     }
 }

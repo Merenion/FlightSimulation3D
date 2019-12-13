@@ -8,20 +8,34 @@ import com.simulation.assembly.dataCalculation.sintez.DataActivSOTR;
 import com.simulation.assembly.dataCalculation.sintez.DataBAKES;
 import com.simulation.assembly.dataCalculation.sintez.DataCommonParameters;
 
-public class CalculationActivSOTR implements Calculation {
+public class CalculationActivSOTR extends Calculation {
+
+    @Override
+    public TabTypeSintez getType() {
+        return TabTypeSintez.ACTIV_ELEMENT_SOTR;
+    }
 
     @Override
     public Object calculation(Object object) throws Exception {
-        try {
-            DataActivSOTR d = CalculationKA.getInstance().getDataActivSOTR();
-            DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
+        super.calculation(object);
+        calculationSingle(object);
+        return object;
+    }
 
-            d.mSTR=d.omSTR*dc.mKA;
-            d.mtnSTR=d.mSTR*d.kmtnSTR/100;
-            d.mSTRbtn=d.mSTR-d.mtnSTR;
-            d.vSTR=d.mSTR/d.plSTR;
-            d.wSTR=d.uwSTR*d.mSTR;
-            d.jSTR=d.mSTR*((dc.dKA*dc.dKA)/16+(dc.lKA*dc.lKA)/12);
+    @Override
+    public Object calculationSingle(Object object) throws Exception {
+        try {
+            if (!getType().getDataElement().isImportData()) {
+                DataActivSOTR d = CalculationKA.getInstance().getDataActivSOTR();
+                DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
+
+                d.mSTR = d.omSTR * dc.mKA;
+                d.mtnSTR = d.mSTR * d.kmtnSTR / 100;
+                d.mSTRbtn = d.mSTR - d.mtnSTR;
+                d.vSTR = d.mSTR / d.plSTR;
+                d.wSTR = d.uwSTR * d.mSTR;
+                d.jSTR = d.mSTR * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
+            }
             CalculationKA.getInstance().calculation(new Object());
 
             ControllerAssembly.addMessInConsoleSintez(MessegeType.INFO, "Расчет Успешен! ", TabTypeSintez.ACTIV_ELEMENT_SOTR);

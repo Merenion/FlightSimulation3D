@@ -12,11 +12,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "DataCa")
 public class DataCa  extends DataElement{
 
-    private final static TabTypeSintez type =TabTypeSintez.CA;
-
     @Override
     public TabTypeSintez getType() {
-        return type;
+        return TabTypeSintez.CA;
     }
 
     public float mZA; //Масса целевой аппаратуры, кг

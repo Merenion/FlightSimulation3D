@@ -12,11 +12,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "DataOtherCA")
 public class DataOtherCA  extends DataElement{
 
-    private final static TabTypeSintez type =TabTypeSintez.OTHER_ELEMENTS_CA;
-
     @Override
     public TabTypeSintez getType() {
-        return type;
+        return TabTypeSintez.OTHER_ELEMENTS_CA;
     }
 
     //выходные параметры

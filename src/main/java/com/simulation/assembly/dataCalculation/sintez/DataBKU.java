@@ -12,11 +12,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "DataBKU")
 public class DataBKU  extends DataElement{
 
-    private final static TabTypeSintez type =TabTypeSintez.BKU;
-
     @Override
     public TabTypeSintez getType() {
-        return type;
+        return TabTypeSintez.BKU;
     }
 
     public float mBKU;

@@ -12,11 +12,10 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "DataBETS")
 public class DataBETS  extends DataElement{
 
-    private final static TabTypeSintez type =TabTypeSintez.BETS;
 
     @Override
     public TabTypeSintez getType() {
-        return type;
+        return TabTypeSintez.BETS;
     }
 
     public float kmBITS;  //Доля масса КИС от массы КА, %

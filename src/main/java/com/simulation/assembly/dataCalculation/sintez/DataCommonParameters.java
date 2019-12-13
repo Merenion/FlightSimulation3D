@@ -2,21 +2,17 @@ package com.simulation.assembly.dataCalculation.sintez;
 
 import com.simulation.assembly.TabTypeSintez;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "DataCommonParameters")
 public class DataCommonParameters  extends DataElement{
 
-    private final static TabTypeSintez type =TabTypeSintez.RESTRICTION;
 
     @Override
     public TabTypeSintez getType() {
-        return type;
+        return TabTypeSintez.RESTRICTION;
     }
 
     public  boolean isHaveRestriction = true;
@@ -40,4 +36,5 @@ public class DataCommonParameters  extends DataElement{
     public  float lKA;
     public  float jKA;
     public  float wKA_wsSEP; //Среднесуточная мощность целевой аппаратуры, Вт
+
 }

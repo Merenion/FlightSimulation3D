@@ -12,11 +12,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "DataAcumBetSEP")
 public class DataAcumBetSEP  extends DataElement{
 
-    private final static TabTypeSintez type =TabTypeSintez.AKUM_BATTERIES;
-
     @Override
     public TabTypeSintez getType() {
-        return type;
+        return TabTypeSintez.AKUM_BATTERIES;
     }
 
     public float uwAB;   //Удельная мощность АБ, А час/кг

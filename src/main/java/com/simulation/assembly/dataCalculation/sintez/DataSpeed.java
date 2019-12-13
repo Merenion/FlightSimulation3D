@@ -12,11 +12,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "DataSpeed")
 public class DataSpeed   extends DataElement{
 
-    private final static TabTypeSintez type =TabTypeSintez.SPEED;
-
     @Override
     public TabTypeSintez getType() {
-        return type;
+        return TabTypeSintez.SPEED;
     }
 
     public float V1=7910;  //первая космическая скоость (м/с)
@@ -53,5 +51,4 @@ public class DataSpeed   extends DataElement{
     public float Vaoo;//Скорость КА в апогее переходной орбиты для подготовки к захоронению
     public float aps; //Полурсь эллиптической переходной орбты для подготовки к захоронению
     public float di;  //изменение угола наклона плоскости орбиты
-    public float code;
 }

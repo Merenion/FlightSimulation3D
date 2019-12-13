@@ -12,11 +12,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "DataMassTopl")
 public class DataMassTopl   extends DataElement{
 
-    private final static TabTypeSintez type =TabTypeSintez.MASS_TOPLIVA;
-
     @Override
     public TabTypeSintez getType() {
-        return type;
+        return TabTypeSintez.MASS_TOPLIVA;
     }
 
     public String nameGoruchee = "";

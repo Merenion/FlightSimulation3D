@@ -12,11 +12,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "DataKDU")
 public class DataKDU  extends DataElement{
 
-    private final static TabTypeSintez type =TabTypeSintez.MASOGABARITN_AND_ENERGET_PARAMETERS;
-
     @Override
     public TabTypeSintez getType() {
-        return type;
+        return TabTypeSintez.MASOGABARITN_AND_ENERGET_PARAMETERS;
     }
 
     public float s;

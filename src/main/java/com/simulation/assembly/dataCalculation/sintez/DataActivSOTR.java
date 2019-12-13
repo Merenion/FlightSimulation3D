@@ -12,11 +12,11 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "DataActivSOTR")
 public class DataActivSOTR   extends DataElement{
 
-    private final static TabTypeSintez type =TabTypeSintez.ACTIV_ELEMENT_SOTR;
+    private boolean importData = false;
 
     @Override
     public TabTypeSintez getType() {
-        return type;
+        return TabTypeSintez.ACTIV_ELEMENT_SOTR;
     }
 
     public float omSTR; //Относительная масса СТР
@@ -30,4 +30,6 @@ public class DataActivSOTR   extends DataElement{
     public float vSTR;
     public float wSTR;
     public float jSTR;
+
+
 }

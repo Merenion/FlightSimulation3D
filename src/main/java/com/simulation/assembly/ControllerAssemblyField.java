@@ -1,12 +1,52 @@
 package com.simulation.assembly;
 
+import com.simulation.assembly.calculation.Calculation;
+import com.simulation.assembly.dataCalculation.simple.DataSimpleCalculation;
+import com.simulation.assembly.dataCalculation.sintez.*;
+import com.simulation.assembly.validateRestrictionSimple.ValidateRestriction;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
 public class ControllerAssemblyField {
+
+
+    protected ValidateRestriction validateRestriction;
+    protected Calculation<DataSimpleCalculation> calculationSimp;
+    protected Calculation<DataCommonParameters> calculationSimpSintez;
+    protected Calculation<DataOETK> calculationOETK;
+    protected Calculation<DataSudSGK> calculationSGK;
+    protected Calculation<DataSPPE> calculationSPPE;
+    protected Calculation<DataVRL> calculationVRL;
+    protected Calculation<DataOtherCA> calculationOtherCA;
+    protected Calculation<DataCa> calculationCA;
+    protected Calculation<DataSSKM> calculationSSKM;
+    protected Calculation<DataSTKRP> calculationSTKRP;
+    protected Calculation<DataBAKES> calculationBAKES;
+    protected Calculation<DataBETS> calculationBETS;
+    protected Calculation<DataBVS> calculationBVS;
+    protected Calculation<DataOtherBKU> calculationOtherBKU;
+    protected Calculation<DataBKU> calculationBKU;
+    protected Calculation<DataPasivSOTR> calculationPasivSOTR;
+    protected Calculation<DataActivSOTR> calculationActivSOTR;
+    protected Calculation<DataSOTR> calculationSOTR;
+    protected Calculation<DataElectHaraktSEP> calculationElectrTehnSEP;
+    protected Calculation<DataAcumBetSEP> calculationAcumBet;
+    protected Calculation<DataKAS> calculationKAS;
+    protected Calculation<DataSumBetSEP> calculationSUNbet;
+    protected Calculation<DataSpeed> calculationSpeed;
+    protected Calculation<DataMassTopl> calculationMTop;
+    protected Calculation<DataKDU> calculationKDU;
+    protected Calculation<DataKonstrKA> calculationKonstrKA;
+    protected Calculation<DataBKSandAFU> calculationBKSandAFU;
+    protected Calculation<DataOtherKA> calculationOtherKA;
+    protected Calculation<DataRezervKA> calculationRezerv;
+
+    protected DataSimpleCalculation dataSimpleCalculation = new DataSimpleCalculation();
+
 
     /**
      * выбор ограничений
@@ -949,6 +989,15 @@ public class ControllerAssemblyField {
     @FXML
     public Label wPrKA;
 
+
+    public TextField In_nameElement;
+    public TableView tableOtherKA;
+    public TableColumn<ViewDataOtherKA, String> columnOtherKAname;
+    public TableColumn<ViewDataOtherKA, String> columnOtherKAm;
+    public TableColumn<ViewDataOtherKA, String> columnOtherKAv;
+    public TableColumn<ViewDataOtherKA, String> columnOtherKAw;
+    public TableColumn<ViewDataOtherKA, String> columnOtherKAj;
+
     /**
      * таба Резерв
      */
@@ -994,6 +1043,43 @@ public class ControllerAssemblyField {
     @FXML
     public Label col_iteration;
 
+    public Label labelZaimOetk;
+    public Label labelZaimSppe;
+    public Label labelZaimVrl;
+    public Label labelZaimOtherCA;
+    public Label labelZaimSgk;
+    public Label labelZaimSSKM;
+    public Label labelZaimStkrp;
+    public Label labelZaimBaKis;
+    public Label labelZaimBets;
+    public Label labelZaimBvs;
+    public Label labelZaimOtherBku;
+    public Label labelZaimPasivSotr;
+    public Label labelZaimActivSotr;
+    public Label labelZaimElHarSep;
+    public Label labelZaimAcumBet;
+    public Label labelZaimKas;
+    public Label labelZaimSunBet;
+    public Label labelZaimSpeed;
+    public Label labelZaimMassT;
+    public Label labelZaimKDU;
+    public Label labelZaimKonstr;
+    public Label labelZaimBksAndAfu;
+    public Label labelZaimRezerv;
+
+    public ImageView onStepOkRestr;
+    public ImageView onStepAskRestr;
+    public ImageView onStepOkOetk;
+    public ImageView onStepAskOetk;
+    public ImageView onStepOkSppe;
+    public ImageView onStepAskSppe;
+    public ImageView onStepOkVrl;
+    public ImageView onStepAskVrl;
+    public ImageView onStepOkOtherCa;
+    public ImageView onStepAskOtherCa;
+    public ImageView onStepOkCa;
+    public ImageView onStepAskCa;
+
     /**
      * Выбор формы на вкладке ОГРАНИЧЕНИЯ - синтез (есть ограничения, нету)
      *
@@ -1004,10 +1090,12 @@ public class ControllerAssemblyField {
             paneRestriction.setVisible(true);
             paneStartDataRestriction.setVisible(false);
             paneRestrictionCalculation.setVisible(true);
+            ControllerAssembly.getInstance().onProgressRestr(false);
         } else {
             paneRestriction.setVisible(false);
             paneStartDataRestriction.setVisible(true);
             paneRestrictionCalculation.setVisible(false);
+            ControllerAssembly.getInstance().onProgressRestr(true);
         }
     }
 

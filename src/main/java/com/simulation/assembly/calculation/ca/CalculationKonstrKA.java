@@ -6,17 +6,33 @@ import com.simulation.assembly.TabTypeSintez;
 import com.simulation.assembly.calculation.Calculation;
 import com.simulation.assembly.dataCalculation.sintez.*;
 
-public class CalculationKonstrKA implements Calculation {
+public class CalculationKonstrKA extends Calculation {
+
+    @Override
+    public TabTypeSintez getType() {
+        return TabTypeSintez.KONSTR;
+    }
+
 
     @Override
     public Object calculation(Object object) throws Exception {
-        try {
-            DataKonstrKA d = CalculationKA.getInstance().getDataKonstrKA();
-            DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
+        super.calculation(object);
+        calculationSingle(object);
+        return object;
+    }
 
-            d.mkKA=d.omkKA/100*dc.mKA;
-            d.vkKA=d.mkKA/d.plmkKA/(1-d.kpkKA/100);
-            d.jkKA=d.mkKA*((dc.dKA*dc.dKA)/16+(dc.lKA*dc.lKA)/12);
+    @Override
+    public Object calculationSingle(Object object) throws Exception {
+        try {
+            if (!getType().getDataElement().isImportData()) {
+
+                DataKonstrKA d = CalculationKA.getInstance().getDataKonstrKA();
+                DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
+
+                d.mkKA = d.omkKA / 100 * dc.mKA;
+                d.vkKA = d.mkKA / d.plmkKA / (1 - d.kpkKA / 100);
+                d.jkKA = d.mkKA * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
+            }
             CalculationKA.getInstance().calculation(new Object());
 
             ControllerAssembly.addMessInConsoleSintez(MessegeType.INFO, "Расчет Успешен! ", TabTypeSintez.KONSTR);

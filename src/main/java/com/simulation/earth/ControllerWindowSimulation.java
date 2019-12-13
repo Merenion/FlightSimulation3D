@@ -33,6 +33,8 @@ import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 import org.fxyz3d.geometry.Point3D;
 
+import java.io.IOException;
+
 /**
  * Контроллер GUI
  */
@@ -545,5 +547,12 @@ public class ControllerWindowSimulation {
         box.setHeight(10);
         box.setWidth(20000);
         return box;
+    }
+
+    public void closeProject(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage) menu.getScene().getWindow();
+        com.simulation.startMenu.Main main = new com.simulation.startMenu.Main();
+        main.start(new Stage());
+        stage.close();
     }
 }

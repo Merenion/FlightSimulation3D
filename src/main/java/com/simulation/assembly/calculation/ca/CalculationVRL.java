@@ -8,20 +8,36 @@ import com.simulation.assembly.dataCalculation.sintez.DataCommonParameters;
 import com.simulation.assembly.dataCalculation.sintez.DataSPPE;
 import com.simulation.assembly.dataCalculation.sintez.DataVRL;
 
-public class CalculationVRL implements Calculation {
+public class CalculationVRL extends Calculation {
+
+    @Override
+    public TabTypeSintez getType() {
+        return TabTypeSintez.VRL;
+    }
+
     @Override
     public Object calculation(Object object) throws Exception {
+        super.calculation(object);
+        calculationSingle(object);
+        return object;
+    }
+
+    @Override
+    public Object calculationSingle(Object object) throws Exception {
         try {
             DataVRL d = CalculationKA.getInstance().getDataVRL();
             DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
 
-            //Расчет
-            d.mVRL=d.umVRL*d.sPI;
-            d.vVRL=d.mVRL/d.plVRL;
-            d.wVRL=d.mVRL*d.uwVRL;
-            //Расчет приведенного момента инерции КА с текущими габаритами и массой
-            d.jVRL=1092.5f; //TODO
+            if (!getType().getDataElement().isImportData()) {
+
+                //Расчет
+                d.mVRL = d.umVRL * d.sPI;
+                d.vVRL = d.mVRL / d.plVRL;
+                d.wVRL = d.mVRL * d.uwVRL;
+                //Расчет приведенного момента инерции КА с текущими габаритами и массой
+                d.jVRL = 1092.5f; //TODO
 //            d.jVRL=d.mVRL*((dc.dKA*dc.dKA)/16+(dc.lKA*dc.lKA)/12);
+            }
             CalculationKA.getInstance().calculation(new Object());
 
             ControllerAssembly.addMessInConsoleSintez(MessegeType.INFO, "Расчет Успешен! ", TabTypeSintez.VRL);

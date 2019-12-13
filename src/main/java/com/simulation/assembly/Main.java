@@ -22,7 +22,7 @@ public class Main extends Application {
     public void start(Stage stage) throws IOException {
         Main.stage = stage;
         Parent root = FXMLLoader.load(getClass().getResource("/windowMainAssembly.fxml"));
-        stage.setTitle("ввввв");
+        stage.setTitle("Проектные характеристики КА");
         Scene scene= new Scene(root,1200,705);
         stage.setScene(scene);
         stage.show();

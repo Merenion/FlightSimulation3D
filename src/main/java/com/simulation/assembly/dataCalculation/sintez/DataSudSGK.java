@@ -12,11 +12,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "DataSudSGK")
 public class DataSudSGK  extends DataElement{
 
-    private final static TabTypeSintez type =TabTypeSintez.SUD_SGK;
-
     @Override
     public TabTypeSintez getType() {
-        return type;
+        return TabTypeSintez.SUD_SGK;
     }
 
     //выходные

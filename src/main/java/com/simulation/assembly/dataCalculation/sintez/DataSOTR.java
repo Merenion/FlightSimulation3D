@@ -12,11 +12,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "DataSOTR")
 public class DataSOTR   extends DataElement{
 
-    private final static TabTypeSintez type =TabTypeSintez.SOTR;
-
     @Override
     public TabTypeSintez getType() {
-        return type;
+        return TabTypeSintez.SOTR;
     }
 
     public float mSOTR;

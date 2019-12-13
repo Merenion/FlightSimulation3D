@@ -66,11 +66,20 @@ public class ImportSPPE extends ImportElement {
             ControllerAssembly.showError("Не выбрано не одного элемента.");
             return;
         }
-        CalculationKA.getInstance().setDataSPPE(data);                                                      //
+        try {
+            data.getType().getCalculation().predCalculation();
+        } catch (Exception e) {
+            ControllerAssembly.showError("Не удалось добавить элемент.");
+            return;
+        }
+        CalculationKA.getInstance().setDataSPPE(data);                                                      //                                                   //
+        CalculationKA.getInstance().calculation(new Object());
         ControllerAssembly.getInstance().showALL();
         ControllerAssembly.getInstance().startShowALL();
         Stage stage = (Stage) btSelect.getScene().getWindow();
         stage.close();
+        ControllerAssembly.getInstance().onLabelZaimSppe(data.getNameElement());
+        ControllerAssembly.getInstance().onProgressSppe(true);
     }
 
     @FXML

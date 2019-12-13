@@ -12,11 +12,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "DataSPPE")
 public class DataSPPE  extends DataElement{
 
-    private final static TabTypeSintez type =TabTypeSintez.SPPE;
-
     @Override
     public TabTypeSintez getType() {
-        return type;
+        return TabTypeSintez.SPPE;
     }
 
     //входные

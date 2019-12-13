@@ -1,7 +1,14 @@
 package com.simulation.assembly;
 
+import com.simulation.assembly.calculation.Calculation;
+import com.simulation.assembly.calculation.ca.*;
 import com.simulation.assembly.dataCalculation.sintez.*;
 
+import javax.xml.bind.annotation.XmlEnum;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlType(name = "typeElementEnum")
+@XmlEnum
 public enum TabTypeSintez {
 
     //ОГРАНИЧЕНИЯ
@@ -21,6 +28,21 @@ public enum TabTypeSintez {
         @Override
         public Class<?> getTypeClass() {
             return DataCommonParameters.class;
+        }
+
+        @Override
+        public Calculation getCalculation() {
+            return new CalculationSimpleSintez();
+        }
+
+        @Override
+        public DataElement getDataElement() {
+            return CalculationKA.getInstance().getDataCommonParameters();
+        }
+
+        @Override
+        public Integer getNumber() {
+            return 1;
         }
     },
 
@@ -42,6 +64,21 @@ public enum TabTypeSintez {
         public Class<?> getTypeClass() {
             return DataOETK.class;
         }
+
+        @Override
+        public Calculation getCalculation() {
+            return new CalculationOETK();
+        }
+
+        @Override
+        public DataElement getDataElement() {
+            return CalculationKA.getInstance().getDataOETK();
+        }
+
+        @Override
+        public Integer getNumber() {
+            return 2;
+        }
     },
     SPPE{
         private String name = "СППИ";
@@ -61,7 +98,20 @@ public enum TabTypeSintez {
             return DataSPPE.class;
         }
 
+        @Override
+        public Calculation getCalculation() {
+            return new CalculationSPPE();
+        }
 
+        @Override
+        public DataElement getDataElement() {
+            return CalculationKA.getInstance().getDataSPPE();
+        }
+
+        @Override
+        public Integer getNumber() {
+            return 3;
+        }
     },
     VRL{
         private String name = "ВРЛ";
@@ -79,6 +129,21 @@ public enum TabTypeSintez {
         @Override
         public Class<?> getTypeClass() {
             return DataVRL.class;
+        }
+
+        @Override
+        public Calculation getCalculation() {
+            return new CalculationVRL();
+        }
+
+        @Override
+        public DataElement getDataElement() {
+            return CalculationKA.getInstance().getDataVRL();
+        }
+
+        @Override
+        public Integer getNumber() {
+            return 4;
         }
     },
     OTHER_ELEMENTS_CA{
@@ -98,6 +163,21 @@ public enum TabTypeSintez {
         public Class<?> getTypeClass() {
             return DataOtherCA.class;
         }
+
+        @Override
+        public Calculation getCalculation() {
+            return new CalculationOtherCA();
+        }
+
+        @Override
+        public DataElement getDataElement() {
+            return CalculationKA.getInstance().getDataOtherCA();
+        }
+
+        @Override
+        public Integer getNumber() {
+            return 5;
+        }
     },
     CA{
         private String name = "ЦА";
@@ -115,6 +195,21 @@ public enum TabTypeSintez {
         @Override
         public Class<?> getTypeClass() {
             return DataCa.class;
+        }
+
+        @Override
+        public Calculation getCalculation() {
+            return new CalculationCa();
+        }
+
+        @Override
+        public DataElement getDataElement() {
+            return CalculationKA.getInstance().getDataCa();
+        }
+
+        @Override
+        public Integer getNumber() {
+            return 6;
         }
     },
 
@@ -136,6 +231,21 @@ public enum TabTypeSintez {
         public Class<?> getTypeClass() {
             return DataSudSGK.class;
         }
+
+        @Override
+        public Calculation getCalculation() {
+            return new CalculationSGK();
+        }
+
+        @Override
+        public DataElement getDataElement() {
+            return CalculationKA.getInstance().getDataSudSGK();
+        }
+
+        @Override
+        public Integer getNumber() {
+            return 7;
+        }
     },
     SUD_SSKM{
 
@@ -153,6 +263,21 @@ public enum TabTypeSintez {
         public Class<?> getTypeClass() {
             return DataSSKM.class;
         }
+
+        @Override
+        public Calculation getCalculation() {
+            return new CalculationSSKM();
+        }
+
+        @Override
+        public DataElement getDataElement() {
+            return CalculationKA.getInstance().getDataSSKM();
+        }
+
+        @Override
+        public Integer getNumber() {
+            return 8;
+        }
     },
     STKRP{
         @Override
@@ -168,6 +293,21 @@ public enum TabTypeSintez {
         @Override
         public Class<?> getTypeClass() {
             return DataSTKRP.class;
+        }
+
+        @Override
+        public Calculation getCalculation() {
+            return new CalculationSTKRP();
+        }
+
+        @Override
+        public DataElement getDataElement() {
+            return CalculationKA.getInstance().getDataSTKRP();
+        }
+
+        @Override
+        public Integer getNumber() {
+            return 9;
         }
     },
     BAKIS{
@@ -185,6 +325,21 @@ public enum TabTypeSintez {
         public Class<?> getTypeClass() {
             return DataBAKES.class;
         }
+
+        @Override
+        public Calculation getCalculation() {
+            return new CalculationBAKES();
+        }
+
+        @Override
+        public DataElement getDataElement() {
+            return CalculationKA.getInstance().getDataBAKES();
+        }
+
+        @Override
+        public Integer getNumber() {
+            return 10;
+        }
     },
     BETS {
         @Override
@@ -200,6 +355,21 @@ public enum TabTypeSintez {
         @Override
         public Class<?> getTypeClass() {
             return DataBETS.class;
+        }
+
+        @Override
+        public Calculation getCalculation() {
+            return new CalculationBETS();
+        }
+
+        @Override
+        public DataElement getDataElement() {
+            return CalculationKA.getInstance().getDataBETS();
+        }
+
+        @Override
+        public Integer getNumber() {
+            return 11;
         }
     },
     BVS{
@@ -217,6 +387,21 @@ public enum TabTypeSintez {
         public Class<?> getTypeClass() {
             return DataBVS.class;
         }
+
+        @Override
+        public Calculation getCalculation() {
+            return new CalculationBVS();
+        }
+
+        @Override
+        public DataElement getDataElement() {
+            return CalculationKA.getInstance().getDataBVS();
+        }
+
+        @Override
+        public Integer getNumber() {
+            return 12;
+        }
     },
     OTHER_ELEMENTS_BKU{
         @Override
@@ -233,6 +418,21 @@ public enum TabTypeSintez {
         public Class<?> getTypeClass() {
             return DataOtherBKU.class;
         }
+
+        @Override
+        public Calculation getCalculation() {
+            return new CalculationOtherBKU();
+        }
+
+        @Override
+        public DataElement getDataElement() {
+            return CalculationKA.getInstance().getDataOtherBKU();
+        }
+
+        @Override
+        public Integer getNumber() {
+            return 13;
+        }
     },
     BKU{
         @Override
@@ -248,6 +448,21 @@ public enum TabTypeSintez {
         @Override
         public Class<?> getTypeClass() {
             return DataBKU.class;
+        }
+
+        @Override
+        public Calculation getCalculation() {
+            return new CalculationBKU();
+        }
+
+        @Override
+        public DataElement getDataElement() {
+            return CalculationKA.getInstance().getDataBKU();
+        }
+
+        @Override
+        public Integer getNumber() {
+            return 14;
         }
     },
 
@@ -267,6 +482,21 @@ public enum TabTypeSintez {
         public Class<?> getTypeClass() {
             return DataPasivSOTR.class;
         }
+
+        @Override
+        public Calculation getCalculation() {
+            return new CalculationPasivSOTR();
+        }
+
+        @Override
+        public DataElement getDataElement() {
+            return CalculationKA.getInstance().getDataPasivSOTR();
+        }
+
+        @Override
+        public Integer getNumber() {
+            return 15;
+        }
     },
     ACTIV_ELEMENT_SOTR{
         @Override
@@ -283,6 +513,21 @@ public enum TabTypeSintez {
         public Class<?> getTypeClass() {
             return DataActivSOTR.class;
         }
+
+        @Override
+        public Calculation getCalculation() {
+            return new CalculationActivSOTR();
+        }
+
+        @Override
+        public DataElement getDataElement() {
+            return CalculationKA.getInstance().getDataActivSOTR();
+        }
+
+        @Override
+        public Integer getNumber() {
+            return 16;
+        }
     },
     SOTR{
         @Override
@@ -298,6 +543,21 @@ public enum TabTypeSintez {
         @Override
         public Class<?> getTypeClass() {
             return DataSOTR.class;
+        }
+
+        @Override
+        public Calculation getCalculation() {
+            return new CalculationSOTR();
+        }
+
+        @Override
+        public DataElement getDataElement() {
+            return CalculationKA.getInstance().getDataSOTR();
+        }
+
+        @Override
+        public Integer getNumber() {
+            return 17;
         }
     },
 
@@ -317,6 +577,21 @@ public enum TabTypeSintez {
         public Class<?> getTypeClass() {
             return DataElectHaraktSEP.class;
         }
+
+        @Override
+        public Calculation getCalculation() {
+            return new CalculationElectHaraktSEP();
+        }
+
+        @Override
+        public DataElement getDataElement() {
+            return CalculationKA.getInstance().getDataElectHaraktSEP();
+        }
+
+        @Override
+        public Integer getNumber() {
+            return 18;
+        }
     },
     AKUM_BATTERIES{
         @Override
@@ -332,6 +607,21 @@ public enum TabTypeSintez {
         @Override
         public Class<?> getTypeClass() {
             return DataAcumBetSEP.class;
+        }
+
+        @Override
+        public Calculation getCalculation() {
+            return new CalculationAcumBetSEP();
+        }
+
+        @Override
+        public DataElement getDataElement() {
+            return CalculationKA.getInstance().getDataAcumBetSEP();
+        }
+
+        @Override
+        public Integer getNumber() {
+            return 19;
         }
     },
     KAS{
@@ -349,6 +639,21 @@ public enum TabTypeSintez {
         public Class<?> getTypeClass() {
             return DataKAS.class;
         }
+
+        @Override
+        public Calculation getCalculation() {
+            return new CalculationKAS();
+        }
+
+        @Override
+        public DataElement getDataElement() {
+            return CalculationKA.getInstance().getDataKAS();
+        }
+
+        @Override
+        public Integer getNumber() {
+            return 20;
+        }
     },
     SUN_BATTERIES{
         @Override
@@ -364,6 +669,21 @@ public enum TabTypeSintez {
         @Override
         public Class<?> getTypeClass() {
             return DataSumBetSEP.class;
+        }
+
+        @Override
+        public Calculation getCalculation() {
+            return new CalculationSumBetSEP();
+        }
+
+        @Override
+        public DataElement getDataElement() {
+            return CalculationKA.getInstance().getDataSumBetSEP();
+        }
+
+        @Override
+        public Integer getNumber() {
+            return 21;
         }
     },
 
@@ -383,6 +703,21 @@ public enum TabTypeSintez {
         public Class<?> getTypeClass() {
             return DataSpeed.class;
         }
+
+        @Override
+        public Calculation getCalculation() {
+            return new CalculationSpeed();
+        }
+
+        @Override
+        public DataElement getDataElement() {
+            return CalculationKA.getInstance().getDataSpeed();
+        }
+
+        @Override
+        public Integer getNumber() {
+            return 22;
+        }
     },
     MASS_TOPLIVA{
         @Override
@@ -399,6 +734,21 @@ public enum TabTypeSintez {
         public Class<?> getTypeClass() {
             return DataMassTopl.class;
         }
+
+        @Override
+        public Calculation getCalculation() {
+            return new CalculationMassTopl();
+        }
+
+        @Override
+        public DataElement getDataElement() {
+            return CalculationKA.getInstance().getDataMassTopl();
+        }
+
+        @Override
+        public Integer getNumber() {
+            return 23;
+        }
     },
     MASOGABARITN_AND_ENERGET_PARAMETERS{
         @Override
@@ -414,6 +764,21 @@ public enum TabTypeSintez {
         @Override
         public Class<?> getTypeClass() {
             return DataKDU.class;
+        }
+
+        @Override
+        public Calculation getCalculation() {
+            return new CalculationKDU();
+        }
+
+        @Override
+        public DataElement getDataElement() {
+            return CalculationKA.getInstance().getDataKDU();
+        }
+
+        @Override
+        public Integer getNumber() {
+            return 24;
         }
     },
 
@@ -433,6 +798,21 @@ public enum TabTypeSintez {
         public Class<?> getTypeClass() {
             return DataKonstrKA.class;
         }
+
+        @Override
+        public Calculation getCalculation() {
+            return new CalculationKonstrKA();
+        }
+
+        @Override
+        public DataElement getDataElement() {
+            return CalculationKA.getInstance().getDataKonstrKA();
+        }
+
+        @Override
+        public Integer getNumber() {
+            return 25;
+        }
     },
 
     BKS_AND_AFU{
@@ -449,6 +829,21 @@ public enum TabTypeSintez {
         @Override
         public Class<?> getTypeClass() {
             return DataBKSandAFU.class;
+        }
+
+        @Override
+        public Calculation getCalculation() {
+            return new CalkulationBKSandAFU();
+        }
+
+        @Override
+        public DataElement getDataElement() {
+            return CalculationKA.getInstance().getDataBKSandAFU();
+        }
+
+        @Override
+        public Integer getNumber() {
+            return 26;
         }
     },
 
@@ -467,6 +862,21 @@ public enum TabTypeSintez {
         public Class<?> getTypeClass() {
             return DataOtherKA.class;
         }
+
+        @Override
+        public Calculation getCalculation() {
+            return new CalculationOtherKA();
+        }
+
+        @Override
+        public DataElement getDataElement() {
+            return CalculationKA.getInstance().getDataOtherKA();
+        }
+
+        @Override
+        public Integer getNumber() {
+            return 27;
+        }
     },
 
     RETHERV{
@@ -483,6 +893,21 @@ public enum TabTypeSintez {
         @Override
         public Class<?> getTypeClass() {
             return DataRezervKA.class;
+        }
+
+        @Override
+        public Calculation getCalculation() {
+            return new CalculationRezervKA();
+        }
+
+        @Override
+        public DataElement getDataElement() {
+            return CalculationKA.getInstance().getDataRezervKA();
+        }
+
+        @Override
+        public Integer getNumber() {
+            return 28;
         }
     },
 
@@ -501,11 +926,29 @@ public enum TabTypeSintez {
         public Class<?> getTypeClass() {
             return DataCommonParameters.class;
         }
+
+        @Override
+        public Calculation getCalculation() {
+            return new CalculationKA();
+        }
+
+        @Override
+        public DataElement getDataElement() {
+            return CalculationKA.getInstance().getDataCommonParameters();
+        }
+
+        @Override
+        public Integer getNumber() {
+            return 29;
+        }
     };
 
     private String name = "NON NAME";
     private String typeName = "non";
     private Class<?>  typeClass = DataElement.class;
+    private Calculation calculation = CalculationKA.getInstance();
+    private DataElement dataElement = CalculationKA.getInstance().getDataCommonParameters();
+    private Integer number;
 
 
     public String getName() {
@@ -518,5 +961,17 @@ public enum TabTypeSintez {
 
     public Class<?> getTypeClass() {
         return typeClass;
+    }
+
+    public Calculation getCalculation() {
+        return calculation;
+    }
+
+    public DataElement getDataElement() {
+        return dataElement;
+    }
+
+    public Integer getNumber() {
+        return number;
     }
 }

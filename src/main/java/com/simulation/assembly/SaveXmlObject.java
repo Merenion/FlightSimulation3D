@@ -35,6 +35,7 @@ public class SaveXmlObject<T> {
             fileChooser.getExtensionFilters().add(extFilter);
             File file = fileChooser.showSaveDialog(Main.getStage());
             if (file != null) {
+                if (empty instanceof DataElement) ((DataElement) empty).setImportData(true);
                 saveObject(file, empty);
                 ControllerAssembly.showInfo(nameObject + " - успешно сохранено.");
             }
@@ -100,6 +101,7 @@ public class SaveXmlObject<T> {
 
     public void saveDatumDomain(T empty) {
         DataElement dataElement= (DataElement) empty;
+        dataElement.setImportData(true);
         try {
             long id =((DataElement) empty).getId();
             File file = new File(pathDomain + "\\" + "data" + id + "." + dataElement.getType().getTypeName());

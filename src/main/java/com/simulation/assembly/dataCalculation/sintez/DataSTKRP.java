@@ -12,11 +12,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "DataSTKRP")
 public class DataSTKRP  extends DataElement{
 
-    private final static TabTypeSintez type =TabTypeSintez.STKRP;
-
     @Override
     public TabTypeSintez getType() {
-        return type;
+        return TabTypeSintez.STKRP;
     }
 
     public float kmSTKRP;  //Доля масса СТКРП от массы КА, %

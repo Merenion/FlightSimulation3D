@@ -10,9 +10,14 @@
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -28,7 +33,7 @@
                         <MenuItem mnemonicParsing="false" onAction="#actionNewProject" text="New" />
                         <MenuItem mnemonicParsing="false" onAction="#actionOpenProject" text="Open project" />
                         <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem fx:id="btSaveProject" mnemonicParsing="false" onAction="#actionSaveProject" text="Save" />
+                        <MenuItem fx:id="btSaveProject" disable="true" mnemonicParsing="false" onAction="#actionSaveProject" text="Save" />
                         <MenuItem mnemonicParsing="false" onAction="#actionSaveAsProject" text="Save As…" />
                         <SeparatorMenuItem mnemonicParsing="false" />
                         <MenuItem mnemonicParsing="false" onAction="#actionCloseProject" text="Close" />
@@ -194,6 +199,11 @@
                                                                         <Button fx:id="bt_calcul_OETK" layoutX="181.0" layoutY="407.0" mnemonicParsing="false" onAction="#actionCal_OETK" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
                                                                         <Label layoutX="109.0" layoutY="132.0" prefHeight="17.0" prefWidth="372.0" text="Диаметр телескопа,м" />
                                                                         <Label fx:id="ouT_dOETK" layoutX="25.0" layoutY="133.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
+                                                                        <Label fx:id="labelZaimOetk" layoutX="28.0" layoutY="461.0" prefHeight="20.0" prefWidth="444.0" text="Выбран взаимсвованный элемент - аааааааааааааааааааааааа" textFill="#4e57ff" visible="false">
+                                                                           <font>
+                                                                              <Font name="System Bold" size="14.0" />
+                                                                           </font>
+                                                                        </Label>
                                                                      </children>
                                                                   </AnchorPane>
                                                                   <AnchorPane layoutX="817.0" layoutY="512.0" prefHeight="75.0" prefWidth="160.0">
@@ -217,13 +227,13 @@
                                                                               <Font name="System Bold" size="16.0" />
                                                                            </font>
                                                                         </Label>
-                                                                        <TextField fx:id="sPISPPI" layoutX="21.0" layoutY="62.0" prefHeight="25.0" prefWidth="79.0" text="75" />
+                                                                        <TextField fx:id="sPISPPI" layoutX="21.0" layoutY="62.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="75" />
                                                                         <Label layoutX="116.0" layoutY="66.0" prefHeight="17.0" prefWidth="372.0" text="Скорость передачи информации, Мбит/с" />
-                                                                        <TextField fx:id="umSPPI" layoutX="21.0" layoutY="95.0" prefHeight="25.0" prefWidth="79.0" text="5" />
+                                                                        <TextField fx:id="umSPPI" layoutX="21.0" layoutY="95.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="5" />
                                                                         <Label layoutX="116.0" layoutY="99.0" prefHeight="17.0" prefWidth="372.0" text="Удельная масса аппаратуры кг/Мбит/с" />
-                                                                        <TextField fx:id="uwSPPI" layoutX="21.0" layoutY="128.0" prefHeight="25.0" prefWidth="79.0" text="1" />
+                                                                        <TextField fx:id="uwSPPI" layoutX="21.0" layoutY="128.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="1" />
                                                                         <Label layoutX="116.0" layoutY="132.0" prefHeight="17.0" prefWidth="372.0" text="Удельная мощность энергопотребления, Вт/Мбит/с" />
-                                                                        <TextField fx:id="plSPPI" layoutX="21.0" layoutY="161.0" prefHeight="25.0" prefWidth="79.0" text="300" />
+                                                                        <TextField fx:id="plSPPI" layoutX="21.0" layoutY="161.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="300" />
                                                                         <Label layoutX="116.0" layoutY="165.0" prefHeight="17.0" prefWidth="372.0" text="Средняя плотность компоновки приборов, кг/м3" />
                                                                      </children>
                                                                   </AnchorPane>
@@ -243,6 +253,11 @@
                                                                         <Label fx:id="wSPPI" layoutX="25.0" layoutY="135.0" prefHeight="17.0" prefWidth="75.0" text="0.000" />
                                                                         <Label fx:id="jSPPI" layoutX="25.0" layoutY="168.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                         <Button layoutX="181.0" layoutY="209.0" mnemonicParsing="false" onAction="#actionCal_SPPE" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
+                                                                        <Label fx:id="labelZaimSppe" layoutX="25.0" layoutY="468.0" prefHeight="20.0" prefWidth="444.0" text="Выбран взаимсвованный элемент - аааааааааааааааааааааааа" textFill="#4e57ff" visible="false">
+                                                                           <font>
+                                                                              <Font name="System Bold" size="14.0" />
+                                                                           </font>
+                                                                        </Label>
                                                                      </children>
                                                                   </AnchorPane>
                                                                    <AnchorPane layoutX="817.0" layoutY="512.0" prefHeight="75.0" prefWidth="160.0">
@@ -266,13 +281,13 @@
                                                                               <Font name="System Bold" size="16.0" />
                                                                            </font>
                                                                         </Label>
-                                                                        <TextField fx:id="sPI" layoutX="21.0" layoutY="62.0" prefHeight="25.0" prefWidth="79.0" text="75" />
+                                                                        <TextField fx:id="sPI" layoutX="21.0" layoutY="62.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="75" />
                                                                         <Label layoutX="116.0" layoutY="66.0" prefHeight="17.0" prefWidth="372.0" text="Скорость передачи информации, Мбит/с" />
-                                                                        <TextField fx:id="umVRL" layoutX="21.0" layoutY="95.0" prefHeight="25.0" prefWidth="79.0" text="2.3" />
+                                                                        <TextField fx:id="umVRL" layoutX="21.0" layoutY="95.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="2.3" />
                                                                         <Label layoutX="116.0" layoutY="99.0" prefHeight="17.0" prefWidth="372.0" text="Удельная масса аппаратуры кг/Мбит/с" />
-                                                                        <TextField fx:id="uwVRL" layoutX="21.0" layoutY="128.0" prefHeight="25.0" prefWidth="79.0" text="1" />
+                                                                        <TextField fx:id="uwVRL" layoutX="21.0" layoutY="128.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="1" />
                                                                         <Label layoutX="116.0" layoutY="132.0" prefHeight="17.0" prefWidth="372.0" text="Удельная мощность энергопотребления, Вт/Мбит/с" />
-                                                                        <TextField fx:id="plVRL" layoutX="21.0" layoutY="161.0" prefHeight="25.0" prefWidth="79.0" text="300" />
+                                                                        <TextField fx:id="plVRL" layoutX="21.0" layoutY="161.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="300" />
                                                                         <Label layoutX="116.0" layoutY="165.0" prefHeight="17.0" prefWidth="372.0" text="Средняя плотность компоновки приборов, кг/м3" />
                                                                      </children>
                                                                   </AnchorPane>
@@ -292,6 +307,11 @@
                                                                         <Label fx:id="wVRL" layoutX="25.0" layoutY="135.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                         <Label fx:id="jVRL" layoutX="25.0" layoutY="168.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                         <Button layoutX="181.0" layoutY="209.0" mnemonicParsing="false" onAction="#actionCal_VRL" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
+                                                                        <Label fx:id="labelZaimVrl" layoutX="25.0" layoutY="451.0" prefHeight="20.0" prefWidth="444.0" text="Выбран взаимсвованный элемент - аааааааааааааааааааааааа" textFill="#4e57ff" visible="false">
+                                                                           <font>
+                                                                              <Font name="System Bold" size="14.0" />
+                                                                           </font>
+                                                                        </Label>
                                                                      </children>
                                                                   </AnchorPane>
                                                                    <AnchorPane layoutX="817.0" layoutY="512.0" prefHeight="75.0" prefWidth="160.0">
@@ -315,11 +335,11 @@
                                                                               <Font name="System Bold" size="16.0" />
                                                                            </font>
                                                                         </Label>
-                                                                        <TextField fx:id="kPrZA" layoutX="21.0" layoutY="62.0" prefHeight="25.0" prefWidth="79.0" text="2" />
+                                                                        <TextField fx:id="kPrZA" layoutX="21.0" layoutY="62.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="2" />
                                                                         <Label layoutX="116.0" layoutY="66.0" prefHeight="17.0" prefWidth="372.0" text="Доля прочих элементов от массы Целевой аппаратуры,%" />
-                                                                        <TextField fx:id="uwPrZA" layoutX="21.0" layoutY="95.0" prefHeight="25.0" prefWidth="79.0" text="0.25" />
+                                                                        <TextField fx:id="uwPrZA" layoutX="21.0" layoutY="95.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="0.25" />
                                                                         <Label layoutX="116.0" layoutY="99.0" prefHeight="17.0" prefWidth="372.0" text="Удельная мощность энергопотребления,Вт/кг" />
-                                                                        <TextField fx:id="plPrZA" layoutX="21.0" layoutY="128.0" prefHeight="25.0" prefWidth="79.0" text="300" />
+                                                                        <TextField fx:id="plPrZA" layoutX="21.0" layoutY="128.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="300" />
                                                                         <Label layoutX="116.0" layoutY="132.0" prefHeight="17.0" prefWidth="372.0" text="Средняя плотность компоновки приборов,кг/м3" />
                                                                      </children>
                                                                   </AnchorPane>
@@ -339,6 +359,11 @@
                                                                         <Label fx:id="wPrZA" layoutX="25.0" layoutY="135.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                         <Label fx:id="jPrZA" layoutX="25.0" layoutY="168.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                         <Button layoutX="181.0" layoutY="209.0" mnemonicParsing="false" onAction="#actionCal_OtherCa" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
+                                                                        <Label fx:id="labelZaimOtherCA" layoutX="25.0" layoutY="466.0" prefHeight="20.0" prefWidth="444.0" text="Выбран взаимсвованный элемент - аааааааааааааааааааааааа" textFill="#4e57ff" visible="false">
+                                                                           <font>
+                                                                              <Font name="System Bold" size="14.0" />
+                                                                           </font>
+                                                                        </Label>
                                                                      </children>
                                                                   </AnchorPane>
                                                                    <AnchorPane layoutX="817.0" layoutY="512.0" prefHeight="75.0" prefWidth="160.0">
@@ -405,25 +430,25 @@
                                                                               <Font name="System Bold" size="16.0" />
                                                                            </font>
                                                                         </Label>
-                                                                        <TextField fx:id="iN_Pr1" layoutX="21.0" layoutY="62.0" prefHeight="25.0" prefWidth="79.0" text="30" />
+                                                                        <TextField fx:id="iN_Pr1" layoutX="21.0" layoutY="62.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="30" />
                                                                         <Label layoutX="116.0" layoutY="66.0" prefHeight="17.0" prefWidth="372.0" text="Количество снимаемых объектов за виток" />
-                                                                        <TextField fx:id="iN_Tzr" layoutX="21.0" layoutY="95.0" prefHeight="25.0" prefWidth="79.0" text="20" />
+                                                                        <TextField fx:id="iN_Tzr" layoutX="21.0" layoutY="95.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="20" />
                                                                         <Label layoutX="116.0" layoutY="99.0" prefHeight="17.0" prefWidth="372.0" text="ремя целевой работы на одном витке, мин" />
-                                                                        <TextField fx:id="iN_uKA" layoutX="21.0" layoutY="128.0" prefHeight="25.0" prefWidth="79.0" text="60" />
+                                                                        <TextField fx:id="iN_uKA" layoutX="21.0" layoutY="128.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="60" />
                                                                         <Label layoutX="116.0" layoutY="132.0" prefHeight="17.0" prefWidth="372.0" text="Максимальный угол поворота КА от надира, град" />
-                                                                        <TextField fx:id="iN_wPrez" layoutX="21.0" layoutY="161.0" prefHeight="25.0" prefWidth="79.0" text="8" />
+                                                                        <TextField fx:id="iN_wPrez" layoutX="21.0" layoutY="161.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="8" />
                                                                         <Label layoutX="116.0" layoutY="165.0" prefHeight="17.0" prefWidth="372.0" text="Допустимая угловая скорость прецессии рамки СГК, град/с" />
-                                                                        <TextField fx:id="iN_wRGP" layoutX="21.0" layoutY="194.0" prefHeight="25.0" prefWidth="79.0" text="7200" />
+                                                                        <TextField fx:id="iN_wRGP" layoutX="21.0" layoutY="194.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="7200" />
                                                                         <Label layoutX="116.0" layoutY="198.0" prefHeight="17.0" prefWidth="372.0" text="Угловая скорость ротора гироприбора, об/мин" />
-                                                                        <TextField fx:id="iN_plRGP" layoutX="21.0" layoutY="227.0" prefHeight="25.0" prefWidth="79.0" text="2700" />
+                                                                        <TextField fx:id="iN_plRGP" layoutX="21.0" layoutY="227.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="2700" />
                                                                         <Label layoutX="116.0" layoutY="231.0" prefHeight="17.0" prefWidth="372.0" text="Средняя плотность ротора гироприбора, кг/м3" />
-                                                                        <TextField fx:id="iN_kmGP_RGP" layoutX="21.0" layoutY="260.0" prefHeight="25.0" prefWidth="79.0" text="1.3" />
+                                                                        <TextField fx:id="iN_kmGP_RGP" layoutX="21.0" layoutY="260.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="1.3" />
                                                                         <Label layoutX="116.0" layoutY="264.0" prefHeight="17.0" prefWidth="372.0" text="Коэффициент превышения массы ГП над массой ротора ГП" />
-                                                                        <TextField fx:id="iN_kmEB_mGP" layoutX="21.0" layoutY="293.0" prefHeight="25.0" prefWidth="79.0" text="40" />
+                                                                        <TextField fx:id="iN_kmEB_mGP" layoutX="21.0" layoutY="293.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="40" />
                                                                         <Label layoutX="116.0" layoutY="297.0" prefHeight="17.0" prefWidth="372.0" text="Масса электронного блока в % от массы ГП" />
-                                                                        <TextField fx:id="iN_uW_SGK" layoutX="21.0" layoutY="326.0" prefHeight="25.0" prefWidth="79.0" text="2" />
+                                                                        <TextField fx:id="iN_uW_SGK" layoutX="21.0" layoutY="326.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="2" />
                                                                         <Label layoutX="116.0" layoutY="330.0" prefHeight="17.0" prefWidth="372.0" text="Удельная мощность потребл. энергии приборами, Вт/кг" />
-                                                                        <TextField fx:id="iN_pEB" layoutX="21.0" layoutY="359.0" prefHeight="25.0" prefWidth="79.0" text="700" />
+                                                                        <TextField fx:id="iN_pEB" layoutX="21.0" layoutY="359.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="700" />
                                                                         <Label layoutX="116.0" layoutY="363.0" prefHeight="17.0" prefWidth="372.0" text="Плотность электронного блока гироприбора, кг/м3" />
                                                                      </children>
                                                                   </AnchorPane>
@@ -471,6 +496,11 @@
                                                                         <Label layoutX="109.0" layoutY="459.0" prefHeight="17.0" prefWidth="212.0" text="Средний диаметр широприбора, м" />
                                                                         <Label fx:id="ouT_wSGK" layoutX="25.0" layoutY="436.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                         <Label fx:id="ouT_dGP" layoutX="25.0" layoutY="460.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
+                                                                        <Label fx:id="labelZaimSgk" layoutX="-173.0" layoutY="485.0" prefHeight="20.0" prefWidth="444.0" text="Выбран взаимсвованный элемент - аааааааааааааааааааааааа" textFill="#4e57ff" visible="false">
+                                                                           <font>
+                                                                              <Font name="System Bold" size="14.0" />
+                                                                           </font>
+                                                                        </Label>
                                                                      </children>
                                                                   </AnchorPane>
                                                                   <RadioButton fx:id="typeSgk" layoutX="23.0" layoutY="423.0" mnemonicParsing="false" onAction="#actionSelectTypeSGK" selected="true" text="Силовой гироскопический комплекс">
@@ -512,17 +542,17 @@
                                                                               <Font name="System Bold" size="16.0" />
                                                                            </font>
                                                                         </Label>
-                                                                        <TextField fx:id="kmSSKM" layoutX="21.0" layoutY="62.0" prefHeight="25.0" prefWidth="79.0" text="1" />
+                                                                        <TextField fx:id="kmSSKM" layoutX="21.0" layoutY="62.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="1" />
                                                                         <Label layoutX="116.0" layoutY="66.0" prefHeight="17.0" prefWidth="372.0" text="Масса элементов ССКМ в % от массы КА" />
-                                                                        <TextField fx:id="uwSSKM" layoutX="21.0" layoutY="95.0" prefHeight="25.0" prefWidth="79.0" text="1" />
+                                                                        <TextField fx:id="uwSSKM" layoutX="21.0" layoutY="95.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="1" />
                                                                         <Label layoutX="116.0" layoutY="99.0" prefHeight="17.0" prefWidth="372.0" text="Удельн. мощность потребл. энергии приборами, Вт/кг" />
-                                                                        <TextField fx:id="kmsSSKM" layoutX="21.0" layoutY="128.0" prefHeight="25.0" prefWidth="79.0" text="70" />
+                                                                        <TextField fx:id="kmsSSKM" layoutX="21.0" layoutY="128.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="70" />
                                                                         <Label layoutX="116.0" layoutY="132.0" prefHeight="17.0" prefWidth="372.0" text="Доля массы штанг от массы всей ССКМ, %" />
-                                                                        <TextField fx:id="plaSSKM" layoutX="21.0" layoutY="161.0" prefHeight="25.0" prefWidth="79.0" text="700" />
+                                                                        <TextField fx:id="plaSSKM" layoutX="21.0" layoutY="161.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="700" />
                                                                         <Label layoutX="116.0" layoutY="165.0" prefHeight="17.0" prefWidth="372.0" text="Плотность компоновки аппаратуры ССКМ, кг/м3" />
-                                                                        <TextField fx:id="plsSSKM" layoutX="21.0" layoutY="193.0" prefHeight="25.0" prefWidth="79.0" text="2700" />
+                                                                        <TextField fx:id="plsSSKM" layoutX="21.0" layoutY="193.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="2700" />
                                                                         <Label layoutX="116.0" layoutY="197.0" prefHeight="17.0" prefWidth="372.0" text="Плотность конструкционного материала штанг, кг/м3" />
-                                                                        <TextField fx:id="kzsSSKM" layoutX="21.0" layoutY="226.0" prefHeight="25.0" prefWidth="79.0" text="30" />
+                                                                        <TextField fx:id="kzsSSKM" layoutX="21.0" layoutY="226.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="30" />
                                                                         <Label layoutX="116.0" layoutY="230.0" prefHeight="17.0" prefWidth="372.0" text="Коэф. заполнения штангССКМ конструкц. материалом, %" />
                                                                      </children>
                                                                   </AnchorPane>
@@ -548,6 +578,11 @@
                                                                         <Label fx:id="vsSSKM" layoutX="25.0" layoutY="200.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                         <Label fx:id="wSSKM" layoutX="25.0" layoutY="233.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                         <Label fx:id="jSSKM" layoutX="25.0" layoutY="266.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
+                                                                        <Label fx:id="labelZaimSSKM" layoutX="14.0" layoutY="468.0" prefHeight="20.0" prefWidth="444.0" text="Выбран взаимсвованный элемент - аааааааааааааааааааааааа" textFill="#4e57ff" visible="false">
+                                                                           <font>
+                                                                              <Font name="System Bold" size="14.0" />
+                                                                           </font>
+                                                                        </Label>
                                                                      </children>
                                                                   </AnchorPane>
                                                                    <AnchorPane layoutX="817.0" layoutY="512.0" prefHeight="75.0" prefWidth="160.0">
@@ -572,11 +607,11 @@
                                                                               <Font name="System Bold" size="16.0" />
                                                                            </font>
                                                                         </Label>
-                                                                        <TextField fx:id="kmSTKRP" layoutX="21.0" layoutY="62.0" prefHeight="25.0" prefWidth="79.0" text="1" />
+                                                                        <TextField fx:id="kmSTKRP" layoutX="21.0" layoutY="62.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="1" />
                                                                         <Label layoutX="116.0" layoutY="66.0" prefHeight="17.0" prefWidth="372.0" text="Масса элементов СТКРП в % от массы КА" />
-                                                                        <TextField fx:id="uwSTKRP" layoutX="21.0" layoutY="95.0" prefHeight="25.0" prefWidth="79.0" text="1" />
+                                                                        <TextField fx:id="uwSTKRP" layoutX="21.0" layoutY="95.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="1" />
                                                                         <Label layoutX="116.0" layoutY="99.0" prefHeight="17.0" prefWidth="372.0" text="Удельн. мощность потребл. энергии приборами, Вт/кг" />
-                                                                        <TextField fx:id="plSTKRP" layoutX="21.0" layoutY="128.0" prefHeight="25.0" prefWidth="79.0" text="700" />
+                                                                        <TextField fx:id="plSTKRP" layoutX="21.0" layoutY="128.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="700" />
                                                                         <Label layoutX="116.0" layoutY="132.0" prefHeight="17.0" prefWidth="372.0" text="Плотность компоновки блока СТКРП, кг/м3" />
                                                                      </children>
                                                                   </AnchorPane>
@@ -596,6 +631,11 @@
                                                                         <Label fx:id="wSTKRP" layoutX="25.0" layoutY="135.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                         <Label fx:id="jSTKRP" layoutX="25.0" layoutY="168.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                         <Button layoutX="181.0" layoutY="209.0" mnemonicParsing="false" onAction="#bt_calcul_STKRP" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
+                                                                        <Label fx:id="labelZaimStkrp" layoutX="28.0" layoutY="474.0" prefHeight="20.0" prefWidth="444.0" text="Выбран взаимсвованный элемент - аааааааааааааааааааааааа" textFill="#4e57ff" visible="false">
+                                                                           <font>
+                                                                              <Font name="System Bold" size="14.0" />
+                                                                           </font>
+                                                                        </Label>
                                                                      </children>
                                                                   </AnchorPane>
                                                                    <AnchorPane layoutX="817.0" layoutY="512.0" prefHeight="75.0" prefWidth="160.0">
@@ -620,11 +660,11 @@
                                                                               <Font name="System Bold" size="16.0" />
                                                                            </font>
                                                                         </Label>
-                                                                        <TextField fx:id="kmKIS" layoutX="21.0" layoutY="62.0" prefHeight="25.0" prefWidth="79.0" text="0.75" />
+                                                                        <TextField fx:id="kmKIS" layoutX="21.0" layoutY="62.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="0.75" />
                                                                         <Label layoutX="116.0" layoutY="66.0" prefHeight="17.0" prefWidth="372.0" text="Масса элементов КИС в % от массы КА" />
-                                                                        <TextField fx:id="uwKIS" layoutX="21.0" layoutY="95.0" prefHeight="25.0" prefWidth="79.0" text="1" />
+                                                                        <TextField fx:id="uwKIS" layoutX="21.0" layoutY="95.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="1" />
                                                                         <Label layoutX="116.0" layoutY="99.0" prefHeight="17.0" prefWidth="372.0" text="Удельн. мощность потребл. энергии приборами, Вт/кг" />
-                                                                        <TextField fx:id="plKIS" layoutX="21.0" layoutY="128.0" prefHeight="25.0" prefWidth="79.0" text="700" />
+                                                                        <TextField fx:id="plKIS" layoutX="21.0" layoutY="128.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="700" />
                                                                         <Label layoutX="116.0" layoutY="132.0" prefHeight="17.0" prefWidth="372.0" text="Плотность компоновки блока КИС, кг/м3" />
                                                                      </children>
                                                                   </AnchorPane>
@@ -653,6 +693,11 @@
                                                                         <Button layoutX="80.0" layoutY="39.0" mnemonicParsing="false" onAction="#exportBAKES" prefHeight="25.0" prefWidth="68.0" text="Экспорт" />
                                                                      </children>
                                                                   </AnchorPane>
+                                                                  <Label fx:id="labelZaimBaKis" layoutX="528.0" layoutY="468.0" prefHeight="20.0" prefWidth="444.0" text="Выбран взаимсвованный элемент - аааааааааааааааааааааааа" textFill="#4e57ff" visible="false">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="14.0" />
+                                                                     </font>
+                                                                  </Label>
                                                                </children>
                                                             </AnchorPane>
                                                          </content>
@@ -668,11 +713,11 @@
                                                                               <Font name="System Bold" size="16.0" />
                                                                            </font>
                                                                         </Label>
-                                                                        <TextField fx:id="kmBITS" layoutX="21.0" layoutY="62.0" prefHeight="25.0" prefWidth="79.0" text="0.70" />
+                                                                        <TextField fx:id="kmBITS" layoutX="21.0" layoutY="62.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="0.70" />
                                                                         <Label layoutX="116.0" layoutY="66.0" prefHeight="17.0" prefWidth="372.0" text="Масса элементов БИТС в % от массы КА" />
-                                                                        <TextField fx:id="uwBITS" layoutX="21.0" layoutY="95.0" prefHeight="25.0" prefWidth="79.0" text="1" />
+                                                                        <TextField fx:id="uwBITS" layoutX="21.0" layoutY="95.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="1" />
                                                                         <Label layoutX="116.0" layoutY="99.0" prefHeight="17.0" prefWidth="372.0" text="Удельн. мощность потребл. энергии приборами, Вт/кг" />
-                                                                        <TextField fx:id="plBITS" layoutX="21.0" layoutY="128.0" prefHeight="25.0" prefWidth="79.0" text="700" />
+                                                                        <TextField fx:id="plBITS" layoutX="21.0" layoutY="128.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="700" />
                                                                         <Label layoutX="116.0" layoutY="132.0" prefHeight="17.0" prefWidth="372.0" text="Плотность компоновки блока КИС, кг/м3" />
                                                                      </children>
                                                                   </AnchorPane>
@@ -692,6 +737,11 @@
                                                                         <Label fx:id="wBITS" layoutX="25.0" layoutY="135.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                         <Label fx:id="jBITS" layoutX="25.0" layoutY="168.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                         <Button layoutX="181.0" layoutY="209.0" mnemonicParsing="false" onAction="#bt_calcul_BETS" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
+                                                                        <Label fx:id="labelZaimBets" layoutX="28.0" layoutY="466.0" prefHeight="20.0" prefWidth="444.0" text="Выбран взаимсвованный элемент - аааааааааааааааааааааааа" textFill="#4e57ff" visible="false">
+                                                                           <font>
+                                                                              <Font name="System Bold" size="14.0" />
+                                                                           </font>
+                                                                        </Label>
                                                                      </children>
                                                                   </AnchorPane>
                                                                    <AnchorPane layoutX="817.0" layoutY="512.0" prefHeight="75.0" prefWidth="160.0">
@@ -716,11 +766,11 @@
                                                                               <Font name="System Bold" size="16.0" />
                                                                            </font>
                                                                         </Label>
-                                                                        <TextField fx:id="kmBVS" layoutX="21.0" layoutY="62.0" prefHeight="25.0" prefWidth="79.0" text="0.7" />
+                                                                        <TextField fx:id="kmBVS" layoutX="21.0" layoutY="62.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="0.7" />
                                                                         <Label layoutX="116.0" layoutY="66.0" prefHeight="17.0" prefWidth="372.0" text="Масса элементов БИТС в % от массы КА" />
-                                                                        <TextField fx:id="uwBVS" layoutX="21.0" layoutY="95.0" prefHeight="25.0" prefWidth="79.0" text="1" />
+                                                                        <TextField fx:id="uwBVS" layoutX="21.0" layoutY="95.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="1" />
                                                                         <Label layoutX="116.0" layoutY="99.0" prefHeight="17.0" prefWidth="372.0" text="Удельн. мощность потребл. энергии приборами, Вт/кг" />
-                                                                        <TextField fx:id="plBVS" layoutX="21.0" layoutY="128.0" prefHeight="25.0" prefWidth="79.0" text="700" />
+                                                                        <TextField fx:id="plBVS" layoutX="21.0" layoutY="128.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="700" />
                                                                         <Label layoutX="116.0" layoutY="132.0" prefHeight="17.0" prefWidth="372.0" text="Плотность компоновки блока КИС, кг/м3" />
                                                                      </children>
                                                                   </AnchorPane>
@@ -749,6 +799,11 @@
                                                                         <Button layoutX="80.0" layoutY="39.0" mnemonicParsing="false" onAction="#exportBVS" prefHeight="25.0" prefWidth="68.0" text="Экспорт" />
                                                                      </children>
                                                                   </AnchorPane>
+                                                                  <Label fx:id="labelZaimBvs" layoutX="529.0" layoutY="476.0" prefHeight="20.0" prefWidth="444.0" text="Выбран взаимсвованный элемент - аааааааааааааааааааааааа" textFill="#4e57ff" visible="false">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="14.0" />
+                                                                     </font>
+                                                                  </Label>
                                                                    </children>
                                                                </AnchorPane>
                                                            </content>
@@ -764,11 +819,11 @@
                                                                               <Font name="System Bold" size="16.0" />
                                                                            </font>
                                                                         </Label>
-                                                                        <TextField fx:id="kPrBKU" layoutX="21.0" layoutY="62.0" prefHeight="25.0" prefWidth="79.0" text="4" />
+                                                                        <TextField fx:id="kPrBKU" layoutX="21.0" layoutY="62.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="4" />
                                                                         <Label layoutX="116.0" layoutY="66.0" prefHeight="17.0" prefWidth="372.0" text="Доля прочих элементов от массы БКУ, %" />
-                                                                        <TextField fx:id="uwPrBKU" layoutX="21.0" layoutY="95.0" prefHeight="25.0" prefWidth="79.0" text="0.25" />
+                                                                        <TextField fx:id="uwPrBKU" layoutX="21.0" layoutY="95.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="0.25" />
                                                                         <Label layoutX="116.0" layoutY="99.0" prefHeight="17.0" prefWidth="372.0" text="Удельная мощность электропотребления, Вт/кг" />
-                                                                        <TextField fx:id="plPrBKU" layoutX="21.0" layoutY="128.0" prefHeight="25.0" prefWidth="79.0" text="300" />
+                                                                        <TextField fx:id="plPrBKU" layoutX="21.0" layoutY="128.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="300" />
                                                                         <Label layoutX="116.0" layoutY="132.0" prefHeight="17.0" prefWidth="372.0" text="Средняя плотность компоновки приборов, кг/м3" />
                                                                      </children>
                                                                   </AnchorPane>
@@ -788,6 +843,11 @@
                                                                         <Label fx:id="wPrBKU" layoutX="25.0" layoutY="135.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                         <Label fx:id="jPrBKU" layoutX="25.0" layoutY="168.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                         <Button layoutX="181.0" layoutY="209.0" mnemonicParsing="false" onAction="#bt_calcul_OtherBKU" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
+                                                                        <Label fx:id="labelZaimOtherBku" layoutX="25.0" layoutY="467.0" prefHeight="20.0" prefWidth="444.0" text="Выбран взаимсвованный элемент - аааааааааааааааааааааааа" textFill="#4e57ff" visible="false">
+                                                                           <font>
+                                                                              <Font name="System Bold" size="14.0" />
+                                                                           </font>
+                                                                        </Label>
                                                                      </children>
                                                                   </AnchorPane>
                                                                        <AnchorPane layoutX="817.0" layoutY="512.0" prefHeight="75.0" prefWidth="160.0">
@@ -856,11 +916,11 @@
                                                                               <Font name="System Bold" size="16.0" />
                                                                            </font>
                                                                         </Label>
-                                                                        <TextField fx:id="umEVTI" layoutX="21.0" layoutY="62.0" prefHeight="25.0" prefWidth="79.0" text="0.8" />
+                                                                        <TextField fx:id="umEVTI" layoutX="21.0" layoutY="62.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="0.8" />
                                                                         <Label layoutX="116.0" layoutY="66.0" prefHeight="17.0" prefWidth="372.0" text="Удельная масса матов ЭВТИ, кг/м2" />
-                                                                        <TextField fx:id="tEVTI" layoutX="21.0" layoutY="95.0" prefHeight="25.0" prefWidth="79.0" text="20" />
+                                                                        <TextField fx:id="tEVTI" layoutX="21.0" layoutY="95.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="20" />
                                                                         <Label layoutX="116.0" layoutY="99.0" prefHeight="17.0" prefWidth="372.0" text="Средняя толщина ЭВТИ, мм" />
-                                                                        <TextField fx:id="kpEVTI" layoutX="21.0" layoutY="128.0" prefHeight="25.0" prefWidth="79.0" text="80" />
+                                                                        <TextField fx:id="kpEVTI" layoutX="21.0" layoutY="128.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="80" />
                                                                         <Label layoutX="116.0" layoutY="132.0" prefHeight="17.0" prefWidth="372.0" text="Коэффициент покрытия ЭВТИ наружной поверхности КА, %" />
                                                                      </children>
                                                                   </AnchorPane>
@@ -882,6 +942,11 @@
                                                                         <Label layoutX="109.0" layoutY="200.0" prefHeight="17.0" prefWidth="372.0" text="Момент инерции ЭВТИ, &quot;размазанной&quot; по объему КА, кг м2" />
                                                                         <Label fx:id="jEVTI" layoutX="25.0" layoutY="201.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                         <Button layoutX="181.0" layoutY="242.0" mnemonicParsing="false" onAction="#bt_calcul_PasivSOTR" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
+                                                                        <Label fx:id="labelZaimPasivSotr" layoutX="25.0" layoutY="448.0" prefHeight="20.0" prefWidth="444.0" text="Выбран взаимсвованный элемент - аааааааааааааааааааааааа" textFill="#4e57ff" visible="false">
+                                                                           <font>
+                                                                              <Font name="System Bold" size="14.0" />
+                                                                           </font>
+                                                                        </Label>
                                                                      </children>
                                                                   </AnchorPane>
                                                                    <AnchorPane layoutX="817.0" layoutY="512.0" prefHeight="75.0" prefWidth="160.0">
@@ -905,13 +970,13 @@
                                                                               <Font name="System Bold" size="16.0" />
                                                                            </font>
                                                                         </Label>
-                                                                        <TextField fx:id="omSTR" layoutX="21.0" layoutY="62.0" prefHeight="25.0" prefWidth="79.0" text="0.025" />
+                                                                        <TextField fx:id="omSTR" layoutX="21.0" layoutY="62.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="0.025" />
                                                                         <Label layoutX="116.0" layoutY="66.0" prefHeight="17.0" prefWidth="372.0" text="Относительная масса СТР" />
-                                                                        <TextField fx:id="plSTR" layoutX="21.0" layoutY="95.0" prefHeight="25.0" prefWidth="79.0" text="300" />
+                                                                        <TextField fx:id="plSTR" layoutX="21.0" layoutY="95.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="300" />
                                                                         <Label layoutX="116.0" layoutY="99.0" prefHeight="17.0" prefWidth="372.0" text="Средняя плотность приборов и агрегатов СТР, кг/м3" />
-                                                                        <TextField fx:id="uwSTR" layoutX="21.0" layoutY="128.0" prefHeight="25.0" prefWidth="79.0" text="1.5" />
+                                                                        <TextField fx:id="uwSTR" layoutX="21.0" layoutY="128.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="1.5" />
                                                                         <Label layoutX="116.0" layoutY="132.0" prefHeight="17.0" prefWidth="372.0" text="Удельная мощность электропотреб. приб. и агрег. СТР, Вт/кг" />
-                                                                        <TextField fx:id="kmtnSTR" layoutX="21.0" layoutY="161.0" prefHeight="25.0" prefWidth="79.0" text="40" />
+                                                                        <TextField fx:id="kmtnSTR" layoutX="21.0" layoutY="161.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="40" />
                                                                         <Label layoutX="116.0" layoutY="165.0" prefHeight="17.0" prefWidth="372.0" text="Доля теплоносителя в массе СТР, %г" />
                                                                      </children>
                                                                   </AnchorPane>
@@ -936,6 +1001,11 @@
                                                                         <Label fx:id="jSTR" layoutX="25.0" layoutY="234.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                         <Button layoutX="73.0" layoutY="275.0" mnemonicParsing="false" onAction="#bt_calcul_ActivSOTR" prefHeight="37.0" prefWidth="138.0" text="Расчитать" />
                                                                         <Button disable="true" layoutX="237.0" layoutY="275.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="138.0" text="Вторая итерация" visible="false" />
+                                                                        <Label fx:id="labelZaimActivSotr" layoutX="28.0" layoutY="449.0" prefHeight="20.0" prefWidth="444.0" text="Выбран взаимсвованный элемент - аааааааааааааааааааааааа" textFill="#4e57ff" visible="false">
+                                                                           <font>
+                                                                              <Font name="System Bold" size="14.0" />
+                                                                           </font>
+                                                                        </Label>
                                                                      </children>
                                                                   </AnchorPane>
                                                                    <AnchorPane layoutX="817.0" layoutY="512.0" prefHeight="75.0" prefWidth="160.0">
@@ -1006,29 +1076,29 @@
                                                                               <Font name="System Bold" size="16.0" />
                                                                            </font>
                                                                         </Label>
-                                                                        <TextField fx:id="wNomInCep" layoutX="21.0" layoutY="62.0" prefHeight="25.0" prefWidth="79.0" text="27" />
+                                                                        <TextField fx:id="wNomInCep" layoutX="21.0" layoutY="62.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="27" />
                                                                         <Label layoutX="116.0" layoutY="66.0" prefHeight="17.0" prefWidth="372.0" text="Номинальное напряжение в цепи, В" />
-                                                                        <TextField fx:id="kspSEP" layoutX="21.0" layoutY="95.0" prefHeight="25.0" prefWidth="79.0" text="7" />
+                                                                        <TextField fx:id="kspSEP" layoutX="21.0" layoutY="95.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="7" />
                                                                         <Label layoutX="116.0" layoutY="99.0" prefHeight="17.0" prefWidth="372.0" text="Доля собственного электропотребления СЭП, %" />
-                                                                        <TextField fx:id="TobrKA" layoutX="21.0" layoutY="128.0" prefHeight="25.0" prefWidth="79.0" text="100" />
+                                                                        <TextField fx:id="TobrKA" layoutX="21.0" layoutY="128.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="100" />
                                                                         <Label layoutX="116.0" layoutY="132.0" prefHeight="17.0" prefWidth="372.0" text="Период обращения КА за виток, мин" />
-                                                                        <TextField fx:id="tZRKA" layoutX="21.0" layoutY="161.0" prefHeight="25.0" prefWidth="79.0" text="20" />
+                                                                        <TextField fx:id="tZRKA" layoutX="21.0" layoutY="161.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="20" />
                                                                         <Label layoutX="116.0" layoutY="165.0" prefHeight="17.0" prefWidth="372.0" text="Время целевой работы КА на одном витке, мин" />
-                                                                        <TextField fx:id="kpdKAS" layoutX="21.0" layoutY="194.0" prefHeight="25.0" prefWidth="79.0" text="90" />
+                                                                        <TextField fx:id="kpdKAS" layoutX="21.0" layoutY="194.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="90" />
                                                                         <Label layoutX="116.0" layoutY="198.0" prefHeight="17.0" prefWidth="372.0" text="КПД комплекса автоматики и стабилизации (КАС), %" />
-                                                                        <TextField fx:id="kpdAB" layoutX="21.0" layoutY="227.0" prefHeight="25.0" prefWidth="79.0" text="90" />
+                                                                        <TextField fx:id="kpdAB" layoutX="21.0" layoutY="227.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="90" />
                                                                         <Label layoutX="116.0" layoutY="231.0" prefHeight="17.0" prefWidth="372.0" text="КПД аккумуляторных батарей(АБ), %" />
-                                                                        <TextField fx:id="srU" layoutX="21.0" layoutY="260.0" prefHeight="25.0" prefWidth="79.0" text="27" />
+                                                                        <TextField fx:id="srU" layoutX="21.0" layoutY="260.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="27" />
                                                                         <Label layoutX="116.0" layoutY="264.0" prefHeight="17.0" prefWidth="372.0" text="Среднее напряжение на борту КА, В" />
-                                                                        <TextField fx:id="kpdZU" layoutX="21.0" layoutY="293.0" prefHeight="25.0" prefWidth="79.0" text="90" />
+                                                                        <TextField fx:id="kpdZU" layoutX="21.0" layoutY="293.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="90" />
                                                                         <Label layoutX="116.0" layoutY="297.0" prefHeight="17.0" prefWidth="372.0" text="КПД разрядного устройства, %" />
-                                                                        <TextField fx:id="kpdRU" layoutX="21.0" layoutY="326.0" prefHeight="25.0" prefWidth="79.0" text="95" />
+                                                                        <TextField fx:id="kpdRU" layoutX="21.0" layoutY="326.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="95" />
                                                                         <Label layoutX="116.0" layoutY="330.0" prefHeight="17.0" prefWidth="372.0" text="КПД зарядного устройства, %" />
-                                                                        <TextField fx:id="kzAC" layoutX="21.0" layoutY="359.0" prefHeight="25.0" prefWidth="79.0" text="60" />
+                                                                        <TextField fx:id="kzAC" layoutX="21.0" layoutY="359.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="60" />
                                                                         <Label layoutX="116.0" layoutY="363.0" prefHeight="17.0" prefWidth="372.0" text="Коэфф. запаса для вых. из авар. ситуаций, %" />
-                                                                        <TextField fx:id="kzSR" layoutX="21.0" layoutY="392.0" prefHeight="25.0" prefWidth="79.0" text="40" />
+                                                                        <TextField fx:id="kzSR" layoutX="21.0" layoutY="392.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="40" />
                                                                         <Label layoutX="116.0" layoutY="396.0" prefHeight="17.0" prefWidth="372.0" text="Коэфф. запаса для спецрешения, %" />
-                                                                        <TextField fx:id="kdowAB" layoutX="21.0" layoutY="425.0" prefHeight="25.0" prefWidth="79.0" text="70" />
+                                                                        <TextField fx:id="kdowAB" layoutX="21.0" layoutY="425.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="70" />
                                                                         <Label layoutX="116.0" layoutY="429.0" prefHeight="17.0" prefWidth="372.0" text="Допустимая остаточная мощность АБ за срок АС, %" />
                                                                      </children>
                                                                   </AnchorPane>
@@ -1061,7 +1131,12 @@
                                                                         <Label fx:id="cAB" layoutX="25.0" layoutY="362.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                         <Label layoutX="109.0" layoutY="392.0" prefHeight="17.0" prefWidth="372.0" text="Емкость АБ с учетом срока АС, А час" />
                                                                         <Label fx:id="cAB_AS" layoutX="25.0" layoutY="393.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
-                                                                        <Button layoutX="181.0" layoutY="441.0" mnemonicParsing="false" onAction="#bt_calcul_electrTehnSEP" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
+                                                                        <Button layoutX="181.0" layoutY="430.0" mnemonicParsing="false" onAction="#bt_calcul_electrTehnSEP" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
+                                                                        <Label fx:id="labelZaimElHarSep" layoutX="14.0" layoutY="477.0" prefHeight="20.0" prefWidth="444.0" text="Выбран взаимсвованный элемент - аааааааааааааааааааааааа" textFill="#4e57ff" visible="false">
+                                                                           <font>
+                                                                              <Font name="System Bold" size="14.0" />
+                                                                           </font>
+                                                                        </Label>
                                                                      </children>
                                                                   </AnchorPane>
                                                                    <AnchorPane layoutX="817.0" layoutY="512.0" prefHeight="75.0" prefWidth="160.0">
@@ -1086,11 +1161,11 @@
                                                                               <Font name="System Bold" size="16.0" />
                                                                            </font>
                                                                         </Label>
-                                                                        <TextField fx:id="uwAB" layoutX="21.0" layoutY="62.0" prefHeight="25.0" prefWidth="79.0" text="1" />
+                                                                        <TextField fx:id="uwAB" layoutX="21.0" layoutY="62.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="1" />
                                                                         <Label layoutX="116.0" layoutY="66.0" prefHeight="17.0" prefWidth="372.0" text="Удельная мощность АБ, А час/кг" />
-                                                                        <TextField fx:id="nAB" layoutX="21.0" layoutY="95.0" prefHeight="25.0" prefWidth="79.0" text="4" />
+                                                                        <TextField fx:id="nAB" layoutX="21.0" layoutY="95.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="4" />
                                                                         <Label layoutX="116.0" layoutY="99.0" prefHeight="17.0" prefWidth="372.0" text="Количество АБ, шт" />
-                                                                        <TextField fx:id="plAB" layoutX="21.0" layoutY="128.0" prefHeight="25.0" prefWidth="79.0" text="2000" />
+                                                                        <TextField fx:id="plAB" layoutX="21.0" layoutY="128.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="2000" />
                                                                         <Label layoutX="116.0" layoutY="132.0" prefHeight="17.0" prefWidth="372.0" text="Плотность компоновки АБ, кг/м3" />
                                                                      </children>
                                                                   </AnchorPane>
@@ -1125,6 +1200,11 @@
                                                                         <Button layoutX="80.0" layoutY="39.0" mnemonicParsing="false" onAction="#exportAccumBet" prefHeight="25.0" prefWidth="68.0" text="Экспорт" />
                                                                      </children>
                                                                   </AnchorPane>
+                                                                  <Label fx:id="labelZaimAcumBet" layoutX="528.0" layoutY="472.0" prefHeight="20.0" prefWidth="444.0" text="Выбран взаимсвованный элемент - аааааааааааааааааааааааа" textFill="#4e57ff" visible="false">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="14.0" />
+                                                                     </font>
+                                                                  </Label>
                                                                </children></AnchorPane>
                                                            </content>
                                                        </Tab>
@@ -1139,21 +1219,21 @@
                                                                               <Font name="System Bold" size="16.0" />
                                                                            </font>
                                                                         </Label>
-                                                                        <TextField fx:id="uwSN" layoutX="21.0" layoutY="62.0" prefHeight="25.0" prefWidth="79.0" text="275" />
+                                                                        <TextField fx:id="uwSN" layoutX="21.0" layoutY="62.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="275" />
                                                                         <Label layoutX="116.0" layoutY="66.0" prefHeight="17.0" prefWidth="372.0" text="Удельная мощность стабилизатора напряжения, Вт/кг" />
-                                                                        <TextField fx:id="plSN" layoutX="21.0" layoutY="95.0" prefHeight="25.0" prefWidth="79.0" text="1700" />
+                                                                        <TextField fx:id="plSN" layoutX="21.0" layoutY="95.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="1700" />
                                                                         <Label layoutX="116.0" layoutY="99.0" prefHeight="17.0" prefWidth="372.0" text="Плотность компоновки стабилизатора напряжения, кг/м3" />
-                                                                        <TextField fx:id="uwZU" layoutX="21.0" layoutY="128.0" prefHeight="25.0" prefWidth="79.0" text="225" />
+                                                                        <TextField fx:id="uwZU" layoutX="21.0" layoutY="128.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="225" />
                                                                         <Label layoutX="116.0" layoutY="132.0" prefHeight="17.0" prefWidth="372.0" text="Удельная мощность зарядного устройства, Вт/кг" />
-                                                                        <TextField fx:id="plZU" layoutX="21.0" layoutY="161.0" prefHeight="25.0" prefWidth="79.0" text="1700" />
+                                                                        <TextField fx:id="plZU" layoutX="21.0" layoutY="161.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="1700" />
                                                                         <Label layoutX="116.0" layoutY="165.0" prefHeight="17.0" prefWidth="372.0" text="Плотность компоновки зарядного устройства, кг/м3" />
-                                                                        <TextField fx:id="uwRU" layoutX="21.0" layoutY="194.0" prefHeight="25.0" prefWidth="79.0" text="325" />
+                                                                        <TextField fx:id="uwRU" layoutX="21.0" layoutY="194.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="325" />
                                                                         <Label layoutX="116.0" layoutY="198.0" prefHeight="17.0" prefWidth="372.0" text="Удельная мощность разрядного устройства, Вт/кг" />
-                                                                        <TextField fx:id="plRU" layoutX="21.0" layoutY="227.0" prefHeight="25.0" prefWidth="79.0" text="1700" />
+                                                                        <TextField fx:id="plRU" layoutX="21.0" layoutY="227.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="1700" />
                                                                         <Label layoutX="116.0" layoutY="231.0" prefHeight="17.0" prefWidth="372.0" text="Плотность компоновки разрядного устройства, кг/м3" />
-                                                                        <TextField fx:id="kKAS" layoutX="21.0" layoutY="260.0" prefHeight="25.0" prefWidth="79.0" text="50" />
+                                                                        <TextField fx:id="kKAS" layoutX="21.0" layoutY="260.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="50" />
                                                                         <Label layoutX="116.0" layoutY="264.0" prefHeight="17.0" prefWidth="372.0" text="Коэф. доли корпусных частей и прочих элементов КАС, %" />
-                                                                        <TextField fx:id="ProzV_vKAS" layoutX="21.0" layoutY="293.0" prefHeight="25.0" prefWidth="79.0" text="10" />
+                                                                        <TextField fx:id="ProzV_vKAS" layoutX="21.0" layoutY="293.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="10" />
                                                                         <Label layoutX="116.0" layoutY="297.0" prefHeight="17.0" prefWidth="372.0" text="Проц. увелич. V КАС с учетом V корпуса и прочих элемен." />
                                                                      </children>
                                                                   </AnchorPane>
@@ -1187,6 +1267,11 @@
                                                                         <Label layoutX="109.0" layoutY="392.0" prefHeight="17.0" prefWidth="372.0" text="Приведенный момент инерции КАС, кг/м2" />
                                                                         <Label fx:id="jKASsum" layoutX="25.0" layoutY="393.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                         <Button layoutX="181.0" layoutY="441.0" mnemonicParsing="false" onAction="#bt_calcul_KAS" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
+                                                                        <Label fx:id="labelZaimKas" layoutX="25.0" layoutY="484.0" prefHeight="20.0" prefWidth="444.0" text="Выбран взаимсвованный элемент - аааааааааааааааааааааааа" textFill="#4e57ff" visible="false">
+                                                                           <font>
+                                                                              <Font name="System Bold" size="14.0" />
+                                                                           </font>
+                                                                        </Label>
                                                                      </children>
                                                                   </AnchorPane>
                                                                    <AnchorPane layoutX="817.0" layoutY="512.0" prefHeight="75.0" prefWidth="160.0">
@@ -1210,15 +1295,15 @@
                                                                               <Font name="System Bold" size="16.0" />
                                                                            </font>
                                                                         </Label>
-                                                                        <TextField fx:id="uwFP" layoutX="21.0" layoutY="62.0" prefHeight="25.0" prefWidth="79.0" text="130" />
+                                                                        <TextField fx:id="uwFP" layoutX="21.0" layoutY="62.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="130" />
                                                                         <Label layoutX="116.0" layoutY="66.0" prefHeight="17.0" prefWidth="372.0" text="Удельная мощность ФЭП на конец срока АС, Вт/м2" />
-                                                                        <TextField fx:id="kzPSB" layoutX="21.0" layoutY="95.0" prefHeight="25.0" prefWidth="79.0" text="1" />
+                                                                        <TextField fx:id="kzPSB" layoutX="21.0" layoutY="95.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="1" />
                                                                         <Label layoutX="116.0" layoutY="99.0" prefHeight="17.0" prefWidth="372.0" text="Коэф. заполнения площади панелей СБ фотоэлементами" />
-                                                                        <TextField fx:id="kp" layoutX="21.0" layoutY="128.0" prefHeight="25.0" prefWidth="79.0" text="1" />
+                                                                        <TextField fx:id="kp" layoutX="21.0" layoutY="128.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="1" />
                                                                         <Label layoutX="116.0" layoutY="132.0" prefHeight="17.0" prefWidth="372.0" text="Поправочный коэффициент" />
-                                                                        <TextField fx:id="umPSB" layoutX="21.0" layoutY="161.0" prefHeight="25.0" prefWidth="79.0" text="2" />
+                                                                        <TextField fx:id="umPSB" layoutX="21.0" layoutY="161.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="2" />
                                                                         <Label layoutX="116.0" layoutY="165.0" prefHeight="17.0" prefWidth="372.0" text="Удельная масса конструкции панелей СБ, кг/м2" />
-                                                                        <TextField fx:id="nPSB" layoutX="21.0" layoutY="194.0" prefHeight="25.0" prefWidth="79.0" text="4" />
+                                                                        <TextField fx:id="nPSB" layoutX="21.0" layoutY="194.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="4" />
                                                                         <Label layoutX="116.0" layoutY="198.0" prefHeight="17.0" prefWidth="372.0" text="Количество панелей СБ" />
                                                                      </children>
                                                                   </AnchorPane>
@@ -1245,7 +1330,12 @@
                                                                         <Label fx:id="dPSB1" layoutX="25.0" layoutY="234.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                         <Label fx:id="jPSB1" layoutX="25.0" layoutY="267.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                         <Label fx:id="jPSB_KA" layoutX="25.0" layoutY="300.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
-                                                                        <Button layoutX="181.0" layoutY="441.0" mnemonicParsing="false" onAction="#bt_calcul_SunBet" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
+                                                                        <Button layoutX="181.0" layoutY="380.0" mnemonicParsing="false" onAction="#bt_calcul_SunBet" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
+                                                                        <Label fx:id="labelZaimSunBet" layoutX="25.0" layoutY="479.0" prefHeight="20.0" prefWidth="444.0" text="Выбран взаимсвованный элемент - аааааааааааааааааааааааа" textFill="#4e57ff" visible="false">
+                                                                           <font>
+                                                                              <Font name="System Bold" size="14.0" />
+                                                                           </font>
+                                                                        </Label>
                                                                      </children>
                                                                   </AnchorPane>
                                                                    <AnchorPane layoutX="817.0" layoutY="512.0" prefHeight="75.0" prefWidth="160.0">
@@ -1281,15 +1371,15 @@
                                                                               <Font name="System Bold" size="16.0" />
                                                                            </font>
                                                                         </Label>
-                                                                        <TextField fx:id="Hp" layoutX="21.0" layoutY="89.0" prefHeight="25.0" prefWidth="79.0" text="560" />
+                                                                        <TextField fx:id="Hp" layoutX="21.0" layoutY="89.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="560" />
                                                                         <Label layoutX="116.0" layoutY="93.0" prefHeight="17.0" prefWidth="372.0" text="Высота исходной круговой орбиты,км" />
-                                                                        <TextField fx:id="iRN" layoutX="21.0" layoutY="122.0" prefHeight="25.0" prefWidth="79.0" text="98" />
+                                                                        <TextField fx:id="iRN" layoutX="21.0" layoutY="122.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="98" />
                                                                         <Label layoutX="116.0" layoutY="126.0" prefHeight="17.0" prefWidth="372.0" text="Угол наклона исходной орбиты(после отделения),град" />
-                                                                        <TextField fx:id="Ha" layoutX="21.0" layoutY="192.0" prefHeight="25.0" prefWidth="79.0" text="730" />
+                                                                        <TextField fx:id="Ha" layoutX="21.0" layoutY="192.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="730" />
                                                                         <Label layoutX="116.0" layoutY="196.0" prefHeight="17.0" prefWidth="372.0" text="высота исходной круговой орбиты КА,км" />
-                                                                        <TextField fx:id="iKA" layoutX="21.0" layoutY="225.0" prefHeight="25.0" prefWidth="79.0" text="98.3" />
+                                                                        <TextField fx:id="iKA" layoutX="21.0" layoutY="225.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="98.3" />
                                                                         <Label layoutX="116.0" layoutY="229.0" prefHeight="17.0" prefWidth="372.0" text="Угол наклона рабочей орбиты КА,град" />
-                                                                        <TextField fx:id="dV6" layoutX="21.0" layoutY="258.0" prefHeight="25.0" prefWidth="79.0" text="100" />
+                                                                        <TextField fx:id="dV6" layoutX="21.0" layoutY="258.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="100" />
                                                                         <Label layoutX="116.0" layoutY="262.0" prefHeight="17.0" prefWidth="372.0" text="Добавка характерист. скор. для схода с опорной орбиты, м/с" />
                                                                         <Label layoutX="21.0" layoutY="54.0" prefHeight="17.0" prefWidth="372.0" text="Параметры орбиты КА после отделения от РН" />
                                                                         <Label layoutX="21.0" layoutY="161.0" prefHeight="17.0" prefWidth="372.0" text="Параметры рабочей орбиты КА" />
@@ -1318,6 +1408,11 @@
                                                                         <Label layoutX="25.0" layoutY="59.0" prefHeight="17.0" prefWidth="372.0" text="Добавка характеристической скорости:" />
                                                                         <Label layoutX="109.0" layoutY="268.0" prefHeight="17.0" prefWidth="372.0" text="захоронения, м/с        " />
                                                                         <Label layoutX="108.0" layoutY="237.0" prefHeight="17.0" prefWidth="372.0" text="(захоронение)" />
+                                                                        <Label fx:id="labelZaimSpeed" layoutX="25.0" layoutY="458.0" prefHeight="20.0" prefWidth="444.0" text="Выбран взаимсвованный элемент - аааааааааааааааааааааааа" textFill="#4e57ff" visible="false">
+                                                                           <font>
+                                                                              <Font name="System Bold" size="14.0" />
+                                                                           </font>
+                                                                        </Label>
                                                                      </children>
                                                                   </AnchorPane>
                                                                    <AnchorPane layoutX="817.0" layoutY="512.0" prefHeight="75.0" prefWidth="160.0">
@@ -1345,23 +1440,23 @@
                                                                         <Label layoutX="215.0" layoutY="84.0" prefHeight="17.0" prefWidth="222.0" text="Название горючего" />
                                                                         <TextField fx:id="nameOkis" layoutX="21.0" layoutY="113.0" prefHeight="25.0" prefWidth="182.0" text="АТ" />
                                                                         <Label layoutX="214.0" layoutY="117.0" prefHeight="17.0" prefWidth="127.0" text="Название окислителя" />
-                                                                        <TextField fx:id="pLG" layoutX="21.0" layoutY="146.0" prefHeight="25.0" prefWidth="79.0" text="790" />
+                                                                        <TextField fx:id="pLG" layoutX="21.0" layoutY="146.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="790" />
                                                                         <Label layoutX="116.0" layoutY="150.0" prefHeight="17.0" prefWidth="372.0" text="Плотность горючего, кг/м3" />
-                                                                        <TextField fx:id="pLO" layoutX="21.0" layoutY="179.0" prefHeight="25.0" prefWidth="79.0" text="1590" />
+                                                                        <TextField fx:id="pLO" layoutX="21.0" layoutY="179.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="1590" />
                                                                         <Label layoutX="116.0" layoutY="183.0" prefHeight="17.0" prefWidth="372.0" text="Плотность окислителя, кг/м3" />
-                                                                        <TextField fx:id="jT" layoutX="21.0" layoutY="212.0" prefHeight="25.0" prefWidth="79.0" text="3270" />
+                                                                        <TextField fx:id="jT" layoutX="21.0" layoutY="212.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="3270" />
                                                                         <Label layoutX="116.0" layoutY="216.0" prefHeight="17.0" prefWidth="372.0" text="Удельный импульс, м/c" />
-                                                                        <TextField fx:id="kOG" layoutX="21.0" layoutY="245.0" prefHeight="25.0" prefWidth="79.0" text="2.68" />
+                                                                        <TextField fx:id="kOG" layoutX="21.0" layoutY="245.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="2.68" />
                                                                         <Label layoutX="116.0" layoutY="249.0" prefHeight="17.0" prefWidth="372.0" text="Отношение массы окислителя к массе горючего" />
-                                                                        <TextField fx:id="knt" layoutX="21.0" layoutY="311.0" prefHeight="25.0" prefWidth="79.0" text="5" />
+                                                                        <TextField fx:id="knt" layoutX="21.0" layoutY="311.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="5" />
                                                                         <Label layoutX="116.0" layoutY="315.0" prefHeight="17.0" prefWidth="372.0" text="Коэффициент незабора топлива, %" />
-                                                                        <TextField fx:id="kgzt" layoutX="21.0" layoutY="344.0" prefHeight="25.0" prefWidth="79.0" text="5" />
+                                                                        <TextField fx:id="kgzt" layoutX="21.0" layoutY="344.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="5" />
                                                                         <Label layoutX="116.0" layoutY="348.0" prefHeight="17.0" prefWidth="372.0" text="Гарантийный запас топлива, %" />
-                                                                        <TextField fx:id="Tak" layoutX="21.0" layoutY="410.0" prefHeight="25.0" prefWidth="79.0" text="24" />
+                                                                        <TextField fx:id="Tak" layoutX="21.0" layoutY="410.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="24" />
                                                                         <Label layoutX="116.0" layoutY="414.0" prefHeight="17.0" prefWidth="372.0" text="Периодичность астрокоррекции, час" />
-                                                                        <TextField fx:id="Tas" layoutX="21.0" layoutY="443.0" prefHeight="25.0" prefWidth="79.0" text="1825" />
+                                                                        <TextField fx:id="Tas" layoutX="21.0" layoutY="443.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="1825" />
                                                                         <Label layoutX="116.0" layoutY="447.0" prefHeight="17.0" prefWidth="372.0" text="Срок активного существования КА, сут" />
-                                                                        <TextField fx:id="mTKDUskm1" layoutX="21.0" layoutY="475.0" prefHeight="25.0" prefWidth="79.0" text="0.1" />
+                                                                        <TextField fx:id="mTKDUskm1" layoutX="21.0" layoutY="475.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="0.1" />
                                                                         <Label layoutX="116.0" layoutY="480.0" prefHeight="17.0" prefWidth="372.0" text="Расход топлива на одну операцию (по статистике), кг" />
                                                                         <Label layoutX="21.0" layoutY="50.0" prefHeight="17.0" prefWidth="222.0" text="Характеристики топлива" />
                                                                         <Label layoutX="21.0" layoutY="282.0" prefHeight="17.0" prefWidth="453.0" text="Исход. данные для расчета массы топлива для реализации характер. скорости" />
@@ -1391,6 +1486,11 @@
                                                                               <Font name="System Bold" size="14.0" />
                                                                            </font>
                                                                         </Label>
+                                                                        <Label fx:id="labelZaimMassT" layoutX="22.0" layoutY="475.0" prefHeight="20.0" prefWidth="444.0" text="Выбран взаимсвованный элемент - аааааааааааааааааааааааа" textFill="#4e57ff" visible="false">
+                                                                           <font>
+                                                                              <Font name="System Bold" size="14.0" />
+                                                                           </font>
+                                                                        </Label>
                                                                      </children>
                                                                   </AnchorPane>
                                                                    <AnchorPane layoutX="817.0" layoutY="512.0" prefHeight="75.0" prefWidth="160.0">
@@ -1414,17 +1514,17 @@
                                                                               <Font name="System Bold" size="16.0" />
                                                                            </font>
                                                                         </Label>
-                                                                        <TextField fx:id="s" layoutX="21.0" layoutY="62.0" prefHeight="25.0" prefWidth="79.0" text="3.5" />
+                                                                        <TextField fx:id="s" layoutX="21.0" layoutY="62.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="3.5" />
                                                                         <Label layoutX="116.0" layoutY="66.0" prefHeight="17.0" prefWidth="339.0" text="Конструктивная характеристика (отношение заправленной КДУ с т. к массе конструкции КДУ)" />
-                                                                        <TextField fx:id="kNTB" layoutX="21.0" layoutY="95.0" prefHeight="25.0" prefWidth="79.0" text="5" />
+                                                                        <TextField fx:id="kNTB" layoutX="21.0" layoutY="95.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="5" />
                                                                         <Label layoutX="116.0" layoutY="99.0" prefHeight="17.0" prefWidth="372.0" text="Средний коэффициент незаполнения топливных баков, %" />
-                                                                        <TextField fx:id="kpVKDU_Vb" layoutX="21.0" layoutY="128.0" prefHeight="25.0" prefWidth="79.0" text="1.5" />
+                                                                        <TextField fx:id="kpVKDU_Vb" layoutX="21.0" layoutY="128.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="1.5" />
                                                                         <Label layoutX="116.0" layoutY="132.0" prefHeight="17.0" prefWidth="357.0" text="Коэффициент, учитывающий превышение объема КДУ (включая двигатели и автоматику) над объемом баков" />
-                                                                        <TextField fx:id="kpVOKA_VKDU" layoutX="21.0" layoutY="161.0" prefHeight="25.0" prefWidth="79.0" text="1.5" />
+                                                                        <TextField fx:id="kpVOKA_VKDU" layoutX="21.0" layoutY="161.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="1.5" />
                                                                         <Label layoutX="116.0" layoutY="165.0" prefHeight="17.0" prefWidth="350.0" text="Коэффициент, учитывающий превышение объема отсека КА, в котором находится КДУ, над объемом КДУ" wrapText="true" />
-                                                                        <TextField fx:id="dKDU" layoutX="21.0" layoutY="194.0" prefHeight="25.0" prefWidth="79.0" text="2" />
+                                                                        <TextField fx:id="dKDU" layoutX="21.0" layoutY="194.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="2" />
                                                                         <Label layoutX="116.0" layoutY="198.0" prefHeight="17.0" prefWidth="372.0" text="Введите диаметр, в который вписывается КДУ,м" />
-                                                                        <TextField fx:id="umKDU" layoutX="21.0" layoutY="227.0" prefHeight="25.0" prefWidth="79.0" text="1" />
+                                                                        <TextField fx:id="umKDU" layoutX="21.0" layoutY="227.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="1" />
                                                                         <Label accessibleHelp="jjj" accessibleRoleDescription="jj" accessibleText="ggh" layoutX="116.0" layoutY="231.0" prefHeight="17.0" prefWidth="372.0" text="Удельная мощность электропотребления автоматики КДУ, Вт/кг" />
                                                                      </children>
                                                                   </AnchorPane>
@@ -1466,6 +1566,11 @@
                                                                         <Label fx:id="jKDU" layoutX="25.0" layoutY="384.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                         <Label layoutX="109.0" layoutY="408.0" prefHeight="17.0" prefWidth="372.0" text="Среднесуточная мощность электропотребления КДУ, Вт" />
                                                                         <Label fx:id="wKDU" layoutX="25.0" layoutY="409.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
+                                                                        <Label fx:id="labelZaimKDU" layoutX="-289.0" layoutY="477.0" prefHeight="20.0" prefWidth="444.0" text="Выбран взаимсвованный элемент - аааааааааааааааааааааааа" textFill="#4e57ff" visible="false">
+                                                                           <font>
+                                                                              <Font name="System Bold" size="14.0" />
+                                                                           </font>
+                                                                        </Label>
                                                                      </children>
                                                                   </AnchorPane>
                                                                    <AnchorPane layoutX="817.0" layoutY="512.0" prefHeight="75.0" prefWidth="160.0">
@@ -1494,11 +1599,11 @@
                                                             <Font name="System Bold" size="16.0" />
                                                          </font>
                                                       </Label>
-                                                      <TextField fx:id="omkKA" layoutX="21.0" layoutY="62.0" prefHeight="25.0" prefWidth="79.0" text="15" />
+                                                      <TextField fx:id="omkKA" layoutX="21.0" layoutY="62.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="15" />
                                                       <Label layoutX="116.0" layoutY="66.0" prefHeight="17.0" prefWidth="372.0" text="Относительная масса конструкции, %" />
-                                                      <TextField fx:id="plmkKA" layoutX="21.0" layoutY="95.0" prefHeight="25.0" prefWidth="79.0" text="2700" />
+                                                      <TextField fx:id="plmkKA" layoutX="21.0" layoutY="95.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="2700" />
                                                       <Label layoutX="116.0" layoutY="99.0" prefHeight="17.0" prefWidth="372.0" text="Плотность материала конструкции, кг/м3" />
-                                                      <TextField fx:id="kpkKA" layoutX="21.0" layoutY="128.0" prefHeight="25.0" prefWidth="79.0" text="70" />
+                                                      <TextField fx:id="kpkKA" layoutX="21.0" layoutY="128.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="70" />
                                                       <Label layoutX="116.0" layoutY="132.0" prefHeight="17.0" prefWidth="372.0" text="Коэффициент пустотности конструкции, %" />
                                                    </children>
                                                 </AnchorPane>
@@ -1516,6 +1621,11 @@
                                                       <Label fx:id="vkKA" layoutX="25.0" layoutY="102.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                       <Label fx:id="jkKA" layoutX="25.0" layoutY="135.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                       <Button layoutX="181.0" layoutY="171.0" mnemonicParsing="false" onAction="#bt_calcul_konstr" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
+                                                      <Label fx:id="labelZaimKonstr" layoutX="25.0" layoutY="509.0" prefHeight="20.0" prefWidth="444.0" text="Выбран взаимсвованный элемент - аааааааааааааааааааааааа" textFill="#4e57ff" visible="false">
+                                                         <font>
+                                                            <Font name="System Bold" size="14.0" />
+                                                         </font>
+                                                      </Label>
                                                    </children>
                                                 </AnchorPane>
                                                  <AnchorPane layoutX="817.0" layoutY="541.0" prefHeight="75.0" prefWidth="160.0">
@@ -1539,13 +1649,13 @@
                                                             <Font name="System Bold" size="16.0" />
                                                          </font>
                                                       </Label>
-                                                      <TextField fx:id="omBKS" layoutX="21.0" layoutY="62.0" prefHeight="25.0" prefWidth="79.0" text="1.3" />
+                                                      <TextField fx:id="omBKS" layoutX="21.0" layoutY="62.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="1.3" />
                                                       <Label layoutX="116.0" layoutY="66.0" prefHeight="17.0" prefWidth="372.0" text="Относительная масса БКС (от массы КА), %" />
-                                                      <TextField fx:id="omAFU" layoutX="21.0" layoutY="95.0" prefHeight="25.0" prefWidth="79.0" text="1.3" />
+                                                      <TextField fx:id="omAFU" layoutX="21.0" layoutY="95.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="1.3" />
                                                       <Label layoutX="116.0" layoutY="99.0" prefHeight="17.0" prefWidth="372.0" text="Относительная масса АФУ (от массы КА), %" />
-                                                      <TextField fx:id="plBKS" layoutX="21.0" layoutY="128.0" prefHeight="25.0" prefWidth="79.0" text="700" />
+                                                      <TextField fx:id="plBKS" layoutX="21.0" layoutY="128.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="700" />
                                                       <Label layoutX="116.0" layoutY="132.0" prefHeight="17.0" prefWidth="372.0" text="Плотность компоновки БКС, кг/м3" />
-                                                      <TextField fx:id="plAFU" layoutX="21.0" layoutY="161.0" prefHeight="25.0" prefWidth="79.0" text="300" />
+                                                      <TextField fx:id="plAFU" layoutX="21.0" layoutY="161.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="300" />
                                                       <Label layoutX="116.0" layoutY="165.0" prefHeight="17.0" prefWidth="372.0" text="Плотность компоновки АФУ, кг/м3" />
                                                    </children>
                                                 </AnchorPane>
@@ -1573,6 +1683,11 @@
                                                       <Label fx:id="jBKS" layoutX="25.0" layoutY="267.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                       <Label fx:id="jAFU" layoutX="25.0" layoutY="300.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                       <Button layoutX="181.0" layoutY="340.0" mnemonicParsing="false" onAction="#bt_calcul_BKSandAFU" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
+                                                      <Label fx:id="labelZaimBksAndAfu" layoutX="25.0" layoutY="495.0" prefHeight="20.0" prefWidth="444.0" text="Выбран взаимсвованный элемент - аааааааааааааааааааааааа" textFill="#4e57ff" visible="false">
+                                                         <font>
+                                                            <Font name="System Bold" size="14.0" />
+                                                         </font>
+                                                      </Label>
                                                    </children>
                                                 </AnchorPane>
                                                  <AnchorPane layoutX="817.0" layoutY="541.0" prefHeight="75.0" prefWidth="160.0">
@@ -1596,12 +1711,16 @@
                                                             <Font name="System Bold" size="16.0" />
                                                          </font>
                                                       </Label>
-                                                      <TextField fx:id="omPrKA" layoutX="21.0" layoutY="62.0" prefHeight="25.0" prefWidth="79.0" text="1.3" />
-                                                      <Label layoutX="116.0" layoutY="66.0" prefHeight="17.0" prefWidth="372.0" text="Относительная масса прочих элементов (от массы КА), %" />
-                                                      <TextField fx:id="plPrKA" layoutX="21.0" layoutY="95.0" prefHeight="25.0" prefWidth="79.0" text="300" />
-                                                      <Label layoutX="116.0" layoutY="99.0" prefHeight="17.0" prefWidth="372.0" text="Плотность компоновки прочих элементов КА, кг/м3" />
-                                                      <TextField fx:id="uwPrKA" layoutX="21.0" layoutY="128.0" prefHeight="25.0" prefWidth="79.0" text="0.25" />
-                                                      <Label layoutX="116.0" layoutY="132.0" prefHeight="17.0" prefWidth="372.0" text="Удельная мощность электропотр. прочих элементов КА, Вт/кг" />
+                                                      <TextField fx:id="omPrKA" layoutX="17.0" layoutY="62.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="1.3" />
+                                                      <Label layoutX="112.0" layoutY="66.0" prefHeight="17.0" prefWidth="372.0" text="Относительная масса прочих элементов (от массы КА), %" />
+                                                      <TextField fx:id="plPrKA" layoutX="17.0" layoutY="95.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="300" />
+                                                      <Label layoutX="112.0" layoutY="99.0" prefHeight="17.0" prefWidth="372.0" text="Плотность компоновки прочих элементов КА, кг/м3" />
+                                                      <TextField fx:id="uwPrKA" layoutX="17.0" layoutY="128.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="0.25" />
+                                                      <Label layoutX="112.0" layoutY="132.0" prefHeight="17.0" prefWidth="372.0" text="Удельная мощность электропотр. прочих элементов КА, Вт/кг" />
+                                                      <Button layoutX="164.0" layoutY="214.0" mnemonicParsing="false" onAction="#addOtherKaElement" prefHeight="25.0" prefWidth="148.0" text="Добавить" />
+                                                      <Button layoutX="163.0" layoutY="254.0" mnemonicParsing="false" onAction="#addOtherKaElementZaimsv" prefHeight="25.0" prefWidth="148.0" text="Добавить имеющиеся" />
+                                                      <Label layoutX="176.0" layoutY="166.0" text="Название элемента" />
+                                                      <TextField fx:id="In_nameElement" layoutX="17.0" layoutY="162.0" prefHeight="25.0" prefWidth="137.0" />
                                                    </children>
                                                 </AnchorPane>
                                                 <AnchorPane layoutX="500.0" prefHeight="535.0" prefWidth="500.0">
@@ -1611,20 +1730,33 @@
                                                             <Font name="System Bold" size="16.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label layoutX="109.0" layoutY="68.0" prefHeight="17.0" prefWidth="372.0" text="Масса прочих элементов КА, кг" />
-                                                      <Label layoutX="109.0" layoutY="101.0" prefHeight="17.0" prefWidth="372.0" text="Объем, занимаемый прочими элементами КА, м3" />
-                                                      <Label layoutX="109.0" layoutY="134.0" prefHeight="17.0" prefWidth="372.0" text="Приведенный момент инерции прочих элементов КА, кг м2" />
-                                                      <Label layoutX="109.0" layoutY="167.0" prefHeight="17.0" prefWidth="372.0" text="Мощность электропотребления прочих элементов КА, Вт" />
-                                                      <Label fx:id="mPrKA" layoutX="25.0" layoutY="69.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
-                                                      <Label fx:id="vPrKA" layoutX="25.0" layoutY="102.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
-                                                      <Label fx:id="jPrKA" layoutX="25.0" layoutY="135.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
-                                                      <Label fx:id="wPrKA" layoutX="25.0" layoutY="168.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
-                                                      <Button layoutX="181.0" layoutY="204.0" mnemonicParsing="false" onAction="#bt_calcul_OtherKA" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
+                                                      <Label layoutX="109.0" layoutY="279.0" prefHeight="17.0" prefWidth="372.0" text="Масса прочих элементов КА, кг" />
+                                                      <Label layoutX="109.0" layoutY="312.0" prefHeight="17.0" prefWidth="372.0" text="Объем, занимаемый прочими элементами КА, м3" />
+                                                      <Label layoutX="109.0" layoutY="345.0" prefHeight="17.0" prefWidth="372.0" text="Приведенный момент инерции прочих элементов КА, кг м2" />
+                                                      <Label layoutX="109.0" layoutY="378.0" prefHeight="17.0" prefWidth="372.0" text="Мощность электропотребления прочих элементов КА, Вт" />
+                                                      <Label fx:id="mPrKA" layoutX="25.0" layoutY="280.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
+                                                      <Label fx:id="vPrKA" layoutX="25.0" layoutY="313.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
+                                                      <Label fx:id="jPrKA" layoutX="25.0" layoutY="346.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
+                                                      <Label fx:id="wPrKA" layoutX="25.0" layoutY="379.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
+                                                      <Button layoutX="181.0" layoutY="415.0" mnemonicParsing="false" onAction="#bt_calcul_OtherKA" prefHeight="37.0" prefWidth="138.0" text="Расчет" visible="false" />
+                                                      <TableView fx:id="tableOtherKA" layoutX="18.0" layoutY="48.0" prefHeight="200.0" prefWidth="465.0">
+                                                        <columns>
+                                                          <TableColumn fx:id="columnOtherKAname" prefWidth="135.0" text="Название элемента" />
+                                                          <TableColumn fx:id="columnOtherKAm" prefWidth="57.0" text="Масса" />
+                                                            <TableColumn fx:id="columnOtherKAv" prefWidth="65.0" text="Обьем" />
+                                                            <TableColumn fx:id="columnOtherKAw" prefWidth="123.0" text="Мощ.Электр.Пт." />
+                                                            <TableColumn fx:id="columnOtherKAj" prefWidth="83.0" text="Момент" />
+                                                        </columns>
+                                                      </TableView>
+                                                      <Button layoutX="458.0" layoutY="247.0" mnemonicParsing="false" text="×">
+                                                         <effect>
+                                                            <ColorAdjust saturation="0.09" />
+                                                         </effect>
+                                                      </Button>
                                                    </children>
                                                 </AnchorPane>
                                                  <AnchorPane layoutX="817.0" layoutY="541.0" prefHeight="75.0" prefWidth="160.0">
                                                    <children>
-                                                      <Button mnemonicParsing="false" onAction="#haveOtherKA" prefHeight="25.0" prefWidth="148.0" text="Известны" />
                                                       <Button layoutY="39.0" mnemonicParsing="false" onAction="#importOtherKa" prefHeight="25.0" prefWidth="68.0" text="Импорт" />
                                                       <Button layoutX="80.0" layoutY="39.0" mnemonicParsing="false" onAction="#exportOtherKa" prefHeight="25.0" prefWidth="68.0" text="Экспорт" />
                                                    </children>
@@ -1643,11 +1775,11 @@
                                                             <Font name="System Bold" size="16.0" />
                                                          </font>
                                                       </Label>
-                                                      <TextField fx:id="omRmKA" layoutX="21.0" layoutY="62.0" prefHeight="25.0" prefWidth="79.0" text="3" />
+                                                      <TextField fx:id="omRmKA" layoutX="21.0" layoutY="62.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="3" />
                                                       <Label layoutX="116.0" layoutY="66.0" prefHeight="17.0" prefWidth="372.0" text="Относительная масса резерва (от массы КА), %" />
-                                                      <TextField fx:id="plRmKA" layoutX="21.0" layoutY="95.0" prefHeight="25.0" prefWidth="79.0" text="500" />
+                                                      <TextField fx:id="plRmKA" layoutX="21.0" layoutY="95.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="500" />
                                                       <Label layoutX="116.0" layoutY="99.0" prefHeight="17.0" prefWidth="372.0" text="Средняя плотность компоновки резерва масс КА, кг/м3" />
-                                                      <TextField fx:id="uwRmKA" layoutX="21.0" layoutY="128.0" prefHeight="25.0" prefWidth="79.0" text="0.2" />
+                                                      <TextField fx:id="uwRmKA" layoutX="21.0" layoutY="128.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="0.2" />
                                                       <Label layoutX="116.0" layoutY="132.0" prefHeight="17.0" prefWidth="372.0" text="Удельная мощность электропотребления резерва масс КА, Вт/кг" />
                                                    </children>
                                                 </AnchorPane>
@@ -1660,13 +1792,18 @@
                                                       </Label>
                                                       <Label layoutX="109.0" layoutY="68.0" prefHeight="17.0" prefWidth="372.0" text="Масса резерва КА, кг" />
                                                       <Label layoutX="109.0" layoutY="101.0" prefHeight="17.0" prefWidth="372.0" text="Объем, занимаемый резервом масс КА, м3" />
-                                                      <Label layoutX="109.0" layoutY="134.0" prefHeight="17.0" prefWidth="372.0" text="Мощность электропотребления прочих масс КА, Вт " />
-                                                      <Label layoutX="109.0" layoutY="167.0" prefHeight="17.0" prefWidth="372.0" text="Мощность электропотребления прочих элементов КА, Вт" />
+                                                      <Label layoutX="109.0" layoutY="134.0" prefHeight="17.0" prefWidth="372.0" text="Момент инерции." />
+                                                      <Label layoutX="109.0" layoutY="167.0" prefHeight="17.0" prefWidth="372.0" text="Мощность электропотребления, Вт" />
                                                       <Label fx:id="mRmKA" layoutX="25.0" layoutY="69.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                       <Label fx:id="vRmKA" layoutX="25.0" layoutY="102.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                       <Label fx:id="jRmKA" layoutX="25.0" layoutY="135.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                       <Label fx:id="wRmKA" layoutX="25.0" layoutY="168.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                       <Button layoutX="181.0" layoutY="213.0" mnemonicParsing="false" onAction="#bt_calcul_Rezerv" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
+                                                      <Label fx:id="labelZaimRezerv" layoutX="25.0" layoutY="495.0" prefHeight="20.0" prefWidth="444.0" text="Выбран взаимсвованный элемент - аааааааааааааааааааааааа" textFill="#4e57ff" visible="false">
+                                                         <font>
+                                                            <Font name="System Bold" size="14.0" />
+                                                         </font>
+                                                      </Label>
                                                    </children>
                                                 </AnchorPane>
                                                  <AnchorPane layoutX="817.0" layoutY="541.0" prefHeight="75.0" prefWidth="160.0">
@@ -1723,9 +1860,8 @@
                                                       <Label fx:id="rez_KA_d" layoutX="25.0" layoutY="133.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                       <Label layoutX="109.0" layoutY="230.0" prefHeight="17.0" prefWidth="372.0" text="Среднесуточная мощность электропотребления" />
                                                       <Label fx:id="ouT_jKA0111" layoutX="25.0" layoutY="231.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
-                                                      <Button layoutX="167.0" layoutY="270.0" mnemonicParsing="false" onAction="#bt_calcul_Rezult_all" prefHeight="37.0" prefWidth="138.0" text="Итерация" />
-                                                      <Label layoutX="155.0" layoutY="339.0" prefHeight="17.0" prefWidth="212.0" text="Количество выполненных итераций" />
-                                                      <Label fx:id="col_iteration" layoutX="113.0" layoutY="339.0" prefHeight="17.0" prefWidth="41.0" text="0" />
+                                                      <Button layoutX="139.0" layoutY="314.0" mnemonicParsing="false" onAction="#bt_calcul_Rezult_all" prefHeight="37.0" prefWidth="206.0" text="Итерация" />
+                                                      <Button layoutX="139.0" layoutY="260.0" mnemonicParsing="false" onAction="#actionShowParamRezult" prefHeight="37.0" prefWidth="206.0" text="Показать расчетные параметры" />
                                                    </children>
                                                 </AnchorPane>
                                              </children></AnchorPane>
@@ -1734,6 +1870,566 @@
                                 </tabs>
                               </TabPane>
                               <Line endX="-59.0" endY="560.0" layoutX="1059.0" layoutY="112.0" startX="-58.0" startY="-111.0" />
+                              <VBox layoutX="1006.0" layoutY="28.0" prefHeight="597.0" prefWidth="184.0">
+                                 <children>
+                                    <Pane prefHeight="21.0" prefWidth="189.0">
+                                       <children>
+                                          <ImageView fx:id="onStepOkRestr">
+                                             <image>
+                                                <Image url="@assembly/ok.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <Label layoutX="22.0" prefHeight="17.0" prefWidth="160.0" text="Ограничения">
+                                             <font>
+                                                <Font name="System Italic" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView fx:id="onStepAskRestr">
+                                             <image>
+                                                <Image url="@assembly/ask.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="21.0" prefWidth="189.0">
+                                       <children>
+                                          <ImageView fx:id="onStepOkOetk">
+                                             <image>
+                                                <Image url="@assembly/ok.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <Label layoutX="22.0" prefHeight="17.0" prefWidth="160.0" text="ОЕТК">
+                                             <font>
+                                                <Font name="System Italic" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView fx:id="onStepAskOetk">
+                                             <image>
+                                                <Image url="@assembly/ask.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="21.0" prefWidth="189.0">
+                                       <children>
+                                          <ImageView fx:id="onStepOkSppe">
+                                             <image>
+                                                <Image url="@assembly/ok.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <Label layoutX="22.0" prefHeight="17.0" prefWidth="160.0" text="СППИ">
+                                             <font>
+                                                <Font name="System Italic" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView fx:id="onStepAskSppe">
+                                             <image>
+                                                <Image url="@assembly/ask.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="21.0" prefWidth="189.0">
+                                       <children>
+                                          <ImageView fx:id="onStepOkVrl">
+                                             <image>
+                                                <Image url="@assembly/ok.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <Label layoutX="22.0" prefHeight="17.0" prefWidth="160.0" text="ВРЛ">
+                                             <font>
+                                                <Font name="System Italic" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView fx:id="onStepAskVrl">
+                                             <image>
+                                                <Image url="@assembly/ask.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="21.0" prefWidth="189.0">
+                                       <children>
+                                          <ImageView fx:id="onStepOkOtherCa">
+                                             <image>
+                                                <Image url="@assembly/ok.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <Label layoutX="22.0" prefHeight="17.0" prefWidth="160.0" text="Прочие элементы ЦА">
+                                             <font>
+                                                <Font name="System Italic" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView fx:id="onStepAskOtherCa">
+                                             <image>
+                                                <Image url="@assembly/ask.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="21.0" prefWidth="189.0">
+                                       <children>
+                                          <ImageView fx:id="onStepOkCa">
+                                             <image>
+                                                <Image url="@assembly/ok.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <Label layoutX="22.0" prefHeight="17.0" prefWidth="160.0" text="Целевая аппаратура">
+                                             <font>
+                                                <Font name="System Italic" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView fx:id="onStepAskCa">
+                                             <image>
+                                                <Image url="@assembly/ask.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="21.0" prefWidth="189.0">
+                                       <children>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@assembly/ok.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <Label layoutX="22.0" prefHeight="17.0" prefWidth="160.0" text="СУД (СГК)">
+                                             <font>
+                                                <Font name="System Italic" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@assembly/ask.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="21.0" prefWidth="189.0">
+                                       <children>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@assembly/ok.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <Label layoutX="22.0" prefHeight="17.0" prefWidth="160.0" text="СУД (ССКМ)">
+                                             <font>
+                                                <Font name="System Italic" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@assembly/ask.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="21.0" prefWidth="189.0">
+                                       <children>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@assembly/ok.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <Label layoutX="22.0" prefHeight="17.0" prefWidth="160.0" text="СТКРП">
+                                             <font>
+                                                <Font name="System Italic" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@assembly/ask.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="21.0" prefWidth="189.0">
+                                       <children>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@assembly/ok.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <Label layoutX="22.0" prefHeight="17.0" prefWidth="160.0" text="БА КИС">
+                                             <font>
+                                                <Font name="System Italic" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@assembly/ask.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="21.0" prefWidth="189.0">
+                                       <children>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@assembly/ok.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <Label layoutX="22.0" prefHeight="17.0" prefWidth="160.0" text="БИТС">
+                                             <font>
+                                                <Font name="System Italic" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@assembly/ask.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="21.0" prefWidth="189.0">
+                                       <children>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@assembly/ok.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <Label layoutX="22.0" prefHeight="17.0" prefWidth="160.0" text="БВС">
+                                             <font>
+                                                <Font name="System Italic" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@assembly/ask.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="21.0" prefWidth="189.0">
+                                       <children>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@assembly/ok.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <Label layoutX="22.0" prefHeight="17.0" prefWidth="160.0" text="Прочие элементы БКУ">
+                                             <font>
+                                                <Font name="System Italic" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@assembly/ask.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="21.0" prefWidth="189.0">
+                                       <children>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@assembly/ok.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <Label layoutX="22.0" prefHeight="17.0" prefWidth="160.0" text="Расчет БКУ">
+                                             <font>
+                                                <Font name="System Italic" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@assembly/ask.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="21.0" prefWidth="189.0">
+                                       <children>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@assembly/ok.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <Label layoutX="22.0" prefHeight="17.0" prefWidth="160.0" text="Пассивные элементы СОТР">
+                                             <font>
+                                                <Font name="System Italic" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@assembly/ask.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="21.0" prefWidth="189.0">
+                                       <children>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@assembly/ok.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <Label layoutX="22.0" prefHeight="17.0" prefWidth="160.0" text="Активные элементы СОТР">
+                                             <font>
+                                                <Font name="System Italic" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@assembly/ask.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="21.0" prefWidth="189.0">
+                                       <children>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@assembly/ok.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <Label layoutX="22.0" prefHeight="17.0" prefWidth="160.0" text="Расчет СОТР">
+                                             <font>
+                                                <Font name="System Italic" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@assembly/ask.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="21.0" prefWidth="189.0">
+                                       <children>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@assembly/ok.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <Label layoutX="22.0" prefHeight="17.0" prefWidth="160.0" text="Элект.Тех.Хар. СЭП">
+                                             <font>
+                                                <Font name="System Italic" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@assembly/ask.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="21.0" prefWidth="189.0">
+                                       <children>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@assembly/ok.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <Label layoutX="22.0" prefHeight="17.0" prefWidth="160.0" text="Аккумуляторные батареи">
+                                             <font>
+                                                <Font name="System Italic" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@assembly/ask.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="21.0" prefWidth="189.0">
+                                       <children>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@assembly/ok.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <Label layoutX="22.0" prefHeight="17.0" prefWidth="160.0" text="Приборы КАС">
+                                             <font>
+                                                <Font name="System Italic" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@assembly/ask.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="21.0" prefWidth="189.0">
+                                       <children>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@assembly/ok.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <Label layoutX="22.0" prefHeight="17.0" prefWidth="160.0" text="Солнечная батарея">
+                                             <font>
+                                                <Font name="System Italic" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@assembly/ask.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="21.0" prefWidth="189.0">
+                                       <children>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@assembly/ok.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <Label layoutX="22.0" prefHeight="17.0" prefWidth="160.0" text="Характеристич. скорость">
+                                             <font>
+                                                <Font name="System Italic" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@assembly/ask.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="21.0" prefWidth="189.0">
+                                       <children>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@assembly/ok.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <Label layoutX="22.0" prefHeight="17.0" prefWidth="160.0" text="Масса топлива">
+                                             <font>
+                                                <Font name="System Italic" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@assembly/ask.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="21.0" prefWidth="189.0">
+                                       <children>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@assembly/ok.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <Label layoutX="22.0" prefHeight="17.0" prefWidth="160.0" text="Мас.Габар. и Энер. Характ.">
+                                             <font>
+                                                <Font name="System Italic" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@assembly/ask.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="21.0" prefWidth="189.0">
+                                       <children>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@assembly/ok.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <Label layoutX="22.0" prefHeight="17.0" prefWidth="160.0" text="Конструкция">
+                                             <font>
+                                                <Font name="System Italic" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@assembly/ask.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="21.0" prefWidth="189.0">
+                                       <children>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@assembly/ok.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <Label layoutX="22.0" prefHeight="17.0" prefWidth="160.0" text="БКС и АФУ">
+                                             <font>
+                                                <Font name="System Italic" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@assembly/ask.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="21.0" prefWidth="189.0">
+                                       <children>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@assembly/ok.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <Label layoutX="22.0" prefHeight="17.0" prefWidth="160.0" text="Прочие элементы КА">
+                                             <font>
+                                                <Font name="System Italic" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@assembly/ask.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="21.0" prefWidth="189.0">
+                                       <children>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@assembly/ok.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <Label layoutX="22.0" prefHeight="17.0" prefWidth="160.0" text="Резерв">
+                                             <font>
+                                                <Font name="System Italic" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@assembly/ask.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="21.0" prefWidth="184.0">
+                                       <children>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@assembly/ok.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <Label layoutX="22.0" prefHeight="17.0" prefWidth="160.0" text="Результат">
+                                             <font>
+                                                <Font name="System Italic" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@assembly/ask.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </Pane>
+                                 </children>
+                              </VBox>
+                              <Label layoutX="1038.0" layoutY="3.0" prefHeight="17.0" prefWidth="147.0" text="Последовательность">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
                            </children></AnchorPane>
                             </content>
                         </Tab>

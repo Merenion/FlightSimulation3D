@@ -12,11 +12,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "DataSumBetSEP")
 public class DataSumBetSEP  extends DataElement{
 
-    private final static TabTypeSintez type =TabTypeSintez.SUN_BATTERIES;
-
     @Override
     public TabTypeSintez getType() {
-        return type;
+        return TabTypeSintez.SUN_BATTERIES;
     }
 
     public float uwFP; //удельная мощность ФП

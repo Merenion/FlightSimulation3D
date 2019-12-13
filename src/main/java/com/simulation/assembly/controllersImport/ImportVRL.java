@@ -6,13 +6,11 @@ import com.simulation.assembly.TabTypeSintez;
 import com.simulation.assembly.ValidateValue;
 import com.simulation.assembly.calculation.ca.CalculationKA;
 import com.simulation.assembly.dataCalculation.sintez.DataElement;
-import com.simulation.assembly.dataCalculation.sintez.DataSPPE;
 import com.simulation.assembly.dataCalculation.sintez.DataVRL;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
@@ -66,11 +64,20 @@ public class ImportVRL extends ImportElement {
             ControllerAssembly.showError("Не выбрано не одного элемента.");
             return;
         }
-        CalculationKA.getInstance().setDataVRL(data);                                                      //
+        try {
+            data.getType().getCalculation().predCalculation();
+        } catch (Exception e) {
+            ControllerAssembly.showError("Не удалось добавить элемент.");
+            return;
+        }
+        CalculationKA.getInstance().setDataVRL(data);                                                      //                                                   //
+        CalculationKA.getInstance().calculation(new Object());
         ControllerAssembly.getInstance().showALL();
         ControllerAssembly.getInstance().startShowALL();
         Stage stage = (Stage) btSelect.getScene().getWindow();
         stage.close();
+        ControllerAssembly.getInstance().onLabelZaimVrl(data.getNameElement());
+        ControllerAssembly.getInstance().onProgressVrl(true);
     }
 
     @FXML

@@ -12,11 +12,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "DataOtherBKU")
 public class DataOtherBKU   extends DataElement{
 
-    private final static TabTypeSintez type =TabTypeSintez.OTHER_ELEMENTS_BKU;
-
     @Override
     public TabTypeSintez getType() {
-        return type;
+        return TabTypeSintez.OTHER_ELEMENTS_BKU;
     }
 
     public float kPrBKU;    //Доля по массе прочих элементов БКУ, %

@@ -12,11 +12,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "DataElectHaraktSEP")
 public class DataElectHaraktSEP  extends DataElement{
 
-    private final static TabTypeSintez type =TabTypeSintez.ELECTROTEH_PARAM;
-
     @Override
     public TabTypeSintez getType() {
-        return type;
+        return TabTypeSintez.ELECTROTEH_PARAM;
     }
 
     public float wNomInCep; //Номинальное напряжение в цепи

@@ -12,11 +12,9 @@ import javax.xml.bind.annotation.*;
 @XmlType(name = "DataOETK")
 public class DataOETK  extends DataElement{
 
-    private final static TabTypeSintez type =TabTypeSintez.OETK;
-
     @Override
     public TabTypeSintez getType() {
-        return type;
+        return TabTypeSintez.OETK;
     }
 
     //выходные параметры

@@ -12,11 +12,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "DataSSKM")
 public class DataSSKM  extends DataElement{
 
-    private final static TabTypeSintez type =TabTypeSintez.SUD_SSKM;
-
     @Override
     public TabTypeSintez getType() {
-        return type;
+        return TabTypeSintez.SUD_SSKM;
     }
 
     public float kmSSKM;  //Доля масса ССКМ от массы КА, %

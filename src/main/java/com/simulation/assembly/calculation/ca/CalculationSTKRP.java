@@ -8,17 +8,33 @@ import com.simulation.assembly.dataCalculation.sintez.DataCommonParameters;
 import com.simulation.assembly.dataCalculation.sintez.DataOETK;
 import com.simulation.assembly.dataCalculation.sintez.DataSTKRP;
 
-public class CalculationSTKRP implements Calculation {
+public class CalculationSTKRP extends Calculation {
+
+    @Override
+    public TabTypeSintez getType() {
+        return TabTypeSintez.STKRP;
+    }
+
     @Override
     public Object calculation(Object object) throws Exception {
-        try {
-            DataSTKRP d = CalculationKA.getInstance().getDataSTKRP();
-            DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
+        super.calculation(object);
+        calculationSingle(object);
+        return object;
+    }
 
-            d.mSTKRP=d.kmSTKRP/100*dc.mKA;
-            d.vSTKRP=d.mSTKRP/d.plSTKRP;
-            d.wSTKRP=d.uwSTKRP*d.mSTKRP;
-            d.jSTKRP=d.mSTKRP*((dc.dKA*dc.dKA)/16+(dc.lKA*dc.lKA)/12);
+    @Override
+    public Object calculationSingle(Object object) throws Exception {
+        try {
+            if (!getType().getDataElement().isImportData()) {
+
+                DataSTKRP d = CalculationKA.getInstance().getDataSTKRP();
+                DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
+
+                d.mSTKRP = d.kmSTKRP / 100 * dc.mKA;
+                d.vSTKRP = d.mSTKRP / d.plSTKRP;
+                d.wSTKRP = d.uwSTKRP * d.mSTKRP;
+                d.jSTKRP = d.mSTKRP * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
+            }
             CalculationKA.getInstance().calculation(new Object());
 
             ControllerAssembly.addMessInConsoleSintez(MessegeType.INFO, "Расчет Успешен! ", TabTypeSintez.STKRP);

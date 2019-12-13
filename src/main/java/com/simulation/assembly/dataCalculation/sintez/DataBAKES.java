@@ -12,11 +12,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "DataBAKES")
 public class DataBAKES  extends DataElement{
 
-    private final static TabTypeSintez type =TabTypeSintez.BAKIS;
-
     @Override
     public TabTypeSintez getType() {
-        return type;
+        return TabTypeSintez.BAKIS;
     }
 
     public float kmKIS;  //Доля масса КИС от массы КА, %

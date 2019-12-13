@@ -12,11 +12,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "DataKonstrKA")
 public class DataKonstrKA   extends DataElement{
 
-    private final static TabTypeSintez type =TabTypeSintez.KONSTR;
-
     @Override
     public TabTypeSintez getType() {
-        return type;
+        return TabTypeSintez.KONSTR;
     }
     public float omkKA;   //Относительная масса конструкции КА, %
     public float plmkKA;  //Плотность материала конструкции КА, кг/м3

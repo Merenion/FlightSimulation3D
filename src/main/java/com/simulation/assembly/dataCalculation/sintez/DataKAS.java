@@ -12,11 +12,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "DataKAS")
 public class DataKAS   extends DataElement{
 
-    private final static TabTypeSintez type =TabTypeSintez.KAS;
-
     @Override
     public TabTypeSintez getType() {
-        return type;
+        return TabTypeSintez.KAS;
     }
 
     public float uwSN;   //Удельная мощность стабилизатора напряжения, Вт/кг

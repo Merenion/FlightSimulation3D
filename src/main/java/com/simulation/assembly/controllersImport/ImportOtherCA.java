@@ -66,11 +66,21 @@ public class ImportOtherCA extends ImportElement {
             ControllerAssembly.showError("Не выбрано не одного элемента.");
             return;
         }
-        CalculationKA.getInstance().setDataOtherCA(data);                                                      //
+        try {
+            System.out.println(data.getType());
+            data.getType().getCalculation().predCalculation();
+        } catch (Exception e) {
+            ControllerAssembly.showError("Не удалось добавить элемент.");
+            return;
+        }
+        CalculationKA.getInstance().setDataOtherCA(data);                                                      //                                                   //
+        CalculationKA.getInstance().calculation(new Object());
         ControllerAssembly.getInstance().showALL();
         ControllerAssembly.getInstance().startShowALL();
         Stage stage = (Stage) btSelect.getScene().getWindow();
         stage.close();
+        ControllerAssembly.getInstance().onLabelZaimOtherCa(data.getNameElement());
+        ControllerAssembly.getInstance().onProgressOtherCa(true);
     }
 
     @FXML

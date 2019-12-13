@@ -1,11 +1,17 @@
 package com.simulation.assembly;
 
 import com.simulation.assembly.calculation.ca.CalculationKA;
+import com.simulation.assembly.dataCalculation.sintez.DataElement;
+import com.simulation.assembly.dataCalculation.sintez.DataOtherKA;
 import com.simulation.assembly.dataCalculation.sintez.TypeKa;
+import com.simulation.assembly.dataCalculation.sintez.ViewDataOtherKA;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 
 public class ControllerManageFieldSintez extends ControllerAssemblyField {
-
 
 
     /**
@@ -383,7 +389,7 @@ public class ControllerManageFieldSintez extends ControllerAssemblyField {
 
     }
 
-    public void showALL () {
+    public void showALL() {
 
         showSimpleSintezResult();
         showSinezKA();
@@ -865,7 +871,7 @@ public class ControllerManageFieldSintez extends ControllerAssemblyField {
      *
      * @return
      */
-    public boolean validateKonstrKA () {
+    public boolean validateKonstrKA() {
         try {
             CalculationKA.getInstance().getDataKonstrKA().omkKA = ValidateValue.conversionTextToFloat(omkKA.getText());
             CalculationKA.getInstance().getDataKonstrKA().plmkKA = ValidateValue.conversionTextToFloat(plmkKA.getText());
@@ -883,7 +889,7 @@ public class ControllerManageFieldSintez extends ControllerAssemblyField {
      *
      * @return
      */
-    public boolean validateBKSandAFU () {
+    public boolean validateBKSandAFU() {
         try {
             CalculationKA.getInstance().getDataBKSandAFU().omBKS = ValidateValue.conversionTextToFloat(omBKS.getText());
             CalculationKA.getInstance().getDataBKSandAFU().omAFU = ValidateValue.conversionTextToFloat(omAFU.getText());
@@ -899,14 +905,17 @@ public class ControllerManageFieldSintez extends ControllerAssemblyField {
 
     /**
      * ввод БКС и АФУ
+     *
      * @return
      */
-    public boolean validateOtherKA () {
+    public boolean validateOtherKA() {
         try {
-            CalculationKA.getInstance().getDataOtherKA().omPrKA = ValidateValue.conversionTextToFloat(omPrKA.getText());
-            CalculationKA.getInstance().getDataOtherKA().plPrKA = ValidateValue.conversionTextToFloat(plPrKA.getText());
-            CalculationKA.getInstance().getDataOtherKA().uwPrKA = ValidateValue.conversionTextToFloat(uwPrKA.getText());
-
+            DataOtherKA newEl = new DataOtherKA();
+            newEl.omPrKA = ValidateValue.conversionTextToFloat(omPrKA.getText());
+            newEl.plPrKA = ValidateValue.conversionTextToFloat(plPrKA.getText());
+            newEl.uwPrKA = ValidateValue.conversionTextToFloat(uwPrKA.getText());
+            newEl.setNameElement(In_nameElement.getText());
+            CalculationKA.getInstance().getDataOtherKA().getOthers().add(newEl);
         } catch (Exception e) {
             ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Ошибка введеных данных.", TabTypeSintez.OTHER_ELEMENT_KA);
             return false;
@@ -916,9 +925,10 @@ public class ControllerManageFieldSintez extends ControllerAssemblyField {
 
     /**
      * ввод резерв
+     *
      * @return
      */
-    public boolean validateRezerv () {
+    public boolean validateRezerv() {
         try {
             CalculationKA.getInstance().getDataRezervKA().omRmKA = ValidateValue.conversionTextToFloat(omRmKA.getText());
             CalculationKA.getInstance().getDataRezervKA().plRmKA = ValidateValue.conversionTextToFloat(plRmKA.getText());
@@ -930,8 +940,6 @@ public class ControllerManageFieldSintez extends ControllerAssemblyField {
         }
         return true;
     }
-
-
 
 
     /**
@@ -954,9 +962,9 @@ public class ControllerManageFieldSintez extends ControllerAssemblyField {
         iN_nonRes_krkKA.setText(String.valueOf(CalculationKA.getInstance().getDataCommonParameters().krkKA));
         iN_nonRes_kpoPO.setText(String.valueOf(CalculationKA.getInstance().getDataCommonParameters().kpoPO));
 
-        if (CalculationKA.getInstance().getDataCommonParameters().isHaveRestriction){
+        if (CalculationKA.getInstance().getDataCommonParameters().isHaveRestriction) {
             isHaveRestriction.setSelected(true);
-        }else {
+        } else {
             isHaveRestriction.setSelected(false);
         }
         choiseActionHaveRestriction(new ActionEvent());
@@ -1011,7 +1019,7 @@ public class ControllerManageFieldSintez extends ControllerAssemblyField {
 
         sPI.setText(String.valueOf(CalculationKA.getInstance().getDataVRL().sPI));
         umVRL.setText(String.valueOf(CalculationKA.getInstance().getDataVRL().umVRL));
-        uwVRL.setText(String.valueOf(CalculationKA.getInstance().getDataVRL().sPI));
+        uwVRL.setText(String.valueOf(CalculationKA.getInstance().getDataVRL().uwVRL));
         plVRL.setText(String.valueOf(CalculationKA.getInstance().getDataVRL().plVRL));
 
     }
@@ -1252,7 +1260,7 @@ public class ControllerManageFieldSintez extends ControllerAssemblyField {
      *
      * @return
      */
-    public void startShowKonstrKA () {
+    public void startShowKonstrKA() {
         omkKA.setText(String.valueOf(CalculationKA.getInstance().getDataKonstrKA().omkKA));
         plmkKA.setText(String.valueOf(CalculationKA.getInstance().getDataKonstrKA().plmkKA));
         kpkKA.setText(String.valueOf(CalculationKA.getInstance().getDataKonstrKA().kpkKA));
@@ -1264,7 +1272,7 @@ public class ControllerManageFieldSintez extends ControllerAssemblyField {
      *
      * @return
      */
-    public void startShowBKSandAFU () {
+    public void startShowBKSandAFU() {
         omBKS.setText(String.valueOf(CalculationKA.getInstance().getDataBKSandAFU().omBKS));
         omAFU.setText(String.valueOf(CalculationKA.getInstance().getDataBKSandAFU().omAFU));
         plBKS.setText(String.valueOf(CalculationKA.getInstance().getDataBKSandAFU().plBKS));
@@ -1277,10 +1285,11 @@ public class ControllerManageFieldSintez extends ControllerAssemblyField {
      *
      * @return
      */
-    public void startShowOtherKA () {
+    public void startShowOtherKA() {
         omPrKA.setText(String.valueOf(CalculationKA.getInstance().getDataOtherKA().omPrKA));
         plPrKA.setText(String.valueOf(CalculationKA.getInstance().getDataOtherKA().plPrKA));
         uwPrKA.setText(String.valueOf(CalculationKA.getInstance().getDataOtherKA().uwPrKA));
+        initotherKA();
     }
 
     /**
@@ -1294,7 +1303,7 @@ public class ControllerManageFieldSintez extends ControllerAssemblyField {
         uwRmKA.setText(String.valueOf(CalculationKA.getInstance().getDataRezervKA().uwRmKA));
     }
 
-    public void startShowALL () {
+    public void startShowALL() {
         startShowRestriction();
         startShowOETK();
         startShowSPPE();
@@ -1316,10 +1325,60 @@ public class ControllerManageFieldSintez extends ControllerAssemblyField {
         startShowSpeed();
         startShowKDU();
         startShowKonstrKA();
-        startShowBKSandAFU ();
-        startShowOtherKA ();
+        startShowBKSandAFU();
+        startShowOtherKA();
         startShowRezerv();
         startMassT();
+    }
+
+    public void initotherKA() {
+        try {
+            columnOtherKAname.setCellValueFactory(new PropertyValueFactory<ViewDataOtherKA, String>("nameElement"));
+            columnOtherKAm.setCellValueFactory(new PropertyValueFactory<ViewDataOtherKA, String>("mPrKA"));
+            columnOtherKAv.setCellValueFactory(new PropertyValueFactory<ViewDataOtherKA, String>("vPrKA"));
+            columnOtherKAj.setCellValueFactory(new PropertyValueFactory<ViewDataOtherKA, String>("jPrKA"));
+            columnOtherKAw.setCellValueFactory(new PropertyValueFactory<ViewDataOtherKA, String>("wPrKA"));
+
+//            calculationOtherKA.calculationSingle(new DataOtherKA());
+
+            ObservableList<ViewDataOtherKA> list = FXCollections.observableArrayList();
+
+            for (DataOtherKA dataOtherKA : CalculationKA.getInstance().getDataOtherKA().getOthers()) {
+                list.add(ViewDataOtherKA.validateDataOtherKA(dataOtherKA));
+            }
+            tableOtherKA.setItems(list);
+        } catch (Exception e) {
+            ControllerAssembly.showError("Инициализация прочих элементов КА не удалась");
+        }
+    }
+
+    private void onProgress(boolean value, ImageView ok, ImageView ask) {
+        ok.setVisible(value);
+        ask.setVisible(!value);
+    }
+
+    public void onProgressRestr(boolean value) {
+        onProgress(value,onStepOkRestr,onStepAskRestr);
+    }
+
+    public void onProgressOetk (boolean value) {
+        onProgress(value,onStepOkOetk,onStepAskOetk);
+    }
+
+    public void onProgressSppe (boolean value) {
+        onProgress(value,onStepOkSppe,onStepAskSppe);
+    }
+
+    public void onProgressVrl (boolean value) {
+        onProgress(value,onStepOkVrl,onStepAskVrl);
+    }
+
+    public void onProgressOtherCa (boolean value) {
+        onProgress(value,onStepOkOtherCa,onStepAskOtherCa);
+    }
+
+    public void onProgressCa (boolean value) {
+        onProgress(value,onStepOkCa,onStepAskCa);
     }
 }
 

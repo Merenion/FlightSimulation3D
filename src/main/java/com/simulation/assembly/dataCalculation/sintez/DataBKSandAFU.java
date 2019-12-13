@@ -12,11 +12,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "DataBKSandAFU")
 public class DataBKSandAFU  extends DataElement{
 
-    private final static TabTypeSintez type =TabTypeSintez.BKS_AND_AFU;
-
     @Override
     public TabTypeSintez getType() {
-        return type;
+        return TabTypeSintez.BKS_AND_AFU;
     }
 
     public float omBKS;//Относительная масса БКС,%
