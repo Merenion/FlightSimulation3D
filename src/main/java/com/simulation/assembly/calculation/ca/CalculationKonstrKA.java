@@ -29,9 +29,9 @@ public class CalculationKonstrKA extends Calculation {
                 DataKonstrKA d = CalculationKA.getInstance().getDataKonstrKA();
                 DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
 
-                d.mkKA = d.omkKA / 100 * dc.mKA;
-                d.vkKA = d.mkKA / d.plmkKA / (1 - d.kpkKA / 100);
-                d.jkKA = d.mkKA * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
+                d.m = d.omkKA / 100 * dc.mKA;
+                d.v = d.m / d.plmkKA / (1 - d.kpkKA / 100);
+                d.j = d.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
             }
             CalculationKA.getInstance().calculation(new Object());
 

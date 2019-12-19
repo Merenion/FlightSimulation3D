@@ -1,7 +1,6 @@
 package com.simulation.assembly.calculation.ca;
 
 import com.simulation.assembly.ControllerAssembly;
-import com.simulation.assembly.MessegeType;
 import com.simulation.assembly.TabTypeSintez;
 import com.simulation.assembly.calculation.Calculation;
 import com.simulation.assembly.dataCalculation.sintez.*;
@@ -62,62 +61,62 @@ public class CalculationKA extends Calculation {
     public Object calculation(Object object) {
         dataCommonParameters.mKA =
                 //Масса целевой аппаратуры, кг
-                +dataOETK.mOETK                                      //Масса ОЭТК, кг
-                        + dataSPPE.mSPPI                                      //Масса СППИ
-                        + dataVRL.mVRL                                       //Масса ВРЛ
-                        + dataOtherCA.mPrZA                                      //Масса прочих элементов ЦА
+                +dataOETK.m                                      //Масса ОЭТК, кг
+                        + dataSPPE.m                                      //Масса СППИ
+                        + dataVRL.m                                       //Масса ВРЛ
+                        + dataOtherCA.m                                      //Масса прочих элементов ЦА
 //                        Масса БКУ, кг
-                        + dataSudSGK.mSGK                                       //Масса СГК
-                        + dataSSKM.mSSKM                                      //Масса ССКМ, кг
-                        + dataSTKRP.mSTKRP                                     //Масса СТКРП, кг
-                        + dataBAKES.mKIS                                       //Масса КИС, кг
-                        + dataBETS.mBITS                                      //Масса БИТС, кг
-                        + dataBVS.mBVS                                       //Масса КИС, кг
-                        + dataOtherBKU.mPrBKU                                     //Масса прочих элементов БКУ
+                        + dataSudSGK.m                                       //Масса СГК
+                        + dataSSKM.m                                      //Масса ССКМ, кг
+                        + dataSTKRP.m                                     //Масса СТКРП, кг
+                        + dataBAKES.m                                       //Масса КИС, кг
+                        + dataBETS.m                                      //Масса БИТС, кг
+                        + dataBVS.m                                       //Масса КИС, кг
+                        + dataOtherBKU.m                                     //Масса прочих элементов БКУ
 //                        Масса СОТР
-                        + dataPasivSOTR.mEVTI                                         //Масса ЭВТИ, кг
-                        + dataActivSOTR.mSTR                                          //Масса СТР, кг
+                        + dataPasivSOTR.m                                         //Масса ЭВТИ, кг
+                        + dataActivSOTR.m                                          //Масса СТР, кг
 //                        Масса СЭП
-                        + dataAcumBetSEP.mAB                                           //Масса всех АБ, кг
-                        + dataKAS.mKASsum   //Суммарная масса КАС с корпусными частями и проч. эл-тами
-                        + dataSumBetSEP.mPSB                                          //Масса панелей СБ
+                        + dataAcumBetSEP.m                                           //Масса всех АБ, кг
+                        + dataKAS.m   //Суммарная масса КАС с корпусными частями и проч. эл-тами
+                        + dataSumBetSEP.m                                          //Масса панелей СБ
 //                        Масса КДУ
-                        + dataMassTopl.mTKDU                                         //Масса топлива КДУ
-                        + dataKDU.mkKDU                                         //Масса конструкции КДУ
-                        + dataKonstrKA.mkKA                                          //Масса конструкции КА
-                        + dataBKSandAFU.mBKS_AFU                                     //Масса БКС и АФУ, кг
-                        + dataOtherKA.mPrKA
-                        + dataRezervKA.mRmKA
+                        + dataMassTopl.m                                         //Масса топлива КДУ
+                        + dataKDU.m                                         //Масса конструкции КДУ
+                        + dataKonstrKA.m                                          //Масса конструкции КА
+                        + dataBKSandAFU.m                                     //Масса БКС и АФУ, кг
+                        + dataOtherKA.m
+                        + dataRezervKA.m
         ;
 
         //Расчет текущих объемов КА
         dataCommonParameters.vKA =
-                +dataOETK.vkSO_OETK                             //Объем корпуса спецотсека КА
-                        + (dataSPPE.vSPPI                                 //Объем СППИ
-                        + dataVRL.vVRL                                  //Объем ВРЛ
-                        + dataOtherCA.vPrZA                                 //Объем прочих элементов ЦА
+                +dataOETK.v                             //Объем корпуса спецотсека КА
+                        + (dataSPPE.v                                 //Объем СППИ
+                        + dataVRL.v                                  //Объем ВРЛ
+                        + dataOtherCA.v                                 //Объем прочих элементов ЦА
 //                        Масса БКУ, кг
-                        + dataSudSGK.vSGK                                  //Объем СГК
-                        + dataSSKM.vSSKM                                 //Объем ССКМ, м3
-                        + dataSTKRP.vSTKRP                                 //Объем СТКРП, м3
-                        + dataBAKES.vKIS                                   //Объем КИС, м3
-                        + dataBETS.vBITS                                  //Объем БИТС, м3
-                        + dataBVS.vBVS                                   //Объем КИС, м3
-                        + dataOtherBKU.vPrBKU)                                 //Объем прочих элементов БКУ
+                        + dataSudSGK.v                                  //Объем СГК
+                        + dataSSKM.v                                 //Объем ССКМ, м3
+                        + dataSTKRP.v                                 //Объем СТКРП, м3
+                        + dataBAKES.v                                   //Объем КИС, м3
+                        + dataBETS.v                                  //Объем БИТС, м3
+                        + dataBVS.v                                   //Объем КИС, м3
+                        + dataOtherBKU.v)                                 //Объем прочих элементов БКУ
                         / (dataCommonParameters.kpoPO / 100)
 //        Объем СОТР
-                        + dataPasivSOTR.vEVTI                                  //Объем ЭВТИ, м3
-                        + dataActivSOTR.vSTR                                   //Объем СОТР, м3
+                        + dataPasivSOTR.v                                  //Объем ЭВТИ, м3
+                        + dataActivSOTR.v                                   //Объем СОТР, м3
                         / (dataCommonParameters.kpoPO / 100)
 //        объем СЭП
-                        + dataAcumBetSEP.vAB                                    //Объем всех АБ
-                        + dataKAS.vKASsum         //Объем КАС с учетом корпусных частей и прочих элементов
+                        + dataAcumBetSEP.v                                    //Объем всех АБ
+                        + dataKAS.v         //Объем КАС с учетом корпусных частей и прочих элементов
                         / (dataCommonParameters.kpoPO / 100)
-                        + dataKDU.V_OKA_KDU       //Объем Отсека КА, где располагается КДУ
-                        + dataKonstrKA.vkKA                                   //Объем конструкции КА
-                        + (dataBKSandAFU.vBKS_AFU
-                        + dataOtherKA.vPrKA
-                        + dataRezervKA.vRmKA)                              //Объем БКС и АФУ, м3
+                        + dataKDU.v       //Объем Отсека КА, где располагается КДУ
+                        + dataKonstrKA.v                                   //Объем конструкции КА
+                        + (dataBKSandAFU.v
+                        + dataOtherKA.v
+                        + dataRezervKA.v)                              //Объем БКС и АФУ, м3
                         / (dataCommonParameters.kpoPO / 100);
 
         //Расчет текущих габаритов КА
@@ -129,58 +128,58 @@ public class CalculationKA extends Calculation {
         //Расчет максимального моментаинерции КА
         dataCommonParameters.jKA =
                 //Приведенный момент инерци целевой аппаратуры, кг
-                (dataOETK.jOETK     //Момент инерции ОЭТК, кг м2
-                        + dataSPPE.jSPPI     //Момент инерции СППИ
-                        + dataVRL.jVRL      //Момент инерции ВРЛ
-                        + dataOtherCA.jPrZA     //Момент инерции прочих элементов ЦА
+                (dataOETK.j     //Момент инерции ОЭТК, кг м2
+                        + dataSPPE.j     //Момент инерции СППИ
+                        + dataVRL.j      //Момент инерции ВРЛ
+                        + dataOtherCA.j     //Момент инерции прочих элементов ЦА
                         //Приведенный момент инерции БКУ, кг м2
-                        + dataSudSGK.jSGK      //Момент инерции СГК
-                        + dataSSKM.jSSKM     //Момент инерции ССКМ, кг м2
-                        + dataSTKRP.jSTKRP    //Момент инерции СТКРП, кг м2
-                        + dataBAKES.jKIS      //Момент инерции КИС, кг м2
-                        + dataBETS.jBITS     //Момент инерции БИТС, кг м2
-                        + dataBVS.jBVS      //Момент инерции КИС, кг м2
-                        + dataOtherBKU.jPrBKU    //Момент инерции прочих элементов БКУ
+                        + dataSudSGK.j      //Момент инерции СГК
+                        + dataSSKM.j     //Момент инерции ССКМ, кг м2
+                        + dataSTKRP.j    //Момент инерции СТКРП, кг м2
+                        + dataBAKES.j      //Момент инерции КИС, кг м2
+                        + dataBETS.j     //Момент инерции БИТС, кг м2
+                        + dataBVS.j      //Момент инерции КИС, кг м2
+                        + dataOtherBKU.j    //Момент инерции прочих элементов БКУ
                         //Момент инерции СОТР
-                        + dataPasivSOTR.jEVTI     //Момент инерции ЭВТИ, кг м2
-                        + dataSOTR.jSOTR     //Максимальное значение момента инерции СОТР,
+                        + dataPasivSOTR.j     //Момент инерции ЭВТИ, кг м2
+//                        + dataSOTR.j     //Максимальное значение момента инерции СОТР,
                         //приведенного к габаритам КА, кг м2
                         //Момент инерции СЭП
-                        + dataAcumBetSEP.jAB_KA    //Момент инерции АБ в форме куба относительно поперечной оси КА
-                        + dataKAS.jKASsum   //Приведенный момент инерции КАС с корпусом и прочими элеметами
-                        + dataSumBetSEP.jPSB_KA   //Момент инерции всех панелей СБ относительно поперечной оси КА
+                        + dataAcumBetSEP.j    //Момент инерции АБ в форме куба относительно поперечной оси КА
+                        + dataKAS.j   //Приведенный момент инерции КАС с корпусом и прочими элеметами
+                        + dataSumBetSEP.j   //Момент инерции всех панелей СБ относительно поперечной оси КА
                         //Момент инерции КДУ
-                        + dataKDU.jKDU
+                        + dataKDU.j
                 )
                         / dataCommonParameters.krkKA
-                        + dataKonstrKA.jkKA      //Момент инерции  конструкции КА
+                        + dataKonstrKA.j      //Момент инерции  конструкции КА
                         + dataBKSandAFU.jBKS      //Приведенный момент инерции БКС
                         + dataBKSandAFU.jAFU     //Приведенный момент инерции АФУ
-                        + dataOtherKA.jPrKA
-                        + dataRezervKA.jRmKA
+                        + dataOtherKA.j
+                        + dataRezervKA.j
         ;
 
         //Расчет текущего значения среднесуточной мощности электропотребления КА
         //без собственного потребления СЭП
         dataCommonParameters.wKA_wsSEP =
                 //Среднесуточная мощность целевой аппаратуры, Вт
-                +dataOETK.wOETK     //Среднесуточная мощность ОЭТК, Вт
-                        + dataSPPE.wSPPI     //Среднесуточная мощность СППИ
-                        + dataVRL.wVRL      //Среднесуточная мощность ВРЛ
-                        + dataOtherCA.wPrZA     //Среднесуточная мощность прочих элементов ЦА
+                +dataOETK.w     //Среднесуточная мощность ОЭТК, Вт
+                        + dataSPPE.w     //Среднесуточная мощность СППИ
+                        + dataVRL.w      //Среднесуточная мощность ВРЛ
+                        + dataOtherCA.w     //Среднесуточная мощность прочих элементов ЦА
                         //Масса БКУ, кг
-                        + dataSudSGK.wSGK      //Среднесуточная мощность СГК
-                        + dataSSKM.wSSKM    //Среднесуточная мощность ССКМ, Вт
-                        + dataSTKRP.vSTKRP    //Среднесуточная мощность СТКРП, Вт
-                        + dataBAKES.wKIS      //Среднесуточная мощность КИС, Вт
-                        + dataBETS.wBITS     //Среднесуточная мощность БИТС, Вт
-                        + dataBVS.wBVS      //Среднесуточная мощность КИС, Вт
-                        + dataOtherBKU.wPrBKU    //Среднесуточная мощность прочих элементов БКУ
+                        + dataSudSGK.w      //Среднесуточная мощность СГК
+                        + dataSSKM.w    //Среднесуточная мощность ССКМ, Вт
+                        + dataSTKRP.v    //Среднесуточная мощность СТКРП, Вт
+                        + dataBAKES.w      //Среднесуточная мощность КИС, Вт
+                        + dataBETS.w     //Среднесуточная мощность БИТС, Вт
+                        + dataBVS.w      //Среднесуточная мощность КИС, Вт
+                        + dataOtherBKU.w    //Среднесуточная мощность прочих элементов БКУ
 
-                        + dataActivSOTR.wSTR      //Среднесуточная мощность СОТР, Вт
-                        + dataKDU.wKDU     //Среднесуточная мощность автоматики КДУ
-                        + dataOtherKA.wPrKA
-                        + dataRezervKA.wRmKA;
+                        + dataActivSOTR.w      //Среднесуточная мощность СОТР, Вт
+                        + dataKDU.w     //Среднесуточная мощность автоматики КДУ
+                        + dataOtherKA.w
+                        + dataRezervKA.w;
 
         if (dataCommonParameters.isHaveRestriction) {
             if (dataCommonParameters.mKA > dataCommonParameters.mKA0) {

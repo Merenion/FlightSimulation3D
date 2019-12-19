@@ -7,7 +7,6 @@ import com.simulation.assembly.ValidateValue;
 import com.simulation.assembly.calculation.ca.CalculationKA;
 import com.simulation.assembly.dataCalculation.sintez.DataBETS;
 import com.simulation.assembly.dataCalculation.sintez.DataElement;
-import com.simulation.assembly.dataCalculation.sintez.DataVRL;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -36,10 +35,10 @@ public class ImportBETS extends ImportElement {
         DataBETS data = new DataBETS();                                                                     //
 
         try {
-            data.mBITS = ValidateValue.conversionTextToFloat(mBITS.getText());                                  //
-            data.vBITS = ValidateValue.conversionTextToFloat(vBITS.getText());
-            data.wBITS = ValidateValue.conversionTextToFloat(wBITS.getText());
-            data.jBITS = ValidateValue.conversionTextToFloat(jBITS.getText());
+            data.m = ValidateValue.conversionTextToFloat(mBITS.getText());                                  //
+            data.v = ValidateValue.conversionTextToFloat(vBITS.getText());
+            data.w = ValidateValue.conversionTextToFloat(wBITS.getText());
+            data.j = ValidateValue.conversionTextToFloat(jBITS.getText());
         } catch (Exception e) {
             ControllerAssembly.showError("Не верно введеные данные.");
             return;

@@ -31,10 +31,10 @@ public class DataSudSGK  extends DataElement{
     public float mGP;          //Массагироприбора, кг
     public float mEB;          //Масса электронного блока гироприбора
     public float mEB_GP;       //Масса электронного блока и гироприбора
-    public float mSGK;       //Масса СГК
+//    public float m;       //Масса СГК
     public float vGP;          //Объем гироприбора, м3
     public float vEB;          //Объем электронного блока гироприбора, м3
-    public float wSGK;          //Мощность потребления электр.
+//    public float w;          //Мощность потребления электр.
     public float dGP;          //Средний радиус гироприбора , м
 
     //входные
@@ -49,8 +49,8 @@ public class DataSudSGK  extends DataElement{
     public float uW_SGK;     //Удельная мощность потребления электричества СГК
     public float pEB;        //Плотность электронного блока гироприбора
 
-    public float vSGK; //Обьем СГК
-    public float jSGK; //Момент СГК
+//    public float v; //Обьем СГК
+//    public float j; //Момент СГК
 
 
 

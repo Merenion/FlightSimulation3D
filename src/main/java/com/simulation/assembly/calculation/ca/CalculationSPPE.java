@@ -33,11 +33,11 @@ public class CalculationSPPE extends Calculation {
 
 
                     //Расчет
-                    d.mSPPI = d.umSPPI * d.sPI;
-                    d.vSPPI = d.mSPPI / d.plSPPI;
-                    d.wSPPI = d.mSPPI * d.uwSPPI;
+                    d.m = d.umSPPI * d.sPI;
+                    d.v = d.m / d.plSPPI;
+                    d.w = d.m * d.uwSPPI;
                     //Расчет приведенного момента инерции КА с текущими габаритами и массой
-                    d.jSPPI = 2375; //TODO удалить
+                    d.j = 2375; //TODO удалить
 //            d.jSPPI= (float) (d.mSPPI*(Math.pow(dc.dKA,2)/16+Math.pow(dc.lKA,2)/12));
 
                 }

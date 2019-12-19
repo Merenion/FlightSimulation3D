@@ -9,6 +9,12 @@ public abstract class DataElement {
     private long id;
     private String nameElement = "non name";
     private boolean importData = false;
+    private boolean calculationMoment =false;
+
+    public float m;
+    public float v;
+    public float w;
+    public float j;
 
     public DataElement() {
         id = ((int) (Math.random() * 1000000000));
@@ -51,5 +57,13 @@ public abstract class DataElement {
     @Override
     public int hashCode() {
         return Objects.hash(nameElement);
+    }
+
+    public boolean isCalculationMoment() {
+        return calculationMoment;
+    }
+
+    public void setCalculationMoment(boolean calculationMoment) {
+        this.calculationMoment = calculationMoment;
     }
 }

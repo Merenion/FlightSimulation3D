@@ -17,8 +17,8 @@ public class DataCa  extends DataElement{
         return TabTypeSintez.CA;
     }
 
-    public float mZA; //Масса целевой аппаратуры, кг
-    public float vZA; //Расчет объема ЦА
-    public float jZA; //Расчет мометна инерции ЦА
-    public float wZA; //Мощность энергопотребления ЦА, Вт
+//    public float m; //Масса целевой аппаратуры, кг
+//    public float v; //Расчет объема ЦА
+//    public float j; //Расчет мометна инерции ЦА
+//    public float w; //Мощность энергопотребления ЦА, Вт
 }

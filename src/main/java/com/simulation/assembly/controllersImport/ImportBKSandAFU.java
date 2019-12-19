@@ -7,7 +7,6 @@ import com.simulation.assembly.ValidateValue;
 import com.simulation.assembly.calculation.ca.CalculationKA;
 import com.simulation.assembly.dataCalculation.sintez.DataBKSandAFU;
 import com.simulation.assembly.dataCalculation.sintez.DataElement;
-import com.simulation.assembly.dataCalculation.sintez.DataVRL;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -35,8 +34,8 @@ public class ImportBKSandAFU extends ImportElement {
         DataBKSandAFU data = new DataBKSandAFU();                                                                     //
 
         try {
-            data.mBKS_AFU = ValidateValue.conversionTextToFloat(mBKS_AFU.getText());                                  //
-            data.vBKS_AFU = ValidateValue.conversionTextToFloat(vBKS_AFU.getText());
+            data.m = ValidateValue.conversionTextToFloat(mBKS_AFU.getText());                                  //
+            data.v = ValidateValue.conversionTextToFloat(vBKS_AFU.getText());
             data.jBKS = ValidateValue.conversionTextToFloat(jBKS.getText());
             data.jAFU = ValidateValue.conversionTextToFloat(jAFU.getText());
         } catch (Exception e) {

@@ -5,7 +5,6 @@ import com.simulation.assembly.SaveXmlObject;
 import com.simulation.assembly.TabTypeSintez;
 import com.simulation.assembly.ValidateValue;
 import com.simulation.assembly.calculation.ca.CalculationKA;
-import com.simulation.assembly.dataCalculation.sintez.DataActivSOTR;
 import com.simulation.assembly.dataCalculation.sintez.DataElement;
 import com.simulation.assembly.dataCalculation.sintez.DataRezervKA;
 import javafx.collections.FXCollections;
@@ -36,10 +35,10 @@ public class ImportRezerv extends ImportElement {
         DataRezervKA data = new DataRezervKA();                                                                     //
 
         try {
-            data.mRmKA = ValidateValue.conversionTextToFloat(mRmKA.getText());                                  //
-            data.vRmKA = ValidateValue.conversionTextToFloat(vRmKA.getText());
-            data.jRmKA = ValidateValue.conversionTextToFloat(jRmKA.getText());
-            data.wRmKA = ValidateValue.conversionTextToFloat(wRmKA.getText());
+            data.m = ValidateValue.conversionTextToFloat(mRmKA.getText());                                  //
+            data.v = ValidateValue.conversionTextToFloat(vRmKA.getText());
+            data.j = ValidateValue.conversionTextToFloat(jRmKA.getText());
+            data.w = ValidateValue.conversionTextToFloat(wRmKA.getText());
         } catch (Exception e) {
             ControllerAssembly.showError("Не верно введеные данные.");
             return;

@@ -34,36 +34,36 @@ public class CalculationBKU extends Calculation {
                 DataCommonParameters dc0 = CalculationKA.getInstance().getDataCommonParameters();
                 DataOtherBKU dc = CalculationKA.getInstance().getDataOtherBKU();
 
-                dataBKU.mBKU =           //Масса БКУ, кг
-                        dataSudSGK.mSGK        //Масса СГК, кг
-                                + dataSSKM.mSSKM      //Масса ССКМ
-                                + dataSTKRP.mSTKRP     //Масса СТКРП
-                                + dataBAKES.mKIS       //Масса КИС
-                                + dataBETS.mBITS      //Масса БИТС
-                                + dataBVS.mBVS
-                                + dc.mPrBKU;    //Масса прочих элементов БКУ
+                dataBKU.m =           //Масса БКУ, кг
+                        dataSudSGK.m        //Масса СГК, кг
+                                + dataSSKM.m      //Масса ССКМ
+                                + dataSTKRP.m     //Масса СТКРП
+                                + dataBAKES.m       //Масса КИС
+                                + dataBETS.m      //Масса БИТС
+                                + dataBVS.m
+                                + dc.m;    //Масса прочих элементов БКУ
 
                 //Расчет объема ЦА
-                dataBKU.vBKU =          //Объем БКУ, м3
-                        dataSudSGK.vSGK      //Объем СГК, м3
-                                + dataSSKM.vSSKM     //Объем аппаратуры ССКМ, м3
-                                + dataSTKRP.vSTKRP    //Объем аппаратуры СТКРП, м3
-                                + dataBAKES.vKIS      //Объем аппаратуры КИС, м3
-                                + dataBETS.vBITS     //Объем аппаратуры БИТС, м3
-                                + dataBVS.vBVS     //Объем аппаратуры БВС, м3
-                                + dc.vPrBKU;   //Объем прочих элементов БКУ, м3
+                dataBKU.v =          //Объем БКУ, м3
+                        dataSudSGK.v      //Объем СГК, м3
+                                + dataSSKM.v     //Объем аппаратуры ССКМ, м3
+                                + dataSTKRP.v    //Объем аппаратуры СТКРП, м3
+                                + dataBAKES.v      //Объем аппаратуры КИС, м3
+                                + dataBETS.v     //Объем аппаратуры БИТС, м3
+                                + dataBVS.v     //Объем аппаратуры БВС, м3
+                                + dc.v;   //Объем прочих элементов БКУ, м3
 
                 //Расчет мометна инерции БКУ
-                dataBKU.jBKU = dataBKU.mBKU * ((dc0.dKA * dc0.dKA) / 16 + (dc0.lKA * dc0.lKA) / 12);
+                dataBKU.j = dataBKU.m * ((dc0.dKA * dc0.dKA) / 16 + (dc0.lKA * dc0.lKA) / 12);
 
-                dataBKU.wBKU =             //Мощность энергопотребления БКУ Вт
-                        dataSudSGK.wSGK        //Мощность энергопотребления СГК, Вт
-                                + dataSSKM.wSSKM      //Мощность аппаратуры ССКМ, Вт
-                                + dataSTKRP.wSTKRP     //Мощность аппаратуры СТКРП, Вт
-                                + dataBAKES.wKIS       //Мощность аппаратуры КИС, Вт
-                                + dataBETS.wBITS      //Мощность аппаратуры БИТС, Вт
-                                + dataBVS.wBVS       //Мощность аппаратуры БВС, Вт
-                                + dc.wPrBKU;    //Мощность прочих элементов БКУ, Вт
+                dataBKU.w =             //Мощность энергопотребления БКУ Вт
+                        dataSudSGK.w        //Мощность энергопотребления СГК, Вт
+                                + dataSSKM.w      //Мощность аппаратуры ССКМ, Вт
+                                + dataSTKRP.w     //Мощность аппаратуры СТКРП, Вт
+                                + dataBAKES.w       //Мощность аппаратуры КИС, Вт
+                                + dataBETS.w      //Мощность аппаратуры БИТС, Вт
+                                + dataBVS.w       //Мощность аппаратуры БВС, Вт
+                                + dc.w;    //Мощность прочих элементов БКУ, Вт
             }
             CalculationKA.getInstance().calculation(new Object());
 

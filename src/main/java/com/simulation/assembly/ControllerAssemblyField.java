@@ -272,56 +272,35 @@ public class ControllerAssemblyField {
     @FXML
     public AnchorPane pane_finishData_OETK;
 
-    @FXML
-    public Label ouT_fOETK;
-    @FXML
-    public Label ouT_lOETK;
-    @FXML
-    public Label ouT_mOETK;
-    @FXML
-    public Label ouT_vOETK;
-    @FXML
-    public Label ouT_jOETK;
-    @FXML
-    public Label ouT_wOETK;
-    @FXML
-    public Label ouT_dkSO_OETK;
-    @FXML
-    public Label ouT_lkSO_OETK;
-    @FXML
-    public Label ouT_vkSO_OETK;
-    @FXML
-    public Label ouT_dOETK;
-
-    @FXML
-    public TextField iN_Det;
-    @FXML
+    public TextField iN_Lm;
     public TextField iN_H;
-    @FXML
-    public TextField iN_rELPZS;
-    @FXML
-    public TextField iN_kUD;
-    @FXML
-    public TextField iN_oO;
-    @FXML
-    public TextField iN_plOETK;
-    @FXML
+    public TextField iN_Delta;
+    public TextField iN_k0;
+    public TextField iN_q;
     public TextField iN_uwOETK;
-    @FXML
-    public TextField iN_krkOETK;
-    @FXML
+    public TextField iN_kUD;
     public TextField iN_kp2dOETK;
-    @FXML
     public TextField iN_kp2lOETK;
+    public TextField iN_yr;
 
-    @FXML
-    public ToggleGroup choiseTypeKA;
-    @FXML
-    public RadioButton iN_smmal_KA;
-    @FXML
-    public RadioButton iN_big_KA;
-    @FXML
-    public RadioButton iN_middle_KA;
+
+    public Label ouT_lOETK;
+    public Label ouT_dOETK;
+    public Label ouT_mOETK;
+    public Label ouT_vOETK;
+    public Label ouT_jOETK;
+    public Label ouT_wOETK;
+    public Label ouT_Dgl_OETK;
+    public Label ouT_Dvt_OETK;
+    public Label ouT_f_ecv_OETK;
+    public Label ouT_f1_OETK;
+    public Label ouT_f2_OETK;
+    public Label ouT_Lpzs_OETK;
+    public Label ouT_r1_OETK;
+    public Label ouT_d1_OETK;
+    public Label ouT_d2_OETK;
+    public Label ouT_S2_OETK1;
+    public Label ouT_d_OETK11;
 
     @FXML
     public Button bt_calcul_OETK;
@@ -1079,6 +1058,14 @@ public class ControllerAssemblyField {
     public ImageView onStepAskOtherCa;
     public ImageView onStepOkCa;
     public ImageView onStepAskCa;
+
+    public CheckBox check_zaim_sppe;
+    public AnchorPane pane_zaimsv_sppe;
+    public CheckBox check_zaim_sskm;
+    public AnchorPane pane_zaimsv_sskm;
+
+    public RadioButton choise_have_OETK;
+    public AnchorPane pane_zaimsv_oetk;
 
     /**
      * Выбор формы на вкладке ОГРАНИЧЕНИЯ - синтез (есть ограничения, нету)

@@ -2,8 +2,6 @@ package com.simulation.assembly.dataCalculation.sintez;
 
 import javafx.beans.property.SimpleStringProperty;
 
-import javax.xml.bind.Element;
-
 public class ViewDataOtherKA {
 
     private String nameElement = "non Name";
@@ -24,10 +22,10 @@ public class ViewDataOtherKA {
         viewDataOtherKA.setPlPrKA( String.valueOf(dataOtherKA.plPrKA));
         viewDataOtherKA.setUwPrKA( String.valueOf(dataOtherKA.uwPrKA));
 
-        viewDataOtherKA.setmPrKA( String.valueOf(dataOtherKA.mPrKA));
-        viewDataOtherKA.setvPrKA( String.valueOf(dataOtherKA.vPrKA));
-        viewDataOtherKA.setjPrKA( String.valueOf(dataOtherKA.jPrKA));
-        viewDataOtherKA.setwPrKA( String.valueOf(dataOtherKA.wPrKA));
+        viewDataOtherKA.setmPrKA( String.valueOf(dataOtherKA.m));
+        viewDataOtherKA.setvPrKA( String.valueOf(dataOtherKA.v));
+        viewDataOtherKA.setjPrKA( String.valueOf(dataOtherKA.j));
+        viewDataOtherKA.setwPrKA( String.valueOf(dataOtherKA.w));
 
         viewDataOtherKA.nameElement = dataOtherKA.getNameElement();
         return viewDataOtherKA;

@@ -22,8 +22,8 @@ public class DataOtherCA  extends DataElement{
     public float uwPrZA;                                        //удельная мощность электропотребления прочих элементов ЦА, Вт/кг
     public float plPrZA;                                        //Средняя плотность компоновки прочих элементов ЦА
 
-    public float mPrZA;
-    public float vPrZA;
-    public float wPrZA;
-    public float jPrZA;
+//    public float m;
+//    public float v;
+//    public float w;
+//    public float j;
 }

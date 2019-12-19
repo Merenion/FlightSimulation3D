@@ -24,13 +24,13 @@ public class DataSSKM  extends DataElement{
     public float plsSSKM;     //Плотность конструкционного материала штанг ССКМ, кг/м3
     public float kzsSSKM;//Коэффициент заполнения штанг ССКМ конструкционным материалом, %
 
-    public float mSSKM;  //удельная масса CCRV
+//    public float m;  //удельная масса CCRV
     public float maSSKM;  //Масса аппаратуры ССКМ, кг
     public float msSSKM;  //Масса штанг ССКМ, кг
     public float vaSSKM;  //Объем аппаратуры ССКМ, м3
     public float vsSSKM;  //Обем штанг ССКМ, кг
-    public float wSSKM;     //Мощность электропотребления, Вт
-    public float jSSKM;     //момент инерции ССКМ
+//    public float w;     //Мощность электропотребления, Вт
+//    public float j;     //момент инерции ССКМ
 
-    public float vSSKM;     //обьем ССКМ
+//    public float v;     //обьем ССКМ
 }

@@ -23,7 +23,7 @@ public class DataPasivSOTR  extends DataElement{
 
     public float sKA;   //Средняя площадь наружной поверхности КА, м2
     public float sEVTI; //Средняя площадь ЭВТИ, м2
-    public float mEVTI;
-    public float vEVTI;
-    public float jEVTI;
+//    public float m;
+//    public float v;
+//    public float j;
 }

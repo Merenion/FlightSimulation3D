@@ -6,7 +6,6 @@ import com.simulation.assembly.TabTypeSintez;
 import com.simulation.assembly.calculation.Calculation;
 import com.simulation.assembly.dataCalculation.sintez.DataCommonParameters;
 import com.simulation.assembly.dataCalculation.sintez.DataOETK;
-import com.simulation.assembly.dataCalculation.sintez.TypeKa;
 
 public class CalculationOETK extends Calculation {
 
@@ -29,101 +28,55 @@ public class CalculationOETK extends Calculation {
             DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
             if (!getType().getDataElement().isImportData()) {
 
-                //Расчет
-                if (d.typeKA.equals(TypeKa.BIG)) {
                     ///// Расчет по моделям Куренкова
 
-                    d.fOETK = d.H * 1000 * d.rELPZS * 2 / 1000 / 1000 / d.Det;
-                    d.lOETK = d.fOETK / d.kUD;
-
-                    //Средняя длина, рассчитанная из условий ограничений, м
-
-                    if (dc.isHaveRestriction && d.lOETK > dc.lKA0) {
-                        ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Ошибка! Длина ОЭТК больше чем длина КА! Измение ИД по ОЭТК", TabTypeSintez.OETK);
-                        return d;
-                    }
-
-                    d.dOETK = d.fOETK / d.oO;
-
-                    if (dc.isHaveRestriction && d.dOETK > dc.dKA0) {
-                        ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Ошибка! Диаметр ОЭТК больше чем диаметр КА! Измение ИД по ОЭТК ", TabTypeSintez.OETK);
-                        return d;
-                    }
-
-                    d.vOETK = (float) (Math.PI * Math.pow(d.dOETK, 2) / 4 * d.lOETK);
-
-                    if (dc.isHaveRestriction && d.vOETK > dc.vKA0) {
-                        ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Ошибка! Объем ОЭТК больше чем объем КА! Измение ИД по ОЭТК ", TabTypeSintez.OETK);
-                        return d;
-                    }
-
-                    d.mOETK = d.plOETK * d.vOETK;
-
-                    if (dc.isHaveRestriction && d.mOETK > dc.mKA0) {
-                        ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Ошибка! Масса ОЭТК больше чем масса КА! Измение ИД по ОЭТК ", TabTypeSintez.OETK);
-                        return d;
-                    }
-
-                    d.jOETK = (float) (d.mOETK / d.krkOETK * (Math.pow(d.dOETK, 2) / 16 + Math.pow(d.lOETK, 2) / 12));
-                    d.wOETK = d.uwOETK * d.mOETK;
-
-                    //Расчет габаоитов корпуса спецотсека КА
-                    d.dkSO_OETK = d.kp2dOETK * d.dOETK;
-                    d.lkSO_OETK = d.kp2lOETK * d.lOETK;
-                    d.vkSO_OETK = (float) (Math.PI * Math.pow(d.dkSO_OETK, 2) / 4 * d.lkSO_OETK);//Объем корпуса спецотсека КА
-                    CalculationKA.getInstance().calculation(new Object());
-
-                    ControllerAssembly.addMessInConsoleSintez(MessegeType.INFO, "Расчет ОЭТК Успешен! ", TabTypeSintez.OETK);
-                    return d;
+                if (d.iN_yr<0.5 || d.iN_yr>1.2){
+                    ControllerAssembly.showError("Доступная для расчета рабочая длина волны должна быть\n больше 0.5 и меньше 1.2");
+                    return object;
                 }
 
-                if (d.typeKA.equals(TypeKa.MIDDLE)) {
-                    /////Расчет по моделям Горбунова (диапазон 5...20 м)
-                    d.fOETK = d.H * 1000 * d.rELPZS * 2 / 1000 / 1000 / d.Det;
-                    d.lOETK = d.fOETK / d.kUD;
-                    d.dOETK = d.fOETK / d.oO;
-                    d.vOETK = (float) (Math.PI * Math.pow(d.dOETK, 2) / 4 * d.lOETK);
-                    //Измененный расчет
-                    d.mOETK = (float) (34.826 * Math.exp(-0.3714 * Math.log(d.Det)));
 
-                    d.jOETK = (float) (d.mOETK / d.krkOETK * (Math.pow(d.dOETK, 2) / 16 + Math.pow(d.lOETK, 2) / 12));
-                    d.wOETK = d.uwOETK * d.mOETK;
-
-                    //Расчет габаоитов корпуса спецотсека КА
-                    d.dkSO_OETK = d.kp2dOETK * d.dOETK;
-                    d.lkSO_OETK = d.kp2lOETK * d.lOETK;
-                    d.vkSO_OETK = (float) (Math.PI * Math.pow(d.dkSO_OETK, 2) / 4 * d.lkSO_OETK);//Объем корпуса спецотсека КА
-                    CalculationKA.getInstance().calculation(new Object());
-
-                    ControllerAssembly.addMessInConsoleSintez(MessegeType.INFO, "Расчет ОЭТК Успешен! ", TabTypeSintez.OETK);
-                    return d;
+                if (d.iN_yr<=0.6){
+                    d.ouT_Lpzs_OETK = 6f;
+                }else if (d.iN_yr>0.6 && d.iN_yr<=0.9){
+                    d.ouT_Lpzs_OETK = 9f;
+                } else if (d.iN_yr>0.9){
+                    d.ouT_Lpzs_OETK = 13f;
                 }
 
-                if (d.typeKA.equals(TypeKa.SAMLL) && d.Det <= 5 && d.Det > 0.6) {
-                    /////Расчет по моделям Горбунова (диапазон 5...20 м)
-                    d.fOETK = d.H * 1000 * d.rELPZS * 2 / 1000 / 1000 / d.Det;
-                    d.lOETK = d.fOETK / d.kUD;
-                    d.dOETK = d.fOETK / d.oO;
-                    d.vOETK = (float) (Math.PI * Math.pow(d.dOETK, 2) / 4 * d.lOETK);
-                    //Измененный расчет
-                    d.mOETK = (float) (51.812 * Math.exp(-0.6707 * Math.log(d.Det)));
+                //масса
+                d.km_OETK = d.iN_kUD*d.iN_kp2dOETK;
+                d.ouT_Dgl_OETK = (d.iN_yr/1000000)*(d.iN_H*1000)/(2*d.iN_k0*d.iN_Lm);
+                d.m = (float) ((d.km_OETK*Math.PI*(d.iN_yr/1000000)*(d.iN_H*1000)*(d.iN_H*1000)/(2*d.iN_k0*d.iN_Lm*d.iN_Lm))*((d.iN_kp2dOETK*(d.iN_yr/1000000)/(4*d.iN_k0))+d.iN_kp2lOETK*(d.ouT_Lpzs_OETK/1000000)));
 
-                    d.jOETK = (float) (d.mOETK / d.krkOETK * (Math.pow(d.dOETK, 2) / 16 + Math.pow(d.lOETK, 2) / 12));
-                    d.wOETK = d.uwOETK * d.mOETK;
+                //Обьем
+                d.ouT_f_ecv_OETK = (float) (0.8086*(d.ouT_Lpzs_OETK/1000000)*d.ouT_Dgl_OETK/(d.iN_yr/1000000));
+                d.ouT_lOETK =d.ouT_f_ecv_OETK*d.iN_kp2lOETK;
+                d.ouT_dOETK =d.iN_kp2dOETK*d.ouT_Dgl_OETK;
+                d.v = (float) (Math.PI * Math.pow(d.ouT_dOETK, 2) / 4 * d.ouT_lOETK);
 
-                    //Расчет габаоитов корпуса спецотсека КА
-                    d.dkSO_OETK = d.kp2dOETK * d.dOETK;
-                    d.lkSO_OETK = d.kp2lOETK * d.lOETK;
-                    d.vkSO_OETK = (float) (Math.PI * Math.pow(d.dkSO_OETK, 2) / 4 * d.lkSO_OETK);//Объем корпуса спецотсека КА
-                    CalculationKA.getInstance().calculation(new Object());
+                //электропотребление
+                d.w = d.m *d.iN_uwOETK;
+
+                d.ouT_Dvt_OETK = d.iN_q*d.ouT_Dgl_OETK;
+                d.ouT_d_OETK11 = d.iN_q*d.ouT_f_ecv_OETK-d.iN_Delta;
+                d.ouT_S2_OETK1 = d.iN_q*d.ouT_d_OETK11/(1-d.iN_q);
+                d.ouT_f1_OETK = d.ouT_d_OETK11+d.ouT_S2_OETK1;
+                d.ouT_r1_OETK = 2*d.ouT_f1_OETK;
+                d.ouT_f2_OETK = (d.iN_q*d.ouT_f_ecv_OETK*(d.iN_Delta-d.iN_q*d.ouT_f_ecv_OETK))/(d.iN_Delta+d.ouT_f_ecv_OETK*(1-2*d.iN_q));
+                d.b_OETK = Math.abs(d.ouT_f1_OETK/d.ouT_f_ecv_OETK);
+                d.m_const = 1/d.b_OETK;
+                d.ouT_d1_OETK= (float) (d.ouT_f1_OETK*Math.tan(2*d.wConst));
+                d.ouT_d2_OETK= d.m_const *d.ouT_d1_OETK;
+                //момент
+                CalculationKA.getInstance().calculation(new Object());
+                d.j = (float) ((d.m /(12*((dc.dKA/2)+dc.lKA)))*(3*Math.pow((dc.dKA/2),2)*((dc.dKA/2)+2*dc.lKA)+Math.pow(dc.lKA,2)*((3*dc.dKA/2)+dc.lKA)));
+                CalculationKA.getInstance().calculation(new Object());
 
 
-                    ControllerAssembly.addMessInConsoleSintez(MessegeType.INFO, "Расчет ОЭТК Успешен! ", TabTypeSintez.OETK);
+                ControllerAssembly.addMessInConsoleSintez(MessegeType.INFO, "Расчет ОЭТК Успешен! ", TabTypeSintez.OETK);
                     return d;
-                } else if (d.typeKA.equals(TypeKa.SAMLL)) {
-                    ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные! Детальность должна быть <=5 и >0.6 ", TabTypeSintez.OETK);
-                    return d;
-                }
+
             } else {
                 CalculationKA.getInstance().calculation(new Object());
             }

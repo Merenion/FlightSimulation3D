@@ -37,12 +37,12 @@ public class ImportActivSOTR extends ImportElement {
         DataActivSOTR data = new DataActivSOTR();                                                                     //
 
         try {
-            data.mSTR = ValidateValue.conversionTextToFloat(mSTR.getText());                                  //
+            data.m = ValidateValue.conversionTextToFloat(mSTR.getText());                                  //
             data.mSTRbtn = ValidateValue.conversionTextToFloat(mSTRbtn.getText());
             data.mtnSTR = ValidateValue.conversionTextToFloat(mtnSTR.getText());
-            data.vSTR = ValidateValue.conversionTextToFloat(vSTR.getText());
-            data.wSTR = ValidateValue.conversionTextToFloat(wSTR.getText());
-            data.jSTR = ValidateValue.conversionTextToFloat(jSTR.getText());
+            data.v = ValidateValue.conversionTextToFloat(vSTR.getText());
+            data.w = ValidateValue.conversionTextToFloat(wSTR.getText());
+            data.j = ValidateValue.conversionTextToFloat(jSTR.getText());
         } catch (Exception e) {
             ControllerAssembly.showError("Не верно введеные данные.");
             return;

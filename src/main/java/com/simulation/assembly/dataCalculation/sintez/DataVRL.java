@@ -23,8 +23,8 @@ public class DataVRL  extends DataElement{
     public float plVRL;    //Плотность аппаратуры ВРЛ
 
     //выходные
-    public float mVRL;
-    public float vVRL;
-    public float wVRL;
-    public float jVRL;
+//    public float m;
+//    public float v;
+//    public float w;
+//    public float j;
 }

@@ -21,9 +21,9 @@ public class DataOtherBKU   extends DataElement{
     public float uwPrBKU;   //удельная мощность электропотребления прочих элементов БКУ, Вт/кг
     public float plPrBKU;   //Средняя плотность компоновки прочих элементов БКУ
 
-    public float mPrBKU;
-    public float vPrBKU;
-    public float wPrBKU;
-    public float jPrBKU;
+//    public float m;
+//    public float v;
+//    public float w;
+//    public float j;
 
 }

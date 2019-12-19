@@ -7,7 +7,6 @@ import com.simulation.assembly.ValidateValue;
 import com.simulation.assembly.calculation.ca.CalculationKA;
 import com.simulation.assembly.dataCalculation.sintez.DataElement;
 import com.simulation.assembly.dataCalculation.sintez.DataSTKRP;
-import com.simulation.assembly.dataCalculation.sintez.DataVRL;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -36,10 +35,10 @@ public class ImportSTKRP extends ImportElement {
         DataSTKRP data = new DataSTKRP();                                                                     //
 
         try {
-            data.mSTKRP = ValidateValue.conversionTextToFloat(mSTKRP.getText());                                  //
-            data.vSTKRP = ValidateValue.conversionTextToFloat(vSTKRP.getText());
-            data.wSTKRP = ValidateValue.conversionTextToFloat(wSTKRP.getText());
-            data.jSTKRP = ValidateValue.conversionTextToFloat(jSTKRP.getText());
+            data.m = ValidateValue.conversionTextToFloat(mSTKRP.getText());                                  //
+            data.v = ValidateValue.conversionTextToFloat(vSTKRP.getText());
+            data.w = ValidateValue.conversionTextToFloat(wSTKRP.getText());
+            data.j = ValidateValue.conversionTextToFloat(jSTKRP.getText());
         }catch (Exception e) {
             ControllerAssembly.showError("Не верно введеные данные.");
             return;

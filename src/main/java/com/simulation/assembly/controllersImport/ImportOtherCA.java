@@ -7,7 +7,6 @@ import com.simulation.assembly.ValidateValue;
 import com.simulation.assembly.calculation.ca.CalculationKA;
 import com.simulation.assembly.dataCalculation.sintez.DataElement;
 import com.simulation.assembly.dataCalculation.sintez.DataOtherCA;
-import com.simulation.assembly.dataCalculation.sintez.DataVRL;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -36,10 +35,10 @@ public class ImportOtherCA extends ImportElement {
         DataOtherCA data = new DataOtherCA();                                                                     //
 
         try {
-            data.mPrZA = ValidateValue.conversionTextToFloat(mPrZA.getText());                                  //
-            data.vPrZA = ValidateValue.conversionTextToFloat(vPrZA.getText());
-            data.wPrZA = ValidateValue.conversionTextToFloat(wPrZA.getText());
-            data.jPrZA = ValidateValue.conversionTextToFloat(jPrZA.getText());
+            data.m = ValidateValue.conversionTextToFloat(mPrZA.getText());                                  //
+            data.v = ValidateValue.conversionTextToFloat(vPrZA.getText());
+            data.w = ValidateValue.conversionTextToFloat(wPrZA.getText());
+            data.j = ValidateValue.conversionTextToFloat(jPrZA.getText());
         } catch (Exception e) {
             ControllerAssembly.showError("Не верно введеные данные.");
             return;

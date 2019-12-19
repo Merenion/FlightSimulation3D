@@ -40,9 +40,9 @@ public class CalculationMassTopl extends Calculation {
                 d.kakZ = Math.round(d.kakR);  //Количество астрокоррекций  (целое, округленное число)
                 d.mTKAskm = d.mTKDUskm1 * d.kakZ; //Масса топлива для сброса кинетического момента
                 //за весь срок АС
-                d.mTKDU = d.mTKAxnzg + d.mTKAskm;
-                d.mO = d.mTKDU * d.kOG / (1 + d.kOG);
-                d.mG = d.mTKDU * 1 / (1 + d.kOG);
+                d.m = d.mTKAxnzg + d.mTKAskm;
+                d.mO = d.m * d.kOG / (1 + d.kOG);
+                d.mG = d.m * 1 / (1 + d.kOG);
             }
             CalculationKA.getInstance().calculation(new Object());
 

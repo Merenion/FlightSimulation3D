@@ -31,7 +31,7 @@ public class DataMassTopl   extends DataElement{
 
     public float mTKAx;       // Масса топлива для реализации характеристической скорости КА
     public float mTKAxnzg;   // Масса топлива (для реализации характеристической скорости КА
-    public float mTKDU;
+//    public float m;
     public float mO;
     public float mG;
 

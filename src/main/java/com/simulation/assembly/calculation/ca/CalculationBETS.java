@@ -6,7 +6,6 @@ import com.simulation.assembly.TabTypeSintez;
 import com.simulation.assembly.calculation.Calculation;
 import com.simulation.assembly.dataCalculation.sintez.DataBETS;
 import com.simulation.assembly.dataCalculation.sintez.DataCommonParameters;
-import com.simulation.assembly.dataCalculation.sintez.DataOETK;
 
 public class CalculationBETS extends Calculation {
 
@@ -30,10 +29,10 @@ public class CalculationBETS extends Calculation {
                 DataBETS d = CalculationKA.getInstance().getDataBETS();
                 DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
 
-                d.mBITS = d.kmBITS / 100 * dc.mKA;
-                d.vBITS = d.mBITS / d.plBITS;
-                d.wBITS = d.uwBITS * d.mBITS;
-                d.jBITS = d.mBITS * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
+                d.m = d.kmBITS / 100 * dc.mKA;
+                d.v = d.m / d.plBITS;
+                d.w = d.uwBITS * d.m;
+                d.j = d.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
             }
             CalculationKA.getInstance().calculation(new Object());
 

@@ -7,7 +7,6 @@ import com.simulation.assembly.ValidateValue;
 import com.simulation.assembly.calculation.ca.CalculationKA;
 import com.simulation.assembly.dataCalculation.sintez.DataElement;
 import com.simulation.assembly.dataCalculation.sintez.DataKonstrKA;
-import com.simulation.assembly.dataCalculation.sintez.DataVRL;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -34,9 +33,9 @@ public class ImportKonstr extends ImportElement {
         DataKonstrKA data = new DataKonstrKA();                                                                     //
 
         try {
-            data.mkKA = ValidateValue.conversionTextToFloat(mkKA.getText());                                  //
-            data.vkKA = ValidateValue.conversionTextToFloat(vkKA.getText());
-            data.jkKA = ValidateValue.conversionTextToFloat(jkKA.getText());
+            data.m = ValidateValue.conversionTextToFloat(mkKA.getText());                                  //
+            data.v = ValidateValue.conversionTextToFloat(vkKA.getText());
+            data.j = ValidateValue.conversionTextToFloat(jkKA.getText());
         } catch (Exception e) {
             ControllerAssembly.showError("Не верно введеные данные.");
             return;

@@ -34,9 +34,9 @@ public class DataKAS   extends DataElement{
     public float vRU;    //Объем разрядного утройства
     public float mKAS;   //Масса КАС, кг
     public float vKAS;   //Объем КАС, м3
-    public float mKASsum;
-    public float vKASsum;
-    public float jKASsum;
+//    public float m;
+//    public float v;
+//    public float j;
 
     public float mkKas;  //Масса корпусных частей КАС
     //и прочих элементов

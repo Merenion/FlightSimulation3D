@@ -31,12 +31,12 @@ public class CalculationOtherCA extends Calculation {
             if (!getType().getDataElement().isImportData()) {
 
                 //Расчет
-                float mZA = (dOetk.mOETK + dSppi.mSPPI + dVrl.mVRL) / (1 - d.kPrZA / 100);
-                d.mPrZA = mZA - (dOetk.mOETK + dSppi.mSPPI + dVrl.mVRL);
-                d.vPrZA = d.mPrZA / d.plPrZA;
-                d.wPrZA = d.uwPrZA * d.mPrZA;
+                float mZA = (dOetk.m + dSppi.m + dVrl.m) / (1 - d.kPrZA / 100);
+                d.m = mZA - (dOetk.m + dSppi.m + dVrl.m);
+                d.v = d.m / d.plPrZA;
+                d.w = d.uwPrZA * d.m;
                 //Расчет приведенного момента инерции КА с текущими габаритами и массой
-                d.jPrZA = d.mPrZA * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
+                d.j = d.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
             }
             CalculationKA.getInstance().calculation(new Object());
 

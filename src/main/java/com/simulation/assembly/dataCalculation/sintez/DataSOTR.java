@@ -21,6 +21,6 @@ public class DataSOTR   extends DataElement{
     public float mSOTRbtn;
     public float mtnSTR;
     public float vSOTR;
-    public float jSOTR;
+//    public float j;
     public float wSTR;
 }

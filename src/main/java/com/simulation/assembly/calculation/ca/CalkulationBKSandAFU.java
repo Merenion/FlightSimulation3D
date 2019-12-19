@@ -32,8 +32,8 @@ public class CalkulationBKSandAFU extends Calculation {
                 d.mAFU = (d.omAFU / 100) * dc.mKA;
                 d.vBKS = d.mBKS / d.plBKS;
                 d.vAFU = d.mAFU / d.plAFU;
-                d.mBKS_AFU = d.mBKS + d.mAFU;
-                d.vBKS_AFU = d.vBKS + d.vAFU;
+                d.m = d.mBKS + d.mAFU;
+                d.v = d.vBKS + d.vAFU;
                 d.jBKS = d.mBKS * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
                 d.jAFU = d.mAFU * (dc.dKA / 2) * (dc.dKA / 2);
             }

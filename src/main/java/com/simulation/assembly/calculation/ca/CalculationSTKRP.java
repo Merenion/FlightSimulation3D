@@ -5,7 +5,6 @@ import com.simulation.assembly.MessegeType;
 import com.simulation.assembly.TabTypeSintez;
 import com.simulation.assembly.calculation.Calculation;
 import com.simulation.assembly.dataCalculation.sintez.DataCommonParameters;
-import com.simulation.assembly.dataCalculation.sintez.DataOETK;
 import com.simulation.assembly.dataCalculation.sintez.DataSTKRP;
 
 public class CalculationSTKRP extends Calculation {
@@ -30,10 +29,10 @@ public class CalculationSTKRP extends Calculation {
                 DataSTKRP d = CalculationKA.getInstance().getDataSTKRP();
                 DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
 
-                d.mSTKRP = d.kmSTKRP / 100 * dc.mKA;
-                d.vSTKRP = d.mSTKRP / d.plSTKRP;
-                d.wSTKRP = d.uwSTKRP * d.mSTKRP;
-                d.jSTKRP = d.mSTKRP * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
+                d.m = d.kmSTKRP / 100 * dc.mKA;
+                d.v = d.m / d.plSTKRP;
+                d.w = d.uwSTKRP * d.m;
+                d.j = d.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
             }
             CalculationKA.getInstance().calculation(new Object());
 

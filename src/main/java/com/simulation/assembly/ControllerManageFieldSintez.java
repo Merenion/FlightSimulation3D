@@ -1,9 +1,7 @@
 package com.simulation.assembly;
 
 import com.simulation.assembly.calculation.ca.CalculationKA;
-import com.simulation.assembly.dataCalculation.sintez.DataElement;
 import com.simulation.assembly.dataCalculation.sintez.DataOtherKA;
-import com.simulation.assembly.dataCalculation.sintez.TypeKa;
 import com.simulation.assembly.dataCalculation.sintez.ViewDataOtherKA;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -48,56 +46,63 @@ public class ControllerManageFieldSintez extends ControllerAssemblyField {
      * показать результаты ОЕТК
      */
     public void showOetkResult() {
-        ouT_fOETK.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().fOETK));
-        ouT_lOETK.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().lOETK));
-        ouT_mOETK.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().mOETK));
-        ouT_vOETK.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().vOETK));
-        ouT_jOETK.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().jOETK));
-        ouT_wOETK.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().wOETK));
-        ouT_dkSO_OETK.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().dkSO_OETK));
-        ouT_lkSO_OETK.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().lkSO_OETK));
-        ouT_vkSO_OETK.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().vkSO_OETK));
-        ouT_dOETK.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().dOETK));
+        ouT_lOETK.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().ouT_lOETK));
+        ouT_dOETK.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().ouT_dOETK));
+        ouT_mOETK.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().m));
+        ouT_vOETK.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().v));
+        ouT_jOETK.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().j));
+        ouT_wOETK.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().w));
+        ouT_Dgl_OETK.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().ouT_Dgl_OETK));
+        ouT_Dvt_OETK.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().ouT_Dvt_OETK));
+        ouT_f_ecv_OETK.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().ouT_f_ecv_OETK));
+        ouT_f1_OETK.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().ouT_f1_OETK));
+        ouT_f2_OETK.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().ouT_f2_OETK));
+        ouT_Lpzs_OETK.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().ouT_Lpzs_OETK));
+        ouT_r1_OETK.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().ouT_r1_OETK));
+        ouT_d1_OETK.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().ouT_d1_OETK));
+        ouT_d2_OETK.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().ouT_d2_OETK));
+        ouT_S2_OETK1.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().ouT_S2_OETK1));
+        ouT_d_OETK11.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().ouT_d_OETK11));
     }
 
     /**
      * показать результаты СППИ
      */
     public void showSPEEResult() {
-        mSPPI.setText(String.valueOf(CalculationKA.getInstance().getDataSPPE().mSPPI));
-        vSPPI.setText(String.valueOf(CalculationKA.getInstance().getDataSPPE().vSPPI));
-        wSPPI.setText(String.valueOf(CalculationKA.getInstance().getDataSPPE().wSPPI));
-        jSPPI.setText(String.valueOf(CalculationKA.getInstance().getDataSPPE().jSPPI));
+        mSPPI.setText(String.valueOf(CalculationKA.getInstance().getDataSPPE().m));
+        vSPPI.setText(String.valueOf(CalculationKA.getInstance().getDataSPPE().v));
+        wSPPI.setText(String.valueOf(CalculationKA.getInstance().getDataSPPE().w));
+        jSPPI.setText(String.valueOf(CalculationKA.getInstance().getDataSPPE().j));
     }
 
     /**
      * показать результаты ВРЛ
      */
     public void showVRLResult() {
-        mVRL.setText(String.valueOf(CalculationKA.getInstance().getDataVRL().mVRL));
-        vVRL.setText(String.valueOf(CalculationKA.getInstance().getDataVRL().vVRL));
-        wVRL.setText(String.valueOf(CalculationKA.getInstance().getDataVRL().wVRL));
-        jVRL.setText(String.valueOf(CalculationKA.getInstance().getDataVRL().jVRL));
+        mVRL.setText(String.valueOf(CalculationKA.getInstance().getDataVRL().m));
+        vVRL.setText(String.valueOf(CalculationKA.getInstance().getDataVRL().v));
+        wVRL.setText(String.valueOf(CalculationKA.getInstance().getDataVRL().w));
+        jVRL.setText(String.valueOf(CalculationKA.getInstance().getDataVRL().j));
     }
 
     /**
      * показать результаты Прочие элементы ЦА
      */
     public void showOtherCAResult() {
-        mPrZA.setText(String.valueOf(CalculationKA.getInstance().getDataOtherCA().mPrZA));
-        vPrZA.setText(String.valueOf(CalculationKA.getInstance().getDataOtherCA().vPrZA));
-        wPrZA.setText(String.valueOf(CalculationKA.getInstance().getDataOtherCA().wPrZA));
-        jPrZA.setText(String.valueOf(CalculationKA.getInstance().getDataOtherCA().jPrZA));
+        mPrZA.setText(String.valueOf(CalculationKA.getInstance().getDataOtherCA().m));
+        vPrZA.setText(String.valueOf(CalculationKA.getInstance().getDataOtherCA().v));
+        wPrZA.setText(String.valueOf(CalculationKA.getInstance().getDataOtherCA().w));
+        jPrZA.setText(String.valueOf(CalculationKA.getInstance().getDataOtherCA().j));
     }
 
     /**
      * показать результаты ЦА
      */
     public void showCAResult() {
-        mZA.setText(String.valueOf(CalculationKA.getInstance().getDataCa().mZA));
-        vZA.setText(String.valueOf(CalculationKA.getInstance().getDataCa().vZA));
-        jZA.setText(String.valueOf(CalculationKA.getInstance().getDataCa().jZA));
-        wZA.setText(String.valueOf(CalculationKA.getInstance().getDataCa().wZA));
+        mZA.setText(String.valueOf(CalculationKA.getInstance().getDataCa().m));
+        vZA.setText(String.valueOf(CalculationKA.getInstance().getDataCa().v));
+        jZA.setText(String.valueOf(CalculationKA.getInstance().getDataCa().j));
+        wZA.setText(String.valueOf(CalculationKA.getInstance().getDataCa().w));
     }
 
     /**
@@ -119,11 +124,11 @@ public class ControllerManageFieldSintez extends ControllerAssemblyField {
 
         ouT_mEB.setText(String.valueOf(CalculationKA.getInstance().getDataSudSGK().mEB));
         ouT_mEB_GP.setText(String.valueOf(CalculationKA.getInstance().getDataSudSGK().mEB_GP));
-        ouT_mSGK.setText(String.valueOf(CalculationKA.getInstance().getDataSudSGK().mSGK));
+        ouT_mSGK.setText(String.valueOf(CalculationKA.getInstance().getDataSudSGK().m));
 
         ouT_vGP.setText(String.valueOf(CalculationKA.getInstance().getDataSudSGK().vGP));
         ouT_vEB.setText(String.valueOf(CalculationKA.getInstance().getDataSudSGK().vEB));
-        ouT_wSGK.setText(String.valueOf(CalculationKA.getInstance().getDataSudSGK().wSGK));
+        ouT_wSGK.setText(String.valueOf(CalculationKA.getInstance().getDataSudSGK().w));
         ouT_dGP.setText(String.valueOf(CalculationKA.getInstance().getDataSudSGK().dGP));
     }
 
@@ -131,73 +136,73 @@ public class ControllerManageFieldSintez extends ControllerAssemblyField {
      * показать результаты ССКМ
      */
     public void showSSKMResult() {
-        mSSKM.setText(String.valueOf(CalculationKA.getInstance().getDataSSKM().mSSKM));
+        mSSKM.setText(String.valueOf(CalculationKA.getInstance().getDataSSKM().m));
         maSSKM.setText(String.valueOf(CalculationKA.getInstance().getDataSSKM().maSSKM));
         msSSKM.setText(String.valueOf(CalculationKA.getInstance().getDataSSKM().msSSKM));
         vaSSKM.setText(String.valueOf(CalculationKA.getInstance().getDataSSKM().vaSSKM));
         vsSSKM.setText(String.valueOf(CalculationKA.getInstance().getDataSSKM().vsSSKM));
-        wSSKM.setText(String.valueOf(CalculationKA.getInstance().getDataSSKM().wSSKM));
-        jSSKM.setText(String.valueOf(CalculationKA.getInstance().getDataSSKM().jSSKM));
+        wSSKM.setText(String.valueOf(CalculationKA.getInstance().getDataSSKM().w));
+        jSSKM.setText(String.valueOf(CalculationKA.getInstance().getDataSSKM().j));
     }
 
     /**
      * показать результаты СТКРП
      */
     public void showSTKRPResult() {
-        mSTKRP.setText(String.valueOf(CalculationKA.getInstance().getDataSTKRP().mSTKRP));
-        vSTKRP.setText(String.valueOf(CalculationKA.getInstance().getDataSTKRP().vSTKRP));
-        wSTKRP.setText(String.valueOf(CalculationKA.getInstance().getDataSTKRP().wSTKRP));
-        jSTKRP.setText(String.valueOf(CalculationKA.getInstance().getDataSTKRP().jSTKRP));
+        mSTKRP.setText(String.valueOf(CalculationKA.getInstance().getDataSTKRP().m));
+        vSTKRP.setText(String.valueOf(CalculationKA.getInstance().getDataSTKRP().v));
+        wSTKRP.setText(String.valueOf(CalculationKA.getInstance().getDataSTKRP().w));
+        jSTKRP.setText(String.valueOf(CalculationKA.getInstance().getDataSTKRP().j));
     }
 
     /**
      * показать результаты БА КИС
      */
     public void showKISResult() {
-        mKIS.setText(String.valueOf(CalculationKA.getInstance().getDataBAKES().mKIS));
-        vKIS.setText(String.valueOf(CalculationKA.getInstance().getDataBAKES().vKIS));
-        wKIS.setText(String.valueOf(CalculationKA.getInstance().getDataBAKES().wKIS));
-        jKIS.setText(String.valueOf(CalculationKA.getInstance().getDataBAKES().jKIS));
+        mKIS.setText(String.valueOf(CalculationKA.getInstance().getDataBAKES().m));
+        vKIS.setText(String.valueOf(CalculationKA.getInstance().getDataBAKES().v));
+        wKIS.setText(String.valueOf(CalculationKA.getInstance().getDataBAKES().w));
+        jKIS.setText(String.valueOf(CalculationKA.getInstance().getDataBAKES().j));
     }
 
     /**
      * показать результаты БИТС
      */
     public void showBETSResult() {
-        mBITS.setText(String.valueOf(CalculationKA.getInstance().getDataBETS().mBITS));
-        vBITS.setText(String.valueOf(CalculationKA.getInstance().getDataBETS().vBITS));
-        wBITS.setText(String.valueOf(CalculationKA.getInstance().getDataBETS().wBITS));
-        jBITS.setText(String.valueOf(CalculationKA.getInstance().getDataBETS().jBITS));
+        mBITS.setText(String.valueOf(CalculationKA.getInstance().getDataBETS().m));
+        vBITS.setText(String.valueOf(CalculationKA.getInstance().getDataBETS().v));
+        wBITS.setText(String.valueOf(CalculationKA.getInstance().getDataBETS().w));
+        jBITS.setText(String.valueOf(CalculationKA.getInstance().getDataBETS().j));
     }
 
     /**
      * показать результаты БВС
      */
     public void showBVSResult() {
-        mBVS.setText(String.valueOf(CalculationKA.getInstance().getDataBVS().mBVS));
-        vBVS.setText(String.valueOf(CalculationKA.getInstance().getDataBVS().vBVS));
-        wBVS.setText(String.valueOf(CalculationKA.getInstance().getDataBVS().wBVS));
-        jBVS.setText(String.valueOf(CalculationKA.getInstance().getDataBVS().jBVS));
+        mBVS.setText(String.valueOf(CalculationKA.getInstance().getDataBVS().m));
+        vBVS.setText(String.valueOf(CalculationKA.getInstance().getDataBVS().v));
+        wBVS.setText(String.valueOf(CalculationKA.getInstance().getDataBVS().w));
+        jBVS.setText(String.valueOf(CalculationKA.getInstance().getDataBVS().j));
     }
 
     /**
      * показать результаты прочие элементы БКУ
      */
     public void showOtherBKUResult() {
-        mPrBKU.setText(String.valueOf(CalculationKA.getInstance().getDataOtherBKU().mPrBKU));
-        vPrBKU.setText(String.valueOf(CalculationKA.getInstance().getDataOtherBKU().vPrBKU));
-        wPrBKU.setText(String.valueOf(CalculationKA.getInstance().getDataOtherBKU().wPrBKU));
-        jPrBKU.setText(String.valueOf(CalculationKA.getInstance().getDataOtherBKU().jPrBKU));
+        mPrBKU.setText(String.valueOf(CalculationKA.getInstance().getDataOtherBKU().m));
+        vPrBKU.setText(String.valueOf(CalculationKA.getInstance().getDataOtherBKU().v));
+        wPrBKU.setText(String.valueOf(CalculationKA.getInstance().getDataOtherBKU().w));
+        jPrBKU.setText(String.valueOf(CalculationKA.getInstance().getDataOtherBKU().j));
     }
 
     /**
      * показать результаты БКУ
      */
     public void showBKUResult() {
-        mZAbku.setText(String.valueOf(CalculationKA.getInstance().getDataBKU().mBKU));
-        vZAbku.setText(String.valueOf(CalculationKA.getInstance().getDataBKU().vBKU));
-        jZAbku.setText(String.valueOf(CalculationKA.getInstance().getDataBKU().jBKU));
-        wZAbku.setText(String.valueOf(CalculationKA.getInstance().getDataBKU().wBKU));
+        mZAbku.setText(String.valueOf(CalculationKA.getInstance().getDataBKU().m));
+        vZAbku.setText(String.valueOf(CalculationKA.getInstance().getDataBKU().v));
+        jZAbku.setText(String.valueOf(CalculationKA.getInstance().getDataBKU().j));
+        wZAbku.setText(String.valueOf(CalculationKA.getInstance().getDataBKU().w));
     }
 
     /**
@@ -206,21 +211,21 @@ public class ControllerManageFieldSintez extends ControllerAssemblyField {
     public void showPasivSOTRResult() {
         sKA.setText(String.valueOf(CalculationKA.getInstance().getDataPasivSOTR().sKA));
         sEVTI.setText(String.valueOf(CalculationKA.getInstance().getDataPasivSOTR().sEVTI));
-        mEVTI.setText(String.valueOf(CalculationKA.getInstance().getDataPasivSOTR().mEVTI));
-        vEVTI.setText(String.valueOf(CalculationKA.getInstance().getDataPasivSOTR().vEVTI));
-        jEVTI.setText(String.valueOf(CalculationKA.getInstance().getDataPasivSOTR().jEVTI));
+        mEVTI.setText(String.valueOf(CalculationKA.getInstance().getDataPasivSOTR().m));
+        vEVTI.setText(String.valueOf(CalculationKA.getInstance().getDataPasivSOTR().v));
+        jEVTI.setText(String.valueOf(CalculationKA.getInstance().getDataPasivSOTR().j));
     }
 
     /**
      * показать результаты активных элементы СОТР
      */
     public void showActivSOTRResult() {
-        mSTR.setText(String.valueOf(CalculationKA.getInstance().getDataActivSOTR().mSTR));
+        mSTR.setText(String.valueOf(CalculationKA.getInstance().getDataActivSOTR().m));
         mSTRbtn.setText(String.valueOf(CalculationKA.getInstance().getDataActivSOTR().mSTRbtn));
         mtnSTRact.setText(String.valueOf(CalculationKA.getInstance().getDataActivSOTR().mtnSTR));
-        vSTR.setText(String.valueOf(CalculationKA.getInstance().getDataActivSOTR().vSTR));
-        wSTRact.setText(String.valueOf(CalculationKA.getInstance().getDataActivSOTR().wSTR));
-        jSTR.setText(String.valueOf(CalculationKA.getInstance().getDataActivSOTR().jSTR));
+        vSTR.setText(String.valueOf(CalculationKA.getInstance().getDataActivSOTR().v));
+        wSTRact.setText(String.valueOf(CalculationKA.getInstance().getDataActivSOTR().w));
+        jSTR.setText(String.valueOf(CalculationKA.getInstance().getDataActivSOTR().j));
     }
 
     /**
@@ -231,7 +236,7 @@ public class ControllerManageFieldSintez extends ControllerAssemblyField {
         mSOTRbtn.setText(String.valueOf(CalculationKA.getInstance().getDataSOTR().mSOTRbtn));
         mtnSTR.setText(String.valueOf(CalculationKA.getInstance().getDataSOTR().mtnSTR));
         vSOTR.setText(String.valueOf(CalculationKA.getInstance().getDataSOTR().vSOTR));
-        jSOTR.setText(String.valueOf(CalculationKA.getInstance().getDataSOTR().jSOTR));
+        jSOTR.setText(String.valueOf(CalculationKA.getInstance().getDataSOTR().j));
         wSTR.setText(String.valueOf(CalculationKA.getInstance().getDataSOTR().wSTR));
     }
 
@@ -256,13 +261,13 @@ public class ControllerManageFieldSintez extends ControllerAssemblyField {
      * показать Акамуляторные батареи
      */
     public void showAcumBat() {
-        mAB.setText(String.valueOf(CalculationKA.getInstance().getDataAcumBetSEP().mAB));
+        mAB.setText(String.valueOf(CalculationKA.getInstance().getDataAcumBetSEP().m));
         mAB1.setText(String.valueOf(CalculationKA.getInstance().getDataAcumBetSEP().mAB1));
         vAB1.setText(String.valueOf(CalculationKA.getInstance().getDataAcumBetSEP().vAB1));
-        vAB.setText(String.valueOf(CalculationKA.getInstance().getDataAcumBetSEP().vAB));
+        vAB.setText(String.valueOf(CalculationKA.getInstance().getDataAcumBetSEP().v));
         lAB.setText(String.valueOf(CalculationKA.getInstance().getDataAcumBetSEP().lAB));
         jAB1.setText(String.valueOf(CalculationKA.getInstance().getDataAcumBetSEP().jAB1));
-        jAB_KA.setText(String.valueOf(CalculationKA.getInstance().getDataAcumBetSEP().jAB_KA));
+        jAB_KA.setText(String.valueOf(CalculationKA.getInstance().getDataAcumBetSEP().j));
     }
 
     /**
@@ -277,9 +282,9 @@ public class ControllerManageFieldSintez extends ControllerAssemblyField {
         vRU.setText(String.valueOf(CalculationKA.getInstance().getDataKAS().vRU));
         mKAS.setText(String.valueOf(CalculationKA.getInstance().getDataKAS().mKAS));
         vKAS.setText(String.valueOf(CalculationKA.getInstance().getDataKAS().vKAS));
-        mKASsum.setText(String.valueOf(CalculationKA.getInstance().getDataKAS().mKASsum));
-        vKASsum.setText(String.valueOf(CalculationKA.getInstance().getDataKAS().vKASsum));
-        jKASsum.setText(String.valueOf(CalculationKA.getInstance().getDataKAS().jKASsum));
+        mKASsum.setText(String.valueOf(CalculationKA.getInstance().getDataKAS().m));
+        vKASsum.setText(String.valueOf(CalculationKA.getInstance().getDataKAS().v));
+        jKASsum.setText(String.valueOf(CalculationKA.getInstance().getDataKAS().j));
     }
 
     /**
@@ -287,13 +292,13 @@ public class ControllerManageFieldSintez extends ControllerAssemblyField {
      */
     public void showSunBet() {
         sPSB.setText(String.valueOf(CalculationKA.getInstance().getDataSumBetSEP().sPSB));
-        mPSB.setText(String.valueOf(CalculationKA.getInstance().getDataSumBetSEP().mPSB));
+        mPSB.setText(String.valueOf(CalculationKA.getInstance().getDataSumBetSEP().m));
         sPSB1.setText(String.valueOf(CalculationKA.getInstance().getDataSumBetSEP().sPSB1));
         mPSB1.setText(String.valueOf(CalculationKA.getInstance().getDataSumBetSEP().mPSB1));
         lPSB1.setText(String.valueOf(CalculationKA.getInstance().getDataSumBetSEP().lPSB1));
         dPSB1.setText(String.valueOf(CalculationKA.getInstance().getDataSumBetSEP().dPSB1));
         jPSB1.setText(String.valueOf(CalculationKA.getInstance().getDataSumBetSEP().jPSB1));
-        jPSB_KA.setText(String.valueOf(CalculationKA.getInstance().getDataSumBetSEP().jPSB_KA));
+        jPSB_KA.setText(String.valueOf(CalculationKA.getInstance().getDataSumBetSEP().j));
     }
 
     /**
@@ -314,7 +319,7 @@ public class ControllerManageFieldSintez extends ControllerAssemblyField {
     public void showMassTopl() {
         mTKAx.setText(String.valueOf(CalculationKA.getInstance().getDataMassTopl().mTKAx));
         mTKAxnzg.setText(String.valueOf(CalculationKA.getInstance().getDataMassTopl().mTKAxnzg));
-        mTKDU.setText(String.valueOf(CalculationKA.getInstance().getDataMassTopl().mTKDU));
+        mTKDU.setText(String.valueOf(CalculationKA.getInstance().getDataMassTopl().m));
         mO.setText(String.valueOf(CalculationKA.getInstance().getDataMassTopl().mO));
         mG.setText(String.valueOf(CalculationKA.getInstance().getDataMassTopl().mG));
 
@@ -325,20 +330,20 @@ public class ControllerManageFieldSintez extends ControllerAssemblyField {
      */
     public void showKDU() {
         mKDU.setText(String.valueOf(CalculationKA.getInstance().getDataKDU().mKDU));
-        mkKDU.setText(String.valueOf(CalculationKA.getInstance().getDataKDU().mkKDU));
+        mkKDU.setText(String.valueOf(CalculationKA.getInstance().getDataKDU().m));
         Vok.setText(String.valueOf(CalculationKA.getInstance().getDataKDU().Vok));
         Vg.setText(String.valueOf(CalculationKA.getInstance().getDataKDU().Vg));
         VbOk.setText(String.valueOf(CalculationKA.getInstance().getDataKDU().VbOk));
         VbG.setText(String.valueOf(CalculationKA.getInstance().getDataKDU().VbG));
         Vb.setText(String.valueOf(CalculationKA.getInstance().getDataKDU().Vb));
         VKDU.setText(String.valueOf(CalculationKA.getInstance().getDataKDU().VKDU));
-        V_OKA_KDU.setText(String.valueOf(CalculationKA.getInstance().getDataKDU().V_OKA_KDU));
+        V_OKA_KDU.setText(String.valueOf(CalculationKA.getInstance().getDataKDU().v));
         hKDU.setText(String.valueOf(CalculationKA.getInstance().getDataKDU().hKDU));
         pKDU.setText(String.valueOf(CalculationKA.getInstance().getDataKDU().pKDU));
         JxKDU.setText(String.valueOf(CalculationKA.getInstance().getDataKDU().JxKDU));
         JyKDU.setText(String.valueOf(CalculationKA.getInstance().getDataKDU().JyKDU));
-        jKDU.setText(String.valueOf(CalculationKA.getInstance().getDataKDU().jKDU));
-        wKDU.setText(String.valueOf(CalculationKA.getInstance().getDataKDU().wKDU));
+        jKDU.setText(String.valueOf(CalculationKA.getInstance().getDataKDU().j));
+        wKDU.setText(String.valueOf(CalculationKA.getInstance().getDataKDU().w));
 
     }
 
@@ -346,9 +351,9 @@ public class ControllerManageFieldSintez extends ControllerAssemblyField {
      * показать Конструкция
      */
     public void showKonstrKA() {
-        mkKA.setText(String.valueOf(CalculationKA.getInstance().getDataKonstrKA().mkKA));
-        vkKA.setText(String.valueOf(CalculationKA.getInstance().getDataKonstrKA().vkKA));
-        jkKA.setText(String.valueOf(CalculationKA.getInstance().getDataKonstrKA().jkKA));
+        mkKA.setText(String.valueOf(CalculationKA.getInstance().getDataKonstrKA().m));
+        vkKA.setText(String.valueOf(CalculationKA.getInstance().getDataKonstrKA().v));
+        jkKA.setText(String.valueOf(CalculationKA.getInstance().getDataKonstrKA().j));
 
     }
 
@@ -360,8 +365,8 @@ public class ControllerManageFieldSintez extends ControllerAssemblyField {
         vBKS.setText(String.valueOf(CalculationKA.getInstance().getDataBKSandAFU().vBKS));
         mAFU.setText(String.valueOf(CalculationKA.getInstance().getDataBKSandAFU().mAFU));
         vAFU.setText(String.valueOf(CalculationKA.getInstance().getDataBKSandAFU().vAFU));
-        mBKS_AFU.setText(String.valueOf(CalculationKA.getInstance().getDataBKSandAFU().mBKS_AFU));
-        vBKS_AFU.setText(String.valueOf(CalculationKA.getInstance().getDataBKSandAFU().vBKS_AFU));
+        mBKS_AFU.setText(String.valueOf(CalculationKA.getInstance().getDataBKSandAFU().m));
+        vBKS_AFU.setText(String.valueOf(CalculationKA.getInstance().getDataBKSandAFU().v));
         jBKS.setText(String.valueOf(CalculationKA.getInstance().getDataBKSandAFU().jBKS));
         jAFU.setText(String.valueOf(CalculationKA.getInstance().getDataBKSandAFU().jAFU));
 
@@ -371,10 +376,10 @@ public class ControllerManageFieldSintez extends ControllerAssemblyField {
      * показать прочие элементы КА
      */
     public void showOtherKA() {
-        mPrKA.setText(String.valueOf(CalculationKA.getInstance().getDataOtherKA().mPrKA));
-        vPrKA.setText(String.valueOf(CalculationKA.getInstance().getDataOtherKA().vPrKA));
-        jPrKA.setText(String.valueOf(CalculationKA.getInstance().getDataOtherKA().jPrKA));
-        wPrKA.setText(String.valueOf(CalculationKA.getInstance().getDataOtherKA().wPrKA));
+        mPrKA.setText(String.valueOf(CalculationKA.getInstance().getDataOtherKA().m));
+        vPrKA.setText(String.valueOf(CalculationKA.getInstance().getDataOtherKA().v));
+        jPrKA.setText(String.valueOf(CalculationKA.getInstance().getDataOtherKA().j));
+        wPrKA.setText(String.valueOf(CalculationKA.getInstance().getDataOtherKA().w));
 
     }
 
@@ -382,10 +387,10 @@ public class ControllerManageFieldSintez extends ControllerAssemblyField {
      * показать резерв
      */
     public void showRezerv() {
-        mRmKA.setText(String.valueOf(CalculationKA.getInstance().getDataRezervKA().mRmKA));
-        vRmKA.setText(String.valueOf(CalculationKA.getInstance().getDataRezervKA().vRmKA));
-        jRmKA.setText(String.valueOf(CalculationKA.getInstance().getDataRezervKA().jRmKA));
-        wRmKA.setText(String.valueOf(CalculationKA.getInstance().getDataRezervKA().wRmKA));
+        mRmKA.setText(String.valueOf(CalculationKA.getInstance().getDataRezervKA().m));
+        vRmKA.setText(String.valueOf(CalculationKA.getInstance().getDataRezervKA().v));
+        jRmKA.setText(String.valueOf(CalculationKA.getInstance().getDataRezervKA().j));
+        wRmKA.setText(String.valueOf(CalculationKA.getInstance().getDataRezervKA().w));
 
     }
 
@@ -458,24 +463,16 @@ public class ControllerManageFieldSintez extends ControllerAssemblyField {
      */
     public boolean validateOETK() {
         try {
-            CalculationKA.getInstance().getDataOETK().Det = ValidateValue.conversionTextToFloat(iN_Det.getText());
-            CalculationKA.getInstance().getDataOETK().H = ValidateValue.conversionTextToFloat(iN_H.getText());
-            CalculationKA.getInstance().getDataOETK().rELPZS = ValidateValue.conversionTextToFloat(iN_rELPZS.getText());
-            CalculationKA.getInstance().getDataOETK().kUD = ValidateValue.conversionTextToFloat(iN_kUD.getText());
-            CalculationKA.getInstance().getDataOETK().oO = ValidateValue.conversionTextToFloat(iN_oO.getText());
-            CalculationKA.getInstance().getDataOETK().plOETK = ValidateValue.conversionTextToFloat(iN_plOETK.getText());
-            CalculationKA.getInstance().getDataOETK().uwOETK = ValidateValue.conversionTextToFloat(iN_uwOETK.getText());
-            CalculationKA.getInstance().getDataOETK().krkOETK = ValidateValue.conversionTextToFloat(iN_krkOETK.getText());
-            CalculationKA.getInstance().getDataOETK().kp2dOETK = ValidateValue.conversionTextToFloat(iN_kp2dOETK.getText());
-            CalculationKA.getInstance().getDataOETK().kp2lOETK = ValidateValue.conversionTextToFloat(iN_kp2lOETK.getText());
-
-            if (iN_smmal_KA.isSelected()) {
-                CalculationKA.getInstance().getDataOETK().typeKA = TypeKa.SAMLL;
-            } else if (iN_middle_KA.isSelected()) {
-                CalculationKA.getInstance().getDataOETK().typeKA = TypeKa.MIDDLE;
-            } else if (iN_big_KA.isSelected()) {
-                CalculationKA.getInstance().getDataOETK().typeKA = TypeKa.BIG;
-            }
+            CalculationKA.getInstance().getDataOETK().iN_Lm = ValidateValue.conversionTextToFloat(iN_Lm.getText());
+            CalculationKA.getInstance().getDataOETK().iN_H = ValidateValue.conversionTextToFloat(iN_H.getText());
+            CalculationKA.getInstance().getDataOETK().iN_Delta = ValidateValue.conversionTextToFloat(iN_Delta.getText());
+            CalculationKA.getInstance().getDataOETK().iN_k0 = ValidateValue.conversionTextToFloat(iN_k0.getText());
+            CalculationKA.getInstance().getDataOETK().iN_q = ValidateValue.conversionTextToFloat(iN_q.getText());
+            CalculationKA.getInstance().getDataOETK().iN_uwOETK = ValidateValue.conversionTextToFloat(iN_uwOETK.getText());
+            CalculationKA.getInstance().getDataOETK().iN_kUD = ValidateValue.conversionTextToFloat(iN_kUD.getText());
+            CalculationKA.getInstance().getDataOETK().iN_kp2dOETK = ValidateValue.conversionTextToFloat(iN_kp2dOETK.getText());
+            CalculationKA.getInstance().getDataOETK().iN_kp2lOETK = ValidateValue.conversionTextToFloat(iN_kp2lOETK.getText());
+            CalculationKA.getInstance().getDataOETK().iN_yr = ValidateValue.conversionTextToFloat(iN_yr.getText());
 
         } catch (Exception e) {
             ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Ошибка введеных данных.", TabTypeSintez.OETK);
@@ -976,26 +973,17 @@ public class ControllerManageFieldSintez extends ControllerAssemblyField {
      * @return
      */
     public void startShowOETK() {
-        isHaveRestriction.setSelected(CalculationKA.getInstance().getDataCommonParameters().isHaveRestriction);
+        iN_Lm.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().iN_Lm));
+        iN_H.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().iN_H));
+        iN_Delta.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().iN_Delta));
+        iN_k0.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().iN_k0));
+        iN_q.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().iN_q));
+        iN_uwOETK.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().iN_uwOETK));
+        iN_kUD.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().iN_kUD));
+        iN_kp2dOETK.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().iN_kp2dOETK));
+        iN_kp2lOETK.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().iN_kp2lOETK));
+        iN_yr.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().iN_yr));
 
-        iN_Det.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().Det));
-        iN_H.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().H));
-        iN_rELPZS.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().rELPZS));
-        iN_kUD.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().kUD));
-        iN_oO.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().oO));
-        iN_plOETK.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().plOETK));
-        iN_uwOETK.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().uwOETK));
-        iN_krkOETK.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().krkOETK));
-        iN_kp2dOETK.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().kp2dOETK));
-        iN_kp2lOETK.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().kp2lOETK));
-
-        if (CalculationKA.getInstance().getDataOETK().typeKA.equals(TypeKa.SAMLL)) {
-            iN_smmal_KA.setSelected(true);
-        } else if (CalculationKA.getInstance().getDataOETK().typeKA.equals(TypeKa.MIDDLE)) {
-            iN_middle_KA.setSelected(true);
-        } else if (CalculationKA.getInstance().getDataOETK().typeKA.equals(TypeKa.BIG)) {
-            iN_big_KA.setSelected(true);
-        }
     }
 
     /**

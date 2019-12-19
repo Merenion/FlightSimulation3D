@@ -33,9 +33,9 @@ public class ImportAcumBet extends ImportElement {
         DataAcumBetSEP data = new DataAcumBetSEP();                                                                     //
 
         try {
-            data.mAB = ValidateValue.conversionTextToFloat(mAB.getText());                                  //
-            data.vAB = ValidateValue.conversionTextToFloat(vAB.getText());
-            data.jAB_KA = ValidateValue.conversionTextToFloat(jAB_KA.getText());
+            data.m = ValidateValue.conversionTextToFloat(mAB.getText());                                  //
+            data.v = ValidateValue.conversionTextToFloat(vAB.getText());
+            data.j = ValidateValue.conversionTextToFloat(jAB_KA.getText());
         } catch (Exception e) {
             ControllerAssembly.showError("Не верно введеные данные.");
             return;

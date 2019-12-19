@@ -21,8 +21,8 @@ public class DataBAKES  extends DataElement{
     public float uwKIS;  //Удельная мощность энергопотребления приборов КИС, Вт/кг
     public float plKIS;  //Средняя плотность компоновки приборов КИС, кг/м3
 
-    public float mKIS;
-    public float vKIS;
-    public float wKIS;
-    public float jKIS;
+//    public float m;
+//    public float v;
+//    public float w;
+//    public float j;
 }

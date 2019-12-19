@@ -5,7 +5,6 @@ import com.simulation.assembly.MessegeType;
 import com.simulation.assembly.TabTypeSintez;
 import com.simulation.assembly.calculation.Calculation;
 import com.simulation.assembly.dataCalculation.sintez.DataActivSOTR;
-import com.simulation.assembly.dataCalculation.sintez.DataBAKES;
 import com.simulation.assembly.dataCalculation.sintez.DataCommonParameters;
 
 public class CalculationActivSOTR extends Calculation {
@@ -29,12 +28,12 @@ public class CalculationActivSOTR extends Calculation {
                 DataActivSOTR d = CalculationKA.getInstance().getDataActivSOTR();
                 DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
 
-                d.mSTR = d.omSTR * dc.mKA;
-                d.mtnSTR = d.mSTR * d.kmtnSTR / 100;
-                d.mSTRbtn = d.mSTR - d.mtnSTR;
-                d.vSTR = d.mSTR / d.plSTR;
-                d.wSTR = d.uwSTR * d.mSTR;
-                d.jSTR = d.mSTR * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
+                d.m = d.omSTR * dc.mKA;
+                d.mtnSTR = d.m * d.kmtnSTR / 100;
+                d.mSTRbtn = d.m - d.mtnSTR;
+                d.v = d.m / d.plSTR;
+                d.w = d.uwSTR * d.m;
+                d.j = d.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
             }
             CalculationKA.getInstance().calculation(new Object());
 

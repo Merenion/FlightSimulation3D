@@ -10,36 +10,49 @@ import javax.xml.bind.annotation.*;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "DataOETK")
-public class DataOETK  extends DataElement{
+public class DataOETK extends DataElement {
 
     @Override
     public TabTypeSintez getType() {
         return TabTypeSintez.OETK;
     }
 
-    //выходные параметры
-    public float fOETK;        //Фокусное расстояние
-    public float lOETK;        //Длина ОЭТК, м
-    public float dOETK;        //Диаметр ОЭТК
-    public float mOETK;        //Масса телескопа
-    public float vOETK;        //Обьем телескопа
-    public float jOETK;        //Максимальный приведенный момент инерции ОЭТК, кг м2
-    public float wOETK;        //Средняя мощность энергопотребления, Вт
-
-    public float dkSO_OETK;//Диаметр корпуса спецотсека КА
-    public float lkSO_OETK;//Длина корпуса спецотсека КА
-    public float vkSO_OETK;//Обьем КА с телескопом
+    //константы
+    public float wConst = 1.5f;
 
     //входные параметры
-    public float Det;     //Детальность
-    public float H;            //Высота полета
-    public float rELPZS;       //Размер элемента ПЗС
-    public float kUD;       //Коэффициент уменьшения длины ОЭТК
-    public float oO;      //Относительное отверстие
-    public float plOETK;  //Средняя плотность ОЭТК, кг/м3
-    public float uwOETK;  //удельная мощность энергопотребления, Вт/кг
-    public float krkOETK;  //коэффициент рациональности компоновки ОЭТК
-    public float kp2dOETK; //Коэффициент превышения диаметра корпуса спецотсека КА над диматром корпуса ОЭТК
-    public float kp2lOETK; //Коэффициент превышения длины корпуса спецотсека КА над длиной корпуса ОЭТК
-    public TypeKa typeKA = TypeKa.BIG; //большой, маленький, средний
+    public float iN_Lm; //Линейное разрешение на местности
+    public float iN_H; //Высота орбиты, км
+    public float iN_Delta; //Растояние от главного зеркала до фокальной плоскости
+    public float iN_k0; //Нормированная пространственная частота
+    public float iN_q; //Коэф. центрального экранирования
+    public float iN_uwOETK; //Удельная мощность энергопотребления, Вт/кг
+    public float iN_kUD; //Удельная масса единицы площади поверхности ОЭТК
+    public float iN_kp2dOETK; //Коэф. превышения диаметра ОЭТК
+    public float iN_kp2lOETK; //Коэф. превышения длины ОЭТК
+    public float iN_yr; //длина волны
+
+    //выходные параметры
+    public float ouT_lOETK;  //Длина ОЭТК,м
+    public float ouT_dOETK;  //Диаметр ОЭТК,м
+//    public float m;  //Масса ОЭТК, кг
+//    public float v;  //Объем ОЭТК, м3
+//    public float j;  //Максимальный приведенный момент инерции ОЭТК, кг м2
+//    public float w;  //Средняя мощность энергопотребления, Вт
+    public float ouT_Dgl_OETK;  //Диаметр главного зеркала,м
+    public float ouT_Dvt_OETK;  //Диаметр вторичного зеркала,м
+    public float ouT_f_ecv_OETK;  //Эквивалентное фокусное расстояние,м
+    public float ouT_f1_OETK;  //Фокальное расстояние главного зеркала ОЭТК,м
+    public float ouT_f2_OETK;  //Фокальное расстояние вторичного зеркала ОЭТК,м
+    public float ouT_Lpzs_OETK;  //Размер элемента ПЗС
+    public float ouT_r1_OETK;  //Радиус кривизны главного зеркала
+    public float ouT_d1_OETK;  //Диаметр поля зрения в фокусе главного зеркала
+    public float ouT_d2_OETK;  //Диаметр поля зрения в фокальной плоскости
+    public float ouT_S2_OETK1;  //Расстояние от вершины вторичного зеркала до фокуса глав зеркала
+    public float ouT_d_OETK11;  //Разстояние между главным зеркалом и вторичным
+
+    //другие
+    public float km_OETK;
+    public float b_OETK;
+    public float m_const;
 }

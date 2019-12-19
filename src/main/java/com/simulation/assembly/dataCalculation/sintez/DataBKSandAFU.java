@@ -26,8 +26,8 @@ public class DataBKSandAFU  extends DataElement{
     public float vBKS; //Объем БКС, м3
     public float mAFU;//Масса АФУ, кг
     public float vAFU; //Объем АФУ, м3
-    public float mBKS_AFU;
-    public float vBKS_AFU;
+//    public float m;
+//    public float v;
     public float jBKS;
     public float jAFU;
 }

@@ -30,11 +30,21 @@ public class ControllerZaimstv extends ControllerExport {
     }
 
     public void haveOETK(ActionEvent actionEvent) {
-        showWindow("/assembly/importOETK.fxml", "Заимсвованные элементы - ОЕТК");
+//        showWindow("/assembly/importOETK.fxml", "Заимсвованные элементы - ОЕТК");
+        if (choise_have_OETK.isSelected()){
+            pane_zaimsv_oetk.setVisible(true);
+        }else {
+            pane_zaimsv_oetk.setVisible(false);
+        }
     }
 
     public void haveSPPE(ActionEvent actionEvent) {
-        showWindow("/assembly/importSPPE.fxml", "Заимсвованные элементы - "+ TabTypeSintez.SPPE.getName());
+        if (check_zaim_sppe.isSelected()){
+            pane_zaimsv_sppe.setVisible(true);
+        }else {
+            pane_zaimsv_sppe.setVisible(false);
+        }
+//        showWindow("/assembly/importSPPE.fxml", "Заимсвованные элементы - "+ TabTypeSintez.SPPE.getName());
     }
 
     public void haveVRL(ActionEvent actionEvent) {
@@ -50,8 +60,12 @@ public class ControllerZaimstv extends ControllerExport {
     }
 
     public void haveSSKM(ActionEvent actionEvent) {
-        showWindow("/assembly/importSSKM.fxml", "Заимсвованные элементы - "+ TabTypeSintez.SUD_SSKM.getName());
-
+        if (check_zaim_sskm.isSelected()){
+            pane_zaimsv_sskm.setVisible(true);
+        }else {
+            pane_zaimsv_sskm.setVisible(false);
+        }
+//        showWindow("/assembly/importSSKM.fxml", "Заимсвованные элементы - "+ TabTypeSintez.SUD_SSKM.getName());
     }
 
     public void haveSTKRP(ActionEvent actionEvent) {
@@ -128,12 +142,12 @@ public class ControllerZaimstv extends ControllerExport {
     }
 
     private void onLabelZaim (String name, Label label) {
-        if (name==null){
-            label.setVisible(false);
-            return;
-        }
-        label.setVisible(true);
-        label.setText("Выбран взаимсвованный элемент - "+name);
+//        if (name==null){
+//            label.setVisible(false);
+//            return;
+//        }
+//        label.setVisible(true);
+//        label.setText("Выбран взаимсвованный элемент - "+name);
     }
 
     public void onLabelZaimOetk (String name) {

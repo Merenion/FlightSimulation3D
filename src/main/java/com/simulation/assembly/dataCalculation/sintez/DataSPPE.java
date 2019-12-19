@@ -24,8 +24,8 @@ public class DataSPPE  extends DataElement{
     public float plSPPI;    //Плотность аппаратуры СППИ
 
     //выходные
-    public float mSPPI;     //масса сппи
-    public float vSPPI;     //обьем сппи
-    public float wSPPI;     //мощность энергопотр. сппи
-    public float jSPPI;     //момент инерции сппи
+//    public float m;     //масса сппи
+//    public float v;     //обьем сппи
+//    public float w;     //мощность энергопотр. сппи
+//    public float j;     //момент инерции сппи
 }

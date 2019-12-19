@@ -5,16 +5,16 @@ import com.simulation.assembly.SaveXmlObject;
 import com.simulation.assembly.TabTypeSintez;
 import com.simulation.assembly.ValidateValue;
 import com.simulation.assembly.calculation.ca.CalculationKA;
+import com.simulation.assembly.dataCalculation.sintez.DataCommonParameters;
 import com.simulation.assembly.dataCalculation.sintez.DataElement;
 import com.simulation.assembly.dataCalculation.sintez.DataSSKM;
-import com.simulation.assembly.dataCalculation.sintez.DataVRL;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +25,10 @@ public class ImportSSKM extends ImportElement {
     public TextField vSSKM;
     public TextField wSSKM;
     public TextField jSSKM;
+    public Label rez_mSSKM;
+    public Label rez_vSSKM;
+    public Label rez_wSSKM;
+    public Label rez_jSSKM;
 
     private List<DataElement> listLoad = new ArrayList<>();
 
@@ -33,12 +37,14 @@ public class ImportSSKM extends ImportElement {
     @Override
     public void addElement(ActionEvent actionEvent) {
         DataSSKM data = new DataSSKM();                                                                     //
+        DataCommonParameters dc = new DataCommonParameters();                                                                     //
 
         try {
-            data.mSSKM = ValidateValue.conversionTextToFloat(mSSKM.getText());                                  //
-            data.vSSKM = ValidateValue.conversionTextToFloat(vSSKM.getText());
-            data.wSSKM = ValidateValue.conversionTextToFloat(wSSKM.getText());
-            data.jSSKM = ValidateValue.conversionTextToFloat(jSSKM.getText());
+            data.m = ValidateValue.conversionTextToFloat(mSSKM.getText());                                  //
+            data.v = ValidateValue.conversionTextToFloat(vSSKM.getText());
+            data.w = ValidateValue.conversionTextToFloat(wSSKM.getText());
+            data.j = ValidateValue.conversionTextToFloat(jSSKM.getText());
+//            data.jSSKM = data.mSSKM * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
         } catch (Exception e) {
             ControllerAssembly.showError("Не верно введеные данные.");
             return;
@@ -73,11 +79,20 @@ public class ImportSSKM extends ImportElement {
         }
         CalculationKA.getInstance().setDataSSKM(data);                                                      //                                                   //
         CalculationKA.getInstance().calculation(new Object());
-        ControllerAssembly.getInstance().showALL();
-        ControllerAssembly.getInstance().startShowALL();
-        Stage stage = (Stage) btSelect.getScene().getWindow();
-        stage.close();
-        ControllerAssembly.getInstance().onLabelZaimSskm(data.getNameElement());
+        showRez(data);
+//        ControllerAssembly.getInstance().showALL();
+//        ControllerAssembly.getInstance().startShowALL();
+//        Stage stage = (Stage) btSelect.getScene().getWindow();
+//        stage.close();
+//        ControllerAssembly.getInstance().onLabelZaimSskm(data.getNameElement());
+    }
+
+    private void showRez (DataElement dataElement) {
+        DataSSKM dataSSKM = (DataSSKM) dataElement;
+        rez_jSSKM.setText(String.valueOf(dataSSKM.j));
+        rez_mSSKM.setText(String.valueOf(dataSSKM.m));
+        rez_vSSKM.setText(String.valueOf(dataSSKM.v));
+        rez_wSSKM.setText(String.valueOf(dataSSKM.w));
     }
 
     @FXML

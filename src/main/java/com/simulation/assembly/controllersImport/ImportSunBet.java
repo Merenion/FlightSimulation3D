@@ -7,7 +7,6 @@ import com.simulation.assembly.ValidateValue;
 import com.simulation.assembly.calculation.ca.CalculationKA;
 import com.simulation.assembly.dataCalculation.sintez.DataElement;
 import com.simulation.assembly.dataCalculation.sintez.DataSumBetSEP;
-import com.simulation.assembly.dataCalculation.sintez.DataVRL;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -33,8 +32,8 @@ public class ImportSunBet extends ImportElement {
         DataSumBetSEP data = new DataSumBetSEP();                                                                     //
 
         try {
-            data.mPSB = ValidateValue.conversionTextToFloat(mPSB.getText());                                  //
-            data.jPSB_KA = ValidateValue.conversionTextToFloat(jPSB_KA.getText());
+            data.m = ValidateValue.conversionTextToFloat(mPSB.getText());                                  //
+            data.j = ValidateValue.conversionTextToFloat(jPSB_KA.getText());
         } catch (Exception e) {
             ControllerAssembly.showError("Не верно введеные данные.");
             return;

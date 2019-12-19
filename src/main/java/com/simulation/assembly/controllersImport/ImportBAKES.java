@@ -7,7 +7,6 @@ import com.simulation.assembly.ValidateValue;
 import com.simulation.assembly.calculation.ca.CalculationKA;
 import com.simulation.assembly.dataCalculation.sintez.DataBAKES;
 import com.simulation.assembly.dataCalculation.sintez.DataElement;
-import com.simulation.assembly.dataCalculation.sintez.DataVRL;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -35,10 +34,10 @@ public class ImportBAKES extends ImportElement {
         DataBAKES data = new DataBAKES();                                                                     //
 
         try {
-            data.mKIS = ValidateValue.conversionTextToFloat(mKIS.getText());                                  //
-            data.vKIS = ValidateValue.conversionTextToFloat(vKIS.getText());
-            data.wKIS = ValidateValue.conversionTextToFloat(wKIS.getText());
-            data.jKIS = ValidateValue.conversionTextToFloat(jKIS.getText());
+            data.m = ValidateValue.conversionTextToFloat(mKIS.getText());                                  //
+            data.v = ValidateValue.conversionTextToFloat(vKIS.getText());
+            data.w = ValidateValue.conversionTextToFloat(wKIS.getText());
+            data.j = ValidateValue.conversionTextToFloat(jKIS.getText());
         } catch (Exception e) {
             ControllerAssembly.showError("Не верно введеные данные.");
             return;

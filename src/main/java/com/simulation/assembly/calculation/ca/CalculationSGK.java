@@ -44,15 +44,15 @@ public class CalculationSGK extends Calculation {
                 d.mGP = d.kmGP_RGP * d.mRGP;
                 d.mEB = d.kmEB_mGP / 100 * d.mGP;
                 d.mEB_GP = d.mEB + d.mGP;
-                d.mSGK = 4 * d.mEB_GP;
+                d.m = 4 * d.mEB_GP;
                 d.vGP = d.kmGP_RGP * d.vRGP;  //Расчет объема гироприбора
                 d.vEB = d.mEB / d.pEB;        //Расчет объема электронного блока гироприбора
-                d.vSGK = d.vRGP + d.vGP;          //Объем СГК, м3
+                d.v = d.vRGP + d.vGP;          //Объем СГК, м3
                 //Расчет мощности СГК
-                d.wSGK = d.uW_SGK * d.mSGK;
+                d.w = d.uW_SGK * d.m;
                 d.dGP = (float) (2 * Math.exp((1f / 3f) * Math.log((3f / 4f) / Math.PI * d.vGP)));  //Расчет среднего радиуса гироприбора
 //                d.jSGK = (float) (d.mSGK * (Math.pow(dc.dKA, 2) / 16 + Math.pow(dc.lKA0, 2) / 12));//TODO
-                d.jSGK = 81.7f;
+                d.j = 81.7f;
             }
             CalculationKA.getInstance().calculation(new Object());
 

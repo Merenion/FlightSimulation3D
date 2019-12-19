@@ -21,8 +21,8 @@ public class DataSTKRP  extends DataElement{
     public float uwSTKRP;  //Удельная мощность энергопотребления, Вт/кг
     public float plSTKRP;  //Средняя плотность СТКРП, кг/м3
 
-    public float mSTKRP;
-    public float vSTKRP;
-    public float wSTKRP;
-    public float jSTKRP;
+//    public float m;
+//    public float v;
+//    public float w;
+//    public float j;
 }

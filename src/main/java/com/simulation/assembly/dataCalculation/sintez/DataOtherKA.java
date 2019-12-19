@@ -27,10 +27,10 @@ public class DataOtherKA  extends DataElement{
     public float plPrKA; //плотность компоновки прочих элементов КА, кг/м3
     public float uwPrKA;//удельная мощность электропотребления прочих элементов КА, Вт/кг
 
-    public float mPrKA;
-    public float vPrKA;
-    public float jPrKA;
-    public float wPrKA;
+//    public float m;
+//    public float v;
+//    public float j;
+//    public float w;
 
     public List<DataOtherKA> getOthers() {
         return others;
@@ -73,35 +73,35 @@ public class DataOtherKA  extends DataElement{
         this.uwPrKA = uwPrKA;
     }
 
-    public float getmPrKA() {
-        return mPrKA;
+    public float getM() {
+        return m;
     }
 
-    public void setmPrKA(float mPrKA) {
-        this.mPrKA = mPrKA;
+    public void setM(float m) {
+        this.m = m;
     }
 
-    public float getvPrKA() {
-        return vPrKA;
+    public float getV() {
+        return v;
     }
 
-    public void setvPrKA(float vPrKA) {
-        this.vPrKA = vPrKA;
+    public void setV(float v) {
+        this.v = v;
     }
 
-    public float getjPrKA() {
-        return jPrKA;
+    public float getJ() {
+        return j;
     }
 
-    public void setjPrKA(float jPrKA) {
-        this.jPrKA = jPrKA;
+    public void setJ(float j) {
+        this.j = j;
     }
 
-    public float getwPrKA() {
-        return wPrKA;
+    public float getW() {
+        return w;
     }
 
-    public void setwPrKA(float wPrKA) {
-        this.wPrKA = wPrKA;
+    public void setW(float w) {
+        this.w = w;
     }
 }

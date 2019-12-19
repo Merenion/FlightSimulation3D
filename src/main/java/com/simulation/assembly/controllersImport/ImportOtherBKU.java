@@ -7,7 +7,6 @@ import com.simulation.assembly.ValidateValue;
 import com.simulation.assembly.calculation.ca.CalculationKA;
 import com.simulation.assembly.dataCalculation.sintez.DataElement;
 import com.simulation.assembly.dataCalculation.sintez.DataOtherBKU;
-import com.simulation.assembly.dataCalculation.sintez.DataVRL;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -35,10 +34,10 @@ public class ImportOtherBKU extends ImportElement {
         DataOtherBKU data = new DataOtherBKU();                                                                     //
 
         try {
-            data.mPrBKU = ValidateValue.conversionTextToFloat(mPrBKU.getText());                                  //
-            data.vPrBKU = ValidateValue.conversionTextToFloat(vPrBKU.getText());
-            data.wPrBKU = ValidateValue.conversionTextToFloat(wPrBKU.getText());
-            data.jPrBKU = ValidateValue.conversionTextToFloat(jPrBKU.getText());
+            data.m = ValidateValue.conversionTextToFloat(mPrBKU.getText());                                  //
+            data.v = ValidateValue.conversionTextToFloat(vPrBKU.getText());
+            data.w = ValidateValue.conversionTextToFloat(wPrBKU.getText());
+            data.j = ValidateValue.conversionTextToFloat(jPrBKU.getText());
         } catch (Exception e) {
             ControllerAssembly.showError("Не верно введеные данные.");
             return;

@@ -20,7 +20,7 @@ public class DataKonstrKA   extends DataElement{
     public float plmkKA;  //Плотность материала конструкции КА, кг/м3
     public float kpkKA;   //Коэффициент пустотности конструкции КА, %
 
-    public float mkKA;
-    public float vkKA;
-    public float jkKA;
+//    public float m;
+//    public float v;
+//    public float j;
 }

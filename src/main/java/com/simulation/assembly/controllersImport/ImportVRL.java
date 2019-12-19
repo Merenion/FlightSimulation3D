@@ -34,10 +34,10 @@ public class ImportVRL extends ImportElement {
         DataVRL data = new DataVRL();                                                                     //
 
         try {
-            data.mVRL = ValidateValue.conversionTextToFloat(mVRL.getText());                                  //
-            data.vVRL = ValidateValue.conversionTextToFloat(vVRL.getText());
-            data.wVRL = ValidateValue.conversionTextToFloat(wVRL.getText());
-            data.jVRL = ValidateValue.conversionTextToFloat(jVRL.getText());
+            data.m = ValidateValue.conversionTextToFloat(mVRL.getText());                                  //
+            data.v = ValidateValue.conversionTextToFloat(vVRL.getText());
+            data.w = ValidateValue.conversionTextToFloat(wVRL.getText());
+            data.j = ValidateValue.conversionTextToFloat(jVRL.getText());
         } catch (Exception e) {
             ControllerAssembly.showError("Не верно введеные данные.");
             return;

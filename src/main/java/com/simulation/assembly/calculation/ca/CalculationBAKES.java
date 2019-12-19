@@ -6,7 +6,6 @@ import com.simulation.assembly.TabTypeSintez;
 import com.simulation.assembly.calculation.Calculation;
 import com.simulation.assembly.dataCalculation.sintez.DataBAKES;
 import com.simulation.assembly.dataCalculation.sintez.DataCommonParameters;
-import com.simulation.assembly.dataCalculation.sintez.DataOETK;
 
 public class CalculationBAKES extends Calculation {
 
@@ -29,10 +28,10 @@ public class CalculationBAKES extends Calculation {
                 DataBAKES d = CalculationKA.getInstance().getDataBAKES();
                 DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
 
-                d.mKIS = d.kmKIS / 100 * dc.mKA;
-                d.vKIS = d.mKIS / d.plKIS;
-                d.wKIS = d.uwKIS * d.mKIS;
-                d.jKIS = d.mKIS * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
+                d.m = d.kmKIS / 100 * dc.mKA;
+                d.v = d.m / d.plKIS;
+                d.w = d.uwKIS * d.m;
+                d.j = d.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
             }
             CalculationKA.getInstance().calculation(new Object());
 

@@ -12,7 +12,6 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "DataBETS")
 public class DataBETS  extends DataElement{
 
-
     @Override
     public TabTypeSintez getType() {
         return TabTypeSintez.BETS;
@@ -22,8 +21,8 @@ public class DataBETS  extends DataElement{
     public float uwBITS;  //Удельная мощность энергопотребления приборов БИТС, Вт/кг
     public float plBITS;  //Средняя плотность компоновки приборов БИТС, кг/м3
 
-    public float mBITS;
-    public float vBITS;
-    public float wBITS;
-    public float jBITS;
+//    public float m;
+//    public float v;
+//    public float w;
+//    public float j;
 }

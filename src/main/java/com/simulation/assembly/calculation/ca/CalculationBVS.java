@@ -6,7 +6,6 @@ import com.simulation.assembly.TabTypeSintez;
 import com.simulation.assembly.calculation.Calculation;
 import com.simulation.assembly.dataCalculation.sintez.DataBVS;
 import com.simulation.assembly.dataCalculation.sintez.DataCommonParameters;
-import com.simulation.assembly.dataCalculation.sintez.DataOETK;
 
 public class CalculationBVS extends Calculation {
 
@@ -31,10 +30,10 @@ public class CalculationBVS extends Calculation {
                 DataBVS d = CalculationKA.getInstance().getDataBVS();
                 DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
 
-                d.mBVS = d.kmBVS / 100 * dc.mKA;
-                d.vBVS = d.mBVS / d.plBVS;
-                d.wBVS = d.uwBVS * d.mBVS;
-                d.jBVS = d.mBVS * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
+                d.m = d.kmBVS / 100 * dc.mKA;
+                d.v = d.m / d.plBVS;
+                d.w = d.uwBVS * d.m;
+                d.j = d.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
             }
             CalculationKA.getInstance().calculation(new Object());
 

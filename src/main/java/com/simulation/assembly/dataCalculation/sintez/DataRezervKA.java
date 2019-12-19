@@ -21,8 +21,8 @@ public class DataRezervKA  extends DataElement{
     public float plRmKA; //Плотность компоновки резерва масс КА, кг/м3
     public float uwRmKA;//Удельная мощность электропотребления резерва масс КА, Вт/кг
 
-    public float mRmKA;
-    public float vRmKA;
-    public float jRmKA;
-    public float wRmKA;
+//    public float m;
+//    public float v;
+//    public float j;
+//    public float w;
 }

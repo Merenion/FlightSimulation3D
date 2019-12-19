@@ -25,19 +25,19 @@ public class DataKDU  extends DataElement{
     public float umKDU;//удельная мощность КДУ (на единицу массы), Вт/кг
 
     public float mKDU;
-    public float mkKDU;
+//    public float m;
     public float Vok;
     public float Vg;
     public float VbOk;
     public float VbG;
     public float Vb;
     public float VKDU;
-    public float V_OKA_KDU;
+//    public float v;
     public float hKDU;
     public float pKDU;
     public float JxKDU;
     public float JyKDU;
-    public float jKDU;
-    public float wKDU;
+//    public float j;
+//    public float w;
 
 }

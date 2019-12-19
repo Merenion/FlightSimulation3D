@@ -26,22 +26,22 @@ public class CalculationOtherKA extends Calculation {
             DataOtherKA d = CalculationKA.getInstance().getDataOtherKA();
             DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
 
-            d.mPrKA = 0f;
-            d.vPrKA = 0f;
-            d.jPrKA = 0f;
-            d.wPrKA = 0f;
+            d.m = 0f;
+            d.v = 0f;
+            d.j = 0f;
+            d.w = 0f;
 
             for (DataOtherKA element : d.getOthers()) {
                 if (!element.isImportElement()) {
-                    element.mPrKA = element.omPrKA / 100 * dc.mKA;
-                    element.vPrKA = element.mPrKA / element.plPrKA;
-                    element.jPrKA = element.mPrKA * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
-                    element.wPrKA = element.uwPrKA * element.mPrKA;
+                    element.m = element.omPrKA / 100 * dc.mKA;
+                    element.v = element.m / element.plPrKA;
+                    element.j = element.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
+                    element.w = element.uwPrKA * element.m;
                 }
-                d.mPrKA = d.mPrKA + element.mPrKA;
-                d.vPrKA = d.vPrKA + element.vPrKA;
-                d.jPrKA = d.jPrKA + element.jPrKA;
-                d.wPrKA = d.wPrKA + element.wPrKA;
+                d.m = d.m + element.m;
+                d.v = d.v + element.v;
+                d.j = d.j + element.j;
+                d.w = d.w + element.w;
 
                 CalculationKA.getInstance().calculation(new Object());
             }

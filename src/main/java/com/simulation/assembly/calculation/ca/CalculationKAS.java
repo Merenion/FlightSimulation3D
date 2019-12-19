@@ -45,9 +45,9 @@ public class CalculationKAS extends Calculation {
                 //Расчет массы корпусных частей КАС
                 d.mkKas = d.kKAS / 100 * d.mKAS;
                 //Расчет массы КАС с учетом массы корпусов
-                d.mKASsum = d.mKAS + d.mkKas;
-                d.vKASsum = (1 + d.ProzV_vKAS / 100) * d.vKAS;
-                d.jKASsum = d.mKASsum * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
+                d.m = d.mKAS + d.mkKas;
+                d.v = (1 + d.ProzV_vKAS / 100) * d.vKAS;
+                d.j = d.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
             }
             CalculationKA.getInstance().calculation(new Object());
 

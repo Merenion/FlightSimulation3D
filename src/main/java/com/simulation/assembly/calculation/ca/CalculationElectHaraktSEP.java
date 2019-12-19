@@ -7,7 +7,6 @@ import com.simulation.assembly.calculation.Calculation;
 import com.simulation.assembly.dataCalculation.sintez.DataCa;
 import com.simulation.assembly.dataCalculation.sintez.DataCommonParameters;
 import com.simulation.assembly.dataCalculation.sintez.DataElectHaraktSEP;
-import com.simulation.assembly.dataCalculation.sintez.DataPasivSOTR;
 
 public class CalculationElectHaraktSEP extends Calculation {
 
@@ -43,9 +42,9 @@ public class CalculationElectHaraktSEP extends Calculation {
                 //Расчет максимального тока
                 d.Imax = d.wBF / d.srU;
                 //Расчет мощности КА при работе в тени
-                d.wKAten = d.wKA - dataCa.wZA - d.wsSEP;
+                d.wKAten = d.wKA - dataCa.w - d.wsSEP;
                 //Расчет мощности КА при целевой работе
-                d.wKAZR = d.wKA + dataCa.wZA + d.wsSEP;
+                d.wKAZR = d.wKA + dataCa.w + d.wsSEP;
                 //Расчет потребной эрергии аккумулятьрных батарей
                 d.eAB = (d.wKAten * d.TobrKA / 2 + d.wKAZR * d.tZRKA) / (d.kpdZU / 100 * d.kpdRU / 100 * 60);
                 //Рсчет минимально необходимой емкости АБ

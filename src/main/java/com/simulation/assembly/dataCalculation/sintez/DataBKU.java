@@ -17,9 +17,9 @@ public class DataBKU  extends DataElement{
         return TabTypeSintez.BKU;
     }
 
-    public float mBKU;
-    public float vBKU;
-    public float jBKU;
-    public float wBKU;
+//    public float m;
+//    public float v;
+//    public float j;
+//    public float w;
 
 }

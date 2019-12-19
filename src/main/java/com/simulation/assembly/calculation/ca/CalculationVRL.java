@@ -5,7 +5,6 @@ import com.simulation.assembly.MessegeType;
 import com.simulation.assembly.TabTypeSintez;
 import com.simulation.assembly.calculation.Calculation;
 import com.simulation.assembly.dataCalculation.sintez.DataCommonParameters;
-import com.simulation.assembly.dataCalculation.sintez.DataSPPE;
 import com.simulation.assembly.dataCalculation.sintez.DataVRL;
 
 public class CalculationVRL extends Calculation {
@@ -31,11 +30,11 @@ public class CalculationVRL extends Calculation {
             if (!getType().getDataElement().isImportData()) {
 
                 //Расчет
-                d.mVRL = d.umVRL * d.sPI;
-                d.vVRL = d.mVRL / d.plVRL;
-                d.wVRL = d.mVRL * d.uwVRL;
+                d.m = d.umVRL * d.sPI;
+                d.v = d.m / d.plVRL;
+                d.w = d.m * d.uwVRL;
                 //Расчет приведенного момента инерции КА с текущими габаритами и массой
-                d.jVRL = 1092.5f; //TODO
+                d.j = 1092.5f; //TODO
 //            d.jVRL=d.mVRL*((dc.dKA*dc.dKA)/16+(dc.lKA*dc.lKA)/12);
             }
             CalculationKA.getInstance().calculation(new Object());

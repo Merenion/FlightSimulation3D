@@ -30,14 +30,14 @@ public class CalculationSSKM extends Calculation {
                 DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
 
                 //Расчет
-                d.mSSKM = d.kmSSKM / 100 * dc.mKA;
-                d.msSSKM = d.kmsSSKM / 100 * d.mSSKM;
-                d.maSSKM = d.mSSKM - d.msSSKM;
+                d.m = d.kmSSKM / 100 * dc.mKA;
+                d.msSSKM = d.kmsSSKM / 100 * d.m;
+                d.maSSKM = d.m - d.msSSKM;
                 d.vaSSKM = d.maSSKM / d.plaSSKM;
                 d.vsSSKM = 1000 * d.msSSKM / d.plsSSKM / d.kzsSSKM / 100;
-                d.vSSKM = d.vaSSKM + d.vsSSKM;     //Объем ССКМ, м3
-                d.wSSKM = d.uwSSKM * d.maSSKM;
-                d.jSSKM = d.mSSKM * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
+                d.v = d.vaSSKM + d.vsSSKM;     //Объем ССКМ, м3
+                d.w = d.uwSSKM * d.maSSKM;
+                d.j = d.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
             }
             CalculationKA.getInstance().calculation(new Object());
 

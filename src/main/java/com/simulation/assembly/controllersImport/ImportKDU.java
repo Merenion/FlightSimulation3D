@@ -7,7 +7,6 @@ import com.simulation.assembly.ValidateValue;
 import com.simulation.assembly.calculation.ca.CalculationKA;
 import com.simulation.assembly.dataCalculation.sintez.DataElement;
 import com.simulation.assembly.dataCalculation.sintez.DataKDU;
-import com.simulation.assembly.dataCalculation.sintez.DataVRL;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -35,10 +34,10 @@ public class ImportKDU extends ImportElement {
         DataKDU data = new DataKDU();                                                                     //
 
         try {
-            data.mkKDU = ValidateValue.conversionTextToFloat(mkKDU.getText());                                  //
-            data.V_OKA_KDU = ValidateValue.conversionTextToFloat(V_OKA_KDU.getText());
-            data.wKDU = ValidateValue.conversionTextToFloat(wKDU.getText());
-            data.jKDU = ValidateValue.conversionTextToFloat(jKDU.getText());
+            data.m = ValidateValue.conversionTextToFloat(mkKDU.getText());                                  //
+            data.v = ValidateValue.conversionTextToFloat(V_OKA_KDU.getText());
+            data.w = ValidateValue.conversionTextToFloat(wKDU.getText());
+            data.j = ValidateValue.conversionTextToFloat(jKDU.getText());
         } catch (Exception e) {
             ControllerAssembly.showError("Не верно введеные данные.");
             return;

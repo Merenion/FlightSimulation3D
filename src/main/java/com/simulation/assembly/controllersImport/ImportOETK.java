@@ -3,7 +3,6 @@ package com.simulation.assembly.controllersImport;
 import com.simulation.assembly.ControllerAssembly;
 import com.simulation.assembly.SaveXmlObject;
 import com.simulation.assembly.TabTypeSintez;
-import com.simulation.assembly.ValidateValue;
 import com.simulation.assembly.calculation.ca.CalculationKA;
 import com.simulation.assembly.dataCalculation.sintez.DataElement;
 import com.simulation.assembly.dataCalculation.sintez.DataOETK;
@@ -11,24 +10,19 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-import java.lang.annotation.ElementType;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ImportOETK extends ImportElement {
 
-    public TextField mOETK;
-    public TextField jOETK;
-    public TextField wOETK;
-    public TextField vkSO_OETK;
-    public TextField lOETK;
-    public TextField dOETK;
-    public TextField vOETK;
+    public Label l;
+    public Label d;
+    public Label m;
+    public Label w;
 
     private List<DataElement> listLoad = new ArrayList<>();
 
@@ -39,13 +33,10 @@ public class ImportOETK extends ImportElement {
         DataOETK data = new DataOETK();                                                                     //
 
         try {
-            data.mOETK = ValidateValue.conversionTextToFloat(mOETK.getText());                                  //
-            data.jOETK = ValidateValue.conversionTextToFloat(jOETK.getText());
-            data.wOETK = ValidateValue.conversionTextToFloat(wOETK.getText());
-            data.vkSO_OETK = ValidateValue.conversionTextToFloat(vkSO_OETK.getText());
-            data.lOETK = ValidateValue.conversionTextToFloat(lOETK.getText());
-            data.dOETK = ValidateValue.conversionTextToFloat(dOETK.getText());
-            data.vOETK = ValidateValue.conversionTextToFloat(vOETK.getText());
+//            data.ouT_mOETK = ValidateValue.conversionTextToFloat(mOETK.getText());                                  //
+//            data.ouT_jOETK = ValidateValue.conversionTextToFloat(jOETK.getText());
+//            data.ouT_wOETK = ValidateValue.conversionTextToFloat(wOETK.getText());
+//            data.ouT_vOETK = ValidateValue.conversionTextToFloat(vkSO_OETK.getText());
         } catch (Exception e) {
             ControllerAssembly.showError("Не верно введеные данные.");
             return;
@@ -101,5 +92,9 @@ public class ImportOETK extends ImportElement {
             list.addAll(listLoad);
         }
         tableChoise.setItems(list);
+    }
+
+    public void showAddElement(ActionEvent actionEvent) {
+        showWindowAdd("/assembly/addElement.fxml", "Заимсвованные элементы - ОЕТК");
     }
 }

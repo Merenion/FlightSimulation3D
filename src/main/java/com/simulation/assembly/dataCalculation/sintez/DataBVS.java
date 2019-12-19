@@ -22,9 +22,9 @@ public class DataBVS  extends DataElement{
     public float plBVS;  //Средняя плотносБВС, м3
 
 
-    public float mBVS;
-    public float vBVS;
-    public float wBVS;
-    public float jBVS;
+//    public float m;
+//    public float v;
+//    public float w;
+//    public float j;
 
 }

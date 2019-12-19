@@ -31,8 +31,8 @@ public class CalculationKDU extends Calculation {
                 DataSpeed dataSpeed = CalculationKA.getInstance().getDataSpeed();
                 DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
 
-                d.mKDU = (d.s / (d.s - 1)) * dataMassTopl.mTKDU;
-                d.mkKDU = d.mKDU - dataMassTopl.mTKDU;
+                d.mKDU = (d.s / (d.s - 1)) * dataMassTopl.m;
+                d.m = d.mKDU - dataMassTopl.m;
 
                 d.Vok = dataMassTopl.mO / dataMassTopl.pLO;
                 d.Vg = dataMassTopl.mG / dataMassTopl.pLG;
@@ -41,13 +41,13 @@ public class CalculationKDU extends Calculation {
                 d.VbG = d.Vg * (1 + d.kNTB / 100);
                 d.Vb = d.VbOk + d.VbG;
                 d.VKDU = d.kpVKDU_Vb * d.Vb;
-                d.V_OKA_KDU = d.kpVOKA_VKDU * d.VKDU;
-                d.hKDU = (float) (d.V_OKA_KDU / (Math.PI * d.dKDU / 4));
-                d.pKDU = d.mKDU / d.V_OKA_KDU;
+                d.v = d.kpVOKA_VKDU * d.VKDU;
+                d.hKDU = (float) (d.v / (Math.PI * d.dKDU / 4));
+                d.pKDU = d.mKDU / d.v;
                 d.JxKDU = d.mKDU * (d.dKDU * d.dKDU) / 8;
                 d.JyKDU = d.mKDU * ((d.dKDU * d.dKDU) / 16 + (d.hKDU * d.hKDU) / 12);
-                d.jKDU = d.mKDU / dc.krkKA * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
-                d.wKDU = d.umKDU * d.mKDU;
+                d.j = d.mKDU / dc.krkKA * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
+                d.w = d.umKDU * d.mKDU;
             }
             CalculationKA.getInstance().calculation(new Object());
 

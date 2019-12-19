@@ -6,7 +6,6 @@ import com.simulation.assembly.TabTypeSintez;
 import com.simulation.assembly.calculation.Calculation;
 import com.simulation.assembly.dataCalculation.sintez.DataCommonParameters;
 import com.simulation.assembly.dataCalculation.sintez.DataElectHaraktSEP;
-import com.simulation.assembly.dataCalculation.sintez.DataPasivSOTR;
 import com.simulation.assembly.dataCalculation.sintez.DataSumBetSEP;
 
 public class CalculationSumBetSEP extends Calculation {
@@ -35,8 +34,8 @@ public class CalculationSumBetSEP extends Calculation {
                 //Требуемая площадь солнечной мощность батареи, м2
                 d.sPSB = dataElectHaraktSEP.wBF * d.kp / (d.uwFP * d.kzPSB);
                 //расчет массы панелей СБ
-                d.mPSB = d.umPSB * d.sPSB;
-                d.mPSB1 = d.mPSB / d.nPSB;
+                d.m = d.umPSB * d.sPSB;
+                d.mPSB1 = d.m / d.nPSB;
                 d.sPSB1 = d.sPSB / d.nPSB;
 
                 d.dPSB1 = (float) Math.sqrt(d.sPSB1);
@@ -47,7 +46,7 @@ public class CalculationSumBetSEP extends Calculation {
                 d.jPSB1 = d.mPSB1 * (d.lPSB1 * d.lPSB1) / 12;
                 //Расчет момента инерции всех панелей СБ относительно поперечной оси КА
 //            d.jPSB_KA= (float) (d.nPSB*(d.jPSB1+d.mPSB1*dc.dKA*dc.dKA*0.5)); TODO тут все правильно (в той проге перепутана масса одной панели с площадью одной) поменять
-                d.jPSB_KA = 51.7f;
+                d.j = 51.7f;
             }
             CalculationKA.getInstance().calculation(new Object());
 

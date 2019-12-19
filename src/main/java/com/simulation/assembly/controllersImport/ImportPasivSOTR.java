@@ -7,7 +7,6 @@ import com.simulation.assembly.ValidateValue;
 import com.simulation.assembly.calculation.ca.CalculationKA;
 import com.simulation.assembly.dataCalculation.sintez.DataElement;
 import com.simulation.assembly.dataCalculation.sintez.DataPasivSOTR;
-import com.simulation.assembly.dataCalculation.sintez.DataVRL;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -34,9 +33,9 @@ public class ImportPasivSOTR extends ImportElement {
         DataPasivSOTR data = new DataPasivSOTR();                                                                     //
 
         try {
-            data.mEVTI = ValidateValue.conversionTextToFloat(mEVTI.getText());                                  //
-            data.vEVTI = ValidateValue.conversionTextToFloat(vEVTI.getText());
-            data.jEVTI = ValidateValue.conversionTextToFloat(jEVTI.getText());
+            data.m = ValidateValue.conversionTextToFloat(mEVTI.getText());                                  //
+            data.v = ValidateValue.conversionTextToFloat(vEVTI.getText());
+            data.j = ValidateValue.conversionTextToFloat(jEVTI.getText());
         } catch (Exception e) {
             ControllerAssembly.showError("Не верно введеные данные.");
             return;

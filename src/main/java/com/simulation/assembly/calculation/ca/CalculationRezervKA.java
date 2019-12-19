@@ -31,10 +31,10 @@ public class CalculationRezervKA extends Calculation {
                 DataOtherKA dataOtherKA = CalculationKA.getInstance().getDataOtherKA();
                 DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
 
-                d.mRmKA = d.omRmKA / 100 * dc.mKA;
-                d.vRmKA = d.mRmKA / d.plRmKA;
-                d.jRmKA = dataOtherKA.mPrKA * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
-                d.wRmKA = d.uwRmKA * d.mRmKA;
+                d.m = d.omRmKA / 100 * dc.mKA;
+                d.v = d.m / d.plRmKA;
+                d.j = dataOtherKA.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
+                d.w = d.uwRmKA * d.m;
             }
             CalculationKA.getInstance().calculation(new Object());
 

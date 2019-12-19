@@ -7,7 +7,6 @@ import com.simulation.assembly.ValidateValue;
 import com.simulation.assembly.calculation.ca.CalculationKA;
 import com.simulation.assembly.dataCalculation.sintez.DataElement;
 import com.simulation.assembly.dataCalculation.sintez.DataSudSGK;
-import com.simulation.assembly.dataCalculation.sintez.DataVRL;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -35,10 +34,10 @@ public class ImportSGK extends ImportElement {
         DataSudSGK data = new DataSudSGK();                                                                     //
 
         try {
-            data.mSGK = ValidateValue.conversionTextToFloat(mSGK.getText());                                  //
-            data.wSGK = ValidateValue.conversionTextToFloat(wSGK.getText());
-            data.vSGK = ValidateValue.conversionTextToFloat(vSGK.getText());
-            data.jSGK = ValidateValue.conversionTextToFloat(jSGK.getText());
+            data.m = ValidateValue.conversionTextToFloat(mSGK.getText());                                  //
+            data.w = ValidateValue.conversionTextToFloat(wSGK.getText());
+            data.v = ValidateValue.conversionTextToFloat(vSGK.getText());
+            data.j = ValidateValue.conversionTextToFloat(jSGK.getText());
         } catch (Exception e) {
             ControllerAssembly.showError("Не верно введеные данные.");
             return;

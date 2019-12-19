@@ -7,7 +7,6 @@ import com.simulation.assembly.ValidateValue;
 import com.simulation.assembly.calculation.ca.CalculationKA;
 import com.simulation.assembly.dataCalculation.sintez.DataElement;
 import com.simulation.assembly.dataCalculation.sintez.DataMassTopl;
-import com.simulation.assembly.dataCalculation.sintez.DataVRL;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -38,7 +37,7 @@ public class ImportMassTopl extends ImportElement {
         try {
             data.pLO = ValidateValue.conversionTextToFloat(pLO.getText());                                  //
             data.pLG = ValidateValue.conversionTextToFloat(pLG.getText());
-            data.mTKDU = ValidateValue.conversionTextToFloat(mTKDU.getText());
+            data.m = ValidateValue.conversionTextToFloat(mTKDU.getText());
             data.mO = ValidateValue.conversionTextToFloat(mO.getText());
             data.mG = ValidateValue.conversionTextToFloat(mG.getText());
         } catch (Exception e) {
