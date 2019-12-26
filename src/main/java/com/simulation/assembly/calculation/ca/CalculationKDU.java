@@ -24,12 +24,12 @@ public class CalculationKDU extends Calculation {
     @Override
     public Object calculationSingle(Object object) throws Exception {
         try {
+            DataKDU d = CalculationKA.getInstance().getDataKDU();
+            DataMassTopl dataMassTopl = CalculationKA.getInstance().getDataMassTopl();
+            DataSpeed dataSpeed = CalculationKA.getInstance().getDataSpeed();
+            DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
             if (!getType().getDataElement().isImportData()) {
 
-                DataKDU d = CalculationKA.getInstance().getDataKDU();
-                DataMassTopl dataMassTopl = CalculationKA.getInstance().getDataMassTopl();
-                DataSpeed dataSpeed = CalculationKA.getInstance().getDataSpeed();
-                DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
 
                 d.mKDU = (d.s / (d.s - 1)) * dataMassTopl.m;
                 d.m = d.mKDU - dataMassTopl.m;
@@ -48,6 +48,9 @@ public class CalculationKDU extends Calculation {
                 d.JyKDU = d.mKDU * ((d.dKDU * d.dKDU) / 16 + (d.hKDU * d.hKDU) / 12);
                 d.j = d.mKDU / dc.krkKA * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
                 d.w = d.umKDU * d.mKDU;
+            }
+            if (d.isCalculationMoment()){
+                d.j = d.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
             }
             CalculationKA.getInstance().calculation(new Object());
 

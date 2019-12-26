@@ -29,6 +29,63 @@ public class ControllerZaimstv extends ControllerExport {
         }
     }
 
+
+    public void haveSSD(ActionEvent actionEvent) {
+        if (choise_have_SSD.isSelected()){
+            pane_zaimsv_ssd.setVisible(true);
+        }else {
+            pane_zaimsv_ssd.setVisible(false);
+        }
+    }
+
+    public void haveIPMV(ActionEvent actionEvent) {
+        if (choise_have_IPMV.isSelected()){
+            pane_zaimsv_IPMV.setVisible(true);
+        }else {
+            pane_zaimsv_IPMV.setVisible(false);
+        }
+    }
+
+    public void haveBOKZ(ActionEvent actionEvent) {
+        if (choise_have_BOKZ.isSelected()){
+            pane_zaimsv_BOKZ.setVisible(true);
+        }else {
+            pane_zaimsv_BOKZ.setVisible(false);
+        }
+    }
+
+    public void haveDO(ActionEvent actionEvent) {
+        if (choise_have_DO.isSelected()){
+            pane_zaimsv_DO.setVisible(true);
+        }else {
+            pane_zaimsv_DO.setVisible(false);
+        }
+    }
+
+    public void haveDUS(ActionEvent actionEvent) {
+        if (choise_have_DUS.isSelected()){
+            pane_zaimsv_DUS.setVisible(true);
+        }else {
+            pane_zaimsv_DUS.setVisible(false);
+        }
+    }
+
+    public void haveBKS(ActionEvent actionEvent) {
+        if (choise_have_BKS.isSelected()){
+            pane_zaimsv_BKS.setVisible(true);
+        }else {
+            pane_zaimsv_BKS.setVisible(false);
+        }
+    }
+
+    public void haveAFU(ActionEvent actionEvent) {
+        if (choise_have_AFU.isSelected()){
+            pane_zaimsv_AFU.setVisible(true);
+        }else {
+            pane_zaimsv_AFU.setVisible(false);
+        }
+    }
+
     public void haveOETK(ActionEvent actionEvent) {
 //        showWindow("/assembly/importOETK.fxml", "Заимсвованные элементы - ОЕТК");
         if (choise_have_OETK.isSelected()){
@@ -39,28 +96,16 @@ public class ControllerZaimstv extends ControllerExport {
     }
 
     public void haveSPPE(ActionEvent actionEvent) {
-        if (check_zaim_sppe.isSelected()){
-            pane_zaimsv_sppe.setVisible(true);
+        if (choise_have_SPPE.isSelected()){
+            pane_zaimsv_SPPE.setVisible(true);
         }else {
-            pane_zaimsv_sppe.setVisible(false);
+            pane_zaimsv_SPPE.setVisible(false);
         }
 //        showWindow("/assembly/importSPPE.fxml", "Заимсвованные элементы - "+ TabTypeSintez.SPPE.getName());
     }
 
-    public void haveVRL(ActionEvent actionEvent) {
-        showWindow("/assembly/importVRL.fxml", "Заимсвованные элементы - "+ TabTypeSintez.VRL.getName());
-    }
-
-    public void haveOtherCA(ActionEvent actionEvent) {
-        showWindow("/assembly/importOtherCA.fxml", "Заимсвованные элементы - "+ TabTypeSintez.OTHER_ELEMENTS_CA.getName());
-    }
-
-    public void haveSGK(ActionEvent actionEvent) {
-        showWindow("/assembly/importSGK.fxml", "Заимсвованные элементы - "+ TabTypeSintez.SUD_SGK.getName());
-    }
-
     public void haveSSKM(ActionEvent actionEvent) {
-        if (check_zaim_sskm.isSelected()){
+        if (choise_have_SSKM.isSelected()){
             pane_zaimsv_sskm.setVisible(true);
         }else {
             pane_zaimsv_sskm.setVisible(false);
@@ -68,77 +113,160 @@ public class ControllerZaimstv extends ControllerExport {
 //        showWindow("/assembly/importSSKM.fxml", "Заимсвованные элементы - "+ TabTypeSintez.SUD_SSKM.getName());
     }
 
-    public void haveSTKRP(ActionEvent actionEvent) {
-        showWindow("/assembly/importSTKRP.fxml", "Заимсвованные элементы - "+ TabTypeSintez.STKRP.getName());
-
+    public void addOtherKaElementZaimsv(ActionEvent actionEvent) {
     }
 
-    public void haveBAKES(ActionEvent actionEvent) {
-        showWindow("/assembly/importBAKES.fxml", "Заимсвованные элементы - "+ TabTypeSintez.BAKIS.getName());
+    public void haveVRL(ActionEvent actionEvent) {
+        if (choise_have_VRL.isSelected()){
+            pane_zaimsv_VRL.setVisible(true);
+        }else {
+            pane_zaimsv_VRL.setVisible(false);
+        }
     }
 
-    public void haveBETS(ActionEvent actionEvent) {
-        showWindow("/assembly/importBETS.fxml", "Заимсвованные элементы - "+ TabTypeSintez.BETS.getName());
+    public void haveOtherCA(ActionEvent actionEvent) {
+        if (choise_have_OtherCA.isSelected()){
+            pane_zaimsv_OtherCA.setVisible(true);
+        }else {
+            pane_zaimsv_OtherCA.setVisible(false);
+        }
     }
 
     public void haveBVS(ActionEvent actionEvent) {
-        showWindow("/assembly/importBVS.fxml", "Заимсвованные элементы - "+ TabTypeSintez.BVS.getName());
+        if (choise_have_BVS.isSelected()){
+            pane_zaimsv_BVS.setVisible(true);
+        }else {
+            pane_zaimsv_BVS.setVisible(false);
+        }
+    }
+
+    public void haveSTKRP(ActionEvent actionEvent) {
+        if (choise_have_STKRP.isSelected()){
+            pane_zaimsv_STKRP.setVisible(true);
+        }else {
+            pane_zaimsv_STKRP.setVisible(false);
+        }
+    }
+
+    public void haveBAKES(ActionEvent actionEvent) {
+        if (choise_have_KIS.isSelected()){
+            pane_zaimsv_KIS.setVisible(true);
+        }else {
+            pane_zaimsv_KIS.setVisible(false);
+        }
+    }
+
+    public void haveKIS(ActionEvent actionEvent) {
+        if (choise_have_KIS.isSelected()){
+            pane_zaimsv_KIS.setVisible(true);
+        }else {
+            pane_zaimsv_KIS.setVisible(false);
+        }
+    }
+
+    public void haveBETS(ActionEvent actionEvent) {
+        if (choise_have_BETS.isSelected()){
+            pane_zaimsv_BETS.setVisible(true);
+        }else {
+            pane_zaimsv_BETS.setVisible(false);
+        }
     }
 
     public void haveOtherBKU(ActionEvent actionEvent) {
-        showWindow("/assembly/importOtherBKU.fxml", "Заимсвованные элементы - "+ TabTypeSintez.OTHER_ELEMENTS_BKU.getName());
+        if (choise_have_OtherBKU.isSelected()){
+            pane_zaimsv_OtherBKU.setVisible(true);
+        }else {
+            pane_zaimsv_OtherBKU.setVisible(false);
+        }
+    }
+
+    public void haveSGK(ActionEvent actionEvent) {
+        if (choise_have_SGK.isSelected()){
+            pane_zaimsv_SGK.setVisible(true);
+        }else {
+            pane_zaimsv_SGK.setVisible(false);
+        }
     }
 
     public void havePasivSOTR(ActionEvent actionEvent) {
-        showWindow("/assembly/importPasivSOTR.fxml", "Заимсвованные элементы - "+ TabTypeSintez.PASSIV_ELEMENT_SOTR.getName());
+        if (choise_have_Pasivv.isSelected()){
+            pane_zaimsv_Pasivv.setVisible(true);
+        }else {
+            pane_zaimsv_Pasivv.setVisible(false);
+        }
+    }
+
+    public void havePasiv(ActionEvent actionEvent) {
+        if (choise_have_Pasivv.isSelected()){
+            pane_zaimsv_Pasivv.setVisible(true);
+        }else {
+            pane_zaimsv_Pasivv.setVisible(false);
+        }
     }
 
     public void haveActivSOTR(ActionEvent actionEvent) {
-        showWindow("/assembly/importActivSOTR.fxml", "Заимсвованные элементы - "+ TabTypeSintez.ACTIV_ELEMENT_SOTR.getName());
+        if (choise_have_Activ.isSelected()){
+            pane_zaimsv_Activ.setVisible(true);
+        }else {
+            pane_zaimsv_Activ.setVisible(false);
+        }
     }
 
-    public void haveElectParamSEP(ActionEvent actionEvent) {
-        showWindow("/assembly/importElectHarSEP.fxml", "Заимсвованные элементы - "+ TabTypeSintez.ELECTROTEH_PARAM.getName());
+    public void haveActiv(ActionEvent actionEvent) {
+        if (choise_have_Activ.isSelected()){
+            pane_zaimsv_Activ.setVisible(true);
+        }else {
+            pane_zaimsv_Activ.setVisible(false);
+        }
     }
 
-    public void haveAccumBet(ActionEvent actionEvent) {
-        showWindow("/assembly/importAcumBet.fxml", "Заимсвованные элементы - "+ TabTypeSintez.AKUM_BATTERIES.getName());
+
+    public void haveAcum(ActionEvent actionEvent) {
+        if (choise_have_Acum.isSelected()){
+            pane_zaimsv_Acum.setVisible(true);
+        }else {
+            pane_zaimsv_Acum.setVisible(false);
+        }
     }
 
     public void haveKAS(ActionEvent actionEvent) {
-        showWindow("/assembly/importKAS.fxml", "Заимсвованные элементы - "+ TabTypeSintez.KAS.getName());
+        if (choise_have_KAS.isSelected()){
+            pane_zaimsv_KAS.setVisible(true);
+        }else {
+            pane_zaimsv_KAS.setVisible(false);
+        }
     }
 
     public void haveSun(ActionEvent actionEvent) {
-        showWindow("/assembly/importSunBet.fxml", "Заимсвованные элементы - "+ TabTypeSintez.SUN_BATTERIES.getName());
+        if (choise_have_Sun.isSelected()){
+            pane_zaimsv_Sun.setVisible(true);
+        }else {
+            pane_zaimsv_Sun.setVisible(false);
+        }
     }
 
-    public void haveSpeed(ActionEvent actionEvent) {
-        showWindow("/assembly/importSpeed.fxml", "Заимсвованные элементы - "+ TabTypeSintez.SPEED.getName());
-    }
-
-    public void haveMassT(ActionEvent actionEvent) {
-        showWindow("/assembly/importMassTopl.fxml", "Заимсвованные элементы - "+ TabTypeSintez.MASS_TOPLIVA.getName());
-    }
-
-    public void haveKDU(ActionEvent actionEvent) {
-        showWindow("/assembly/importKDU.fxml", "Заимсвованные элементы - "+ TabTypeSintez.MASOGABARITN_AND_ENERGET_PARAMETERS.getName());
+    public void havekdu(ActionEvent actionEvent) {
+        if (choise_have_kdu.isSelected()){
+            pane_zaimsv_kdu.setVisible(true);
+        }else {
+            pane_zaimsv_kdu.setVisible(false);
+        }
     }
 
     public void haveKonstr(ActionEvent actionEvent) {
-        showWindow("/assembly/importKonstr.fxml", "Заимсвованные элементы - "+ TabTypeSintez.KONSTR.getName());
-    }
-
-    public void haveBKSandAFU(ActionEvent actionEvent) {
-        showWindow("/assembly/importBKSandAFU.fxml", "Заимсвованные элементы - "+ TabTypeSintez.BKS_AND_AFU.getName());
-    }
-
-    public void haveOtherKA(ActionEvent actionEvent) {
-//        showWindow("/assembly/importKonstr.fxml", "Заимсвованные элементы - "+ TabTypeSintez.KONSTR.getName());
+        if (choise_have_Konstr.isSelected()){
+            pane_zaimsv_Konstr.setVisible(true);
+        }else {
+            pane_zaimsv_Konstr.setVisible(false);
+        }
     }
 
     public void haveRezerv(ActionEvent actionEvent) {
-        showWindow("/assembly/importRezerv.fxml", "Заимсвованные элементы - "+ TabTypeSintez.RETHERV.getName());
+        if (choise_have_Rezerv.isSelected()){
+            pane_zaimsv_Rezerv.setVisible(true);
+        }else {
+            pane_zaimsv_Rezerv.setVisible(false);
+        }
     }
 
     private void onLabelZaim (String name, Label label) {
@@ -240,5 +368,9 @@ public class ControllerZaimstv extends ControllerExport {
 
     public void onLabelZaimRezerv (String name) {
         onLabelZaim(name,labelZaimRezerv);
+    }
+
+    public void actionShowParamRezult(ActionEvent actionEvent) {
+        showSinezKA();
     }
 }

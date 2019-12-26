@@ -13,24 +13,24 @@
    <children>
       <AnchorPane layoutX="567.0" prefHeight="361.0" prefWidth="369.0">
          <children>
-            <Label layoutX="88.0" layoutY="14.0" text="Подтвержденные параметры &#10;      выбранного элемента">
+            <Label layoutX="64.0" layoutY="14.0" text="Подтвержденные параметры &#10;      выбранного элемента">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
             <VBox layoutX="271.0" layoutY="68.0" prefHeight="127.0" prefWidth="98.0">
                <children>
-                  <Label fx:id="l" prefHeight="30.0" prefWidth="91.0" text="0.000" />
-                  <Label fx:id="d" prefHeight="30.0" prefWidth="91.0" text="0.000" />
                   <Label fx:id="m" prefHeight="30.0" prefWidth="92.0" text="0.000" />
+                  <Label fx:id="v" prefHeight="30.0" prefWidth="91.0" text="0.000" />
+                  <Label fx:id="j" prefHeight="30.0" prefWidth="91.0" text="0.000" />
                   <Label fx:id="w" prefHeight="30.0" prefWidth="92.0" text="0.000" />
                </children>
             </VBox>
             <VBox layoutY="68.0" prefHeight="127.0" prefWidth="258.0">
                <children>
-                  <Label prefHeight="30.0" prefWidth="372.0" text="Длина ОЭТК,м" />
-                  <Label prefHeight="30.0" prefWidth="372.0" text="Диаметр ОЭТК,м" />
-                  <Label prefHeight="30.0" prefWidth="372.0" text="Масса ОЭТК, кг" />
+                  <Label prefHeight="30.0" prefWidth="372.0" text="Масса, кг" />
+                  <Label prefHeight="30.0" prefWidth="372.0" text="Объем,м" />
+                  <Label prefHeight="30.0" prefWidth="372.0" text="Момент инерции, м" />
                   <Label prefHeight="30.0" prefWidth="258.0" text="Средняя мощность энергопотребления, Вт" />
                </children>
             </VBox>
@@ -38,14 +38,14 @@
       </AnchorPane>
       <AnchorPane prefHeight="406.0" prefWidth="409.0">
          <children>
-            <TableView fx:id="tableChoise" layoutX="82.0" layoutY="25.0" prefHeight="293.0" prefWidth="313.0">
+            <TableView fx:id="tableChoise" layoutX="61.0" layoutY="25.0" prefHeight="293.0" prefWidth="313.0">
               <columns>
                 <TableColumn fx:id="columnChoise" prefWidth="312.0" text="Имеющиеся элементы" />
               </columns>
             </TableView>
-            <Button fx:id="btSelect" defaultButton="true" layoutX="156.0" layoutY="331.0" mnemonicParsing="false" onAction="#selectElement" prefHeight="25.0" prefWidth="158.0" text="Выбрать" />
-            <Button layoutX="156.0" layoutY="368.0" mnemonicParsing="false" onAction="#showAddElement" prefHeight="25.0" prefWidth="158.0" text="Добавить новый элемент" />
-            <Button layoutX="330.0" layoutY="331.0" mnemonicParsing="false" onAction="#actionDeleteElement" prefHeight="25.0" prefWidth="28.0" text="×">
+            <Button fx:id="btSelect" defaultButton="true" layoutX="135.0" layoutY="331.0" mnemonicParsing="false" onAction="#selectElement" prefHeight="25.0" prefWidth="158.0" text="Выбрать" />
+            <Button layoutX="135.0" layoutY="368.0" mnemonicParsing="false" onAction="#addElement" prefHeight="25.0" prefWidth="158.0" text="Добавить новый элемент" />
+            <Button layoutX="309.0" layoutY="331.0" mnemonicParsing="false" onAction="#actionDeleteElement" prefHeight="25.0" prefWidth="28.0" text="×">
                <effect>
                   <ColorAdjust brightness="-0.02" saturation="0.09" />
                </effect>

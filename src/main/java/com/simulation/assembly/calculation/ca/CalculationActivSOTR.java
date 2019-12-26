@@ -24,9 +24,9 @@ public class CalculationActivSOTR extends Calculation {
     @Override
     public Object calculationSingle(Object object) throws Exception {
         try {
+            DataActivSOTR d = CalculationKA.getInstance().getDataActivSOTR();
+            DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
             if (!getType().getDataElement().isImportData()) {
-                DataActivSOTR d = CalculationKA.getInstance().getDataActivSOTR();
-                DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
 
                 d.m = d.omSTR * dc.mKA;
                 d.mtnSTR = d.m * d.kmtnSTR / 100;
@@ -35,7 +35,12 @@ public class CalculationActivSOTR extends Calculation {
                 d.w = d.uwSTR * d.m;
                 d.j = d.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
             }
+            if (d.isCalculationMoment()){
+                d.j = d.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
+            }
+
             CalculationKA.getInstance().calculation(new Object());
+
 
             ControllerAssembly.addMessInConsoleSintez(MessegeType.INFO, "Расчет Успешен! ", TabTypeSintez.ACTIV_ELEMENT_SOTR);
         } catch (Exception e) {

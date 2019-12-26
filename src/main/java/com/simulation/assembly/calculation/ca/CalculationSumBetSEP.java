@@ -45,8 +45,8 @@ public class CalculationSumBetSEP extends Calculation {
                 //  собственной центр масс
                 d.jPSB1 = d.mPSB1 * (d.lPSB1 * d.lPSB1) / 12;
                 //Расчет момента инерции всех панелей СБ относительно поперечной оси КА
-//            d.jPSB_KA= (float) (d.nPSB*(d.jPSB1+d.mPSB1*dc.dKA*dc.dKA*0.5)); TODO тут все правильно (в той проге перепутана масса одной панели с площадью одной) поменять
-                d.j = 51.7f;
+                d.j = (float) (d.nPSB * (d.jPSB1 + d.mPSB1 * dc.dKA * dc.dKA * 0.5));
+//                d.j = 51.7f;
             }
             CalculationKA.getInstance().calculation(new Object());
 

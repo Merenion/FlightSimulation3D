@@ -146,6 +146,41 @@ public enum TabTypeSintez {
             return 4;
         }
     },
+
+    SSD{
+        private String name = "Запоминающее устройство";
+
+        @Override
+        public String getName() {
+            return name;
+        }
+
+        @Override
+        public String getTypeName() {
+            return "ssd";
+        }
+
+        @Override
+        public Class<?> getTypeClass() {
+            return DataSSD.class;
+        }
+
+        @Override
+        public Calculation getCalculation() {
+            return new CalculationSSD();
+        }
+
+        @Override
+        public DataElement getDataElement() {
+            return CalculationKA.getInstance().getDataSSD();
+        }
+
+        @Override
+        public Integer getNumber() {
+            return 5;
+        }
+    },
+
     OTHER_ELEMENTS_CA{
         private String name = "Прочие элементы ЦА";
 
@@ -176,7 +211,7 @@ public enum TabTypeSintez {
 
         @Override
         public Integer getNumber() {
-            return 5;
+            return 6;
         }
     },
     CA{
@@ -209,69 +244,35 @@ public enum TabTypeSintez {
 
         @Override
         public Integer getNumber() {
-            return 6;
+            return 7;
         }
     },
 
     //БКУ
-    SUD_SGK{
-        private String name = "СГК";
-
+    BVS{
         @Override
         public String getName() {
-            return name;
+            return "БВС";
         }
 
         @Override
         public String getTypeName() {
-            return "sgk";
+            return "bvs";
         }
 
         @Override
         public Class<?> getTypeClass() {
-            return DataSudSGK.class;
+            return DataBVS.class;
         }
 
         @Override
         public Calculation getCalculation() {
-            return new CalculationSGK();
+            return new CalculationBVS();
         }
 
         @Override
         public DataElement getDataElement() {
-            return CalculationKA.getInstance().getDataSudSGK();
-        }
-
-        @Override
-        public Integer getNumber() {
-            return 7;
-        }
-    },
-    SUD_SSKM{
-
-        @Override
-        public String getName() {
-            return "ССКМ";
-        }
-
-        @Override
-        public String getTypeName() {
-            return "sskm";
-        }
-
-        @Override
-        public Class<?> getTypeClass() {
-            return DataSSKM.class;
-        }
-
-        @Override
-        public Calculation getCalculation() {
-            return new CalculationSSKM();
-        }
-
-        @Override
-        public DataElement getDataElement() {
-            return CalculationKA.getInstance().getDataSSKM();
+            return CalculationKA.getInstance().getDataBVS();
         }
 
         @Override
@@ -279,6 +280,7 @@ public enum TabTypeSintez {
             return 8;
         }
     },
+
     STKRP{
         @Override
         public String getName() {
@@ -372,37 +374,7 @@ public enum TabTypeSintez {
             return 11;
         }
     },
-    BVS{
-        @Override
-        public String getName() {
-            return "БВС";
-        }
 
-        @Override
-        public String getTypeName() {
-            return "bvs";
-        }
-
-        @Override
-        public Class<?> getTypeClass() {
-            return DataBVS.class;
-        }
-
-        @Override
-        public Calculation getCalculation() {
-            return new CalculationBVS();
-        }
-
-        @Override
-        public DataElement getDataElement() {
-            return CalculationKA.getInstance().getDataBVS();
-        }
-
-        @Override
-        public Integer getNumber() {
-            return 12;
-        }
-    },
     OTHER_ELEMENTS_BKU{
         @Override
         public String getName() {
@@ -431,7 +403,7 @@ public enum TabTypeSintez {
 
         @Override
         public Integer getNumber() {
-            return 13;
+            return 12;
         }
     },
     BKU{
@@ -462,7 +434,203 @@ public enum TabTypeSintez {
 
         @Override
         public Integer getNumber() {
+            return 13;
+        }
+    },
+
+    //СУД
+    SUD_SGK{
+        private String name = "СГК";
+
+        @Override
+        public String getName() {
+            return name;
+        }
+
+        @Override
+        public String getTypeName() {
+            return "sgk";
+        }
+
+        @Override
+        public Class<?> getTypeClass() {
+            return DataSudSGK.class;
+        }
+
+        @Override
+        public Calculation getCalculation() {
+            return new CalculationSGK();
+        }
+
+        @Override
+        public DataElement getDataElement() {
+            return CalculationKA.getInstance().getDataSudSGK();
+        }
+
+        @Override
+        public Integer getNumber() {
             return 14;
+        }
+    },
+    SUD_SSKM{
+
+        @Override
+        public String getName() {
+            return "ССКМ";
+        }
+
+        @Override
+        public String getTypeName() {
+            return "sskm";
+        }
+
+        @Override
+        public Class<?> getTypeClass() {
+            return DataSSKM.class;
+        }
+
+        @Override
+        public Calculation getCalculation() {
+            return new CalculationSSKM();
+        }
+
+        @Override
+        public DataElement getDataElement() {
+            return CalculationKA.getInstance().getDataSSKM();
+        }
+
+        @Override
+        public Integer getNumber() {
+            return 15;
+        }
+    },
+    IPMV{
+
+        @Override
+        public String getName() {
+            return "Инфракрасный построитель местной вертикали";
+        }
+
+        @Override
+        public String getTypeName() {
+            return "ipmv";
+        }
+
+        @Override
+        public Class<?> getTypeClass() {
+            return DataIPMV.class;
+        }
+
+        @Override
+        public Calculation getCalculation() {
+            return new CalculationIPMV();
+        }
+
+        @Override
+        public DataElement getDataElement() {
+            return CalculationKA.getInstance().getDataIPMV();
+        }
+
+        @Override
+        public Integer getNumber() {
+            return 16;
+        }
+    },
+
+    BOKZ{
+
+        @Override
+        public String getName() {
+            return "БОКЗ";
+        }
+
+        @Override
+        public String getTypeName() {
+            return "bokz";
+        }
+
+        @Override
+        public Class<?> getTypeClass() {
+            return DataBOKZ.class;
+        }
+
+        @Override
+        public Calculation getCalculation() {
+            return new CalculationBOKZ();
+        }
+
+        @Override
+        public DataElement getDataElement() {
+            return CalculationKA.getInstance().getDataBOKZ();
+        }
+
+        @Override
+        public Integer getNumber() {
+            return 17;
+        }
+    },
+    DO{
+
+        @Override
+        public String getName() {
+            return "Датчики ориентации";
+        }
+
+        @Override
+        public String getTypeName() {
+            return "do";
+        }
+
+        @Override
+        public Class<?> getTypeClass() {
+            return DataDO.class;
+        }
+
+        @Override
+        public Calculation getCalculation() {
+            return new CalculationDO();
+        }
+
+        @Override
+        public DataElement getDataElement() {
+            return CalculationKA.getInstance().getDataDO();
+        }
+
+        @Override
+        public Integer getNumber() {
+            return 18;
+        }
+    },
+    DUS{
+
+        @Override
+        public String getName() {
+            return "Датчики угловых скоростей";
+        }
+
+        @Override
+        public String getTypeName() {
+            return "dus";
+        }
+
+        @Override
+        public Class<?> getTypeClass() {
+            return DataDUS.class;
+        }
+
+        @Override
+        public Calculation getCalculation() {
+            return new CalculationDUS();
+        }
+
+        @Override
+        public DataElement getDataElement() {
+            return CalculationKA.getInstance().getDataDUS();
+        }
+
+        @Override
+        public Integer getNumber() {
+            return 19;
         }
     },
 
@@ -495,7 +663,7 @@ public enum TabTypeSintez {
 
         @Override
         public Integer getNumber() {
-            return 15;
+            return 20;
         }
     },
     ACTIV_ELEMENT_SOTR{
@@ -526,7 +694,7 @@ public enum TabTypeSintez {
 
         @Override
         public Integer getNumber() {
-            return 16;
+            return 21;
         }
     },
     SOTR{
@@ -557,7 +725,7 @@ public enum TabTypeSintez {
 
         @Override
         public Integer getNumber() {
-            return 17;
+            return 22;
         }
     },
 
@@ -590,7 +758,7 @@ public enum TabTypeSintez {
 
         @Override
         public Integer getNumber() {
-            return 18;
+            return 23;
         }
     },
     AKUM_BATTERIES{
@@ -621,7 +789,7 @@ public enum TabTypeSintez {
 
         @Override
         public Integer getNumber() {
-            return 19;
+            return 24;
         }
     },
     KAS{
@@ -652,7 +820,7 @@ public enum TabTypeSintez {
 
         @Override
         public Integer getNumber() {
-            return 20;
+            return 25;
         }
     },
     SUN_BATTERIES{
@@ -683,7 +851,7 @@ public enum TabTypeSintez {
 
         @Override
         public Integer getNumber() {
-            return 21;
+            return 26;
         }
     },
 
@@ -716,7 +884,7 @@ public enum TabTypeSintez {
 
         @Override
         public Integer getNumber() {
-            return 22;
+            return 27;
         }
     },
     MASS_TOPLIVA{
@@ -747,7 +915,7 @@ public enum TabTypeSintez {
 
         @Override
         public Integer getNumber() {
-            return 23;
+            return 28;
         }
     },
     MASOGABARITN_AND_ENERGET_PARAMETERS{
@@ -778,7 +946,7 @@ public enum TabTypeSintez {
 
         @Override
         public Integer getNumber() {
-            return 24;
+            return 29;
         }
     },
 
@@ -811,39 +979,70 @@ public enum TabTypeSintez {
 
         @Override
         public Integer getNumber() {
-            return 25;
+            return 30;
         }
     },
 
-    BKS_AND_AFU{
+    BKS{
         @Override
         public String getName() {
-            return "БКС и АФУ";
+            return "БКС";
         }
 
         @Override
         public String getTypeName() {
-            return "bksafu";
+            return "bks";
         }
 
         @Override
         public Class<?> getTypeClass() {
-            return DataBKSandAFU.class;
+            return DataBKS.class;
         }
 
         @Override
         public Calculation getCalculation() {
-            return new CalkulationBKSandAFU();
+            return new CalkulationBKS();
         }
 
         @Override
         public DataElement getDataElement() {
-            return CalculationKA.getInstance().getDataBKSandAFU();
+            return CalculationKA.getInstance().getDataBKS();
         }
 
         @Override
         public Integer getNumber() {
-            return 26;
+            return 31;
+        }
+    },
+    AFU{
+        @Override
+        public String getName() {
+            return "АФУ";
+        }
+
+        @Override
+        public String getTypeName() {
+            return "afu";
+        }
+
+        @Override
+        public Class<?> getTypeClass() {
+            return DataAFU.class;
+        }
+
+        @Override
+        public Calculation getCalculation() {
+            return new CalkulationAFU();
+        }
+
+        @Override
+        public DataElement getDataElement() {
+            return CalculationKA.getInstance().getDataAFU();
+        }
+
+        @Override
+        public Integer getNumber() {
+            return 32;
         }
     },
 
@@ -875,7 +1074,7 @@ public enum TabTypeSintez {
 
         @Override
         public Integer getNumber() {
-            return 27;
+            return 33;
         }
     },
 
@@ -907,7 +1106,7 @@ public enum TabTypeSintez {
 
         @Override
         public Integer getNumber() {
-            return 28;
+            return 34;
         }
     },
 
@@ -939,7 +1138,7 @@ public enum TabTypeSintez {
 
         @Override
         public Integer getNumber() {
-            return 29;
+            return 35;
         }
     };
 

@@ -24,12 +24,12 @@ public class CalculationSOTR extends Calculation {
     @Override
     public Object calculationSingle(Object object) throws Exception {
         try {
+            DataSOTR d = CalculationKA.getInstance().getDataSOTR();
+            DataPasivSOTR dataPasivSOTR = CalculationKA.getInstance().getDataPasivSOTR();
+            DataActivSOTR dataActivSOTR = CalculationKA.getInstance().getDataActivSOTR();
+            DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
             if (!getType().getDataElement().isImportData()) {
 
-                DataSOTR d = CalculationKA.getInstance().getDataSOTR();
-                DataPasivSOTR dataPasivSOTR = CalculationKA.getInstance().getDataPasivSOTR();
-                DataActivSOTR dataActivSOTR = CalculationKA.getInstance().getDataActivSOTR();
-                DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
 
                 d.mSOTR = dataPasivSOTR.m + dataActivSOTR.mtnSTR + dataActivSOTR.mSTRbtn;
                 //Масса СОТР без теплоносителя, кг
@@ -39,9 +39,12 @@ public class CalculationSOTR extends Calculation {
                 //Объем ЭВТИ, приборов и агрегатов СТР, м3
                 d.vSOTR = dataPasivSOTR.v + dataActivSOTR.v;
                 //Приведенный момент инерци СОТР, кг м2
-                d.j = d.mSOTR * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
+                d.j = d.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
                 //Мощность приборов и агрегатов СТР, Вт/кг
                 d.wSTR = dataActivSOTR.w;
+            }
+            if (d.isCalculationMoment()){
+                d.j = d.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
             }
             CalculationKA.getInstance().calculation(new Object());
 

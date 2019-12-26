@@ -24,13 +24,16 @@ public class CalculationKonstrKA extends Calculation {
     @Override
     public Object calculationSingle(Object object) throws Exception {
         try {
+            DataKonstrKA d = CalculationKA.getInstance().getDataKonstrKA();
+            DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
             if (!getType().getDataElement().isImportData()) {
 
-                DataKonstrKA d = CalculationKA.getInstance().getDataKonstrKA();
-                DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
 
                 d.m = d.omkKA / 100 * dc.mKA;
                 d.v = d.m / d.plmkKA / (1 - d.kpkKA / 100);
+                d.j = d.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
+            }
+            if (d.isCalculationMoment()){
                 d.j = d.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
             }
             CalculationKA.getInstance().calculation(new Object());

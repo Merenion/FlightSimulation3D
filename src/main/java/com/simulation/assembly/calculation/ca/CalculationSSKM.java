@@ -24,10 +24,10 @@ public class CalculationSSKM extends Calculation {
     @Override
     public Object calculationSingle(Object object) throws Exception {
         try {
+            DataSSKM d = CalculationKA.getInstance().getDataSSKM();
+            DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
             if (!getType().getDataElement().isImportData()) {
 
-                DataSSKM d = CalculationKA.getInstance().getDataSSKM();
-                DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
 
                 //Расчет
                 d.m = d.kmSSKM / 100 * dc.mKA;
@@ -37,6 +37,9 @@ public class CalculationSSKM extends Calculation {
                 d.vsSSKM = 1000 * d.msSSKM / d.plsSSKM / d.kzsSSKM / 100;
                 d.v = d.vaSSKM + d.vsSSKM;     //Объем ССКМ, м3
                 d.w = d.uwSSKM * d.maSSKM;
+                d.j = d.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
+            }
+            if (d.isCalculationMoment()){
                 d.j = d.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
             }
             CalculationKA.getInstance().calculation(new Object());

@@ -32,19 +32,21 @@ public class CalculationOtherKA extends Calculation {
             d.w = 0f;
 
             for (DataOtherKA element : d.getOthers()) {
-                if (!element.isImportElement()) {
-                    element.m = element.omPrKA / 100 * dc.mKA;
-                    element.v = element.m / element.plPrKA;
+//                if (!element.isImportElement()) {
+//                    element.m = element.omPrKA / 100 * dc.mKA;
+//                    element.v = element.m / element.plPrKA;
+//                    element.j = element.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
+//                    element.w = element.uwPrKA * element.m;
+//                }
+                if (element.isCalculationMoment()) {
                     element.j = element.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
-                    element.w = element.uwPrKA * element.m;
                 }
                 d.m = d.m + element.m;
                 d.v = d.v + element.v;
                 d.j = d.j + element.j;
                 d.w = d.w + element.w;
-
-                CalculationKA.getInstance().calculation(new Object());
             }
+            CalculationKA.getInstance().calculation(new Object());
 
             ControllerAssembly.addMessInConsoleSintez(MessegeType.INFO, "Расчет Успешен! ", TabTypeSintez.OTHER_ELEMENT_KA);
 

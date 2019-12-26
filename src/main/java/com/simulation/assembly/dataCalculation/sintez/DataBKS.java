@@ -9,25 +9,19 @@ import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "DataBKSandAFU")
-public class DataBKSandAFU  extends DataElement{
+@XmlType(name = "DataBKS")
+public class DataBKS extends DataElement{
 
     @Override
     public TabTypeSintez getType() {
-        return TabTypeSintez.BKS_AND_AFU;
+        return TabTypeSintez.BKS;
     }
 
     public float omBKS;//Относительная масса БКС,%
-    public float omAFU;//Относительная масса АФУ,%
     public float plBKS;//Плотность компоновки БКС, кг/м3
-    public float plAFU;//Плотность компоновки АФУ, кг/м3
 
-    public float mBKS;//Масса БКС, кг
-    public float vBKS; //Объем БКС, м3
-    public float mAFU;//Масса АФУ, кг
-    public float vAFU; //Объем АФУ, м3
+
 //    public float m;
 //    public float v;
-    public float jBKS;
-    public float jAFU;
+//    public float jBKS;
 }

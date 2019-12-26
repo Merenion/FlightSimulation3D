@@ -5,7 +5,10 @@ import com.simulation.assembly.SaveXmlObject;
 import com.simulation.assembly.TabTypeSintez;
 import com.simulation.assembly.ValidateValue;
 import com.simulation.assembly.calculation.ca.CalculationKA;
+import com.simulation.assembly.controllersImport.add.AddElement;
+import com.simulation.assembly.dataCalculation.sintez.DataCommonParameters;
 import com.simulation.assembly.dataCalculation.sintez.DataElement;
+import com.simulation.assembly.dataCalculation.sintez.DataOETK;
 import com.simulation.assembly.dataCalculation.sintez.DataSTKRP;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -31,53 +34,47 @@ public class ImportSTKRP extends ImportElement {
 
     @Override
     public void addElement(ActionEvent actionEvent) {
-
-        DataSTKRP data = new DataSTKRP();                                                                     //
-
         try {
-            data.m = ValidateValue.conversionTextToFloat(mSTKRP.getText());                                  //
-            data.v = ValidateValue.conversionTextToFloat(vSTKRP.getText());
-            data.w = ValidateValue.conversionTextToFloat(wSTKRP.getText());
-            data.j = ValidateValue.conversionTextToFloat(jSTKRP.getText());
-        }catch (Exception e) {
-            ControllerAssembly.showError("Не верно введеные данные.");
-            return;
+            int sizeList = listLoad.size();
+            AddElement addElement = new AddElement();
+            addElement.addElement(new DataSTKRP());                                                          //
+            initialize();
+            if (sizeList + 1 == listLoad.size()) {
+                ControllerAssembly.showInfo("Элемент успешно добавлен.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            ControllerAssembly.showError("Техническая ошибка.");
         }
-
-        data.setNameElement(nameElement.getText());
-        if (listLoad.contains(data)){
-            ControllerAssembly.showError("Элемент с таким названием уже имеется!\nВыберите другое название либо\nудалите имеющийся элемент.");
-            return;
-        }
-        if (data.getNameElement().equals("")){
-            ControllerAssembly.showError("Название элемента не задано.");
-            return;
-        }
-        SaveXmlObject<DataElement> saveXmlObject = new SaveXmlObject<>();
-        saveXmlObject.saveDatumDomain(data);
-        initialize();
     }
 
     @Override
     public void selectElement(ActionEvent actionEvent) {
-        DataSTKRP data = (DataSTKRP) tableChoise.getSelectionModel().getSelectedItem();                       //
-        if (data==null){
-            ControllerAssembly.showError("Не выбрано не одного элемента.");
-            return;
-        }
         try {
+
+            DataSTKRP data = (DataSTKRP) tableChoise.getSelectionModel().getSelectedItem();                       //
+            DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
+
+            if (data == null) {
+                ControllerAssembly.showError("Не выбрано не одного элемента.");
+                return;
+            }
             data.getType().getCalculation().predCalculation();
+
+            if (data.isCalculationMoment()) {
+                data.j = (float) ((data.m / (12 * ((dc.dKA / 2) + dc.lKA))) * (3 * Math.pow((dc.dKA / 2), 2) * ((dc.dKA / 2) + 2 * dc.lKA) + Math.pow(dc.lKA, 2) * ((3 * dc.dKA / 2) + dc.lKA)));
+            }
+
+            CalculationKA.getInstance().setDataSTKRP(data);                                                      //                                                   //
+            CalculationKA.getInstance().calculation(new Object());
+
+            showParametersOfSelectElement(data);
+
+//            ControllerAssembly.getInstance().onProgressOetk(true);
         } catch (Exception e) {
-            ControllerAssembly.showError("Не удалось добавить элемент.");
+            ControllerAssembly.showError("Техническая ошибка.");
             return;
         }
-        CalculationKA.getInstance().setDataSTKRP(data);                                                      //                                                   //
-        CalculationKA.getInstance().calculation(new Object());
-        ControllerAssembly.getInstance().showALL();
-        ControllerAssembly.getInstance().startShowALL();
-        Stage stage= (Stage) btSelect.getScene().getWindow();
-        stage.close();
-        ControllerAssembly.getInstance().onLabelZaimStkrp(data.getNameElement());
     }
 
     @FXML

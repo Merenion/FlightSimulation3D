@@ -24,9 +24,9 @@ public class CalculationSGK extends Calculation {
     @Override
     public Object calculationSingle(Object object) throws Exception {
         try {
+            DataSudSGK d = CalculationKA.getInstance().getDataSudSGK();
+            DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
             if (!getType().getDataElement().isImportData()) {
-                DataSudSGK d = CalculationKA.getInstance().getDataSudSGK();
-                DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
 
                 d.t1 = 60 * d.Tzr / d.Pr1;
                 d.eKA = (float) (2 * (d.uKA / 2) / Math.pow((d.t1 / 2), 2));
@@ -51,8 +51,11 @@ public class CalculationSGK extends Calculation {
                 //Расчет мощности СГК
                 d.w = d.uW_SGK * d.m;
                 d.dGP = (float) (2 * Math.exp((1f / 3f) * Math.log((3f / 4f) / Math.PI * d.vGP)));  //Расчет среднего радиуса гироприбора
-//                d.jSGK = (float) (d.mSGK * (Math.pow(dc.dKA, 2) / 16 + Math.pow(dc.lKA0, 2) / 12));//TODO
-                d.j = 81.7f;
+                d.j = (float) (d.m * (Math.pow(dc.dKA, 2) / 16 + Math.pow(dc.lKA0, 2) / 12));//TODO
+//                d.j = 81.7f;
+            }
+            if (d.isCalculationMoment()){
+                d.j = (float) (d.m * (Math.pow(dc.dKA, 2) / 16 + Math.pow(dc.lKA0, 2) / 12));
             }
             CalculationKA.getInstance().calculation(new Object());
 

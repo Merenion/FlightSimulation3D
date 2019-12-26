@@ -26,11 +26,11 @@ public class CalculationAcumBetSEP extends Calculation {
     @Override
     public Object calculationSingle(Object object) throws Exception {
         try {
+            DataAcumBetSEP d = CalculationKA.getInstance().getDataAcumBetSEP();
+            DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
+            DataElectHaraktSEP dataElectHaraktSEP = CalculationKA.getInstance().getDataElectHaraktSEP();
             if (!getType().getDataElement().isImportData()) {
 
-                DataAcumBetSEP d = CalculationKA.getInstance().getDataAcumBetSEP();
-                DataElectHaraktSEP dataElectHaraktSEP = CalculationKA.getInstance().getDataElectHaraktSEP();
-                DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
 
                 d.m = dataElectHaraktSEP.cAB_AS / d.uwAB;
                 d.mAB1 = d.m / d.nAB;
@@ -38,6 +38,9 @@ public class CalculationAcumBetSEP extends Calculation {
                 d.v = d.m / d.plAB;
                 d.lAB = (float) Math.exp((1f / 3f) * Math.log(d.vAB1));
                 d.jAB1 = d.mAB1 * (d.lAB * d.lAB) / 6;
+                d.j = (float) (d.nAB * (d.jAB1 + d.mAB1 * (0.75 * dc.dKA / 2) * (0.75 * dc.dKA / 2)));
+            }
+            if (d.isCalculationMoment()){
                 d.j = (float) (d.nAB * (d.jAB1 + d.mAB1 * (0.75 * dc.dKA / 2) * (0.75 * dc.dKA / 2)));
             }
             CalculationKA.getInstance().calculation(new Object());

@@ -25,14 +25,17 @@ public class CalculationBVS extends Calculation {
     public Object calculationSingle(Object object) throws Exception {
 
         try {
+            DataBVS d = CalculationKA.getInstance().getDataBVS();
+            DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
             if (!getType().getDataElement().isImportData()) {
 
-                DataBVS d = CalculationKA.getInstance().getDataBVS();
-                DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
 
                 d.m = d.kmBVS / 100 * dc.mKA;
                 d.v = d.m / d.plBVS;
                 d.w = d.uwBVS * d.m;
+                d.j = d.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
+            }
+            if (d.isCalculationMoment()){
                 d.j = d.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
             }
             CalculationKA.getInstance().calculation(new Object());

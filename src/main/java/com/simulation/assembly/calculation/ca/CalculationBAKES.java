@@ -24,15 +24,19 @@ public class CalculationBAKES extends Calculation {
     @Override
     public Object calculationSingle(Object object) throws Exception {
         try {
+            DataBAKES d = CalculationKA.getInstance().getDataBAKES();
+            DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
             if (!getType().getDataElement().isImportData()) {
-                DataBAKES d = CalculationKA.getInstance().getDataBAKES();
-                DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
 
                 d.m = d.kmKIS / 100 * dc.mKA;
                 d.v = d.m / d.plKIS;
                 d.w = d.uwKIS * d.m;
                 d.j = d.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
             }
+            if (d.isCalculationMoment()){
+                d.j = d.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
+            }
+
             CalculationKA.getInstance().calculation(new Object());
 
             ControllerAssembly.addMessInConsoleSintez(MessegeType.INFO, "Расчет Успешен! ", TabTypeSintez.BAKIS);

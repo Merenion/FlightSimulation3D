@@ -6,6 +6,132 @@ import javafx.event.ActionEvent;
 
 public class ControllerImport extends ControllerZaimstv {
 
+    public void importSSD(ActionEvent actionEvent) {
+        try {
+            SaveXmlObject<DataSSD> saveXmlObject = new SaveXmlObject<>();
+            DataSSD ob = saveXmlObject.readData(TabTypeSintez.SSD.getName(), TabTypeSintez.SSD.getTypeName(), TabTypeSintez.SSD.getTypeClass());
+            if (ob == null) return;
+            ob.getType().getCalculation().predCalculation();
+            CalculationKA.getInstance().setDataSSD(ob);
+            CalculationKA.getInstance().calculation(new Object());
+//            ControllerAssembly.getInstance().onProgressRestr(true);
+            startShowALL();
+            showALL();
+            ControllerAssembly.showInfo("Данные успешно импортированны.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            ControllerAssembly.showError("Ошибка при импорте.");
+        }
+    }
+
+    public void importIPMV(ActionEvent actionEvent) {
+        try {
+            SaveXmlObject<DataIPMV> saveXmlObject = new SaveXmlObject<>();
+            DataIPMV ob = saveXmlObject.readData(TabTypeSintez.IPMV.getName(), TabTypeSintez.IPMV.getTypeName(), TabTypeSintez.IPMV.getTypeClass());
+            if (ob == null) return;
+            ob.getType().getCalculation().predCalculation();
+            CalculationKA.getInstance().setDataIPMV(ob);
+            CalculationKA.getInstance().calculation(new Object());
+//            ControllerAssembly.getInstance().onProgressRestr(true);
+            startShowALL();
+            showALL();
+            ControllerAssembly.showInfo("Данные успешно импортированны.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            ControllerAssembly.showError("Ошибка при импорте.");
+        }
+
+    }
+
+    public void importBOKZ(ActionEvent actionEvent) {
+        try {
+            SaveXmlObject<DataBOKZ> saveXmlObject = new SaveXmlObject<>();
+            DataBOKZ ob = saveXmlObject.readData(TabTypeSintez.BOKZ.getName(), TabTypeSintez.BOKZ.getTypeName(), TabTypeSintez.BOKZ.getTypeClass());
+            if (ob == null) return;
+            ob.getType().getCalculation().predCalculation();
+            CalculationKA.getInstance().setDataBOKZ(ob);
+            CalculationKA.getInstance().calculation(new Object());
+//            ControllerAssembly.getInstance().onProgressRestr(true);
+            startShowALL();
+            showALL();
+            ControllerAssembly.showInfo("Данные успешно импортированны.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            ControllerAssembly.showError("Ошибка при импорте.");
+        }
+    }
+
+    public void importDO(ActionEvent actionEvent) {
+        try {
+            SaveXmlObject<DataDO> saveXmlObject = new SaveXmlObject<>();
+            DataDO ob = saveXmlObject.readData(TabTypeSintez.DO.getName(), TabTypeSintez.DO.getTypeName(), TabTypeSintez.DO.getTypeClass());
+            if (ob == null) return;
+            ob.getType().getCalculation().predCalculation();
+            CalculationKA.getInstance().setDataDO(ob);
+            CalculationKA.getInstance().calculation(new Object());
+//            ControllerAssembly.getInstance().onProgressRestr(true);
+            startShowALL();
+            showALL();
+            ControllerAssembly.showInfo("Данные успешно импортированны.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            ControllerAssembly.showError("Ошибка при импорте.");
+        }
+    }
+
+    public void importDUS(ActionEvent actionEvent) {
+        try {
+            SaveXmlObject<DataDUS> saveXmlObject = new SaveXmlObject<>();
+            DataDUS ob = saveXmlObject.readData(TabTypeSintez.DUS.getName(), TabTypeSintez.DUS.getTypeName(), TabTypeSintez.DUS.getTypeClass());
+            if (ob == null) return;
+            ob.getType().getCalculation().predCalculation();
+            CalculationKA.getInstance().setDataDUS(ob);
+            CalculationKA.getInstance().calculation(new Object());
+//            ControllerAssembly.getInstance().onProgressRestr(true);
+            startShowALL();
+            showALL();
+            ControllerAssembly.showInfo("Данные успешно импортированны.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            ControllerAssembly.showError("Ошибка при импорте.");
+        }
+    }
+
+    public void importBks(ActionEvent actionEvent) {
+        try {
+            SaveXmlObject<DataBKS> saveXmlObject = new SaveXmlObject<>();
+            DataBKS ob = saveXmlObject.readData(TabTypeSintez.BKS.getName(), TabTypeSintez.BKS.getTypeName(), TabTypeSintez.BKS.getTypeClass());
+            if (ob == null) return;
+            ob.getType().getCalculation().predCalculation();
+            CalculationKA.getInstance().setDataBKS(ob);
+            CalculationKA.getInstance().calculation(new Object());
+//            ControllerAssembly.getInstance().onProgressRestr(true);
+            startShowALL();
+            showALL();
+            ControllerAssembly.showInfo("Данные успешно импортированны.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            ControllerAssembly.showError("Ошибка при импорте.");
+        }
+    }
+
+    public void importAfu(ActionEvent actionEvent) {
+        try {
+            SaveXmlObject<DataAFU> saveXmlObject = new SaveXmlObject<>();
+            DataAFU ob = saveXmlObject.readData(TabTypeSintez.AFU.getName(), TabTypeSintez.AFU.getTypeName(), TabTypeSintez.AFU.getTypeClass());
+            if (ob == null) return;
+            ob.getType().getCalculation().predCalculation();
+            CalculationKA.getInstance().setDataAFU(ob);
+            CalculationKA.getInstance().calculation(new Object());
+//            ControllerAssembly.getInstance().onProgressRestr(true);
+            startShowALL();
+            showALL();
+            ControllerAssembly.showInfo("Данные успешно импортированны.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            ControllerAssembly.showError("Ошибка при импорте.");
+        }
+    }
 
     public void importRestriction(ActionEvent actionEvent) {
         try {
@@ -367,11 +493,11 @@ public class ControllerImport extends ControllerZaimstv {
 
     public void importBksAndAfu(ActionEvent actionEvent) {
         try {
-            SaveXmlObject<DataBKSandAFU> saveXmlObject = new SaveXmlObject<>();
-            DataBKSandAFU ob = saveXmlObject.readData("БКС и АФУ", "bksafu", DataBKSandAFU.class);
+            SaveXmlObject<DataAFU> saveXmlObject = new SaveXmlObject<>();
+            DataAFU ob = saveXmlObject.readData("БКС и АФУ", "bksafu", DataAFU.class);
             if (ob == null) return;
             ob.getType().getCalculation().predCalculation();
-            CalculationKA.getInstance().setDataBKSandAFU(ob);
+            CalculationKA.getInstance().setDataAFU(ob);
             CalculationKA.getInstance().calculation(new Object());
             startShowALL();
             showALL();

@@ -25,16 +25,19 @@ public class CalculationRezervKA extends Calculation {
     @Override
     public Object calculationSingle(Object object) throws Exception {
         try {
+            DataRezervKA d = CalculationKA.getInstance().getDataRezervKA();
+            DataOtherKA dataOtherKA = CalculationKA.getInstance().getDataOtherKA();
+            DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
             if (!getType().getDataElement().isImportData()) {
 
-                DataRezervKA d = CalculationKA.getInstance().getDataRezervKA();
-                DataOtherKA dataOtherKA = CalculationKA.getInstance().getDataOtherKA();
-                DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
 
                 d.m = d.omRmKA / 100 * dc.mKA;
                 d.v = d.m / d.plRmKA;
-                d.j = dataOtherKA.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
+                d.j = d.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
                 d.w = d.uwRmKA * d.m;
+            }
+            if (d.isCalculationMoment()){
+                d.j = d.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
             }
             CalculationKA.getInstance().calculation(new Object());
 

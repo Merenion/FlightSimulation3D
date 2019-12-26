@@ -23,16 +23,16 @@ public class CalculationBKU extends Calculation {
     @Override
     public Object calculationSingle(Object object) throws Exception {
         try {
+            DataBKU dataBKU = CalculationKA.getInstance().getDataBKU();
+            DataSudSGK dataSudSGK = CalculationKA.getInstance().getDataSudSGK();
+            DataSSKM dataSSKM = CalculationKA.getInstance().getDataSSKM();
+            DataSTKRP dataSTKRP = CalculationKA.getInstance().getDataSTKRP();
+            DataBAKES dataBAKES = CalculationKA.getInstance().getDataBAKES();
+            DataBETS dataBETS = CalculationKA.getInstance().getDataBETS();
+            DataBVS dataBVS = CalculationKA.getInstance().getDataBVS();
+            DataCommonParameters dc0 = CalculationKA.getInstance().getDataCommonParameters();
+            DataOtherBKU dc = CalculationKA.getInstance().getDataOtherBKU();
             if (!getType().getDataElement().isImportData()) {
-                DataBKU dataBKU = CalculationKA.getInstance().getDataBKU();
-                DataSudSGK dataSudSGK = CalculationKA.getInstance().getDataSudSGK();
-                DataSSKM dataSSKM = CalculationKA.getInstance().getDataSSKM();
-                DataSTKRP dataSTKRP = CalculationKA.getInstance().getDataSTKRP();
-                DataBAKES dataBAKES = CalculationKA.getInstance().getDataBAKES();
-                DataBETS dataBETS = CalculationKA.getInstance().getDataBETS();
-                DataBVS dataBVS = CalculationKA.getInstance().getDataBVS();
-                DataCommonParameters dc0 = CalculationKA.getInstance().getDataCommonParameters();
-                DataOtherBKU dc = CalculationKA.getInstance().getDataOtherBKU();
 
                 dataBKU.m =           //Масса БКУ, кг
                         dataSudSGK.m        //Масса СГК, кг
@@ -64,6 +64,9 @@ public class CalculationBKU extends Calculation {
                                 + dataBETS.w      //Мощность аппаратуры БИТС, Вт
                                 + dataBVS.w       //Мощность аппаратуры БВС, Вт
                                 + dc.w;    //Мощность прочих элементов БКУ, Вт
+            }
+            if (dataBKU.isCalculationMoment()){
+                dataBKU.j = dataBKU.m * ((dc0.dKA * dc0.dKA) / 16 + (dc0.lKA * dc0.lKA) / 12);
             }
             CalculationKA.getInstance().calculation(new Object());
 

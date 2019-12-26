@@ -3,11 +3,50 @@ package com.simulation.assembly;
 import com.simulation.assembly.calculation.ca.CalculationKA;
 import com.simulation.assembly.dataCalculation.sintez.*;
 import javafx.event.ActionEvent;
-import javafx.stage.FileChooser;
-
-import java.io.File;
 
 public class ControllerExport extends ControllerManageFieldSintez {
+
+    public void exportSSD(ActionEvent actionEvent) {
+        validateSSD();
+        SaveXmlObject<DataSSD> saveXmlObject = new SaveXmlObject<>();
+        saveXmlObject.saveData(TabTypeSintez.SSD.getName(),TabTypeSintez.SSD.getTypeName(),CalculationKA.getInstance().getDataSSD());
+    }
+
+    public void exportIPMV(ActionEvent actionEvent) {
+        validateIPMV();
+        SaveXmlObject<DataIPMV> saveXmlObject = new SaveXmlObject<>();
+        saveXmlObject.saveData(TabTypeSintez.IPMV.getName(),TabTypeSintez.IPMV.getTypeName(),CalculationKA.getInstance().getDataIPMV());
+    }
+
+    public void exportBOKZ(ActionEvent actionEvent) {
+        validateBOKZ();
+        SaveXmlObject<DataBOKZ> saveXmlObject = new SaveXmlObject<>();
+        saveXmlObject.saveData(TabTypeSintez.BOKZ.getName(),TabTypeSintez.BOKZ.getTypeName(),CalculationKA.getInstance().getDataBOKZ());
+    }
+
+    public void exportDO(ActionEvent actionEvent) {
+        validateDO();
+        SaveXmlObject<DataDO> saveXmlObject = new SaveXmlObject<>();
+        saveXmlObject.saveData(TabTypeSintez.DO.getName(),TabTypeSintez.DO.getTypeName(),CalculationKA.getInstance().getDataDO());
+    }
+
+    public void exportDUS(ActionEvent actionEvent) {
+        validateDUS();
+        SaveXmlObject<DataDUS> saveXmlObject = new SaveXmlObject<>();
+        saveXmlObject.saveData(TabTypeSintez.DUS.getName(),TabTypeSintez.DUS.getTypeName(),CalculationKA.getInstance().getDataDUS());
+    }
+
+    public void exportBks(ActionEvent actionEvent) {
+        validateBKS();
+        SaveXmlObject<DataBKS> saveXmlObject = new SaveXmlObject<>();
+        saveXmlObject.saveData(TabTypeSintez.BKS.getName(),TabTypeSintez.BKS.getTypeName(),CalculationKA.getInstance().getDataBKS());
+    }
+
+    public void exportAFU(ActionEvent actionEvent) {
+        validateAFU();
+        SaveXmlObject<DataAFU> saveXmlObject = new SaveXmlObject<>();
+        saveXmlObject.saveData(TabTypeSintez.AFU.getName(),TabTypeSintez.AFU.getTypeName(),CalculationKA.getInstance().getDataAFU());
+    }
 
     public void exportRestriction(ActionEvent actionEvent) {
         validateSimpleSintez();
@@ -141,17 +180,17 @@ public class ControllerExport extends ControllerManageFieldSintez {
         saveXmlObject.saveData("Конструкция КА","konstr",CalculationKA.getInstance().getDataKonstrKA());
     }
 
-    public void exportBKSandAFU(ActionEvent actionEvent) {
-        validateBKSandAFU();
-        SaveXmlObject<DataBKSandAFU> saveXmlObject = new SaveXmlObject<>();
-        saveXmlObject.saveData("БКС и АФУ","bksafu",CalculationKA.getInstance().getDataBKSandAFU());
-    }
+//    public void exportBKSandAFU(ActionEvent actionEvent) {
+//        validateBKSandAFU();
+//        SaveXmlObject<DataAFU> saveXmlObject = new SaveXmlObject<>();
+//        saveXmlObject.saveData("БКС и АФУ","bksafu",CalculationKA.getInstance().getDataAFU());
+//    }
 
-    public void exportOtherKa(ActionEvent actionEvent) {
-        validateOtherKA();
-        SaveXmlObject<DataOtherKA> saveXmlObject = new SaveXmlObject<>();
-        saveXmlObject.saveData("Прочие элементы КА","prka",CalculationKA.getInstance().getDataOtherKA());
-    }
+//    public void exportOtherKa(ActionEvent actionEvent) {
+//        validateOtherKA();
+//        SaveXmlObject<DataOtherKA> saveXmlObject = new SaveXmlObject<>();
+//        saveXmlObject.saveData("Прочие элементы КА","prka",CalculationKA.getInstance().getDataOtherKA());
+//    }
 
     public void exportRezerv(ActionEvent actionEvent) {
         validateRezerv();

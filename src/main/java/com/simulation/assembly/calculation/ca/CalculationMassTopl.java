@@ -23,11 +23,11 @@ public class CalculationMassTopl extends Calculation {
     @Override
     public Object calculationSingle(Object object) throws Exception {
         try {
+            DataMassTopl d = CalculationKA.getInstance().getDataMassTopl();
+            DataSpeed dataSpeed = CalculationKA.getInstance().getDataSpeed();
+            DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
             if (!getType().getDataElement().isImportData()) {
 
-                DataMassTopl d = CalculationKA.getInstance().getDataMassTopl();
-                DataSpeed dataSpeed = CalculationKA.getInstance().getDataSpeed();
-                DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
 
                 d.mTKAx = (float) (dc.mKA - dc.mKA / Math.exp(dataSpeed.dV / d.jT));
                 //Расчет массы топлива с учетом незабора и гарантийного запаса
@@ -43,6 +43,9 @@ public class CalculationMassTopl extends Calculation {
                 d.m = d.mTKAxnzg + d.mTKAskm;
                 d.mO = d.m * d.kOG / (1 + d.kOG);
                 d.mG = d.m * 1 / (1 + d.kOG);
+            }
+            if (d.isCalculationMoment()){
+                d.j = d.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
             }
             CalculationKA.getInstance().calculation(new Object());
 

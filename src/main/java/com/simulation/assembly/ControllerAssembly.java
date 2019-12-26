@@ -1,8 +1,10 @@
 package com.simulation.assembly;
 
+import com.simulation.assembly.calculation.Calculation;
 import com.simulation.assembly.calculation.ca.*;
 import com.simulation.assembly.calculation.simple.*;
-import com.simulation.assembly.dataCalculation.sintez.DataOtherKA;
+import com.simulation.assembly.controllersImport.add.AddElement;
+import com.simulation.assembly.dataCalculation.sintez.*;
 import com.simulation.assembly.validateRestrictionSimple.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,7 +12,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -33,8 +34,10 @@ public class ControllerAssembly extends ControllerImport {
     @FXML
     public MenuItem btSaveProject;
 
+
     private static List<String> messConsoleSimple = new ArrayList<>();
     private static List<String> messConsoleSintez = new ArrayList<>();
+
 
     private File openFile;
     private Desktop desktop = Desktop.getDesktop();
@@ -77,9 +80,16 @@ public class ControllerAssembly extends ControllerImport {
         calculationMTop = new CalculationMassTopl();
         calculationKDU = new CalculationKDU();
         calculationKonstrKA = new CalculationKonstrKA();
-        calculationBKSandAFU = new CalkulationBKSandAFU();
+        calculationBKSandAFU = new CalkulationBKS();
         calculationOtherKA = new CalculationOtherKA();
         calculationRezerv = new CalculationRezervKA();
+        calculationSSD = new CalculationSSD();
+        calculationIPMV = new CalculationIPMV();
+        calculationBOKZ = new CalculationBOKZ();
+        calculationDO = new CalculationDO();
+        calculationDUS = new CalculationDUS();
+        calculationBKS = new CalkulationBKS();
+        calculationAFU = new CalkulationAFU();
 
         controllerAssembly = this;
 
@@ -753,32 +763,18 @@ public class ControllerAssembly extends ControllerImport {
         showConsoleSintezDebug();
     }
 
-    public void bt_calcul_BKSandAFU(ActionEvent actionEvent) {
-        try {
-            if (validateBKSandAFU()) {
-                ControllerAssembly.getInstance().onLabelZaimBKSandAfu(null);
-                calculationBKSandAFU.getType().getDataElement().setImportData(false);
-                calculationBKSandAFU.calculation(CalculationKA.getInstance().getDataBKSandAFU());
-                showBKSandAFU();
-            }
-        } catch (Exception e) {
-            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.BKS_AND_AFU);
-        }
-        showConsoleSintezDebug();
-    }
-
-    public void bt_calcul_OtherKA(ActionEvent actionEvent) {
-        try {
-            if (validateOtherKA()) {
-                calculationOtherKA.getType().getDataElement().setImportData(false);
-                calculationOtherKA.calculation(CalculationKA.getInstance().getDataOtherKA());
-                showOtherKA();
-            }
-        } catch (Exception e) {
-            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.OTHER_ELEMENT_KA);
-        }
-        showConsoleSintezDebug();
-    }
+//    public void bt_calcul_OtherKA(ActionEvent actionEvent) {
+//        try {
+//            if (validateOtherKA()) {
+//                calculationOtherKA.getType().getDataElement().setImportData(false);
+//                calculationOtherKA.calculation(CalculationKA.getInstance().getDataOtherKA());
+//                showOtherKA();
+//            }
+//        } catch (Exception e) {
+//            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.OTHER_ELEMENT_KA);
+//        }
+//        showConsoleSintezDebug();
+//    }
 
     public void bt_calcul_Rezerv(ActionEvent actionEvent) {
         try {
@@ -790,6 +786,104 @@ public class ControllerAssembly extends ControllerImport {
             }
         } catch (Exception e) {
             ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.RETHERV);
+        }
+        showConsoleSintezDebug();
+    }
+
+    public void bt_calcul_SSD(ActionEvent actionEvent) {
+        try {
+            if (validateSSD()) {
+//                ControllerAssembly.getInstance().onLabelZaimKonstr(null);
+                calculationSSD.getType().getDataElement().setImportData(false);
+                calculationSSD.calculation(CalculationKA.getInstance().getDataSSD());
+                showSSD();
+            }
+        } catch (Exception e) {
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.SSD);
+        }
+        showConsoleSintezDebug();
+    }
+
+    public void bt_calcul_IPMV(ActionEvent actionEvent) {
+        try {
+            if (validateIPMV()) {
+//                ControllerAssembly.getInstance().onLabelZaimKonstr(null);
+                calculationIPMV.getType().getDataElement().setImportData(false);
+                calculationIPMV.calculation(CalculationKA.getInstance().getDataIPMV());
+                showIPMV();
+            }
+        } catch (Exception e) {
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.IPMV);
+        }
+        showConsoleSintezDebug();
+    }
+
+    public void bt_calcul_BOKZ(ActionEvent actionEvent) {
+        try {
+            if (validateBOKZ()) {
+//                ControllerAssembly.getInstance().onLabelZaimKonstr(null);
+                calculationBOKZ.getType().getDataElement().setImportData(false);
+                calculationBOKZ.calculation(CalculationKA.getInstance().getDataBOKZ());
+                showBOKZ();
+            }
+        } catch (Exception e) {
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.BOKZ);
+        }
+        showConsoleSintezDebug();
+    }
+
+    public void bt_calcul_DO(ActionEvent actionEvent) {
+        try {
+            if (validateDO()) {
+//                ControllerAssembly.getInstance().onLabelZaimKonstr(null);
+                calculationDO.getType().getDataElement().setImportData(false);
+                calculationDO.calculation(CalculationKA.getInstance().getDataDO());
+                showDO();
+            }
+        } catch (Exception e) {
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.DO);
+        }
+        showConsoleSintezDebug();
+    }
+
+    public void bt_calcul_DUS(ActionEvent actionEvent) {
+        try {
+            if (validateDUS()) {
+//                ControllerAssembly.getInstance().onLabelZaimKonstr(null);
+                calculationDUS.getType().getDataElement().setImportData(false);
+                calculationDUS.calculation(CalculationKA.getInstance().getDataDUS());
+                showDUS();
+            }
+        } catch (Exception e) {
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.DUS);
+        }
+        showConsoleSintezDebug();
+    }
+
+    public void bt_calcul_BKS(ActionEvent actionEvent) {
+        try {
+            if (validateBKS()) {
+//                ControllerAssembly.getInstance().onLabelZaimKonstr(null);
+                calculationBKS.getType().getDataElement().setImportData(false);
+                calculationBKS.calculation(CalculationKA.getInstance().getDataBKS());
+                showBKS();
+            }
+        } catch (Exception e) {
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.BKS);
+        }
+        showConsoleSintezDebug();
+    }
+
+    public void bt_calcul_AFU(ActionEvent actionEvent) {
+        try {
+            if (validateAFU()) {
+//                ControllerAssembly.getInstance().onLabelZaimKonstr(null);
+                calculationAFU.getType().getDataElement().setImportData(false);
+                calculationAFU.calculation(CalculationKA.getInstance().getDataAFU());
+                showAFU();
+            }
+        } catch (Exception e) {
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.AFU);
         }
         showConsoleSintezDebug();
     }
@@ -812,6 +906,8 @@ public class ControllerAssembly extends ControllerImport {
         fileChooser.getExtensionFilters().add(extFilter);
         File file = fileChooser.showSaveDialog(Main.getStage());
     }
+
+
 
     private void updateSaveBt() {
         if (openFile == null) {
@@ -918,21 +1014,99 @@ public class ControllerAssembly extends ControllerImport {
         alert.showAndWait();
     }
 
-    public void addOtherKaElement(ActionEvent actionEvent) {
-        validateOtherKA();
+    public void addOtherKA(ActionEvent actionEvent) {
+        AddElement addElement = new AddElement();
+        DataOtherKA newData = new DataOtherKA();
+        addElement.addElementNotSave(newData);
+
+        if (newData.m == 0f)
+            return;
+
+        CalculationKA.getInstance().getDataOtherKA().getOthers().add(newData);
+
         try {
             calculationOtherKA.calculation(new DataOtherKA());
         } catch (Exception e) {
-            ControllerAssembly.showError("Ошибка при расчете прочих елементов КА.");
+            ControllerAssembly.showError("Ошибка при добавлении элемента");
         }
         initotherKA();
         showOtherKA();
     }
 
-    public void addOtherKaElementZaimsv(ActionEvent actionEvent) {
+    public void removeOtherKA(ActionEvent actionEvent) {
+        String nameDataElement = ((ViewDataOtherKA) tableOtherKA.getSelectionModel().getSelectedItem()).getNameElement();
+        if (nameDataElement == null){
+            return;
+        }
+        DataElement dataElementE = null;
+        SaveXmlObject<DataElement> saveXmlObject = new SaveXmlObject<>();
+        for (DataElement dataElement:CalculationKA.getInstance().getDataOtherKA().getOthers()){
+            if (dataElement.getNameElement().equals(nameDataElement))   {
+                dataElementE = dataElement;
+            }
+        }
+        CalculationKA.getInstance().getDataOtherKA().getOthers().remove(dataElementE);
+        try {
+            calculationOtherKA.calculation(new DataOtherKA());
+        } catch (Exception e) {
+            ControllerAssembly.showError("Ошибка при расчете прочих элементов");
+        }
+        initotherKA();
+        showOtherKA();
     }
 
-    public void actionShowParamRezult(ActionEvent actionEvent) {
-        showSinezKA();
+    public void actionIteration(ActionEvent actionEvent) {
+        try {
+            calculationOETK.calculation(new DataOETK());
+            calculationSPPE.calculation(new DataSPPE());
+            calculationVRL.calculation(new DataVRL());
+            calculationSSD.calculation(new DataSSD());
+            calculationOtherCA.calculation(new DataOtherCA());
+            calculationCA.calculation(new DataCa());
+            calculationBVS.calculation(new DataBVS());
+            calculationSTKRP.calculation(new DataSTKRP());
+            calculationBAKES.calculation(new DataBAKES());
+            calculationBETS.calculation(new DataBETS());
+            calculationBKU.calculation(new DataBKU());
+            calculationBKU.calculation(new DataBKU());
+            calculationSGK.calculation(new DataSudSGK());
+            calculationSSKM.calculation(new DataSSKM());
+            calculationIPMV.calculation(new DataIPMV());
+            calculationBOKZ.calculation(new DataBOKZ());
+            calculationDO.calculation(new DataDO());
+            calculationDUS.calculation(new DataDUS());
+            calculationPasivSOTR.calculation(new DataPasivSOTR());
+            calculationActivSOTR.calculation(new DataActivSOTR());
+            calculationSOTR.calculation(new DataSOTR());
+            calculationElectrTehnSEP.calculation(new DataElectHaraktSEP());
+            calculationAcumBet.calculation(new DataAcumBetSEP());
+            calculationKAS.calculation(new DataKAS());
+            calculationSUNbet.calculation(new DataSumBetSEP());
+            calculationSpeed.calculation(new DataSpeed());
+            calculationMTop.calculation(new DataMassTopl());
+            calculationKDU.calculation(new DataKDU());
+            calculationKonstrKA.calculation(new DataKonstrKA());
+            calculationBKS.calculation(new DataBKS());
+            calculationAFU.calculation(new DataAFU());
+            calculationOtherKA.calculation(new DataOtherKA());
+            calculationRezerv.calculation(new DataRezervKA());
+            actionShowParamRezult(new ActionEvent());
+            showALL();
+            startShowALL();
+        }catch (Exception e){
+            showError("Ошибка при расчете - итерации");
+        }
     }
+
+//    public void addOtherKaElement(ActionEvent actionEvent) {
+//        validateOtherKA();
+//        try {
+//            calculationOtherKA.calculation(new DataOtherKA());
+//        } catch (Exception e) {
+//            ControllerAssembly.showError("Ошибка при расчете прочих елементов КА.");
+//        }
+//        initotherKA();
+//        showOtherKA();
+//    }
+
 }

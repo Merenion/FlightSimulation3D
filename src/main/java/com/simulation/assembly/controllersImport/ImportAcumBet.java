@@ -5,12 +5,18 @@ import com.simulation.assembly.SaveXmlObject;
 import com.simulation.assembly.TabTypeSintez;
 import com.simulation.assembly.ValidateValue;
 import com.simulation.assembly.calculation.ca.CalculationKA;
+import com.simulation.assembly.controllersImport.add.AddElement;
+import com.simulation.assembly.controllersImport.add.AddElementAcum;
+import com.simulation.assembly.controllersImport.add.AddElementDontHaveW;
 import com.simulation.assembly.dataCalculation.sintez.DataAcumBetSEP;
+import com.simulation.assembly.dataCalculation.sintez.DataCommonParameters;
 import com.simulation.assembly.dataCalculation.sintez.DataElement;
+import com.simulation.assembly.dataCalculation.sintez.DataOETK;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
@@ -20,9 +26,7 @@ import java.util.List;
 
 public class ImportAcumBet extends ImportElement {
 
-    public TextField mAB;
-    public TextField vAB;
-    public TextField jAB_KA;
+    public Label nAB;
 
     private List<DataElement> listLoad = new ArrayList<>();
 
@@ -30,51 +34,54 @@ public class ImportAcumBet extends ImportElement {
 
     @Override
     public void addElement(ActionEvent actionEvent) {
-        DataAcumBetSEP data = new DataAcumBetSEP();                                                                     //
-
         try {
-            data.m = ValidateValue.conversionTextToFloat(mAB.getText());                                  //
-            data.v = ValidateValue.conversionTextToFloat(vAB.getText());
-            data.j = ValidateValue.conversionTextToFloat(jAB_KA.getText());
+            int sizeList = listLoad.size();
+            AddElement addElement = new AddElementAcum();
+            addElement.addElement(new DataAcumBetSEP());                                                          //
+            initialize();
+            if (sizeList + 1 == listLoad.size()) {
+                ControllerAssembly.showInfo("Элемент успешно добавлен.");
+            }
         } catch (Exception e) {
-            ControllerAssembly.showError("Не верно введеные данные.");
-            return;
+            e.printStackTrace();
+            ControllerAssembly.showError("Техническая ошибка.");
         }
-
-        data.setNameElement(nameElement.getText());
-        if (listLoad.contains(data)) {
-            ControllerAssembly.showError("Элемент с таким названием уже имеется!\nВыберите другое название либо\nудалите имеющийся элемент.");
-            return;
-        }
-        if (data.getNameElement().equals("")) {
-            ControllerAssembly.showError("Название элемента не задано.");
-            return;
-        }
-        SaveXmlObject<DataElement> saveXmlObject = new SaveXmlObject<>();
-        saveXmlObject.saveDatumDomain(data);
-        initialize();
     }
 
     @Override
     public void selectElement(ActionEvent actionEvent) {
-        DataAcumBetSEP data = (DataAcumBetSEP) tableChoise.getSelectionModel().getSelectedItem();                       //
-        if (data==null){
-            ControllerAssembly.showError("Не выбрано не одного элемента.");
-            return;
-        }
         try {
+
+            DataAcumBetSEP data = (DataAcumBetSEP) tableChoise.getSelectionModel().getSelectedItem();                       //
+            DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
+
+            if (data == null) {
+                ControllerAssembly.showError("Не выбрано не одного элемента.");
+                return;
+            }
             data.getType().getCalculation().predCalculation();
+
+            if (data.isCalculationMoment()) {
+                data.j = (float) ((data.m / (12 * ((dc.dKA / 2) + dc.lKA))) * (3 * Math.pow((dc.dKA / 2), 2) * ((dc.dKA / 2) + 2 * dc.lKA) + Math.pow(dc.lKA, 2) * ((3 * dc.dKA / 2) + dc.lKA)));
+            }
+
+            CalculationKA.getInstance().setDataAcumBetSEP(data);                                                      //                                                   //
+            CalculationKA.getInstance().calculation(new Object());
+
+            showParametersOfSelectElement(data);
+
+//            ControllerAssembly.getInstance().onProgressOetk(true);
         } catch (Exception e) {
-            ControllerAssembly.showError("Не удалось добавить элемент.");
+            ControllerAssembly.showError("Техническая ошибка.");
             return;
         }
-        CalculationKA.getInstance().setDataAcumBetSEP(data);                                                      //                                                   //
-        CalculationKA.getInstance().calculation(new Object());
-        ControllerAssembly.getInstance().showALL();
-        ControllerAssembly.getInstance().startShowALL();
-        Stage stage = (Stage) btSelect.getScene().getWindow();
-        stage.close();
-        ControllerAssembly.getInstance().onLabelZaimAcumBet(data.getNameElement());
+    }
+
+    @Override
+    public void showParametersOfSelectElement(DataElement data) {
+        super.showParametersOfSelectElement(data);
+        if (nAB!=null)
+            nAB.setText(String.valueOf(((DataAcumBetSEP)data).nAB));
     }
 
     @FXML

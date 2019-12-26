@@ -24,10 +24,10 @@ public class CalculationSpeed extends Calculation {
     @Override
     public Object calculationSingle(Object object) throws Exception {
         try {
+            DataSpeed d = CalculationKA.getInstance().getDataSpeed();
+            DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
             if (!getType().getDataElement().isImportData()) {
 
-                DataSpeed d = CalculationKA.getInstance().getDataSpeed();
-                DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
 
                 //Определение добавки скорости, необходимой для перевода КА с низкой круговой
                 //орбиты на эллиптическую орбиту

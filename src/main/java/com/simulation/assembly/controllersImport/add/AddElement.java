@@ -92,9 +92,6 @@ public class AddElement {
             ControllerAssembly.showError("Масса не задана!");
             return false;
         }
-        if (wElement.getText().equals("")) {
-            ControllerAssembly.showInfo("Электропотребление не задано!\nЗначению электропотребления будет ПРИСВОЕН 0.");
-        }
         if (choise_cilindr.isSelected() && (cilindr_l.getText().equals("") || cilindr_d.getText().equals(""))) {
             ControllerAssembly.showError("Параметры цилиндра не заданы!");
             return false;
@@ -110,6 +107,9 @@ public class AddElement {
         if (choise_moment_value.isSelected() && moment.getText().equals("")) {
             ControllerAssembly.showError("Момент инерции не задан!");
             return false;
+        }
+        if (wElement.getText().equals("")) {
+            ControllerAssembly.showInfo("Электропотребление не задано!\nЗначению электропотребления будет ПРИСВОЕН 0.");
         }
         return true;
     }
@@ -131,12 +131,12 @@ public class AddElement {
         try {
             Stage stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource(path));
-            Scene scene = new Scene(root, 413, 391);
+            Scene scene = new Scene(root, 416, 463);
             stage.setResizable(false);
             stage.setTitle(title);
             stage.setScene(scene);
             stage.initModality(Modality.WINDOW_MODAL);
-            stage.initOwner(nameElement.getScene().getWindow());
+            stage.initOwner(ControllerAssembly.getInstance().paneRestriction.getScene().getWindow());
             stage.showAndWait();
         } catch (IOException e) {
             ControllerAssembly.showInfo("Возникли технические неполадки");
@@ -172,18 +172,36 @@ public class AddElement {
 
     public void addElement(DataElement d) {
         showWindowAdd("/assembly/addElement.fxml", "Добавить элемент");
-        try {
-            d.setNameElement(getNewData().nameElement);
-            d.m = getNewData().m;
-            d.v = getNewData().v;
-            d.w = getNewData().w;
-            d.j = getNewData().j;
-            d.setCalculationMoment(getNewData().j_calculation);
-        } catch (Exception e) {
-            ControllerAssembly.showError("Не верно введеные данные.");
-            return;
+        if (getNewData()!=null) {
+            try {
+                d.setNameElement(getNewData().nameElement);
+                d.m = getNewData().m;
+                d.v = getNewData().v;
+                d.w = getNewData().w;
+                d.j = getNewData().j;
+                d.setCalculationMoment(getNewData().j_calculation);
+            } catch (Exception e) {
+                ControllerAssembly.showError("Не верно введеные данные.");
+                return;
+            }
+            SaveXmlObject<DataElement> saveXmlObject = new SaveXmlObject<>();
+            saveXmlObject.saveDatumDomain(d);
         }
-        SaveXmlObject<DataElement> saveXmlObject = new SaveXmlObject<>();
-        saveXmlObject.saveDatumDomain(d);
+    }
+
+    public void addElementNotSave(DataElement d) {
+        showWindowAdd("/assembly/addElement.fxml", "Добавить элемент");
+        if (getNewData()!=null) {
+            try {
+                d.setNameElement(getNewData().nameElement);
+                d.m = getNewData().m;
+                d.v = getNewData().v;
+                d.w = getNewData().w;
+                d.j = getNewData().j;
+                d.setCalculationMoment(getNewData().j_calculation);
+            } catch (Exception e) {
+                ControllerAssembly.showError("Не верно введеные данные.");
+            }
+        }
     }
 }

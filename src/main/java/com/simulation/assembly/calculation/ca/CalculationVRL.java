@@ -34,8 +34,11 @@ public class CalculationVRL extends Calculation {
                 d.v = d.m / d.plVRL;
                 d.w = d.m * d.uwVRL;
                 //Расчет приведенного момента инерции КА с текущими габаритами и массой
-                d.j = 1092.5f; //TODO
-//            d.jVRL=d.mVRL*((dc.dKA*dc.dKA)/16+(dc.lKA*dc.lKA)/12);
+//                d.j = 1092.5f; //TODO
+                d.j = d.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
+            }
+            if (d.isCalculationMoment()){
+                d.j = d.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
             }
             CalculationKA.getInstance().calculation(new Object());
 

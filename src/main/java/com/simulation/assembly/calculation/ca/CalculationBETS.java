@@ -24,14 +24,17 @@ public class CalculationBETS extends Calculation {
     @Override
     public Object calculationSingle(Object object) throws Exception {
         try {
+            DataBETS d = CalculationKA.getInstance().getDataBETS();
+            DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
             if (!getType().getDataElement().isImportData()) {
 
-                DataBETS d = CalculationKA.getInstance().getDataBETS();
-                DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
 
                 d.m = d.kmBITS / 100 * dc.mKA;
                 d.v = d.m / d.plBITS;
                 d.w = d.uwBITS * d.m;
+                d.j = d.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
+            }
+            if (d.isCalculationMoment()){
                 d.j = d.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
             }
             CalculationKA.getInstance().calculation(new Object());

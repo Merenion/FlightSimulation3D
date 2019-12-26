@@ -24,12 +24,12 @@ public class CalculationKAS extends Calculation {
     @Override
     public Object calculationSingle(Object object) throws Exception {
         try {
+            DataKAS d = CalculationKA.getInstance().getDataKAS();
+            DataElectHaraktSEP dataElectHaraktSEP = CalculationKA.getInstance().getDataElectHaraktSEP();
+            DataAcumBetSEP dataAcumBetSEP = CalculationKA.getInstance().getDataAcumBetSEP();
+            DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
             if (!getType().getDataElement().isImportData()) {
 
-                DataKAS d = CalculationKA.getInstance().getDataKAS();
-                DataElectHaraktSEP dataElectHaraktSEP = CalculationKA.getInstance().getDataElectHaraktSEP();
-                DataAcumBetSEP dataAcumBetSEP = CalculationKA.getInstance().getDataAcumBetSEP();
-                DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
 
                 //Расчет массы стабилизатора напряжения
                 d.mSN = dataElectHaraktSEP.wKA / d.uwSN;
@@ -47,6 +47,9 @@ public class CalculationKAS extends Calculation {
                 //Расчет массы КАС с учетом массы корпусов
                 d.m = d.mKAS + d.mkKas;
                 d.v = (1 + d.ProzV_vKAS / 100) * d.vKAS;
+                d.j = d.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
+            }
+            if (d.isCalculationMoment()){
                 d.j = d.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
             }
             CalculationKA.getInstance().calculation(new Object());

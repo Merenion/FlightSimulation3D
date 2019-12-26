@@ -4,45 +4,57 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Line?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="670.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.simulation.assembly.controllersImport.ImportOtherBKU">
     <children>
-        <TableView fx:id="tableChoise" layoutX="17.0" layoutY="21.0" prefHeight="293.0" prefWidth="220.0">
-            <columns>
-                <TableColumn fx:id="columnChoise" prefWidth="219.0" text="Имеющиеся элементы" />
-            </columns>
-        </TableView>
-        <Button fx:id="btSelect" defaultButton="true" layoutX="69.0" layoutY="341.0" mnemonicParsing="false" onAction="#selectElement" prefHeight="25.0" prefWidth="117.0" text="Выбрать" />
-        <AnchorPane layoutX="261.0" layoutY="14.0" prefHeight="378.0" prefWidth="399.0">
-            <children>
-                <Label layoutX="117.0" layoutY="6.0" text="Добавить в имеющиеся">
-                    <font>
-                        <Font name="System Bold" size="12.0" />
-                    </font>
-                </Label>
-                <TextField fx:id="mPrBKU" layoutX="296.0" layoutY="46.0" prefHeight="25.0" prefWidth="82.0" />
-                <TextField fx:id="vPrBKU" layoutX="296.0" layoutY="78.0" prefHeight="25.0" prefWidth="82.0" />
-                <TextField fx:id="wPrBKU" layoutX="296.0" layoutY="111.0" prefHeight="25.0" prefWidth="82.0" />
-                <TextField fx:id="jPrBKU" layoutX="296.0" layoutY="144.0" prefHeight="25.0" prefWidth="82.0" />
-                <Button layoutX="155.0" layoutY="329.0" mnemonicParsing="false" onAction="#addElement" prefHeight="25.0" prefWidth="92.0" text="Добавить" />
-                <TextField fx:id="nameElement" layoutX="208.0" layoutY="289.0" prefHeight="25.0" prefWidth="171.0" promptText="non name" />
-                <Label layoutX="14.0" layoutY="293.0" prefHeight="17.0" prefWidth="117.0" text="Название Элемента" />
-                <Label layoutX="2.0" layoutY="53.0" prefHeight="17.0" prefWidth="267.0" text="Масса, кг" />
-                <Label layoutX="2.0" layoutY="86.0" prefHeight="17.0" prefWidth="259.0" text="Объем аппаратуры, м3" />
-                <Label layoutX="2.0" layoutY="119.0" prefHeight="17.0" prefWidth="267.0" text="Средняя мощность энергопотребления, Вт" />
-            <Label layoutX="2.0" layoutY="148.0" prefHeight="17.0" prefWidth="282.0" text="Момент инерции приборов,&quot;по V КА&quot; от попереч оси, кг м2" />
-            </children>
-        </AnchorPane>
-        <Line endX="12.0" endY="-373.0" layoutX="241.0" layoutY="396.0" startX="12.0" startY="-23.5" stroke="#908e8e" />
-        <Button layoutX="209.0" layoutY="341.0" mnemonicParsing="false" onAction="#actionDeleteElement" prefHeight="25.0" prefWidth="28.0" text="×">
-            <effect>
-                <ColorAdjust brightness="-0.02" saturation="0.09" />
-            </effect>
-        </Button>
+      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="412.0" prefWidth="918.0">
+         <children>
+            <AnchorPane layoutX="567.0" prefHeight="361.0" prefWidth="369.0">
+               <children>
+                  <Label layoutX="64.0" layoutY="14.0" text="Подтвержденные параметры &#10;      выбранного элемента">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <VBox layoutX="292.0" layoutY="68.0" prefHeight="127.0" prefWidth="98.0">
+                     <children>
+                        <Label fx:id="m" prefHeight="30.0" prefWidth="92.0" text="0.000" />
+                        <Label fx:id="v" prefHeight="30.0" prefWidth="91.0" text="0.000" />
+                        <Label fx:id="j" prefHeight="30.0" prefWidth="91.0" text="0.000" />
+                        <Label fx:id="w" prefHeight="30.0" prefWidth="92.0" text="0.000" />
+                     </children>
+                  </VBox>
+                  <VBox layoutY="68.0" prefHeight="127.0" prefWidth="284.0">
+                     <children>
+                        <Label prefHeight="30.0" prefWidth="372.0" text="Масса, кг" />
+                        <Label prefHeight="30.0" prefWidth="372.0" text="Объем,м" />
+                        <Label prefHeight="30.0" prefWidth="372.0" text="Момент инерции приборов,&quot;по V КА&quot;&#10;от попереч оси, кг м2" />
+                        <Label prefHeight="30.0" prefWidth="258.0" text="Средняя мощность энергопотребления, Вт" />
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="406.0" prefWidth="409.0">
+               <children>
+                  <TableView fx:id="tableChoise" layoutX="61.0" layoutY="25.0" prefHeight="293.0" prefWidth="313.0">
+                     <columns>
+                        <TableColumn fx:id="columnChoise" prefWidth="312.0" text="Имеющиеся элементы" />
+                     </columns>
+                  </TableView>
+                  <Button fx:id="btSelect" defaultButton="true" layoutX="135.0" layoutY="331.0" mnemonicParsing="false" onAction="#selectElement" prefHeight="25.0" prefWidth="158.0" text="Выбрать" />
+                  <Button layoutX="135.0" layoutY="368.0" mnemonicParsing="false" onAction="#addElement" prefHeight="25.0" prefWidth="158.0" text="Добавить новый элемент" />
+                  <Button layoutX="309.0" layoutY="331.0" mnemonicParsing="false" onAction="#actionDeleteElement" prefHeight="25.0" prefWidth="28.0" text="×">
+                     <effect>
+                        <ColorAdjust brightness="-0.02" saturation="0.09" />
+                     </effect>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
     </children>
 </AnchorPane>

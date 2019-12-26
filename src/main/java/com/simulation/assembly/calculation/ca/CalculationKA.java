@@ -49,9 +49,15 @@ public class CalculationKA extends Calculation {
     private DataMassTopl dataMassTopl;
     private DataKDU dataKDU;
     private DataKonstrKA dataKonstrKA;
-    private DataBKSandAFU dataBKSandAFU;
+    private DataBKS dataBKS;
+    private DataAFU dataAFU;
     private DataOtherKA dataOtherKA;
     private DataRezervKA dataRezervKA;
+    private DataSSD dataSSD;
+    private DataIPMV dataIPMV;
+    private DataBOKZ dataBOKZ;
+    private DataDO dataDO;
+    private DataDUS dataDUS;
 
     public CalculationKA() {
         init();
@@ -84,9 +90,17 @@ public class CalculationKA extends Calculation {
                         + dataMassTopl.m                                         //Масса топлива КДУ
                         + dataKDU.m                                         //Масса конструкции КДУ
                         + dataKonstrKA.m                                          //Масса конструкции КА
-                        + dataBKSandAFU.m                                     //Масса БКС и АФУ, кг
+                        + dataAFU.m                                     //Масса БКС и АФУ, кг
+                        + dataBKS.m
                         + dataOtherKA.m
                         + dataRezervKA.m
+                        + dataSSD.m
+                        + dataIPMV.m
+                        + dataBOKZ.m
+                        + dataDO.m
+                        + dataDUS.m
+                        + dataAFU.m
+                        + dataBKS.m
         ;
 
         //Расчет текущих объемов КА
@@ -100,6 +114,13 @@ public class CalculationKA extends Calculation {
                         + dataSSKM.v                                 //Объем ССКМ, м3
                         + dataSTKRP.v                                 //Объем СТКРП, м3
                         + dataBAKES.v                                   //Объем КИС, м3
+
+                        + dataSSD.v
+                        + dataIPMV.v
+                        + dataBOKZ.v
+                        + dataDO.v
+                        + dataDUS.v
+
                         + dataBETS.v                                  //Объем БИТС, м3
                         + dataBVS.v                                   //Объем КИС, м3
                         + dataOtherBKU.v)                                 //Объем прочих элементов БКУ
@@ -114,7 +135,8 @@ public class CalculationKA extends Calculation {
                         / (dataCommonParameters.kpoPO / 100)
                         + dataKDU.v       //Объем Отсека КА, где располагается КДУ
                         + dataKonstrKA.v                                   //Объем конструкции КА
-                        + (dataBKSandAFU.v
+                        + (dataAFU.v
+                        + dataBKS.v
                         + dataOtherKA.v
                         + dataRezervKA.v)                              //Объем БКС и АФУ, м3
                         / (dataCommonParameters.kpoPO / 100);
@@ -140,6 +162,13 @@ public class CalculationKA extends Calculation {
                         + dataBETS.j     //Момент инерции БИТС, кг м2
                         + dataBVS.j      //Момент инерции КИС, кг м2
                         + dataOtherBKU.j    //Момент инерции прочих элементов БКУ
+
+                        + dataSSD.j
+                        + dataIPMV.j
+                        + dataBOKZ.j
+                        + dataDO.j
+                        + dataDUS.j
+
                         //Момент инерции СОТР
                         + dataPasivSOTR.j     //Момент инерции ЭВТИ, кг м2
 //                        + dataSOTR.j     //Максимальное значение момента инерции СОТР,
@@ -153,8 +182,8 @@ public class CalculationKA extends Calculation {
                 )
                         / dataCommonParameters.krkKA
                         + dataKonstrKA.j      //Момент инерции  конструкции КА
-                        + dataBKSandAFU.jBKS      //Приведенный момент инерции БКС
-                        + dataBKSandAFU.jAFU     //Приведенный момент инерции АФУ
+                        + dataAFU.j      //Приведенный момент инерции БКС
+                        + dataAFU.j     //Приведенный момент инерции АФУ
                         + dataOtherKA.j
                         + dataRezervKA.j
         ;
@@ -169,8 +198,9 @@ public class CalculationKA extends Calculation {
                         + dataOtherCA.w     //Среднесуточная мощность прочих элементов ЦА
                         //Масса БКУ, кг
                         + dataSudSGK.w      //Среднесуточная мощность СГК
+
                         + dataSSKM.w    //Среднесуточная мощность ССКМ, Вт
-                        + dataSTKRP.v    //Среднесуточная мощность СТКРП, Вт
+                        + dataSTKRP.w    //Среднесуточная мощность СТКРП, Вт
                         + dataBAKES.w      //Среднесуточная мощность КИС, Вт
                         + dataBETS.w     //Среднесуточная мощность БИТС, Вт
                         + dataBVS.w      //Среднесуточная мощность КИС, Вт
@@ -232,10 +262,16 @@ public class CalculationKA extends Calculation {
         dataMassTopl = new DataMassTopl();
         dataKDU = new DataKDU();
         dataKonstrKA = new DataKonstrKA();
-        dataBKSandAFU = new DataBKSandAFU();
+        dataBKS = new DataBKS();
+        dataAFU = new DataAFU();
         dataOtherKA = new DataOtherKA();
         dataRezervKA = new DataRezervKA();
         dataBAKES = new DataBAKES();
+        dataSSD = new DataSSD();
+        dataIPMV = new DataIPMV();
+        dataBOKZ = new DataBOKZ();
+        dataDO = new DataDO();
+        dataDUS = new DataDUS();
     }
 
     public static CalculationKA getInstance() {
@@ -449,12 +485,12 @@ public class CalculationKA extends Calculation {
         this.dataKonstrKA = dataKonstrKA;
     }
 
-    public DataBKSandAFU getDataBKSandAFU() {
-        return dataBKSandAFU;
+    public DataAFU getDataAFU() {
+        return dataAFU;
     }
 
-    public void setDataBKSandAFU(DataBKSandAFU dataBKSandAFU) {
-        this.dataBKSandAFU = dataBKSandAFU;
+    public void setDataAFU(DataAFU dataAFU) {
+        this.dataAFU = dataAFU;
     }
 
     public DataOtherKA getDataOtherKA() {
@@ -471,5 +507,53 @@ public class CalculationKA extends Calculation {
 
     public void setDataRezervKA(DataRezervKA dataRezervKA) {
         this.dataRezervKA = dataRezervKA;
+    }
+
+    public DataSSD getDataSSD() {
+        return dataSSD;
+    }
+
+    public void setDataSSD(DataSSD dataSSD) {
+        this.dataSSD = dataSSD;
+    }
+
+    public DataIPMV getDataIPMV() {
+        return dataIPMV;
+    }
+
+    public void setDataIPMV(DataIPMV dataIPMV) {
+        this.dataIPMV = dataIPMV;
+    }
+
+    public DataBOKZ getDataBOKZ() {
+        return dataBOKZ;
+    }
+
+    public void setDataBOKZ(DataBOKZ dataBOKZ) {
+        this.dataBOKZ = dataBOKZ;
+    }
+
+    public DataDO getDataDO() {
+        return dataDO;
+    }
+
+    public void setDataDO(DataDO dataDO) {
+        this.dataDO = dataDO;
+    }
+
+    public DataDUS getDataDUS() {
+        return dataDUS;
+    }
+
+    public void setDataDUS(DataDUS dataDUS) {
+        this.dataDUS = dataDUS;
+    }
+
+    public DataBKS getDataBKS() {
+        return dataBKS;
+    }
+
+    public void setDataBKS(DataBKS dataBKS) {
+        this.dataBKS = dataBKS;
     }
 }

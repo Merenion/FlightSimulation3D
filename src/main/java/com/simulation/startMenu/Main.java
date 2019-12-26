@@ -23,7 +23,7 @@ public class Main extends Application {
         Main.stage = stage;
         Parent root = FXMLLoader.load(getClass().getResource("/assembly/startMenu/StartMenu.fxml"));
         stage.setTitle("Выбор программы");
-        Scene scene= new Scene(root,301,225);
+        Scene scene= new Scene(root,655,338);
         stage.setScene(scene);
         stage.show();
     }

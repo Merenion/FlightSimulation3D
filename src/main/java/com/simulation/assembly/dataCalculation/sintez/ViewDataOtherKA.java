@@ -5,6 +5,7 @@ import javafx.beans.property.SimpleStringProperty;
 public class ViewDataOtherKA {
 
     private String nameElement = "non Name";
+    private long id;
 
     private SimpleStringProperty omPrKA= new SimpleStringProperty(); //Относительная масса прочих элементов КА, %
     private SimpleStringProperty plPrKA=new SimpleStringProperty(); //плотность компоновки прочих элементов КА, кг/м3
@@ -28,6 +29,7 @@ public class ViewDataOtherKA {
         viewDataOtherKA.setwPrKA( String.valueOf(dataOtherKA.w));
 
         viewDataOtherKA.nameElement = dataOtherKA.getNameElement();
+        viewDataOtherKA.setId(dataOtherKA.getId());
         return viewDataOtherKA;
     }
 
@@ -121,5 +123,13 @@ public class ViewDataOtherKA {
 
     public void setwPrKA(String wPrKA) {
         this.wPrKA.set(wPrKA);
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

@@ -71,6 +71,10 @@ public class CalculationOETK extends Calculation {
                 //момент
                 CalculationKA.getInstance().calculation(new Object());
                 d.j = (float) ((d.m /(12*((dc.dKA/2)+dc.lKA)))*(3*Math.pow((dc.dKA/2),2)*((dc.dKA/2)+2*dc.lKA)+Math.pow(dc.lKA,2)*((3*dc.dKA/2)+dc.lKA)));
+
+                if (d.isCalculationMoment()){
+                    d.j = (float) ((d.m /(12*((dc.dKA/2)+dc.lKA)))*(3*Math.pow((dc.dKA/2),2)*((dc.dKA/2)+2*dc.lKA)+Math.pow(dc.lKA,2)*((3*dc.dKA/2)+dc.lKA)));
+                }
                 CalculationKA.getInstance().calculation(new Object());
 
 
@@ -78,6 +82,10 @@ public class CalculationOETK extends Calculation {
                     return d;
 
             } else {
+
+                if (d.isCalculationMoment()){
+                    d.j = d.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
+                }
                 CalculationKA.getInstance().calculation(new Object());
             }
             ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.OETK);

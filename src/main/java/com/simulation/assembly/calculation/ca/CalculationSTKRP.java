@@ -24,14 +24,17 @@ public class CalculationSTKRP extends Calculation {
     @Override
     public Object calculationSingle(Object object) throws Exception {
         try {
+            DataSTKRP d = CalculationKA.getInstance().getDataSTKRP();
+            DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
             if (!getType().getDataElement().isImportData()) {
 
-                DataSTKRP d = CalculationKA.getInstance().getDataSTKRP();
-                DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
 
                 d.m = d.kmSTKRP / 100 * dc.mKA;
                 d.v = d.m / d.plSTKRP;
                 d.w = d.uwSTKRP * d.m;
+                d.j = d.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
+            }
+            if (d.isCalculationMoment()){
                 d.j = d.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
             }
             CalculationKA.getInstance().calculation(new Object());

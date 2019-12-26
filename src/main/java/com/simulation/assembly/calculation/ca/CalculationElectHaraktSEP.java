@@ -26,11 +26,11 @@ public class CalculationElectHaraktSEP extends Calculation {
     @Override
     public Object calculationSingle(Object object) throws Exception {
         try {
+            DataElectHaraktSEP d = CalculationKA.getInstance().getDataElectHaraktSEP();
+            DataCa dataCa = CalculationKA.getInstance().getDataCa();
+            DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
             if (!getType().getDataElement().isImportData()) {
 
-                DataElectHaraktSEP d = CalculationKA.getInstance().getDataElectHaraktSEP();
-                DataCa dataCa = CalculationKA.getInstance().getDataCa();
-                DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
 
                 //Расчет среднусуточной мощности КА, Вт
                 d.wsSEP = d.kspSEP / 100 * dc.wKA_wsSEP;
@@ -53,6 +53,10 @@ public class CalculationElectHaraktSEP extends Calculation {
                 d.cAB = (d.kzAC + d.kzSR) / 100 * d.cABmin + d.cABmin;
                 //Расчет емкости АБ с учетом изменения мощности за срок АС
                 d.cAB_AS = d.cAB / (d.kdowAB / 100);
+            }
+
+            if (d.isCalculationMoment()){
+                d.j = d.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
             }
             CalculationKA.getInstance().calculation(new Object());
 

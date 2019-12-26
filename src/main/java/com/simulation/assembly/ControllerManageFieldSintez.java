@@ -358,17 +358,22 @@ public class ControllerManageFieldSintez extends ControllerAssemblyField {
     }
 
     /**
-     * показать БКС и АФУ
+     * показать БКС
      */
-    public void showBKSandAFU() {
-        mBKS.setText(String.valueOf(CalculationKA.getInstance().getDataBKSandAFU().mBKS));
-        vBKS.setText(String.valueOf(CalculationKA.getInstance().getDataBKSandAFU().vBKS));
-        mAFU.setText(String.valueOf(CalculationKA.getInstance().getDataBKSandAFU().mAFU));
-        vAFU.setText(String.valueOf(CalculationKA.getInstance().getDataBKSandAFU().vAFU));
-        mBKS_AFU.setText(String.valueOf(CalculationKA.getInstance().getDataBKSandAFU().m));
-        vBKS_AFU.setText(String.valueOf(CalculationKA.getInstance().getDataBKSandAFU().v));
-        jBKS.setText(String.valueOf(CalculationKA.getInstance().getDataBKSandAFU().jBKS));
-        jAFU.setText(String.valueOf(CalculationKA.getInstance().getDataBKSandAFU().jAFU));
+    public void showBKS() {
+        mBKS.setText(String.valueOf(CalculationKA.getInstance().getDataBKS().m));
+        vBKS.setText(String.valueOf(CalculationKA.getInstance().getDataBKS().v));
+        jBKS.setText(String.valueOf(CalculationKA.getInstance().getDataBKS().j));
+
+    }
+
+    /**
+     * показать АФУ
+     */
+    public void showAFU() {
+        mAFU.setText(String.valueOf(CalculationKA.getInstance().getDataAFU().m));
+        vAFU.setText(String.valueOf(CalculationKA.getInstance().getDataAFU().v));
+        jAFU.setText(String.valueOf(CalculationKA.getInstance().getDataAFU().j));
 
     }
 
@@ -392,6 +397,56 @@ public class ControllerManageFieldSintez extends ControllerAssemblyField {
         jRmKA.setText(String.valueOf(CalculationKA.getInstance().getDataRezervKA().j));
         wRmKA.setText(String.valueOf(CalculationKA.getInstance().getDataRezervKA().w));
 
+    }
+
+    /**
+     * SSD
+     */
+    public void showSSD() {
+        mSSD.setText(String.valueOf(CalculationKA.getInstance().getDataSSD().m));
+        vSSD.setText(String.valueOf(CalculationKA.getInstance().getDataSSD().v));
+        jSSD.setText(String.valueOf(CalculationKA.getInstance().getDataSSD().j));
+        wSSD.setText(String.valueOf(CalculationKA.getInstance().getDataSSD().w));
+    }
+
+    /**
+     * IPMV
+     */
+    public void showIPMV() {
+        mIPMV.setText(String.valueOf(CalculationKA.getInstance().getDataIPMV().m));
+        vIPMV.setText(String.valueOf(CalculationKA.getInstance().getDataIPMV().v));
+        jIPMV.setText(String.valueOf(CalculationKA.getInstance().getDataIPMV().j));
+        wIPMV.setText(String.valueOf(CalculationKA.getInstance().getDataIPMV().w));
+    }
+
+    /**
+     * BOKZ
+     */
+    public void showBOKZ() {
+        mBOKZ.setText(String.valueOf(CalculationKA.getInstance().getDataBOKZ().m));
+        vBOKZ.setText(String.valueOf(CalculationKA.getInstance().getDataBOKZ().v));
+        jBOKZ.setText(String.valueOf(CalculationKA.getInstance().getDataBOKZ().j));
+        wBOKZ.setText(String.valueOf(CalculationKA.getInstance().getDataBOKZ().w));
+    }
+
+    /**
+     * DO
+     */
+    public void showDO() {
+        mDO.setText(String.valueOf(CalculationKA.getInstance().getDataDO().m));
+        vDO.setText(String.valueOf(CalculationKA.getInstance().getDataDO().v));
+        jDO.setText(String.valueOf(CalculationKA.getInstance().getDataDO().j));
+        wDO.setText(String.valueOf(CalculationKA.getInstance().getDataDO().w));
+    }
+
+    /**
+     * DUS
+     */
+    public void showDUS() {
+        mDUS.setText(String.valueOf(CalculationKA.getInstance().getDataDUS().m));
+        vDUS.setText(String.valueOf(CalculationKA.getInstance().getDataDUS().v));
+        jDUS.setText(String.valueOf(CalculationKA.getInstance().getDataDUS().j));
+        wDUS.setText(String.valueOf(CalculationKA.getInstance().getDataDUS().w));
     }
 
     public void showALL() {
@@ -422,9 +477,16 @@ public class ControllerManageFieldSintez extends ControllerAssemblyField {
         showMassTopl();
         showKDU();
         showKonstrKA();
-        showBKSandAFU();
+        showBKS();
+        showAFU();
         showOtherKA();
         showRezerv();
+
+        showSSD();
+        showIPMV();
+        showBOKZ();
+        showDO();
+        showDUS();
     }
 
 
@@ -882,39 +944,34 @@ public class ControllerManageFieldSintez extends ControllerAssemblyField {
     }
 
     /**
-     * ввод БКС и АФУ
+     * ввод БКС
      *
      * @return
      */
-    public boolean validateBKSandAFU() {
+    public boolean validateBKS() {
         try {
-            CalculationKA.getInstance().getDataBKSandAFU().omBKS = ValidateValue.conversionTextToFloat(omBKS.getText());
-            CalculationKA.getInstance().getDataBKSandAFU().omAFU = ValidateValue.conversionTextToFloat(omAFU.getText());
-            CalculationKA.getInstance().getDataBKSandAFU().plBKS = ValidateValue.conversionTextToFloat(plBKS.getText());
-            CalculationKA.getInstance().getDataBKSandAFU().plAFU = ValidateValue.conversionTextToFloat(plAFU.getText());
+            CalculationKA.getInstance().getDataBKS().omBKS = ValidateValue.conversionTextToFloat(omBKS.getText());
+            CalculationKA.getInstance().getDataBKS().plBKS = ValidateValue.conversionTextToFloat(plBKS.getText());
 
         } catch (Exception e) {
-            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Ошибка введеных данных.", TabTypeSintez.BKS_AND_AFU);
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Ошибка введеных данных.", TabTypeSintez.BKS);
             return false;
         }
         return true;
     }
 
     /**
-     * ввод БКС и АФУ
+     * ввод АФУ
      *
      * @return
      */
-    public boolean validateOtherKA() {
+    public boolean validateAFU() {
         try {
-            DataOtherKA newEl = new DataOtherKA();
-            newEl.omPrKA = ValidateValue.conversionTextToFloat(omPrKA.getText());
-            newEl.plPrKA = ValidateValue.conversionTextToFloat(plPrKA.getText());
-            newEl.uwPrKA = ValidateValue.conversionTextToFloat(uwPrKA.getText());
-            newEl.setNameElement(In_nameElement.getText());
-            CalculationKA.getInstance().getDataOtherKA().getOthers().add(newEl);
+            CalculationKA.getInstance().getDataAFU().omAFU = ValidateValue.conversionTextToFloat(omAFU.getText());
+            CalculationKA.getInstance().getDataAFU().plAFU = ValidateValue.conversionTextToFloat(plAFU.getText());
+
         } catch (Exception e) {
-            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Ошибка введеных данных.", TabTypeSintez.OTHER_ELEMENT_KA);
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Ошибка введеных данных.", TabTypeSintez.AFU);
             return false;
         }
         return true;
@@ -933,6 +990,96 @@ public class ControllerManageFieldSintez extends ControllerAssemblyField {
 
         } catch (Exception e) {
             ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Ошибка введеных данных.", TabTypeSintez.RETHERV);
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * ssd
+     *
+     * @return
+     */
+    public boolean validateSSD() {
+        try {
+            CalculationKA.getInstance().getDataSSD().km = ValidateValue.conversionTextToFloat(kmSSD.getText());
+            CalculationKA.getInstance().getDataSSD().pl = ValidateValue.conversionTextToFloat(plSSD.getText());
+            CalculationKA.getInstance().getDataSSD().uw = ValidateValue.conversionTextToFloat(uwSSD.getText());
+
+        } catch (Exception e) {
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Ошибка введеных данных.", TabTypeSintez.SSD);
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * IPMV
+     *
+     * @return
+     */
+    public boolean validateIPMV() {
+        try {
+            CalculationKA.getInstance().getDataIPMV().km = ValidateValue.conversionTextToFloat(kmIPMV.getText());
+            CalculationKA.getInstance().getDataIPMV().pl = ValidateValue.conversionTextToFloat(plIPMV.getText());
+            CalculationKA.getInstance().getDataIPMV().uw = ValidateValue.conversionTextToFloat(uwIPMV.getText());
+
+        } catch (Exception e) {
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Ошибка введеных данных.", TabTypeSintez.IPMV);
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * BOKZ
+     *
+     * @return
+     */
+    public boolean validateBOKZ() {
+        try {
+            CalculationKA.getInstance().getDataBOKZ().km = ValidateValue.conversionTextToFloat(kmBOKZ.getText());
+            CalculationKA.getInstance().getDataBOKZ().pl = ValidateValue.conversionTextToFloat(plBOKZ.getText());
+            CalculationKA.getInstance().getDataBOKZ().uw = ValidateValue.conversionTextToFloat(uwBOKZ.getText());
+
+        } catch (Exception e) {
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Ошибка введеных данных.", TabTypeSintez.BOKZ);
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * DO
+     *
+     * @return
+     */
+    public boolean validateDO() {
+        try {
+            CalculationKA.getInstance().getDataDO().km = ValidateValue.conversionTextToFloat(kmDO.getText());
+            CalculationKA.getInstance().getDataDO().pl = ValidateValue.conversionTextToFloat(plDO.getText());
+            CalculationKA.getInstance().getDataDO().uw = ValidateValue.conversionTextToFloat(uwDO.getText());
+
+        } catch (Exception e) {
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Ошибка введеных данных.", TabTypeSintez.DO);
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * DUS
+     *
+     * @return
+     */
+    public boolean validateDUS() {
+        try {
+            CalculationKA.getInstance().getDataDUS().km = ValidateValue.conversionTextToFloat(kmDUS.getText());
+            CalculationKA.getInstance().getDataDUS().pl = ValidateValue.conversionTextToFloat(plDUS.getText());
+            CalculationKA.getInstance().getDataDUS().uw = ValidateValue.conversionTextToFloat(uwDUS.getText());
+
+        } catch (Exception e) {
+            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Ошибка введеных данных.", TabTypeSintez.DUS);
             return false;
         }
         return true;
@@ -1256,29 +1403,36 @@ public class ControllerManageFieldSintez extends ControllerAssemblyField {
     }
 
     /**
-     * вывод в БКС и АФУ
+     * вывод в БКС
      *
      * @return
      */
-    public void startShowBKSandAFU() {
-        omBKS.setText(String.valueOf(CalculationKA.getInstance().getDataBKSandAFU().omBKS));
-        omAFU.setText(String.valueOf(CalculationKA.getInstance().getDataBKSandAFU().omAFU));
-        plBKS.setText(String.valueOf(CalculationKA.getInstance().getDataBKSandAFU().plBKS));
-        plAFU.setText(String.valueOf(CalculationKA.getInstance().getDataBKSandAFU().plAFU));
-
+    public void startShowBKS() {
+        omBKS.setText(String.valueOf(CalculationKA.getInstance().getDataBKS().omBKS));
+        plBKS.setText(String.valueOf(CalculationKA.getInstance().getDataBKS().plBKS));
     }
 
     /**
-     * вывод в прочие элементы КА
+     * вывод в АФУ
      *
      * @return
      */
-    public void startShowOtherKA() {
-        omPrKA.setText(String.valueOf(CalculationKA.getInstance().getDataOtherKA().omPrKA));
-        plPrKA.setText(String.valueOf(CalculationKA.getInstance().getDataOtherKA().plPrKA));
-        uwPrKA.setText(String.valueOf(CalculationKA.getInstance().getDataOtherKA().uwPrKA));
-        initotherKA();
+    public void startShowAFU() {
+        omAFU.setText(String.valueOf(CalculationKA.getInstance().getDataAFU().omAFU));
+        plAFU.setText(String.valueOf(CalculationKA.getInstance().getDataAFU().plAFU));
     }
+
+//    /**
+//     * вывод в прочие элементы КА
+//     *
+//     * @return
+//     */
+//    public void startShowOtherKA() {
+//        omPrKA.setText(String.valueOf(CalculationKA.getInstance().getDataOtherKA().omPrKA));
+//        plPrKA.setText(String.valueOf(CalculationKA.getInstance().getDataOtherKA().plPrKA));
+//        uwPrKA.setText(String.valueOf(CalculationKA.getInstance().getDataOtherKA().uwPrKA));
+//        initotherKA();
+//    }
 
     /**
      * вывод в резерв
@@ -1289,6 +1443,61 @@ public class ControllerManageFieldSintez extends ControllerAssemblyField {
         omRmKA.setText(String.valueOf(CalculationKA.getInstance().getDataRezervKA().omRmKA));
         plRmKA.setText(String.valueOf(CalculationKA.getInstance().getDataRezervKA().plRmKA));
         uwRmKA.setText(String.valueOf(CalculationKA.getInstance().getDataRezervKA().uwRmKA));
+    }
+
+    /**
+     * SSD
+     *
+     * @return
+     */
+    public void startShowSSD() {
+        kmSSD.setText(String.valueOf(CalculationKA.getInstance().getDataSSD().km));
+        plSSD.setText(String.valueOf(CalculationKA.getInstance().getDataSSD().pl));
+        uwSSD.setText(String.valueOf(CalculationKA.getInstance().getDataSSD().uw));
+    }
+
+    /**
+     * IPMV
+     *
+     * @return
+     */
+    public void startShowIPMV() {
+        kmIPMV.setText(String.valueOf(CalculationKA.getInstance().getDataIPMV().km));
+        plIPMV.setText(String.valueOf(CalculationKA.getInstance().getDataIPMV().pl));
+        uwIPMV.setText(String.valueOf(CalculationKA.getInstance().getDataIPMV().uw));
+    }
+
+    /**
+     * BOKZ
+     *
+     * @return
+     */
+    public void startShowBOKZ() {
+        kmBOKZ.setText(String.valueOf(CalculationKA.getInstance().getDataBOKZ().km));
+        plBOKZ.setText(String.valueOf(CalculationKA.getInstance().getDataBOKZ().pl));
+        uwBOKZ.setText(String.valueOf(CalculationKA.getInstance().getDataBOKZ().uw));
+    }
+
+    /**
+     * DO
+     *
+     * @return
+     */
+    public void startShowDO() {
+        kmDO.setText(String.valueOf(CalculationKA.getInstance().getDataDO().km));
+        plDO.setText(String.valueOf(CalculationKA.getInstance().getDataDO().pl));
+        uwDO.setText(String.valueOf(CalculationKA.getInstance().getDataDO().uw));
+    }
+
+    /**
+     * DUS
+     *
+     * @return
+     */
+    public void startShowDUS() {
+        kmDUS.setText(String.valueOf(CalculationKA.getInstance().getDataDUS().km));
+        plDUS.setText(String.valueOf(CalculationKA.getInstance().getDataDUS().pl));
+        uwDUS.setText(String.valueOf(CalculationKA.getInstance().getDataDUS().uw));
     }
 
     public void startShowALL() {
@@ -1313,10 +1522,17 @@ public class ControllerManageFieldSintez extends ControllerAssemblyField {
         startShowSpeed();
         startShowKDU();
         startShowKonstrKA();
-        startShowBKSandAFU();
-        startShowOtherKA();
+        startShowBKS();
+        startShowAFU();
+//        startShowOtherKA();
         startShowRezerv();
         startMassT();
+        startShowSSD();
+        startShowIPMV();
+        startShowBOKZ();
+        startShowDO();
+        startShowDUS();
+        initotherKA();
     }
 
     public void initotherKA() {

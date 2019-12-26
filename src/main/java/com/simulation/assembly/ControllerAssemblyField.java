@@ -41,12 +41,83 @@ public class ControllerAssemblyField {
     protected Calculation<DataMassTopl> calculationMTop;
     protected Calculation<DataKDU> calculationKDU;
     protected Calculation<DataKonstrKA> calculationKonstrKA;
-    protected Calculation<DataBKSandAFU> calculationBKSandAFU;
+    protected Calculation<DataAFU> calculationBKSandAFU;
     protected Calculation<DataOtherKA> calculationOtherKA;
     protected Calculation<DataRezervKA> calculationRezerv;
+    protected Calculation<DataSSD> calculationSSD;
+    protected Calculation<DataIPMV> calculationIPMV;
+    protected Calculation<DataBOKZ> calculationBOKZ;
+    protected Calculation<DataDO> calculationDO;
+    protected Calculation<DataDUS> calculationDUS;
+    protected Calculation<DataBKS> calculationBKS;
+    protected Calculation<DataAFU> calculationAFU;
 
     protected DataSimpleCalculation dataSimpleCalculation = new DataSimpleCalculation();
 
+    /**
+     * запоминающее устройство
+     */
+    public TextField kmSSD;
+    public TextField uwSSD;
+    public TextField plSSD;
+    public Label mSSD;
+    public Label vSSD;
+    public Label wSSD;
+    public Label jSSD;
+    public AnchorPane pane_zaimsv_ssd;
+    public RadioButton choise_have_SSD;
+
+    /**
+     * IPMV
+     */
+    public TextField kmIPMV;
+    public TextField uwIPMV;
+    public TextField plIPMV;
+    public Label mIPMV;
+    public Label vIPMV;
+    public Label wIPMV;
+    public Label jIPMV;
+    public AnchorPane pane_zaimsv_IPMV;
+    public RadioButton choise_have_IPMV;
+
+    /**
+     * БОКЗ
+     */
+    public TextField kmBOKZ;
+    public TextField uwBOKZ;
+    public TextField plBOKZ;
+    public Label mBOKZ;
+    public Label vBOKZ;
+    public Label wBOKZ;
+    public Label jBOKZ;
+    public AnchorPane pane_zaimsv_BOKZ;
+    public RadioButton choise_have_BOKZ;
+
+    /**
+     * DO
+     */
+    public TextField kmDO;
+    public TextField uwDO;
+    public TextField plDO;
+    public Label mDO;
+    public Label vDO;
+    public Label wDO;
+    public Label jDO;
+    public AnchorPane pane_zaimsv_DO;
+    public RadioButton choise_have_DO;
+
+    /**
+     * DUS
+     */
+    public TextField kmDUS;
+    public TextField uwDUS;
+    public TextField plDUS;
+    public Label mDUS;
+    public Label vDUS;
+    public Label wDUS;
+    public Label jDUS;
+    public AnchorPane pane_zaimsv_DUS;
+    public RadioButton choise_have_DUS;
 
     /**
      * выбор ограничений
@@ -923,32 +994,36 @@ public class ControllerAssemblyField {
     public Label jkKA;
 
     /**
-     * таба БКС и АФУ
+     * таба БКС
      */
     @FXML
     public TextField omBKS;
     @FXML
-    public TextField omAFU;
-    @FXML
     public TextField plBKS;
-    @FXML
-    public TextField plAFU;
     @FXML
     public Label mBKS;
     @FXML
     public Label vBKS;
     @FXML
+    public Label jBKS;
+    public AnchorPane pane_zaimsv_BKS;
+    public RadioButton choise_have_BKS;
+
+    /**
+     * таба АФУ
+     */
+    @FXML
+    public TextField omAFU;
+    @FXML
+    public TextField plAFU;
+    @FXML
     public Label mAFU;
     @FXML
     public Label vAFU;
     @FXML
-    public Label mBKS_AFU;
-    @FXML
-    public Label vBKS_AFU;
-    @FXML
-    public Label jBKS;
-    @FXML
     public Label jAFU;
+    public AnchorPane pane_zaimsv_AFU;
+    public RadioButton choise_have_AFU;
 
     /**
      * таба Прочие элементы КА
@@ -1066,6 +1141,44 @@ public class ControllerAssemblyField {
 
     public RadioButton choise_have_OETK;
     public AnchorPane pane_zaimsv_oetk;
+
+
+    public AnchorPane pane_zaimsv_SPPE;
+    public RadioButton choise_have_SPPE;
+    public AnchorPane pane_zaimsv_VRL;
+    public RadioButton choise_have_VRL;
+    public AnchorPane pane_zaimsv_OtherCA;
+    public RadioButton choise_have_OtherCA;
+    public AnchorPane pane_zaimsv_BVS;
+    public RadioButton choise_have_BVS;
+    public AnchorPane pane_zaimsv_STKRP;
+    public RadioButton choise_have_STKRP;
+    public AnchorPane pane_zaimsv_KIS;
+    public RadioButton choise_have_KIS;
+    public AnchorPane pane_zaimsv_BETS;
+    public RadioButton choise_have_BETS;
+    public AnchorPane pane_zaimsv_OtherBKU;
+    public RadioButton choise_have_OtherBKU;
+    public AnchorPane pane_zaimsv_SGK;
+    public RadioButton choise_have_SGK;
+    public AnchorPane pane_zaimsv_SSKM;
+    public RadioButton choise_have_SSKM;
+    public AnchorPane pane_zaimsv_Pasivv;
+    public RadioButton choise_have_Pasivv;
+    public AnchorPane pane_zaimsv_Activ;
+    public RadioButton choise_have_Activ;
+    public AnchorPane pane_zaimsv_Acum;
+    public RadioButton choise_have_Acum;
+    public AnchorPane pane_zaimsv_KAS;
+    public RadioButton choise_have_KAS;
+    public AnchorPane pane_zaimsv_Sun;
+    public RadioButton choise_have_Sun;
+    public AnchorPane pane_zaimsv_kdu;
+    public RadioButton choise_have_kdu;
+    public AnchorPane pane_zaimsv_Konstr;
+    public RadioButton choise_have_Konstr;
+    public AnchorPane pane_zaimsv_Rezerv;
+    public RadioButton choise_have_Rezerv;
 
     /**
      * Выбор формы на вкладке ОГРАНИЧЕНИЯ - синтез (есть ограничения, нету)

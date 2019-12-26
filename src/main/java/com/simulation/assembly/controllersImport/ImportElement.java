@@ -9,16 +9,18 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public abstract class ImportElement {
+
+    public Label v;
+    public Label j;
+    public Label m;
+    public Label w;
 
     public TableView tableChoise;
     public Button btSelect;
@@ -43,6 +45,8 @@ public abstract class ImportElement {
         initialize();
     }
 
+
+
     public void showWindowAdd (String path,String title){
         try {
             Stage stage = new Stage();
@@ -57,6 +61,17 @@ public abstract class ImportElement {
         } catch (IOException e) {
             ControllerAssembly.showInfo("Возникли технические неполадки");
         }
+    }
+
+    public void showParametersOfSelectElement (DataElement data){
+        if (m!=null)
+            m.setText(String.valueOf(data.m));
+        if (v!=null)
+            v.setText(String.valueOf(data.v));
+        if (w!=null)
+            w.setText(String.valueOf(data.w));
+        if (j!=null)
+            j.setText(String.valueOf(data.j));
     }
 
 }

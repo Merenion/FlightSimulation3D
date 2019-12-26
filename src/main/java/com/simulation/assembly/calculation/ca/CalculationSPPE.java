@@ -24,23 +24,21 @@ public class CalculationSPPE extends Calculation {
     @Override
     public Object calculationSingle(Object object) throws Exception {
         try {
+            DataSPPE d = CalculationKA.getInstance().getDataSPPE();
+            DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
             if (!getType().getDataElement().isImportData()) {
 
-                DataSPPE d = CalculationKA.getInstance().getDataSPPE();
-                DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
 
-                if (!getType().getDataElement().isImportData()) {
-
-
-                    //Расчет
-                    d.m = d.umSPPI * d.sPI;
-                    d.v = d.m / d.plSPPI;
-                    d.w = d.m * d.uwSPPI;
-                    //Расчет приведенного момента инерции КА с текущими габаритами и массой
-                    d.j = 2375; //TODO удалить
-//            d.jSPPI= (float) (d.mSPPI*(Math.pow(dc.dKA,2)/16+Math.pow(dc.lKA,2)/12));
-
-                }
+                //Расчет
+                d.m = d.umSPPI * d.sPI;
+                d.v = d.m / d.plSPPI;
+                d.w = d.m * d.uwSPPI;
+                //Расчет приведенного момента инерции КА с текущими габаритами и массой
+//                    d.j = 2375; //TODO удалить
+                d.j = (float) (d.m * (Math.pow(dc.dKA, 2) / 16 + Math.pow(dc.lKA, 2) / 12));
+            }
+            if (d.isCalculationMoment()) {
+                d.j = (float) (d.m * (Math.pow(dc.dKA, 2) / 16 + Math.pow(dc.lKA0, 2) / 12));
             }
             CalculationKA.getInstance().calculation(new Object());
 
