@@ -40,6 +40,16 @@ import java.io.IOException;
  */
 public class ControllerWindowSimulation {
 
+    private static ControllerWindowSimulation controllerWindowSimulation;
+
+    public static ControllerWindowSimulation getControllerWindowSimulation() {
+        return controllerWindowSimulation;
+    }
+
+    public static void setControllerWindowSimulation(ControllerWindowSimulation controllerWindowSimulation) {
+        ControllerWindowSimulation.controllerWindowSimulation = controllerWindowSimulation;
+    }
+
     @FXML
     public SubScene drawScene;
     @FXML
@@ -115,6 +125,7 @@ public class ControllerWindowSimulation {
      */
     @FXML
     private void initialize (){
+        controllerWindowSimulation=this;
         group.getChildren().add(space);
         initMouseControl();
 
@@ -554,5 +565,13 @@ public class ControllerWindowSimulation {
         com.simulation.startMenu.Main main = new com.simulation.startMenu.Main();
         main.start(new Stage());
         stage.close();
+    }
+
+    public ISimulation getSimulation() {
+        return simulation;
+    }
+
+    public void setSimulation(ISimulation simulation) {
+        this.simulation = simulation;
     }
 }

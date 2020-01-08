@@ -1,5 +1,6 @@
 package com.simulation.earth.spaceObjects;
 
+import com.simulation.earth.manageSatellite.CaParameters;
 import com.simulation.earth.manageSatellite.OrbitParameters;
 
 /**
@@ -37,5 +38,10 @@ public class FactoryNearEarth implements FactoryPlanet, FactorySatellite {
     @Override
     public SpaceObject createDeaultSatellite(OrbitParameters orbitParameters) {
         return new SatelliteDefault(orbitParameters);
+    }
+
+    @Override
+    public SpaceObject createSuperSatellite(OrbitParameters orbitParameters, CaParameters caParameters) {
+        return new SatelliteWithParametersCA(orbitParameters,caParameters);
     }
 }

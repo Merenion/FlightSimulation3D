@@ -1,39 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="289.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.simulation.earth.ControllerParametersSatellite">
+<AnchorPane prefHeight="348.0" prefWidth="603.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.simulation.earth.ControllerParametersSatellite">
    <children>
-      <Label layoutX="102.0" layoutY="29.0" text="Угол наклона плоскости орбиты в градусах" />
-      <Label layoutX="102.0" layoutY="71.0" text="Долгота восходящего узла орбиты" />
-      <Label layoutX="102.0" layoutY="115.0" text="Начальный аргучент перигея орбиты" />
-      <Label layoutX="102.0" layoutY="159.0" text="Высота перигея орбиты" />
-      <Label layoutX="102.0" layoutY="203.0" text="Высота апогея орбиты" />
-      <TextField fx:id="angleNaclonPloskosti" layoutX="26.0" layoutY="25.0" prefHeight="25.0" prefWidth="68.0" text="98.3" />
-      <TextField fx:id="dolgotaVoshodychegoUzla" layoutX="26.0" layoutY="67.0" prefHeight="25.0" prefWidth="68.0" text="0" />
-      <TextField fx:id="startingArgumentPerigee" layoutX="26.0" layoutY="111.0" prefHeight="25.0" prefWidth="68.0" text="0" />
-      <TextField fx:id="hightPerigee" layoutX="26.0" layoutY="155.0" prefHeight="25.0" prefWidth="68.0" text="2000" />
-      <TextField fx:id="hightApogey" layoutX="26.0" layoutY="199.0" prefHeight="25.0" prefWidth="68.0" text="15000" />
-      <ComboBox fx:id="colourPathOnEarth" layoutX="402.0" layoutY="54.0" prefHeight="25.0" prefWidth="155.0" promptText="Colour Orbit" />
-      <TextField fx:id="lengthPathonEarth" layoutX="402.0" layoutY="184.0" prefHeight="25.0" prefWidth="58.0" text="150" />
-      <Label layoutX="468.0" layoutY="188.0" text="Макс. длина" />
       <Label layoutX="466.0" layoutY="142.0" />
-      <TextField fx:id="lengthOrbit" layoutX="402.0" layoutY="85.0" prefHeight="25.0" prefWidth="58.0" text="150" />
-      <Label layoutX="466.0" layoutY="89.0" text="Макс. длина" />
-      <ComboBox fx:id="colourOrbit" layoutX="402.0" layoutY="151.0" prefHeight="25.0" prefWidth="155.0" promptText="Colour Orbit" />
-      <Label layoutX="423.0" layoutY="127.0" text="Прорисовка Орбиты" />
-      <Label layoutX="416.0" layoutY="29.0" text="Прорисовка Проекции" />
-      <Line endX="80.0" layoutX="490.0" layoutY="27.0" startX="-100.0" />
-      <Line endX="80.0" layoutX="490.0" layoutY="121.0" startX="-100.0" />
-      <Line endX="80.0" layoutX="490.0" layoutY="226.0" startX="-100.0" />
-      <Button layoutX="383.0" layoutY="241.0" mnemonicParsing="false" onAction="#onBtCreatedSatellite" prefHeight="30.0" prefWidth="96.0" text="Принять" textFill="#0067db">
+      <Button layoutX="372.0" layoutY="302.0" mnemonicParsing="false" onAction="#onBtCreatedSatellite" prefHeight="30.0" prefWidth="96.0" text="Принять" textFill="#0067db">
          <effect>
             <ColorAdjust brightness="-0.3" hue="0.16" />
          </effect>
@@ -41,14 +27,13 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <TextField fx:id="nameSatellite" layoutX="28.0" layoutY="243.0" text="nameless">
+      <TextField fx:id="nameSatellite" layoutX="17.0" layoutY="304.0" text="nameless">
          <effect>
             <ColorAdjust contrast="-0.26" />
          </effect>
       </TextField>
-      <Line endX="100.0" layoutX="390.0" layoutY="127.0" rotate="90.0" startX="-100.0" />
-      <Label layoutX="185.0" layoutY="247.0" text="Наименование спутника" />
-      <Button fx:id="btDelete" layoutX="486.0" layoutY="241.0" mnemonicParsing="false" onAction="#onBtDelete" prefHeight="30.0" prefWidth="96.0" text="Удалить" textFill="#ff007f">
+      <Label layoutX="174.0" layoutY="308.0" text="Наименование спутника" />
+      <Button fx:id="btDelete" layoutX="475.0" layoutY="302.0" mnemonicParsing="false" onAction="#onBtDelete" prefHeight="30.0" prefWidth="96.0" text="Удалить" textFill="#ff007f">
          <effect>
             <ColorAdjust brightness="-0.3" hue="0.16" />
          </effect>
@@ -56,5 +41,180 @@
             <Font size="14.0" />
          </font>
       </Button>
+      <TabPane prefHeight="301.0" prefWidth="603.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Параметры орбиты">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="255.0" prefWidth="600.0">
+                     <children>
+                        <AnchorPane layoutX="5.0" layoutY="8.0" prefHeight="224.0" prefWidth="590.0">
+                           <children>
+                              <ComboBox fx:id="colourPathOnEarth" layoutX="402.0" layoutY="40.0" prefHeight="25.0" prefWidth="155.0" promptText="Colour Orbit" />
+                              <TextField fx:id="lengthPathonEarth" layoutX="402.0" layoutY="170.0" prefHeight="25.0" prefWidth="58.0" text="150" />
+                              <Label layoutX="468.0" layoutY="174.0" text="Макс. длина" />
+                              <TextField fx:id="lengthOrbit" layoutX="402.0" layoutY="71.0" prefHeight="25.0" prefWidth="58.0" text="150" />
+                              <Label layoutX="466.0" layoutY="75.0" text="Макс. длина" />
+                              <ComboBox fx:id="colourOrbit" layoutX="402.0" layoutY="137.0" prefHeight="25.0" prefWidth="155.0" promptText="Colour Orbit" />
+                              <Label layoutX="423.0" layoutY="113.0" text="Прорисовка Орбиты" />
+                              <Label layoutX="416.0" layoutY="15.0" text="Прорисовка Проекции" />
+                              <Line endX="80.0" layoutX="490.0" layoutY="13.0" startX="-100.0" />
+                              <Line endX="80.0" layoutX="490.0" layoutY="107.0" startX="-100.0" />
+                              <Line endX="80.0" layoutX="490.0" layoutY="212.0" startX="-100.0" />
+                              <Line endX="100.0" layoutX="390.0" layoutY="113.0" rotate="90.0" startX="-100.0" />
+                              <Label layoutX="90.0" layoutY="14.0" text="Угол наклона плоскости орбиты в градусах" />
+                              <Label layoutX="90.0" layoutY="56.0" text="Долгота восходящего узла орбиты" />
+                              <Label layoutX="90.0" layoutY="100.0" text="Начальный аргучент перигея орбиты" />
+                              <Label layoutX="90.0" layoutY="144.0" text="Высота перигея орбиты" />
+                              <Label layoutX="90.0" layoutY="188.0" text="Высота апогея орбиты" />
+                              <TextField fx:id="angleNaclonPloskosti" layoutX="14.0" layoutY="10.0" prefHeight="25.0" prefWidth="68.0" text="98.3" />
+                              <TextField fx:id="dolgotaVoshodychegoUzla" layoutX="14.0" layoutY="52.0" prefHeight="25.0" prefWidth="68.0" text="0" />
+                              <TextField fx:id="startingArgumentPerigee" layoutX="14.0" layoutY="96.0" prefHeight="25.0" prefWidth="68.0" text="0" />
+                              <TextField fx:id="hightPerigee" layoutX="14.0" layoutY="140.0" prefHeight="25.0" prefWidth="68.0" text="2000" />
+                              <TextField fx:id="hightApogey" layoutX="14.0" layoutY="184.0" prefHeight="25.0" prefWidth="68.0" text="15000" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Аппаратура наблюдения">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane prefHeight="267.0" prefWidth="603.0">
+                           <children>
+                              <VBox layoutX="14.0" layoutY="19.0" prefHeight="104.0" prefWidth="332.0">
+                                 <children>
+                                    <AnchorPane prefHeight="30.0" prefWidth="332.0">
+                                       <children>
+                                          <Label layoutX="8.0" layoutY="6.0" text="Размер линейки ПЗС, мм" />
+                                          <TextField fx:id="lPzs" layoutX="236.0" layoutY="2.0" prefHeight="25.0" prefWidth="96.0" text="500" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane prefHeight="30.0" prefWidth="332.0">
+                                       <children>
+                                          <Label layoutX="8.0" layoutY="6.0" text="Размер элемента линейки ПЗС, мм" />
+                                          <TextField fx:id="lElemPzs" layoutX="236.0" layoutY="2.0" prefHeight="25.0" prefWidth="96.0" text="10" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane prefHeight="30.0" prefWidth="332.0">
+                                       <children>
+                                          <Label layoutX="8.0" layoutY="6.0" text="Фокусное расстояние ОЕТК, мм" />
+                                          <TextField fx:id="fOETK" layoutX="236.0" layoutY="2.0" prefHeight="25.0" prefWidth="96.0" text="20" />
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </VBox>
+                           </children></AnchorPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+           <Tab text="Объекты наблюдения">
+              <content>
+                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <children>
+                       <AnchorPane prefHeight="267.0" prefWidth="603.0">
+                           <children>
+                              <Label layoutX="30.0" layoutY="27.0" text="Координаты единичного обьекта наблюдения для оценки периодичности и оперативности">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children></AnchorPane>
+                        <VBox layoutX="24.0" layoutY="73.0" prefHeight="104.0" prefWidth="332.0">
+                           <children>
+                              <AnchorPane prefHeight="30.0" prefWidth="332.0">
+                                 <children>
+                                    <Label layoutX="8.0" layoutY="6.0" text="Широта, Град" />
+                                    <TextField fx:id="shON" layoutX="147.0" layoutY="2.0" prefHeight="25.0" prefWidth="96.0" text="40" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="30.0" prefWidth="332.0">
+                                 <children>
+                                    <Label layoutX="8.0" layoutY="6.0" text="Долгота, Град" />
+                                    <TextField fx:id="dolgON" layoutX="147.0" layoutY="2.0" prefHeight="25.0" prefWidth="96.0" text="-70" />
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                    </children>
+                 </AnchorPane>
+              </content>
+           </Tab>
+           <Tab text="Условия съемки">
+              <content>
+                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <children>
+                       <AnchorPane prefHeight="267.0" prefWidth="603.0">
+                           <children>
+                              <RadioButton fx:id="Pobraz" layoutX="33.0" layoutY="163.0" mnemonicParsing="false" selected="true" text="П - образное">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="ONyarkostObraz" />
+                                 </toggleGroup></RadioButton>
+                              <RadioButton fx:id="Sobraz" layoutX="33.0" layoutY="194.0" mnemonicParsing="false" text="S - образное" toggleGroup="$ONyarkostObraz" />
+                              <RadioButton fx:id="Uobraz" layoutX="33.0" layoutY="225.0" mnemonicParsing="false" text="U - образное" toggleGroup="$ONyarkostObraz" />
+                              <Label layoutX="33.0" layoutY="134.0" text="Распределение яркости ОН" />
+                           </children></AnchorPane>
+                        <VBox layoutX="24.0" layoutY="29.0" prefHeight="104.0" prefWidth="332.0">
+                           <children>
+                              <AnchorPane prefHeight="30.0" prefWidth="332.0">
+                                 <children>
+                                    <Label layoutX="8.0" layoutY="6.0" text="Макс. угол поворота КА от надира, Град" />
+                                    <TextField fx:id="maksUgolKAotNadira" layoutX="308.0" layoutY="2.0" prefHeight="25.0" prefWidth="96.0" text="45" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="30.0" prefWidth="332.0">
+                                 <children>
+                                    <Label layoutX="8.0" layoutY="6.0" text="Минимальная высота солнца над горизонтом, Град" />
+                                    <TextField fx:id="maksHSunGoriz" layoutX="308.0" layoutY="2.0" prefHeight="25.0" prefWidth="96.0" text="20" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="30.0" prefWidth="332.0">
+                                 <children>
+                                    <Label layoutX="8.0" layoutY="6.0" text="Время перенацеливания, с" />
+                                    <TextField fx:id="timePerenac" layoutX="308.0" layoutY="2.0" prefHeight="25.0" prefWidth="96.0" text="40" />
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                    </children>
+                 </AnchorPane>
+              </content>
+           </Tab>
+           <Tab text="Схема КА">
+              <content>
+                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <children>
+                       <AnchorPane prefHeight="267.0" prefWidth="603.0">
+                           <children>
+                              <ImageView fitHeight="142.0" fitWidth="175.0" layoutX="28.0" layoutY="7.0">
+                                 <image>
+                                    <Image url="@a_shema.PNG" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="142.0" fitWidth="188.0" layoutX="225.0" layoutY="7.0">
+                                 <image>
+                                    <Image url="@b_shema.PNG" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="142.0" fitWidth="136.0" layoutX="431.0" layoutY="7.0">
+                                 <image>
+                                    <Image url="@c_shema.PNG" />
+                                 </image>
+                              </ImageView>
+                              <RadioButton fx:id="schemaA" layoutX="77.0" layoutY="176.0" mnemonicParsing="false" text="Вариант А">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="schemaKA" />
+                                 </toggleGroup></RadioButton>
+                              <RadioButton fx:id="schemaB" layoutX="263.0" layoutY="176.0" mnemonicParsing="false" selected="true" text="Вариант Б" toggleGroup="$schemaKA" />
+                              <RadioButton fx:id="schemaC" layoutX="456.0" layoutY="176.0" mnemonicParsing="false" text="Вариант С" toggleGroup="$schemaKA" />
+                           </children></AnchorPane>
+                    </children>
+                 </AnchorPane>
+              </content>
+           </Tab>
+        </tabs>
+      </TabPane>
    </children>
 </AnchorPane>

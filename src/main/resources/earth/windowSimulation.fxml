@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.SubScene?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
@@ -9,6 +12,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.effect.Light.Distant?>
 <?import javafx.scene.effect.Lighting?>
 <?import javafx.scene.effect.Shadow?>
@@ -40,8 +44,19 @@
                             <TableColumn fx:id="columnCameras" prefWidth="190.0" text="Cameras" />
                           </columns>
                         </TableView>
-                        <Button fx:id="btTest" layoutX="57.0" layoutY="474.0" mnemonicParsing="false" onAction="#onTest" text="Button for tests" />
                         <CheckBox fx:id="checkExtraTImeDisplay" layoutX="41.0" layoutY="391.0" mnemonicParsing="false" onAction="#onExtraTime" text="Extra time display" />
+                        <Button layoutX="75.0" layoutY="456.0" mnemonicParsing="false" onAction="#closeProject" prefHeight="25.0" prefWidth="55.0" text="Close">
+                           <effect>
+                              <Lighting diffuseConstant="2.0" surfaceScale="0.0">
+                                 <bumpInput>
+                                    <Shadow />
+                                 </bumpInput>
+                                 <light>
+                                    <javafx.scene.effect.Light.Distant color="#8fa9ff" />
+                                 </light>
+                              </Lighting>
+                           </effect>
+                        </Button>
                      </children></AnchorPane>
             </content>
           </TitledPane>
@@ -103,17 +118,39 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Button layoutY="578.0" mnemonicParsing="false" onAction="#closeProject" prefHeight="25.0" prefWidth="55.0" text="Close" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+      <LineChart layoutY="338.0" opacity="0.48" prefHeight="262.0" prefWidth="374.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM">
+               <effect>
+                  <ColorAdjust brightness="1.0" />
+               </effect></CategoryAxis>
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT">
+               <effect>
+                  <ColorAdjust brightness="1.0" contrast="-0.14" hue="0.05" saturation="0.02" />
+               </effect></NumberAxis>
+        </yAxis>
          <effect>
-            <Lighting diffuseConstant="2.0" surfaceScale="0.0">
-               <bumpInput>
-                  <Shadow />
-               </bumpInput>
-               <light>
-                  <javafx.scene.effect.Light.Distant color="#8fa9ff" />
-               </light>
-            </Lighting>
+            <ColorAdjust contrast="-0.05" hue="-0.76" saturation="0.28" />
          </effect>
-      </Button>
+      </LineChart>
+      <LineChart layoutX="374.0" layoutY="338.0" opacity="0.5" prefHeight="262.0" prefWidth="374.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="365.0">
+         <xAxis>
+            <CategoryAxis side="BOTTOM">
+               <effect>
+                  <ColorAdjust brightness="1.0" />
+               </effect></CategoryAxis>
+         </xAxis>
+         <yAxis>
+            <NumberAxis side="LEFT">
+               <effect>
+                  <ColorAdjust brightness="1.0" />
+               </effect></NumberAxis>
+         </yAxis>
+         <effect>
+            <ColorAdjust hue="-0.4" saturation="0.35" />
+         </effect>
+      </LineChart>
    </children>
 </AnchorPane>

@@ -13,6 +13,7 @@ import javafx.scene.Group;
  */
 public interface ManageSatellite {
     Satellite createSatellite (OrbitParameters parametrsOrbit,String name);
+    public Satellite createSatelliteWithParametersCA(OrbitParameters parametrsOrbit,CaParameters caParameters,String name);
     ObservableList<Satellite> getAllSatelites ();
     Satellite getSatelite (String name);
     void changeScaleSatellites(float scale);

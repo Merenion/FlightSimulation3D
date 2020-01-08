@@ -1,5 +1,6 @@
 package com.simulation.earth.spaceObjects;
 
+import com.simulation.earth.manageSatellite.CaParameters;
 import com.simulation.earth.manageSatellite.OrbitParameters;
 
 /**
@@ -7,4 +8,5 @@ import com.simulation.earth.manageSatellite.OrbitParameters;
  */
 public interface FactorySatellite {
     SpaceObject createDeaultSatellite (OrbitParameters orbitParameters);
+    SpaceObject createSuperSatellite (OrbitParameters orbitParameters, CaParameters caParameters);
 }

@@ -42,4 +42,12 @@ public class ManagerSatelliteEarth extends DefaultManageSatellite {
         satellites.add(satellite);
         return satellite;
     }
+
+    @Override
+    public Satellite createSatelliteWithParametersCA(OrbitParameters parametrsOrbit,CaParameters caParameters,String name) {
+        Satellite satellite = (Satellite) factorySatellite.createSuperSatellite(parametrsOrbit,caParameters);
+        satellite.setName(name);
+        satellites.add(satellite);
+        return satellite;
+    }
 }

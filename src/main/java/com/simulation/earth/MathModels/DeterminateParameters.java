@@ -11,11 +11,11 @@ import javafx.geometry.Point3D;
  */
 public class DeterminateParameters {
 
-    private OrbitParameters orbitPr;
+    protected OrbitParameters orbitPr;
 
-    private double radiusPlanet = 6371;
-    private int gravitationalParameterPlanet = 398700; //гравитационный параметр Земли
-    private double omegaPlanet = 0.0000729211;
+    protected double radiusPlanet = 6371;
+    protected int gravitationalParameterPlanet = 398700; //гравитационный параметр Земли
+    protected double omegaPlanet = 0.0000729211;
 
     public DeterminateParameters(OrbitParameters orbitPr) {
         this.orbitPr = orbitPr;
