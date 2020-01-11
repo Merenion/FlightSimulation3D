@@ -25,6 +25,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Box;
@@ -95,6 +96,10 @@ public class ControllerWindowSimulation {
     public CheckBox checkEclipticPlane;
     public CheckBox checkEquatorialPlane;
     public CheckBox checkRotationAxisOfTheEarth;
+
+    public TableView<Satellite> tableSatelliteForPeriod;
+    public TableColumn <Satellite,String> columnSatellitesForPeriod;
+    public AnchorPane grafPeriodForm;
 
     /**основная группа в которой хранится все объекты (модели, орбиты сис.коорд.) для отображения*/
     private Group group = new Group();
@@ -329,7 +334,8 @@ public class ControllerWindowSimulation {
     private void prepareTableSatellites () {
         columnSatellites.setCellValueFactory(new PropertyValueFactory<>("name"));
         tableSatellite.setItems(manageSatellite.getAllSatelites());
-
+        columnSatellitesForPeriod.setCellValueFactory(new PropertyValueFactory<>("name"));
+        tableSatelliteForPeriod.setItems(manageSatellite.getAllSatelites());
     }
 
     /**
@@ -573,5 +579,17 @@ public class ControllerWindowSimulation {
 
     public void setSimulation(ISimulation simulation) {
         this.simulation = simulation;
+    }
+
+    public void onSelectSatelliteForPeriod(MouseEvent mouseEvent) {
+        if (tableSatelliteForPeriod.getSelectionModel().getSelectedItem()!=null && tableSatelliteForPeriod.getSelectionModel().getSelectedItem() instanceof SatelliteWithParametersCA) {
+            ControllerGraffikPeriod.getControllerGraffikPeriod().runDraw((SatelliteWithParametersCA) tableSatelliteForPeriod.getSelectionModel().getSelectedItem());
+            grafPeriodForm.setVisible(true);
+        }
+    }
+
+    public void hideGrafPeriod(ActionEvent actionEvent) {
+        ControllerGraffikPeriod.getControllerGraffikPeriod().stopDraw();
+        grafPeriodForm.setVisible(false);
     }
 }

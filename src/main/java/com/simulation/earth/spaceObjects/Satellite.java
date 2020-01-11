@@ -13,7 +13,7 @@ import javafx.scene.paint.Color;
 public abstract class Satellite extends SpaceObjectWithCamera {
 
     /**поле параметров орбиты спутника*/
-    private OrbitParameters parametrsOrbit = new StorageOrbitParameters();
+    protected OrbitParameters parametrsOrbit = new StorageOrbitParameters();
     /**сервис позволяющий рисовать путь подспутников точки*/
     private DrawingPath drawingProjectionOnPlanet;
     /**цвет пути подспутниковой точки*/

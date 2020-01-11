@@ -15,9 +15,9 @@ public class DefaultSimulation implements ISimulation {
      * если он больше то и обьекты будут передвигаться с большим шагом*/
     private double deltaTime = 0.1f;
     /**общий счетчик времени симуляции*/
-    private double timeSimulation;
+    private double timeSimulation =1;
     /**стартовое время с которого запускается поток симуляции*/
-    private double startTime;
+    private double startTime=1;
     /**Класс для управления потоком симуляции, работает с частотой обновления кадров*/
     private AnimationTimer timer;
     /**запущена ли симуляция*/

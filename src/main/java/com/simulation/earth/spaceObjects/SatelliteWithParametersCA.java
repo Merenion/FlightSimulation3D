@@ -39,6 +39,18 @@ public class SatelliteWithParametersCA extends SatelliteDefault{
         mathModelCa = new MathModelCa(parametrsOrbit,caParameters);
     }
 
+    @Override
+    public void movement(double time) {
+        super.movement(time);
+        mathModelCa.testMath2(time, ControllerWindowSimulation.getControllerWindowSimulation().getSimulation().getDeltaTime());
+    }
+
+    @Override
+    public void prepareStartCootdints(double time) {
+        super.prepareStartCootdints(time);
+        mathModelCa = new MathModelCa(parametrsOrbit,caParameters);
+    }
+
     public CaParameters getCaParameters() {
         return caParameters;
     }
@@ -47,9 +59,17 @@ public class SatelliteWithParametersCA extends SatelliteDefault{
         this.caParameters = caParameters;
     }
 
+    public MathModelCa getMathModelCa() {
+        return mathModelCa;
+    }
+
+    public void setMathModelCa(MathModelCa mathModelCa) {
+        this.mathModelCa = mathModelCa;
+    }
+
     @Override
-    public void movement(double time) {
-        super.movement(time);
-        mathModelCa.testMath2(time, ControllerWindowSimulation.getControllerWindowSimulation().getSimulation().getDeltaTime());
+    public void changeScaleModel(float scale) {
+        changeScaleModel(scale,spaceModel);
+        scaleModel = scale;
     }
 }

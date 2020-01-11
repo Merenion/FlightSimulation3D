@@ -198,7 +198,7 @@ public class DeterminateParameters {
 
     /**Широта точки трассы полета (fiGA)*/
     public double shirotaTockiTraseaPoleta (double t,double tau) {
-        double u = angleOfTrueAnomaly(t, tau);
+        double u = argumentShiroti(t, tau);
         double sinFi = Math.sin(orbitPr.getIinRadian()) * Math.sin(u);
         double cosFi = Math.sqrt(1 - sinFi * sinFi);
         double fiGA = Math.atan(sinFi / Math.sqrt(1 - sinFi * sinFi));
@@ -207,6 +207,13 @@ public class DeterminateParameters {
 
     /**Геодезическая широта (lambdaGaSH)*/
     public double geosethicheskayShirotaFor2D(double t, double tau){
+        if (t==101401){
+            double u = argumentShiroti(t, tau);
+        }
+
+        if (t==10001){
+            double u = argumentShiroti(t, tau);
+        }
         double u = argumentShiroti(t, tau);
         double iRad = orbitPr.getIinRadian();
         double fiGA = shirotaTockiTraseaPoleta(t, tau);
@@ -220,8 +227,10 @@ public class DeterminateParameters {
             lambdaGaSh = Math.PI + Math.atan(Math.sqrt(1 - coslambdaGA * coslambdaGA) / coslambdaGA);
         if (sinlambdaGA < 0 && coslambdaGA < 0)
             lambdaGaSh = Math.PI - Math.atan(sinlambdaGA / Math.sqrt(1 - sinlambdaGA * sinlambdaGA));
-        if (sinlambdaGA < 0 && coslambdaGA > 0)
+        if (sinlambdaGA < 0 && coslambdaGA > 0) {
             lambdaGaSh = -Math.atan(Math.sqrt(1 - coslambdaGA * coslambdaGA) / coslambdaGA);
+            double ll = Math.sqrt(1 - coslambdaGA * coslambdaGA) / coslambdaGA;
+        }
         return lambdaGaSh;
     }
 

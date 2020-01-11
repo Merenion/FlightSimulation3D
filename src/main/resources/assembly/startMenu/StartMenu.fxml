@@ -6,10 +6,16 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="forma" prefHeight="338.0" prefWidth="655.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.simulation.startMenu.StartMenu">
+<AnchorPane fx:id="forma" prefHeight="518.0" prefWidth="847.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.simulation.startMenu.StartMenu">
   <children>
-    <Button layoutX="406.0" layoutY="45.0" mnemonicParsing="false" onAction="#onBtProgram1" prefHeight="45.0" prefWidth="223.0" text="Выбор проектных характеристик &#10;                     КА ДЗЗ">
+      <ImageView fitHeight="524.0" fitWidth="847.0" layoutY="-2.0">
+         <image>
+            <Image url="@menu.jpg" />
+         </image>
+      </ImageView>
+    <Button layoutX="42.0" layoutY="429.0" mnemonicParsing="false" onAction="#onBtProgram1" prefHeight="45.0" prefWidth="238.0" text="Выбор проектных характеристик &#10;                     КА ДЗЗ">
       <effect>
         <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="25.08" surfaceScale="0.0">
           <bumpInput>
@@ -20,8 +26,11 @@
           </light>
         </Lighting>
       </effect>
+         <font>
+            <Font name="Franklin Gothic Medium" size="14.0" />
+         </font>
     </Button>
-    <Button layoutX="406.0" layoutY="140.0" mnemonicParsing="false" onAction="#onBtProgram2" prefHeight="45.0" prefWidth="223.0" text="Анализ показателей &#10;эффективности КСН">
+    <Button layoutX="312.0" layoutY="429.0" mnemonicParsing="false" onAction="#onBtProgram2" prefHeight="45.0" prefWidth="223.0" text="Анализ показателей &#10;эффективности КСН">
          <effect>
             <Lighting diffuseConstant="1.47" specularExponent="16.28" surfaceScale="0.0">
                <bumpInput>
@@ -31,8 +40,12 @@
                   <javafx.scene.effect.Light.Distant color="#4fc1ff" />
                </light>
             </Lighting>
-         </effect></Button>
-    <Button layoutX="406.0" layoutY="234.0" mnemonicParsing="false" onAction="#onBtHelp" prefHeight="45.0" prefWidth="223.0" text="О программе">
+         </effect>
+        <font>
+            <Font name="Franklin Gothic Medium" size="14.0" />
+        </font>
+    </Button>
+    <Button layoutX="586.0" layoutY="429.0" mnemonicParsing="false" onAction="#onBtHelp" prefHeight="45.0" prefWidth="223.0" text="О программе">
          <effect>
             <Lighting diffuseConstant="1.4" specularConstant="0.23" specularExponent="16.74" surfaceScale="0.0">
                <bumpInput>
@@ -42,12 +55,11 @@
                   <javafx.scene.effect.Light.Distant color="#20e1ff" />
                </light>
             </Lighting>
-         </effect></Button>
-      <ImageView fitHeight="384.0" fitWidth="390.0" layoutX="-17.0" layoutY="-67.0">
-         <image>
-            <Image url="@depositphotos_169086746-stock-photo-satellite-on-white-background-isolated.png" />
-         </image>
-      </ImageView>
+         </effect>
+        <font>
+            <Font name="Franklin Gothic Medium" size="14.0" />
+        </font>
+    </Button>
   </children>
    <effect>
       <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="7.91" surfaceScale="0.0">

@@ -27,7 +27,7 @@ public abstract class  SpaceObject {
     /**наименнование космического обьекта*/
     private SimpleStringProperty name = new SimpleStringProperty("rfrfr");
     /**Группа содержащая представляющая модель космического обьекта*/
-    private Group spaceModel = new Group();
+    protected Group spaceModel = new Group();
     /**Поворот модели Космического обьекта относительно собственной оси X*/
     protected final Rotate rotateX = new Rotate(0,Rotate.X_AXIS);
     /**Поворот модели Космического обьекта относительно собственной оси Y*/
@@ -37,7 +37,7 @@ public abstract class  SpaceObject {
     /**поле для изменения расположения космического обьекта относительно основной системы координат*/
     protected final Translate orientation = new Translate();
     /**масштаб модели*/
-    private float scaleModel =1;
+    protected float scaleModel =1;
 
     /**поле для рисования орбиты или Пути перемещения*/
     private DrawingPath drawingOrbit;
@@ -162,25 +162,39 @@ public abstract class  SpaceObject {
      * @param scale необходимый масштаб
      * @param group группа составляющие которой необходимо изменить.
      */
-    private void changeScaleModel (float scale, Group group){
+    protected void changeScaleModel (float scale, Group group){
+        changeScaleModel(scale,group,null);
+    }
+
+    /**
+     * метод для изменения масштаба обьектов группы (расположени группы относительно
+     * родительской системы координат не менется)
+     * @param scale необходимый масштаб
+     * @param group группа составляющие которой необходимо изменить.
+     * @param groupNonChange группа которую не измменять
+     */
+    protected void changeScaleModel (float scale, Group group,Group groupNonChange){
         for (Node node: group.getChildren()){
-            if (node instanceof Group) {
-                changeScaleModel(scale, (Group) node);
-            }else {
-                node.setScaleX(scale);
-                node.setScaleY(scale);
-                node.setScaleZ(scale);
-                node.setTranslateX(node.getTranslateX() / scaleModel * scale);
-                node.setTranslateY(node.getTranslateY() / scaleModel * scale);
-                node.setTranslateZ(node.getTranslateZ() / scaleModel * scale);
-                for (Transform transform : node.getTransforms()) {
-                    if (transform instanceof Translate) {
-                        ((Translate) transform).setX(((Translate) transform).getX() / scaleModel * scale);
-                        ((Translate) transform).setY(((Translate) transform).getY() / scaleModel * scale);
-                        ((Translate) transform).setZ(((Translate) transform).getZ() / scaleModel * scale);
+            if (node instanceof Group && !((Group) node).equals(groupNonChange)) {
+                break;
+            }
+                if (node instanceof Group) {
+                    changeScaleModel(scale, (Group) node);
+                } else {
+                    node.setScaleX(scale);
+                    node.setScaleY(scale);
+                    node.setScaleZ(scale);
+                    node.setTranslateX(node.getTranslateX() / scaleModel * scale);
+                    node.setTranslateY(node.getTranslateY() / scaleModel * scale);
+                    node.setTranslateZ(node.getTranslateZ() / scaleModel * scale);
+                    for (Transform transform : node.getTransforms()) {
+                        if (transform instanceof Translate) {
+                            ((Translate) transform).setX(((Translate) transform).getX() / scaleModel * scale);
+                            ((Translate) transform).setY(((Translate) transform).getY() / scaleModel * scale);
+                            ((Translate) transform).setZ(((Translate) transform).getZ() / scaleModel * scale);
+                        }
                     }
                 }
-            }
         }
     }
 

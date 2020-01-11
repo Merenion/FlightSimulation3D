@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="320.0" prefWidth="1212.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.simulation.earth.ControllerGraffikPeriod">
+   <children>
+      <BarChart fx:id="grRaspPer" layoutX="11.0" layoutY="44.0" opacity="0.48" prefHeight="266.0" prefWidth="412.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="11.0">
+         <xAxis>
+            <CategoryAxis side="BOTTOM" fx:id="xFRPe">
+               <effect>
+                  <ColorAdjust brightness="1.0" />
+               </effect>
+            </CategoryAxis>
+         </xAxis>
+         <yAxis>
+            <NumberAxis fx:id="yFRP" side="LEFT">
+               <effect>
+                  <ColorAdjust brightness="1.0" contrast="-0.14" hue="0.05" saturation="0.02" />
+               </effect>
+            </NumberAxis>
+         </yAxis>
+         <effect>
+            <ColorAdjust contrast="-0.05" hue="-0.76" saturation="0.28" />
+         </effect>
+      </BarChart>
+      <BarChart fx:id="grPlotnRasprPer" layoutX="427.0" layoutY="44.0" opacity="0.5" prefHeight="266.0" prefWidth="365.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="427.0">
+         <xAxis>
+            <CategoryAxis side="BOTTOM" fx:id="xFPRPe">
+               <effect>
+                  <ColorAdjust brightness="1.0" />
+               </effect>
+            </CategoryAxis>
+         </xAxis>
+         <yAxis>
+            <NumberAxis fx:id="yFPRP" side="LEFT">
+               <effect>
+                  <ColorAdjust brightness="1.0" />
+               </effect>
+            </NumberAxis>
+         </yAxis>
+         <effect>
+            <ColorAdjust hue="-0.4" saturation="0.35" />
+         </effect>
+      </BarChart>
+      <VBox layoutX="804.0" layoutY="113.0" prefHeight="181.0" prefWidth="408.0">
+         <children>
+            <AnchorPane prefHeight="29.0" prefWidth="412.0">
+               <children>
+                  <Label layoutX="-3.0" layoutY="7.0" text="Количество заснятых обьектов наблюдения" textFill="#006fff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="colZasnOb" layoutX="284.0" layoutY="6.0" prefHeight="17.0" prefWidth="124.0" text="0" textFill="#006fff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="29.0" prefWidth="412.0">
+               <children>
+                  <Label layoutX="-3.0" layoutY="7.0" text="Текущее значение периодичности" textFill="#006fff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="tekushcZnachPer" layoutX="284.0" layoutY="6.0" prefHeight="17.0" prefWidth="124.0" text="0" textFill="#006fff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="29.0" prefWidth="412.0">
+               <children>
+                  <Label layoutX="-3.0" layoutY="7.0" text="Среднее значение периодичности" textFill="#006fff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="srednZnachPer" layoutX="284.0" layoutY="6.0" prefHeight="17.0" prefWidth="124.0" text="0" textFill="#006fff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="29.0" prefWidth="412.0">
+               <children>
+                  <Label layoutX="-3.0" layoutY="7.0" text="Максимальная периодичность" textFill="#006fff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="maxPer" layoutX="284.0" layoutY="6.0" prefHeight="17.0" prefWidth="124.0" text="0" textFill="#006fff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="29.0" prefWidth="412.0">
+               <children>
+                  <Label layoutX="-3.0" layoutY="7.0" text="Минимальная периодичность" textFill="#006fff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="minPer" layoutX="284.0" layoutY="6.0" prefHeight="17.0" prefWidth="124.0" text="0" textFill="#006fff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="29.0" prefWidth="412.0">
+               <children>
+                  <Label layoutX="-3.0" layoutY="7.0" text="Среднеквадратическое отклонение,час" textFill="#006fff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="srednKvadrOtklon" layoutX="284.0" layoutY="6.0" prefHeight="17.0" prefWidth="124.0" text="0" textFill="#006fff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+      <Label fx:id="lableTimeInMin2" layoutX="99.0" layoutY="36.0" opacity="0.66" text="Функция распределения периодичности" textFill="#006fff">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="lableTimeInMin21" layoutX="472.0" layoutY="36.0" opacity="0.66" text="Функция плотности распределения периодичности" textFill="#006fff">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="lableTimeInMin211" layoutX="355.0" layoutY="152.0" opacity="0.66" rotate="270.0" text="Плотность вероятности, 1/час" textFill="#006fff">
+         <font>
+            <Font name="System Bold" size="11.0" />
+         </font>
+      </Label>
+      <Label fx:id="lableTimeInMin22" layoutX="130.0" layoutY="298.0" opacity="0.66" text="Периодичность наблюдения, час" textFill="#006fff">
+         <font>
+            <Font name="System Bold" size="11.0" />
+         </font>
+      </Label>
+      <Label fx:id="lableTimeInMin2111" layoutX="-14.0" layoutY="162.0" opacity="0.66" rotate="270.0" text="Вероятность" textFill="#006fff">
+         <font>
+            <Font name="System Bold" size="11.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

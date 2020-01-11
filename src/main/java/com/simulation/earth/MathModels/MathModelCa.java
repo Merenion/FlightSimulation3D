@@ -4,6 +4,7 @@ import com.simulation.earth.manageSatellite.CaParameters;
 import com.simulation.earth.manageSatellite.OrbitParameters;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class MathModelCa extends DeterminateParameters {
 
@@ -34,7 +35,6 @@ public class MathModelCa extends DeterminateParameters {
     private boolean changeDay;
     private boolean changeVitok;
 
-
     List<Double> massiv_t_Per = new ArrayList<>();
     Set<Double> F_Per = new HashSet<>();
     Double[] mhf = new Double[999];
@@ -45,13 +45,6 @@ public class MathModelCa extends DeterminateParameters {
     }
 
     public boolean testMAth(double t, double deltaTime) {
-        final double dd = Math.tan(caParameters.maksUgolKAotNadira * Math.PI / 180);
-        final double ff = Math.sqrt(1 + Math.pow(Math.tan(caParameters.maksUgolKAotNadira * Math.PI / 180), 2));
-        final double aa = (flightAltitude(t, 0) + radiusPlanet) / radiusPlanet *
-                Math.tan(caParameters.maksUgolKAotNadira * Math.PI / 180) /
-                Math.sqrt(1 + Math.pow(Math.tan(caParameters.maksUgolKAotNadira * Math.PI / 180), 2));
-        final double bb = flightAltitude(t, 0);
-
         alfa_Obzor = Math.asin((flightAltitude(t, 0) + radiusPlanet) / radiusPlanet *
                 Math.tan(caParameters.maksUgolKAotNadira * Math.PI / 180) /
                 Math.sqrt(1 + Math.pow(Math.tan(caParameters.maksUgolKAotNadira * Math.PI / 180), 2)))
@@ -78,10 +71,12 @@ public class MathModelCa extends DeterminateParameters {
         final double Koord_Fi_ObjektNabL = caParameters.shON;
         final double Koord_Ld_ObjektNabL = caParameters.dolgON;
         final double LambdaGd = geosethicheskayDolgotaFor2D(t, 0);
+
         alfa_Obzor = Math.asin((flightAltitude(t, 0) + radiusPlanet) / radiusPlanet *
                 Math.tan(caParameters.maksUgolKAotNadira * Math.PI / 180) /
                 Math.sqrt(1 + Math.pow(Math.tan(caParameters.maksUgolKAotNadira * Math.PI / 180), 2)))
                 - Math.acos(1 / Math.sqrt(1 + Math.pow(Math.tan(caParameters.maksUgolKAotNadira * Math.PI / 180), 2)));
+
         return (Math.abs(Math.acos(Math.sin(FiGa) * Math.sin(Koord_Fi_ObjektNabL * Math.PI / 180)
                 + Math.cos(FiGa) * Math.cos(Koord_Fi_ObjektNabL * Math.PI / 180)
                 * Math.cos(Koord_Ld_ObjektNabL * Math.PI / 180
@@ -91,7 +86,8 @@ public class MathModelCa extends DeterminateParameters {
     public void testMath2(double t, double deltaTime) {
         eventChangeTime(t);
         testMAth(t, deltaTime);
-        if (changeMin)
+
+        if (!changeMin)
             return;
 
         t_per_sum = 0;
@@ -103,7 +99,7 @@ public class MathModelCa extends DeterminateParameters {
             t_per_sr = t_per_sum / massiv_t_Per.size();
         }
 
-        if ((massiv_t_Per.size() >= 1) && (changeDay = true)) {
+        if ((massiv_t_Per.size() >= 1) && (changeDay)) {
             Summa_Rasnosti_Kvadratov_Per = 0;
 
             for (int i = 0; i <= massiv_t_Per.size() - 1; i++) {
@@ -116,16 +112,19 @@ public class MathModelCa extends DeterminateParameters {
                 Dispersija_Per = Summa_Rasnosti_Kvadratov_Per / (massiv_t_Per.size() - 1);
             }
 
+            massiv_t_Per = massiv_t_Per.stream().sorted().collect(Collectors.toList());
             SrKvOtklonenie_Per = Math.sqrt(Dispersija_Per);
             maxPeriodich = massiv_t_Per.stream().max(Double::compare).get();
             minPeriodich = massiv_t_Per.stream().min(Double::compare).get();
 
+            F_Per.clear();
             for (int i = 0; i <= massiv_t_Per.size() - 1; i++) {
-                F_Per.add((double) ((i + 1) / (massiv_t_Per.size())));
+                F_Per.add(((i + 1d) / (massiv_t_Per.size())));
                 if (F_Per.size()>=2000){
                     F_Per.remove(0);
                 }
             }
+            F_Per = F_Per.stream().sorted().collect(Collectors.toSet());
 
 
 //                FormKur2.Chart1.SeriesList[0].AddXY(massiv_t_per[i], F_Per[i], '', clRed);
@@ -192,4 +191,91 @@ public class MathModelCa extends DeterminateParameters {
         this.vitok = vitok;
     }
 
+    public CaParameters getCaParameters() {
+        return caParameters;
+    }
+
+    public boolean isFlag_Per1() {
+        return Flag_Per1;
+    }
+
+    public boolean isFlag_Per1_1() {
+        return Flag_Per1_1;
+    }
+
+    public double getT_Per() {
+        return t_Per;
+    }
+
+    public double getAlfa_Obzor() {
+        return alfa_Obzor;
+    }
+
+    public double getT_per_sum() {
+        return t_per_sum;
+    }
+
+    public double getT_per_sr() {
+        return t_per_sr;
+    }
+
+    public double getSumma_Rasnosti_Kvadratov_Per() {
+        return Summa_Rasnosti_Kvadratov_Per;
+    }
+
+    public double getDispersija_Per() {
+        return Dispersija_Per;
+    }
+
+    public double getSrKvOtklonenie_Per() {
+        return SrKvOtklonenie_Per;
+    }
+
+    public double getMaxPeriodich() {
+        return maxPeriodich;
+    }
+
+    public double getMinPeriodich() {
+        return minPeriodich;
+    }
+
+    public double getnIntPer() {
+        return nIntPer;
+    }
+
+    public double getDnIntPer() {
+        return dnIntPer;
+    }
+
+    public List<Double> getMassiv_t_Per() {
+        return massiv_t_Per;
+    }
+
+    public Set<Double> getF_Per() {
+        return F_Per;
+    }
+
+    public Double[] getMhf() {
+        return mhf;
+    }
+
+    public boolean isChangeSec() {
+        return changeSec;
+    }
+
+    public boolean isChangeMin() {
+        return changeMin;
+    }
+
+    public boolean isChangeHours() {
+        return changeHours;
+    }
+
+    public boolean isChangeDay() {
+        return changeDay;
+    }
+
+    public boolean isChangeVitok() {
+        return changeVitok;
+    }
 }
