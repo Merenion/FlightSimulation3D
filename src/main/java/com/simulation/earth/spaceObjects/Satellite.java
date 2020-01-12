@@ -77,4 +77,8 @@ public abstract class Satellite extends SpaceObjectWithCamera {
     public void setParametrsOrbit(OrbitParameters parametrsOrbit) {
         this.parametrsOrbit = parametrsOrbit;
     }
+
+    public void changeParam(Object o){
+
+    }
 }

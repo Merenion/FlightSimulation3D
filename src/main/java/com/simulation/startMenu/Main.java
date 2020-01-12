@@ -21,7 +21,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Main.stage = stage;
-        Parent root = FXMLLoader.load(getClass().getResource("/assembly/startMenu/StartMenu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/startMenu/StartMenu.fxml"));
         stage.setTitle("Выбор программы");
         Scene scene= new Scene(root,847,518);
         stage.setScene(scene);

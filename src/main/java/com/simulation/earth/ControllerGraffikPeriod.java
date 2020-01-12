@@ -1,6 +1,5 @@
 package com.simulation.earth;
 
-import com.simulation.earth.spaceObjects.Satellite;
 import com.simulation.earth.spaceObjects.SatelliteWithParametersCA;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
@@ -9,8 +8,6 @@ import javafx.scene.control.Label;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 public class ControllerGraffikPeriod {
     public BarChart<String, Number> grRaspPer;
@@ -53,7 +50,7 @@ public class ControllerGraffikPeriod {
         threadMonitorPeriodichn = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                if (satellite.getMathModelCa().isChangeMin()) {
+                if (satellite.getMathModelPeriod().isChangeMin()) {
                     initFRP();
                     initFPRP();
                     initVariable();
@@ -70,10 +67,10 @@ public class ControllerGraffikPeriod {
     }
 
     private void initFRP() {
-        if (satellite.getMathModelCa().isChangeDay() && satellite.getMathModelCa().getMassiv_t_Per().size()!=0) {
+        if (satellite.getMathModelPeriod().isChangeDay() && satellite.getMathModelPeriod().getMassiv_t_Per().size()!=0) {
             XYChart.Series<String, Number> data = new XYChart.Series<String, Number>();
-            List<Double> xElements = satellite.getMathModelCa().getMassiv_t_Per();
-            List<Double> yElements = new ArrayList<>(satellite.getMathModelCa().getF_Per());
+            List<Double> xElements = satellite.getMathModelPeriod().getMassiv_t_Per();
+            List<Double> yElements = new ArrayList<>(satellite.getMathModelPeriod().getF_Per());
 
             if (xElements.size() == yElements.size() && xElements.size() != 0) {
                 for (int i = 0; i < yElements.size(); i++) {
@@ -86,16 +83,16 @@ public class ControllerGraffikPeriod {
     }
 
     private void initFPRP() {
-        if (satellite.getMathModelCa().isChangeDay() && satellite.getMathModelCa().getMassiv_t_Per().size()>30) {
+        if (satellite.getMathModelPeriod().isChangeDay() && satellite.getMathModelPeriod().getMassiv_t_Per().size()>30) {
             XYChart.Series<String, Number> data = new XYChart.Series<String, Number>();
             List<Double> yElements = new ArrayList<>();
             List<Double> xElements = new ArrayList<>();
-            for (int i = 0; i <= ((int) satellite.getMathModelCa().getnIntPer() + 1d); i++) {
-                xElements.add(satellite.getMathModelCa().getMassiv_t_Per().get(0) + satellite.getMathModelCa().getDnIntPer() * i);
-                yElements.add(satellite.getMathModelCa().getMhf()[i] / ((satellite.getMathModelCa().getMassiv_t_Per().size() - 1) * satellite.getMathModelCa().getDnIntPer()));
+            for (int i = 0; i <= ((int) satellite.getMathModelPeriod().getnIntPer() + 1d); i++) {
+                xElements.add(satellite.getMathModelPeriod().getMassiv_t_Per().get(0) + satellite.getMathModelPeriod().getDnIntPer() * i);
+                yElements.add(satellite.getMathModelPeriod().getMhf()[i] / ((satellite.getMathModelPeriod().getMassiv_t_Per().size() - 1) * satellite.getMathModelPeriod().getDnIntPer()));
             }
 
-            for (int i = 0; i <= ((int) satellite.getMathModelCa().getnIntPer() + 1d); i++) {
+            for (int i = 0; i <= ((int) satellite.getMathModelPeriod().getnIntPer() + 1d); i++) {
                 data.getData().add((new XYChart.Data<String, Number>(String.valueOf(xElements.get(i)), yElements.get(i))));
             }
             grPlotnRasprPer.getData().clear();
@@ -104,11 +101,21 @@ public class ControllerGraffikPeriod {
     }
 
     private void initVariable() {
-        colZasnOb.setText(String.valueOf(satellite.getMathModelCa().getMassiv_t_Per().size()));
-        tekushcZnachPer.setText(String.valueOf(satellite.getMathModelCa().getT_Per()));
-        srednZnachPer.setText(String.valueOf(satellite.getMathModelCa().getT_per_sr()));
-        maxPer.setText(String.valueOf(satellite.getMathModelCa().getMaxPeriodich()));
-        minPer.setText(String.valueOf(satellite.getMathModelCa().getMinPeriodich()));
-        srednKvadrOtklon.setText(String.valueOf(satellite.getMathModelCa().getSrKvOtklonenie_Per()));
+        colZasnOb.setText(String.valueOf(satellite.getMathModelPeriod().getMassiv_t_Per().size()));
+        tekushcZnachPer.setText(String.valueOf(reduceNumber(satellite.getMathModelPeriod().getT_Per(),4)));
+        srednZnachPer.setText(String.valueOf(reduceNumber(satellite.getMathModelPeriod().getT_per_sr(),4)));
+        maxPer.setText(String.valueOf(reduceNumber(satellite.getMathModelPeriod().getMaxPeriodich(),4)));
+        minPer.setText(String.valueOf(reduceNumber(satellite.getMathModelPeriod().getMinPeriodich(),4)));
+        srednKvadrOtklon.setText(String.valueOf(reduceNumber(satellite.getMathModelPeriod().getSrKvOtklonenie_Per(),4)));
+    }
+
+    /**
+     * округление
+     * @param number чмсло которое нужно округлить
+     * @param coll необходимое число цифр после запятой
+     * @return
+     */
+    private double reduceNumber (double number, int coll) {
+        return Math.floor(number * Math.pow(10,coll))/Math.pow(10,coll);
     }
 }

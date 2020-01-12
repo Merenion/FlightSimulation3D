@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.SubScene?>
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
@@ -8,6 +9,7 @@
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.effect.Light.Distant?>
@@ -15,6 +17,7 @@
 <?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="624.0" prefWidth="1334.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.simulation.earth.ControllerWindowSimulation">
@@ -24,7 +27,7 @@
           <Region />
         </root>
       </SubScene>
-      <Accordion fx:id="menu" layoutX="995.0" prefHeight="600.0" prefWidth="205.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Accordion fx:id="menu" layoutX="995.0" prefHeight="624.0" prefWidth="205.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <panes>
           <TitledPane animated="false" text="Управление симуляцией">
             <content>
@@ -42,7 +45,7 @@
                           </columns>
                         </TableView>
                         <CheckBox fx:id="checkExtraTImeDisplay" layoutX="41.0" layoutY="391.0" mnemonicParsing="false" onAction="#onExtraTime" text="Extra time display" />
-                        <Button layoutX="75.0" layoutY="456.0" mnemonicParsing="false" onAction="#closeProject" prefHeight="25.0" prefWidth="55.0" text="Close">
+                        <Button layoutX="75.0" layoutY="427.0" mnemonicParsing="false" onAction="#closeProject" prefHeight="25.0" prefWidth="55.0" text="Close">
                            <effect>
                               <Lighting diffuseConstant="2.0" surfaceScale="0.0">
                                  <bumpInput>
@@ -54,19 +57,6 @@
                               </Lighting>
                            </effect>
                         </Button>
-                     </children></AnchorPane>
-            </content>
-          </TitledPane>
-          <TitledPane animated="false" text="Прочие функции">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <CheckBox fx:id="checkOverScale" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onOverScale" text="Over Scale" />
-                        <CheckBox fx:id="checkSystCoordinat" layoutX="14.0" layoutY="39.0" mnemonicParsing="false" onAction="#onSystCoordinat" selected="true" text="Show coordinate system" />
-                        <CheckBox fx:id="checkOverLightLevel" layoutX="14.0" layoutY="63.0" mnemonicParsing="false" onAction="#onOverLightLevel" text="Over light level" />
-                        <CheckBox fx:id="checkEclipticPlane" layoutX="14.0" layoutY="88.0" mnemonicParsing="false" onAction="#onEclipticPlane" text="Ecliptic plane" />
-                        <CheckBox fx:id="checkEquatorialPlane" layoutX="14.0" layoutY="113.0" mnemonicParsing="false" onAction="#onEquatorialPlane" text="Equatorial plane" />
-                        <CheckBox fx:id="checkRotationAxisOfTheEarth" layoutX="14.0" layoutY="138.0" mnemonicParsing="false" onAction="#onRotationAxisOfTheEarth" text="Rotation axis of the earth" />
                      </children></AnchorPane>
             </content>
           </TitledPane>
@@ -85,9 +75,33 @@
                         <Button layoutX="60.0" layoutY="219.0" mnemonicParsing="false" onAction="#onAddSatellite" text="Add Satellite" />
                         <CheckBox fx:id="checkSatelliteTrajectory" layoutX="24.0" layoutY="356.0" mnemonicParsing="false" text="Satellite Orbit" />
                         <CheckBox fx:id="checkProjectionPathOnEarth" layoutX="24.0" layoutY="330.0" mnemonicParsing="false" text="Projection path on earth" />
+                        <CheckBox fx:id="checkZonaObzora" layoutX="24.0" layoutY="382.0" mnemonicParsing="false" text="Viewing area" />
                      </children></AnchorPane>
             </content>
           </TitledPane>
+            <TitledPane animated="false" text="Текущие параметры полета">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="499.0" prefWidth="237.0">
+                     <children>
+                        <TableView fx:id="tableSatelliteForFly" layoutX="9.0" layoutY="105.0" onMouseClicked="#onSelectSatelliteForParFly" prefHeight="255.0" prefWidth="191.0">
+                           <columns>
+                              <TableColumn fx:id="columnSatellitesForFly" prefWidth="190.0" text="Satellites" />
+                           </columns>
+                        </TableView>
+                        <Button layoutX="42.0" layoutY="388.0" mnemonicParsing="false" onAction="#hideParamFly" prefHeight="32.0" prefWidth="118.0" text="Скрыть">
+                           <effect>
+                              <ColorAdjust hue="0.31" saturation="0.26" />
+                           </effect>
+                        </Button>
+                        <Label layoutX="31.0" layoutY="14.0" text="Выберите спутник для &#10;которого нужно &#10;отобразить текущие&#10;параметры полета" textFill="#0400ff">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </TitledPane>
             <TitledPane animated="false" text="Показатели периодичности">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="499.0" prefWidth="237.0">
@@ -110,6 +124,45 @@
                   </AnchorPane>
                </content>
             </TitledPane>
+            <TitledPane animated="false" text="Показатели оперативности">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="499.0" prefWidth="237.0">
+                     <children>
+                        <TableView fx:id="tableSatelliteForOper" layoutX="9.0" layoutY="200.0" onMouseClicked="#onSelectSatelliteForOper" prefHeight="178.0" prefWidth="191.0">
+                           <columns>
+                              <TableColumn fx:id="columnSatellitesForOper" prefWidth="190.0" text="Satellites" />
+                           </columns>
+                        </TableView>
+                        <Button layoutX="42.0" layoutY="394.0" mnemonicParsing="false" onAction="#hideGrafOper" text="Скрыть показатели &#10;   оперативности">
+                           <effect>
+                              <ColorAdjust hue="0.31" saturation="0.26" />
+                           </effect>
+                        </Button>
+                        <Label layoutX="31.0" layoutY="113.0" text="Выберите спутник для &#10;которого нужно &#10;отобразить показатели&#10;оперативности" textFill="#0400ff">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="dolgtSR" layoutX="58.0" layoutY="73.0" prefHeight="25.0" prefWidth="87.0" />
+                        <Label layoutX="36.0" layoutY="14.0" text="             Долгота &#10;спутника-ретранслятора,&#10;                град&#10;" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </TitledPane>
+          <TitledPane animated="false" prefHeight="517.0" prefWidth="205.0" text="Прочие функции">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <CheckBox fx:id="checkOverScale" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onOverScale" text="Over Scale" />
+                        <CheckBox fx:id="checkSystCoordinat" layoutX="14.0" layoutY="39.0" mnemonicParsing="false" onAction="#onSystCoordinat" selected="true" text="Show coordinate system" />
+                        <CheckBox fx:id="checkOverLightLevel" layoutX="14.0" layoutY="63.0" mnemonicParsing="false" onAction="#onOverLightLevel" text="Over light level" />
+                        <CheckBox fx:id="checkEclipticPlane" layoutX="14.0" layoutY="88.0" mnemonicParsing="false" onAction="#onEclipticPlane" text="Ecliptic plane" />
+                        <CheckBox fx:id="checkEquatorialPlane" layoutX="14.0" layoutY="113.0" mnemonicParsing="false" onAction="#onEquatorialPlane" text="Equatorial plane" />
+                        <CheckBox fx:id="checkRotationAxisOfTheEarth" layoutX="14.0" layoutY="138.0" mnemonicParsing="false" onAction="#onRotationAxisOfTheEarth" text="Rotation axis of the earth" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </TitledPane>
         </panes>
       </Accordion>
       <Label layoutX="24.0" layoutY="21.0" text="TIME SIMULATION: " textFill="#2684ff">
@@ -140,5 +193,169 @@
        <AnchorPane fx:id="grafPeriodForm" layoutY="304.0" prefHeight="296.0" prefWidth="975.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
            <fx:include source="grafikPeriodich.fxml" />
        </AnchorPane>
+      <VBox fx:id="formParamFly" layoutX="290.0" layoutY="15.0" prefHeight="167.0" prefWidth="241.0" visible="false">
+         <children>
+            <Label fx:id="labelTImeInDay12" text=" Текущие параметры полета:" textFill="#006fff">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets bottom="5.0" />
+               </padding>
+            </Label>
+            <AnchorPane prefHeight="25.0" prefWidth="241.0">
+               <children>
+                  <Label fx:id="labelTImeInDay1" layoutX="4.0" layoutY="3.0" text="Аргумент перигея " textFill="#006fff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="argPerigey" layoutX="156.0" layoutY="3.0" prefHeight="17.0" prefWidth="85.0" text="0" textFill="#006fff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="25.0" prefWidth="241.0">
+               <children>
+                  <Label fx:id="labelTImeInDay11" layoutX="4.0" layoutY="3.0" text="Угол ист. аном., град  " textFill="#006fff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="ugolistinAnom" layoutX="156.0" layoutY="3.0" prefHeight="17.0" prefWidth="85.0" text="0" textFill="#006fff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="25.0" prefWidth="241.0">
+               <children>
+                  <Label layoutX="4.0" layoutY="3.0" text="Широта, град" textFill="#006fff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="shirotaPoletaSp" layoutX="156.0" layoutY="3.0" prefHeight="17.0" prefWidth="85.0" text="0" textFill="#006fff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="25.0" prefWidth="241.0">
+               <children>
+                  <Label layoutX="4.0" layoutY="3.0" text="Долгота, град" textFill="#006fff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="dolgPolSp" layoutX="156.0" layoutY="3.0" prefHeight="17.0" prefWidth="85.0" text="0" textFill="#006fff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="25.0" prefWidth="241.0">
+               <children>
+                  <Label layoutX="4.0" layoutY="3.0" text="Пройдено витков" textFill="#006fff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="vitkiSp" layoutX="156.0" layoutY="3.0" prefHeight="17.0" prefWidth="85.0" text="0" textFill="#006fff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="25.0" prefWidth="241.0">
+               <children>
+                  <Label layoutX="4.0" layoutY="3.0" text="Высота полета" textFill="#006fff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="hFly" layoutX="156.0" layoutY="3.0" prefHeight="17.0" prefWidth="85.0" text="0" textFill="#006fff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+      <VBox fx:id="formParamOper" layoutX="534.0" layoutY="21.0" prefHeight="114.0" prefWidth="241.0" visible="false">
+         <children>
+            <Label text=" Показатели оперативности:" textFill="#006fff">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets bottom="5.0" />
+               </padding>
+            </Label>
+            <AnchorPane prefHeight="25.0" prefWidth="241.0">
+               <children>
+                  <Label fx:id="KolSeansonSvyzi" layoutX="4.0" layoutY="3.0" text="Кол. сеансов связи" textFill="#006fff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="156.0" layoutY="3.0" prefHeight="17.0" prefWidth="85.0" text="0" textFill="#006fff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="25.0" prefWidth="241.0">
+               <children>
+                  <Label layoutX="4.0" layoutY="3.0" prefHeight="17.0" prefWidth="155.0" text="Текущ. знач. опер., град  " textFill="#006fff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="tekZnachOper" layoutX="156.0" layoutY="3.0" prefHeight="17.0" prefWidth="85.0" text="0" textFill="#006fff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="25.0" prefWidth="241.0">
+               <children>
+                  <Label layoutX="4.0" layoutY="3.0" text="Предыдущая опер., град" textFill="#006fff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lastOper" layoutX="156.0" layoutY="3.0" prefHeight="17.0" prefWidth="85.0" text="0" textFill="#006fff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="25.0" prefWidth="241.0">
+               <children>
+                  <Label layoutX="4.0" layoutY="3.0" text="Видимость СР с КАН" textFill="#006fff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="vidomostSR" layoutX="156.0" layoutY="3.0" prefHeight="17.0" prefWidth="85.0" text="НЕТ" textFill="#006fff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

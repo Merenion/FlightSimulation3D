@@ -32,12 +32,12 @@
     </Button>
     <Button layoutX="312.0" layoutY="429.0" mnemonicParsing="false" onAction="#onBtProgram2" prefHeight="45.0" prefWidth="223.0" text="Анализ показателей &#10;эффективности КСН">
          <effect>
-            <Lighting diffuseConstant="1.47" specularExponent="16.28" surfaceScale="0.0">
+             <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="25.08" surfaceScale="0.0">
                <bumpInput>
                   <Shadow />
                </bumpInput>
                <light>
-                  <javafx.scene.effect.Light.Distant color="#4fc1ff" />
+                   <javafx.scene.effect.Light.Distant color="#5781ff" />
                </light>
             </Lighting>
          </effect>
@@ -47,12 +47,12 @@
     </Button>
     <Button layoutX="586.0" layoutY="429.0" mnemonicParsing="false" onAction="#onBtHelp" prefHeight="45.0" prefWidth="223.0" text="О программе">
          <effect>
-            <Lighting diffuseConstant="1.4" specularConstant="0.23" specularExponent="16.74" surfaceScale="0.0">
+             <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="25.08" surfaceScale="0.0">
                <bumpInput>
                   <Shadow />
                </bumpInput>
                <light>
-                  <javafx.scene.effect.Light.Distant color="#20e1ff" />
+                   <javafx.scene.effect.Light.Distant color="#5781ff" />
                </light>
             </Lighting>
          </effect>
@@ -62,7 +62,7 @@
     </Button>
   </children>
    <effect>
-      <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="7.91" surfaceScale="0.0">
+       <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="25.08" surfaceScale="0.0">
          <bumpInput>
             <Shadow />
          </bumpInput>

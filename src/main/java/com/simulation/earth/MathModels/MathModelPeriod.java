@@ -6,7 +6,7 @@ import com.simulation.earth.manageSatellite.OrbitParameters;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class MathModelCa extends DeterminateParameters {
+public class MathModelPeriod extends DeterminateParameters {
 
     CaParameters caParameters;
     boolean Flag_Per1 = false;
@@ -28,23 +28,25 @@ public class MathModelCa extends DeterminateParameters {
     private int hours;
     private int day;
     private int vitok;
+    private int tenMin;
 
     private boolean changeSec;
     private boolean changeMin;
     private boolean changeHours;
     private boolean changeDay;
     private boolean changeVitok;
+    private boolean changeTenMin;
 
     List<Double> massiv_t_Per = new ArrayList<>();
     Set<Double> F_Per = new HashSet<>();
     Double[] mhf = new Double[999];
 
-    public MathModelCa(OrbitParameters orbitPr, CaParameters caParameters) {
+    public MathModelPeriod(OrbitParameters orbitPr, CaParameters caParameters) {
         super(orbitPr);
         this.caParameters = caParameters;
     }
 
-    public boolean testMAth(double t, double deltaTime) {
+    public boolean calculTekusheeTimePer(double t, double deltaTime) {
         alfa_Obzor = Math.asin((flightAltitude(t, 0) + radiusPlanet) / radiusPlanet *
                 Math.tan(caParameters.maksUgolKAotNadira * Math.PI / 180) /
                 Math.sqrt(1 + Math.pow(Math.tan(caParameters.maksUgolKAotNadira * Math.PI / 180), 2)))
@@ -83,9 +85,9 @@ public class MathModelCa extends DeterminateParameters {
                 - LambdaGd))) < alfa_Obzor);
     }
 
-    public void testMath2(double t, double deltaTime) {
+    public void calculationPeriodichn(double t, double deltaTime) {
         eventChangeTime(t);
-        testMAth(t, deltaTime);
+        calculTekusheeTimePer(t, deltaTime);
 
         if (!changeMin)
             return;
@@ -163,6 +165,7 @@ public class MathModelCa extends DeterminateParameters {
         final int hours = (int) t / 3600;
         final int day = (int) t / 86400;
         final int vitok = (int) amountCoil(t);
+        final int tenMin = (int) t / (600);
 
         changeSec = false;
         if (sec != this.sec)
@@ -184,11 +187,16 @@ public class MathModelCa extends DeterminateParameters {
         if (vitok != this.vitok)
             changeVitok = true;
 
+        changeTenMin = false;
+        if (tenMin != this.tenMin)
+            changeTenMin = true;
+
         this.sec = sec;
         this.min = min;
         this.hours = hours;
         this.day = day;
         this.vitok = vitok;
+        this.tenMin = tenMin;
     }
 
     public CaParameters getCaParameters() {
@@ -277,5 +285,9 @@ public class MathModelCa extends DeterminateParameters {
 
     public boolean isChangeVitok() {
         return changeVitok;
+    }
+
+    public boolean isChangeTenMin() {
+        return changeTenMin;
     }
 }

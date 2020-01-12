@@ -58,7 +58,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Label fx:id="colZasnOb" layoutX="284.0" layoutY="6.0" prefHeight="17.0" prefWidth="124.0" text="0" textFill="#006fff">
+                  <Label fx:id="colZasnOb" layoutX="284.0" layoutY="6.0" prefHeight="17.0" prefWidth="97.0" text="0" textFill="#006fff">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -72,7 +72,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Label fx:id="tekushcZnachPer" layoutX="284.0" layoutY="6.0" prefHeight="17.0" prefWidth="124.0" text="0" textFill="#006fff">
+                  <Label fx:id="tekushcZnachPer" layoutX="284.0" layoutY="6.0" prefHeight="17.0" prefWidth="108.0" text="0" textFill="#006fff">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -86,21 +86,21 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Label fx:id="srednZnachPer" layoutX="284.0" layoutY="6.0" prefHeight="17.0" prefWidth="124.0" text="0" textFill="#006fff">
+                  <Label fx:id="srednZnachPer" layoutX="284.0" layoutY="6.0" prefHeight="17.0" prefWidth="108.0" text="0" textFill="#006fff">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="29.0" prefWidth="412.0">
+            <AnchorPane prefHeight="29.0" prefWidth="381.0">
                <children>
                   <Label layoutX="-3.0" layoutY="7.0" text="Максимальная периодичность" textFill="#006fff">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Label fx:id="maxPer" layoutX="284.0" layoutY="6.0" prefHeight="17.0" prefWidth="124.0" text="0" textFill="#006fff">
+                  <Label fx:id="maxPer" layoutX="284.0" layoutY="6.0" prefHeight="17.0" prefWidth="97.0" text="0" textFill="#006fff">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -114,7 +114,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Label fx:id="minPer" layoutX="284.0" layoutY="6.0" prefHeight="17.0" prefWidth="124.0" text="0" textFill="#006fff">
+                  <Label fx:id="minPer" layoutX="284.0" layoutY="6.0" prefHeight="17.0" prefWidth="97.0" text="0" textFill="#006fff">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -128,7 +128,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Label fx:id="srednKvadrOtklon" layoutX="284.0" layoutY="6.0" prefHeight="17.0" prefWidth="124.0" text="0" textFill="#006fff">
+                  <Label fx:id="srednKvadrOtklon" layoutX="284.0" layoutY="6.0" prefHeight="17.0" prefWidth="108.0" text="0" textFill="#006fff">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>

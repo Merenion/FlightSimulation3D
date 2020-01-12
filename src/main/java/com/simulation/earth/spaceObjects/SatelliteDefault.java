@@ -233,4 +233,12 @@ public class SatelliteDefault extends Satellite {
         camera.setFarClip(400_000_000);
         return camera;
     }
+
+    public GeodeticLocation getMathModel() {
+        return mathModel;
+    }
+
+    public void setMathModel(GeodeticLocation mathModel) {
+        this.mathModel = mathModel;
+    }
 }

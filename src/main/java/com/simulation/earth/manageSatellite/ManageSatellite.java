@@ -24,5 +24,7 @@ public interface ManageSatellite {
     void refreshDrawingOrbit();
     void refreshProjectionOnPlanet();
     void deleteSatellite(Satellite satellite);
+    void enableDrawingZonaObzora();
+    void stopDrawingZonaObzora();
 
 }

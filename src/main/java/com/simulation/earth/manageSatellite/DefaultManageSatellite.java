@@ -2,6 +2,7 @@ package com.simulation.earth.manageSatellite;
 
 import com.simulation.earth.spaceObjects.PlanetOrStart;
 import com.simulation.earth.spaceObjects.Satellite;
+import com.simulation.earth.spaceObjects.SatelliteWithParametersCA;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Group;
@@ -108,4 +109,23 @@ public abstract class DefaultManageSatellite implements ManageSatellite{
         for (Satellite satellite :satellites)
             satellite.refreshProjectionOnPlanet();
     }
+
+    @Override
+    public void enableDrawingZonaObzora() {
+        for (Satellite satellite :satellites) {
+            if (satellite instanceof SatelliteWithParametersCA) {
+                ((SatelliteWithParametersCA)satellite).setVisibleZonaObzora(true);
+            }
+        }
+    }
+
+    @Override
+    public void stopDrawingZonaObzora() {
+        for (Satellite satellite :satellites) {
+            if (satellite instanceof SatelliteWithParametersCA) {
+                ((SatelliteWithParametersCA)satellite).setVisibleZonaObzora(false);
+            }
+        }
+    }
+
 }

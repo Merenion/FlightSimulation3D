@@ -1,6 +1,5 @@
 package com.simulation.startMenu;
 
-import com.simulation.earth.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -43,7 +42,7 @@ public class StartMenu {
     public void onBtHelp(ActionEvent actionEvent) throws IOException {
         System.out.println("action bt info project");
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/assembly/startMenu/AboutTheProgram.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("/startMenu/AboutTheProgram.fxml"));
         Parent root = fxmlLoader.load();
         Stage stage= new Stage();
         stage.setTitle("О программе");

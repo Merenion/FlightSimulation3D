@@ -1,54 +1,50 @@
 package com.simulation.earth.spaceObjects;
 
 import com.simulation.earth.ControllerWindowSimulation;
-import com.simulation.earth.MathModels.GeodeticLocation;
-import com.simulation.earth.MathModels.MathModelCa;
-import com.simulation.earth.MathModels.MathModelSatelite;
-import com.simulation.earth.PerspectiveCameraWithName;
+import com.simulation.earth.MathModels.MathModelOper;
+import com.simulation.earth.MathModels.MathModelPeriod;
 import com.simulation.earth.manageSatellite.CaParameters;
 import com.simulation.earth.manageSatellite.OrbitParameters;
-import com.simulation.earth.manageSatellite.StorageOrbitParameters;
-import javafx.geometry.Point3D;
-import javafx.scene.Camera;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.paint.PhongMaterial;
-import javafx.scene.shape.Box;
-import javafx.scene.shape.Cylinder;
-import javafx.scene.shape.Shape3D;
-import javafx.scene.transform.Rotate;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * реализация космического обьекта- спутника с парамметрами СА
  */
-public class SatelliteWithParametersCA extends SatelliteDefault{
+public class SatelliteWithParametersCA extends SatelliteDefault {
 
     CaParameters caParameters;
 
-    MathModelCa mathModelCa;
+    MathModelPeriod mathModelPeriod;
+    MathModelOper mathModelOper;
 
+    Group konus;
 
     public SatelliteWithParametersCA(OrbitParameters parametrsOrbit, CaParameters caParameters) {
         super(parametrsOrbit);
         this.caParameters = caParameters;
-        mathModelCa = new MathModelCa(parametrsOrbit,caParameters);
+        mathModelPeriod = new MathModelPeriod(parametrsOrbit, caParameters);
+        mathModelOper = new MathModelOper(parametrsOrbit);
     }
 
     @Override
     public void movement(double time) {
         super.movement(time);
-        mathModelCa.testMath2(time, ControllerWindowSimulation.getControllerWindowSimulation().getSimulation().getDeltaTime());
+        mathModelPeriod.calculationPeriodichn(time, ControllerWindowSimulation.getControllerWindowSimulation().getSimulation().getDeltaTime());
+        if (konus!=null && mathModelPeriod.isChangeTenMin()) {
+            for (Node node : konus.getChildren()){
+                if (node instanceof Cone){
+                    Cone cone = (Cone) node;
+                    cone.update(mathModel.flightAltitude(time,0)+2000,caParameters.maksUgolKAotNadira);
+                }
+            }
+        }
     }
 
     @Override
     public void prepareStartCootdints(double time) {
         super.prepareStartCootdints(time);
-        mathModelCa = new MathModelCa(parametrsOrbit,caParameters);
+        mathModelPeriod = new MathModelPeriod(parametrsOrbit, caParameters);
     }
 
     public CaParameters getCaParameters() {
@@ -59,17 +55,61 @@ public class SatelliteWithParametersCA extends SatelliteDefault{
         this.caParameters = caParameters;
     }
 
-    public MathModelCa getMathModelCa() {
-        return mathModelCa;
+    public MathModelPeriod getMathModelPeriod() {
+        return mathModelPeriod;
     }
 
-    public void setMathModelCa(MathModelCa mathModelCa) {
-        this.mathModelCa = mathModelCa;
+    public void setMathModelPeriod(MathModelPeriod mathModelPeriod) {
+        this.mathModelPeriod = mathModelPeriod;
     }
 
     @Override
     public void changeScaleModel(float scale) {
-        changeScaleModel(scale,spaceModel);
+        changeScaleModel(scale, spaceModel, konus);
+        if (konus != null) {
+            konus.setTranslateX(konus.getTranslateX() / scaleModel * scale);
+        }
         scaleModel = scale;
+    }
+
+//    @Override
+//    protected List<Node> modelDescription() {
+//        initKonus();
+//        List<Node> models = new ArrayList<>();
+//        models.add(konus);
+//        models.addAll(super.modelDescription());
+//        return models;
+//    }
+
+    private void initKonus() {
+        if (spaceModel.getChildren().contains(konus)) {
+            spaceModel.getChildren().remove(konus);
+        }
+        konus = new Group();
+        konus.setTranslateX(0);
+        konus.setVisible(false);
+//        konus.getChildren().add(new Cone(400, 0, 1200));
+        konus.getChildren().add(new Cone(mathModel.flightAltitude(1,0)+2000,caParameters.maksUgolKAotNadira));
+        konus.getTransforms().addAll(rotateX, rotateY, rotateZ);
+        spaceModel.getChildren().add(konus);
+    }
+
+    public void setVisibleZonaObzora(boolean value) {
+        initKonus();
+        konus.setVisible(value);
+        if (!value){
+            konus=null;
+        }
+    }
+
+    @Override
+    public void changeParam(Object o) {
+        super.changeParam(o);
+        spaceModel.getChildren().remove(konus);
+        initKonus();
+    }
+
+    public MathModelOper getMathModelOper() {
+        return mathModelOper;
     }
 }
