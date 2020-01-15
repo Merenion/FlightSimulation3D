@@ -32,6 +32,17 @@ public class DataOtherKA  extends DataElement{
 //    public float j;
 //    public float w;
 
+    private boolean massProc = false;
+
+    public boolean isMassProc() {
+        return massProc;
+    }
+
+    public void setMassProc(boolean massProc) {
+        this.massProc = massProc;
+    }
+
+
     public List<DataOtherKA> getOthers() {
         return others;
     }

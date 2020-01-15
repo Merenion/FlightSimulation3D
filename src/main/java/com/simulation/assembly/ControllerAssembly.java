@@ -4,10 +4,14 @@ import com.simulation.assembly.calculation.Calculation;
 import com.simulation.assembly.calculation.ca.*;
 import com.simulation.assembly.calculation.simple.*;
 import com.simulation.assembly.controllersImport.add.AddElement;
+import com.simulation.assembly.controllersImport.add.AddElementOtherKA;
 import com.simulation.assembly.dataCalculation.sintez.*;
 import com.simulation.assembly.validateRestrictionSimple.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
@@ -17,6 +21,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import javax.xml.bind.JAXBException;
@@ -1015,11 +1020,14 @@ public class ControllerAssembly extends ControllerImport {
     }
 
     public void addOtherKA(ActionEvent actionEvent) {
-        AddElement addElement = new AddElement();
+        AddElement addElement = new AddElementOtherKA();
         DataOtherKA newData = new DataOtherKA();
         addElement.addElementNotSave(newData);
 
-        if (newData.m == 0f)
+        if (newData.m == 0f && !newData.isMassProc())
+            return;
+
+        if (newData.omPrKA == 0f && newData.isMassProc())
             return;
 
         CalculationKA.getInstance().getDataOtherKA().getOthers().add(newData);
@@ -1095,6 +1103,48 @@ public class ControllerAssembly extends ControllerImport {
             startShowALL();
         }catch (Exception e){
             showError("Ошибка при расчете - итерации");
+        }
+    }
+
+    public void actionShowHelpInfoForSpeed(ActionEvent actionEvent) {
+        try {
+            Stage stage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("/assembly/help/helpInfoForSpeed.fxml"));
+            Scene scene = new Scene(root, 600, 442);
+            stage.setResizable(false);
+            stage.setTitle("Справочная информация");
+            stage.setScene(scene);
+            stage.showAndWait();
+        } catch (IOException e) {
+            ControllerAssembly.showInfo("Возникли технические неполадки");
+        }
+    }
+
+    public void actionShowHelpInfoForAcum(ActionEvent actionEvent) {
+        try {
+            Stage stage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("/assembly/help/helpInfoForAKUM.fxml"));
+            Scene scene = new Scene(root, 600, 400);
+            stage.setResizable(false);
+            stage.setTitle("Справочная информация");
+            stage.setScene(scene);
+            stage.showAndWait();
+        } catch (IOException e) {
+            ControllerAssembly.showInfo("Возникли технические неполадки");
+        }
+    }
+
+    public void actionShowHelpInfoForOetk(ActionEvent actionEvent) {
+        try {
+            Stage stage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("/assembly/help/helpInfoForOETK.fxml"));
+            Scene scene = new Scene(root, 958, 455);
+            stage.setResizable(false);
+            stage.setTitle("Справочная информация");
+            stage.setScene(scene);
+            stage.showAndWait();
+        } catch (IOException e) {
+            ControllerAssembly.showInfo("Возникли технические неполадки");
         }
     }
 

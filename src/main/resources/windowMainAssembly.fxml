@@ -232,6 +232,14 @@
                                                                   <Label fx:id="ouT_d_OETK11" prefHeight="25.0" prefWidth="70.0" text="0.000" />
                                                                </children>
                                                             </VBox>
+                                                            <Button layoutX="406.0" layoutY="7.0" mnemonicParsing="false" onAction="#actionShowHelpInfoForOetk" prefHeight="39.0" prefWidth="80.0" text=" Справочная &#10;информация">
+                                                               <effect>
+                                                                  <ColorAdjust contrast="0.04" hue="0.28" saturation="0.28" />
+                                                               </effect>
+                                                               <font>
+                                                                  <Font size="10.0" />
+                                                               </font>
+                                                            </Button>
                                                                      </children>
                                                                   </AnchorPane>
                                                                   <AnchorPane layoutX="812.0" layoutY="541.0" prefHeight="75.0" prefWidth="160.0">
@@ -347,12 +355,12 @@
                                                       </AnchorPane>
                                                       <Pane prefHeight="35.0" prefWidth="434.0">
                                                          <children>
-                                                            <RadioButton fx:id="choise_have_SPPE" layoutX="86.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveSPPE" selected="true" text="Известны (Заимсвованы)">
+                                                            <RadioButton fx:id="choise_have_SPPE" layoutX="86.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveSPPE" text="Известны (Заимсвованы)">
                                                                <toggleGroup>
                                                                   <ToggleGroup fx:id="select_group_oetk1" />
                                                                </toggleGroup>
                                                             </RadioButton>
-                                                            <RadioButton layoutX="269.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveSPPE" text="Подлежат расчету" toggleGroup="$select_group_oetk1" />
+                                                            <RadioButton layoutX="269.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveSPPE" selected="true" text="Подлежат расчету" toggleGroup="$select_group_oetk1" />
                                                          </children>
                                                       </Pane>
                                                                </children></AnchorPane>
@@ -2140,6 +2148,14 @@
                                                             <RadioButton layoutX="269.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveAcum" selected="true" text="Подлежат расчету" toggleGroup="$select_group_ssd10" />
                                                          </children>
                                                       </Pane>
+                                                      <Button layoutX="913.0" layoutY="5.0" mnemonicParsing="false" onAction="#actionShowHelpInfoForAcum" prefHeight="39.0" prefWidth="80.0" text=" Справочная &#10;информация">
+                                                         <effect>
+                                                            <ColorAdjust contrast="0.04" hue="0.28" saturation="0.28" />
+                                                         </effect>
+                                                         <font>
+                                                            <Font size="10.0" />
+                                                         </font>
+                                                      </Button>
                                                                </children></AnchorPane>
                                                            </content>
                                                        </Tab>
@@ -2411,6 +2427,14 @@
                                                                               <Font name="System Bold" size="14.0" />
                                                                            </font>
                                                                         </Label>
+                                                            <Button layoutX="414.0" layoutY="6.0" mnemonicParsing="false" onAction="#actionShowHelpInfoForSpeed" prefHeight="39.0" prefWidth="80.0" text=" Справочная &#10;информация">
+                                                               <effect>
+                                                                  <ColorAdjust contrast="0.04" hue="0.28" saturation="0.28" />
+                                                               </effect>
+                                                               <font>
+                                                                  <Font size="10.0" />
+                                                               </font>
+                                                            </Button>
                                                                      </children>
                                                                   </AnchorPane>
                                                                    <AnchorPane layoutX="817.0" layoutY="501.0" prefHeight="75.0" prefWidth="160.0">

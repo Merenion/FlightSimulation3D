@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -21,7 +22,7 @@ import java.io.IOException;
 
 public class AddElement {
 
-    private static MainData newData = new MainData();
+    protected static MainData newData = new MainData();
 
     public TextField nameElement;
     public TextField mElement;

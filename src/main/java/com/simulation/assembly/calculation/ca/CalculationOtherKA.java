@@ -32,12 +32,12 @@ public class CalculationOtherKA extends Calculation {
             d.w = 0f;
 
             for (DataOtherKA element : d.getOthers()) {
-//                if (!element.isImportElement()) {
-//                    element.m = element.omPrKA / 100 * dc.mKA;
+                if (element.isMassProc()) {
+                    element.m = element.omPrKA / 100 * dc.mKA;
 //                    element.v = element.m / element.plPrKA;
 //                    element.j = element.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
 //                    element.w = element.uwPrKA * element.m;
-//                }
+                }
                 if (element.isCalculationMoment()) {
                     element.j = element.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
                 }
