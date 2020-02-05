@@ -22,14 +22,14 @@
 
 <AnchorPane prefHeight="624.0" prefWidth="1334.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.simulation.earth.ControllerWindowSimulation">
    <children>
-      <SubScene fx:id="drawScene" depthBuffer="true" depthTest="ENABLE" height="600.0" pickOnBounds="false" width="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SubScene fx:id="drawScene" depthBuffer="true" depthTest="ENABLE" height="624.0" pickOnBounds="false" width="1334.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <root>
           <Region />
         </root>
       </SubScene>
       <Accordion fx:id="menu" layoutX="995.0" prefHeight="624.0" prefWidth="205.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <panes>
-          <TitledPane animated="false" text="Управление симуляцией">
+          <TitledPane animated="false" text="Управление имитацией">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -76,6 +76,7 @@
                         <CheckBox fx:id="checkSatelliteTrajectory" layoutX="24.0" layoutY="356.0" mnemonicParsing="false" text="Satellite Orbit" />
                         <CheckBox fx:id="checkProjectionPathOnEarth" layoutX="24.0" layoutY="330.0" mnemonicParsing="false" text="Projection path on earth" />
                         <CheckBox fx:id="checkZonaObzora" layoutX="24.0" layoutY="382.0" mnemonicParsing="false" text="Viewing area" />
+                        <Button layoutX="41.0" layoutY="417.0" mnemonicParsing="false" onAction="#actionShowWindowCalculSSO" text="Расчет угла наклона &#10;            орбиты" />
                      </children></AnchorPane>
             </content>
           </TitledPane>
@@ -128,23 +129,27 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="499.0" prefWidth="237.0">
                      <children>
-                        <TableView fx:id="tableSatelliteForOper" layoutX="9.0" layoutY="200.0" onMouseClicked="#onSelectSatelliteForOper" prefHeight="178.0" prefWidth="191.0">
+                        <TableView fx:id="tableSatelliteForOper" layoutX="9.0" layoutY="225.0" onMouseClicked="#onSelectSatelliteForOper" prefHeight="178.0" prefWidth="191.0">
                            <columns>
                               <TableColumn fx:id="columnSatellitesForOper" prefWidth="190.0" text="Satellites" />
                            </columns>
                         </TableView>
-                        <Button layoutX="42.0" layoutY="394.0" mnemonicParsing="false" onAction="#hideGrafOper" text="Скрыть показатели &#10;   оперативности">
+                        <Button layoutX="42.0" layoutY="419.0" mnemonicParsing="false" onAction="#hideGrafOper" text="Скрыть показатели &#10;   оперативности">
                            <effect>
                               <ColorAdjust hue="0.31" saturation="0.26" />
                            </effect>
                         </Button>
-                        <Label layoutX="31.0" layoutY="113.0" text="Выберите спутник для &#10;которого нужно &#10;отобразить показатели&#10;оперативности" textFill="#0400ff">
+                        <Label layoutX="31.0" layoutY="150.0" prefHeight="68.0" prefWidth="147.0" text="Выберите спутник для &#10;которого нужно &#10;отобразить показатели&#10;оперативности" textFill="#0400ff">
                            <font>
                               <Font name="System Italic" size="12.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="dolgtSR" layoutX="58.0" layoutY="73.0" prefHeight="25.0" prefWidth="87.0" />
-                        <Label layoutX="36.0" layoutY="14.0" text="             Долгота &#10;спутника-ретранслятора,&#10;                град&#10;" />
+                        <TextField fx:id="dolgtSR" layoutX="60.0" layoutY="49.0" prefHeight="25.0" prefWidth="87.0" text="-100" />
+                        <Label layoutX="16.0" prefHeight="51.0" prefWidth="172.0" text="                  Долгота &#10;спутника-ретранслятора,град&#10;" />
+                        <TextField fx:id="dolgtSR1" layoutX="14.0" layoutY="115.0" prefHeight="25.0" prefWidth="87.0" text="50" />
+                        <TextField fx:id="dolgtSR2" layoutX="108.0" layoutY="115.0" prefHeight="25.0" prefWidth="87.0" text="53" />
+                        <Label layoutX="16.0" layoutY="91.0" text="Долгота НППИ" />
+                        <Label layoutX="110.0" layoutY="91.0" text="Широта НППИ" />
                      </children>
                   </AnchorPane>
                </content>
@@ -306,7 +311,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Label layoutX="156.0" layoutY="3.0" prefHeight="17.0" prefWidth="85.0" text="0" textFill="#006fff">
+                  <Label layoutX="156.0" layoutY="3.0" prefHeight="17.0" prefWidth="85.0" text="213" textFill="#006fff">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -315,7 +320,7 @@
             </AnchorPane>
             <AnchorPane prefHeight="25.0" prefWidth="241.0">
                <children>
-                  <Label layoutX="4.0" layoutY="3.0" prefHeight="17.0" prefWidth="155.0" text="Текущ. знач. опер., град  " textFill="#006fff">
+                  <Label layoutX="4.0" layoutY="3.0" prefHeight="17.0" prefWidth="155.0" text="Текущ. знач. опер., час  " textFill="#006fff">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -329,12 +334,40 @@
             </AnchorPane>
             <AnchorPane prefHeight="25.0" prefWidth="241.0">
                <children>
-                  <Label layoutX="4.0" layoutY="3.0" text="Предыдущая опер., град" textFill="#006fff">
+                  <Label layoutX="4.0" layoutY="3.0" text="Средняя опер., час" textFill="#006fff">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lastOper" layoutX="156.0" layoutY="3.0" prefHeight="17.0" prefWidth="85.0" text="0" textFill="#006fff">
+                  <Label fx:id="srednOper1" layoutX="156.0" layoutY="3.0" prefHeight="17.0" prefWidth="85.0" text="20.00" textFill="#006fff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="25.0" prefWidth="241.0">
+               <children>
+                  <Label layoutX="4.0" layoutY="3.0" text="Предыдущая опер., час" textFill="#006fff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lastOper" layoutX="156.0" layoutY="3.0" prefHeight="17.0" prefWidth="85.0" text="23.80" textFill="#006fff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="25.0" prefWidth="241.0">
+               <children>
+                  <Label layoutX="4.0" layoutY="3.0" text="Макс. опер., час" textFill="#006fff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="srednOper11" layoutX="156.0" layoutY="3.0" prefHeight="17.0" prefWidth="85.0" text="59.80" textFill="#006fff">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>

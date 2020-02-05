@@ -14,26 +14,30 @@ public class AboutTheProgram {
     public TextArea textArea;
 
     @FXML
-    public void initialize () {
-    textArea.setText(getTextInfofromFile()); //задаем текст из файла на информационное поле
+    public void initialize() {
+        textArea.setText(getTextInfofromFile()); //задаем текст из файла на информационное поле
     }
 
-    /**закрытие окна по кнопке*/
+    /**
+     * закрытие окна по кнопке
+     */
     public void onBtClose(ActionEvent actionEvent) {
         Stage stage = (Stage) textArea.getScene().getWindow();
         stage.close();
     }
 
-    /**метод считывает текст из /resources/info/ProjectInfo.txt */
-    private String getTextInfofromFile () {
-        StringBuilder text= new StringBuilder("");
-        File file = new File("src/main/resources/assembly/startMenu/ProjectInfo.txt");
+    /**
+     * метод считывает текст из /resources/info/ProjectInfo.txt
+     */
+    private String getTextInfofromFile() {
+        StringBuilder text = new StringBuilder("");
+        File file = new File("src/main/resources/startMenu/ProjectInfo.txt");
         try {
             Scanner scanner = new Scanner(file);
             do {
                 text.append(scanner.nextLine()).append("\n");
-            }while (scanner.hasNext());
-            } catch (FileNotFoundException e) {
+            } while (scanner.hasNext());
+        } catch (FileNotFoundException e) {
             System.out.println("файл с информацией пуст");
             //e.printStackTrace();
         }

@@ -52,6 +52,4 @@ public class DataSudSGK  extends DataElement{
 //    public float v; //Обьем СГК
 //    public float j; //Момент СГК
 
-
-
 }

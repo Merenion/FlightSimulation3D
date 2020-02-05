@@ -7,8 +7,14 @@ import com.simulation.assembly.dataCalculation.sintez.DataAcumBetSEP;
 import com.simulation.assembly.dataCalculation.sintez.DataElement;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class AddElementAcum extends AddElement{
     public TextField nAB;
@@ -49,6 +55,23 @@ public class AddElementAcum extends AddElement{
 
     public static MainDataAcum getNewDataAcum() {
         return newDataAcum;
+    }
+
+    @Override
+    public void showWindowAdd(String path, String title) {
+        try {
+            Stage stage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource(path));
+            Scene scene = new Scene(root, 416, 490);
+            stage.setResizable(false);
+            stage.setTitle(title);
+            stage.setScene(scene);
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(ControllerAssembly.getInstance().paneRestriction.getScene().getWindow());
+            stage.showAndWait();
+        } catch (IOException e) {
+            ControllerAssembly.showInfo("Возникли технические неполадки");
+        }
     }
 
     public void addElement(DataElement d) {

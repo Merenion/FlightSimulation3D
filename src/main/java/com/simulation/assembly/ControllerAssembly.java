@@ -200,12 +200,11 @@ public class ControllerAssembly extends ControllerImport {
                 addMessInConsoleSimple(MessegeType.INFO, "Расчет закончен");
             } catch (Exception e) {
                 addMessInConsoleSimple(MessegeType.ERROR, "Расчет не возможен, проверьте введеные данные");
-                e.printStackTrace();
+                showInfo("Проверьте исходные данные");
             }
 
         } else
             System.out.println("NO");
-        showMessSimpleConsole();
     }
 
     public void actionEditPointSumm(KeyEvent keyEvent) {
@@ -1142,6 +1141,38 @@ public class ControllerAssembly extends ControllerImport {
             stage.setResizable(false);
             stage.setTitle("Справочная информация");
             stage.setScene(scene);
+            stage.showAndWait();
+        } catch (IOException e) {
+            ControllerAssembly.showInfo("Возникли технические неполадки");
+        }
+    }
+
+    public void actionPricjidRaschet(ActionEvent actionEvent) {
+        try {
+            Stage stage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("/assembly/prikidochnRaschet.fxml"));
+            Scene scene = new Scene(root, 1159, 635);
+            stage.setResizable(false);
+            stage.setTitle("Прикидочный расчет");
+            stage.setScene(scene);
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(ControllerAssembly.getInstance().paneRestriction.getScene().getWindow());
+            stage.showAndWait();
+        } catch (IOException e) {
+            ControllerAssembly.showInfo("Возникли технические неполадки");
+        }
+    }
+
+    public void actionShowSvodka(ActionEvent actionEvent) {
+        try {
+            Stage stage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("/assembly/svodka.fxml"));
+            Scene scene = new Scene(root, 922, 601);
+            stage.setResizable(false);
+            stage.setTitle("Сводка");
+            stage.setScene(scene);
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(ControllerAssembly.getInstance().paneRestriction.getScene().getWindow());
             stage.showAndWait();
         } catch (IOException e) {
             ControllerAssembly.showInfo("Возникли технические неполадки");

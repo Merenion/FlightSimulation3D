@@ -37,4 +37,17 @@ public class DataCommonParameters  extends DataElement{
     public  float jKA;
     public  float wKA_wsSEP; //Среднесуточная мощность целевой аппаратуры, Вт
 
+
+    @Override
+    public String toString() {
+        return "\n" +
+                "Характеристики КА"+"\n"+
+                "масса = " + mKA + "\n" +
+                "объем = " + vKA + "\n" +
+                "энергопотребление = " + wKA_wsSEP + "\n" +
+                "момент инерции = " + jKA + "\n" +
+                "диаметр = " + dKA + "\n" +
+                "длина = " + lKA + "\n" +
+                "\n";
+    }
 }

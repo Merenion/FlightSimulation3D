@@ -281,6 +281,46 @@ public class CalculationKA extends Calculation {
         return singl;
     }
 
+    @Override
+    public String toString() {
+        return "ПРОТОКОЛ РАБОТЫ ПРОГРАММЫ" + "\n" +
+
+                dataCommonParameters +
+                dataOETK +
+                dataSudSGK +
+                dataSSKM +
+                dataSPPE +
+                dataVRL +
+                dataOtherCA +
+                dataCa +
+                dataSTKRP +
+                dataBAKES +
+                dataBETS +
+                dataBVS +
+                dataOtherBKU +
+                dataBKU +
+                dataActivSOTR +
+                dataPasivSOTR +
+                dataSOTR +
+                dataElectHaraktSEP +
+                dataAcumBetSEP +
+                dataKAS +
+                dataSumBetSEP +
+                dataSpeed +
+                dataMassTopl +
+                dataKDU +
+                dataKonstrKA +
+                dataBKS +
+                dataAFU +
+                dataOtherKA +
+                dataRezervKA +
+                dataSSD +
+                dataIPMV +
+                dataBOKZ +
+                dataDO +
+                dataDUS;
+    }
+
     public DataCommonParameters getDataCommonParameters() {
         return dataCommonParameters;
     }

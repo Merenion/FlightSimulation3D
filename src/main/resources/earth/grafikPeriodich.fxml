@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="320.0" prefWidth="1212.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.simulation.earth.ControllerGraffikPeriod">
    <children>
-      <BarChart fx:id="grRaspPer" layoutX="11.0" layoutY="44.0" opacity="0.48" prefHeight="266.0" prefWidth="412.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="11.0">
+      <BarChart fx:id="grRaspPer" layoutX="6.0" layoutY="14.0" opacity="0.48" prefHeight="266.0" prefWidth="412.0" visible="false" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="6.0">
          <xAxis>
             <CategoryAxis side="BOTTOM" fx:id="xFRPe">
                <effect>
@@ -30,7 +30,7 @@
             <ColorAdjust contrast="-0.05" hue="-0.76" saturation="0.28" />
          </effect>
       </BarChart>
-      <BarChart fx:id="grPlotnRasprPer" layoutX="427.0" layoutY="44.0" opacity="0.5" prefHeight="266.0" prefWidth="365.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="427.0">
+      <BarChart fx:id="grPlotnRasprPer" layoutX="427.0" layoutY="44.0" opacity="0.5" prefHeight="266.0" prefWidth="365.0" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="427.0">
          <xAxis>
             <CategoryAxis side="BOTTOM" fx:id="xFPRPe">
                <effect>
@@ -49,7 +49,7 @@
             <ColorAdjust hue="-0.4" saturation="0.35" />
          </effect>
       </BarChart>
-      <VBox layoutX="804.0" layoutY="113.0" prefHeight="181.0" prefWidth="408.0">
+      <VBox layoutX="17.0" layoutY="114.0" prefHeight="181.0" prefWidth="408.0">
          <children>
             <AnchorPane prefHeight="29.0" prefWidth="412.0">
                <children>
@@ -137,27 +137,27 @@
             </AnchorPane>
          </children>
       </VBox>
-      <Label fx:id="lableTimeInMin2" layoutX="99.0" layoutY="36.0" opacity="0.66" text="Функция распределения периодичности" textFill="#006fff">
+      <Label fx:id="lableTimeInMin2" layoutX="99.0" layoutY="36.0" opacity="0.66" text="Функция распределения периодичности" textFill="#006fff" visible="false">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="lableTimeInMin21" layoutX="472.0" layoutY="36.0" opacity="0.66" text="Функция плотности распределения периодичности" textFill="#006fff">
+      <Label fx:id="lableTimeInMin21" layoutX="472.0" layoutY="36.0" opacity="0.66" text="Функция плотности распределения периодичности" textFill="#006fff" visible="false">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="lableTimeInMin211" layoutX="355.0" layoutY="152.0" opacity="0.66" rotate="270.0" text="Плотность вероятности, 1/час" textFill="#006fff">
+      <Label fx:id="lableTimeInMin211" layoutX="355.0" layoutY="152.0" opacity="0.66" rotate="270.0" text="Плотность вероятности, 1/час" textFill="#006fff" visible="false">
          <font>
             <Font name="System Bold" size="11.0" />
          </font>
       </Label>
-      <Label fx:id="lableTimeInMin22" layoutX="130.0" layoutY="298.0" opacity="0.66" text="Периодичность наблюдения, час" textFill="#006fff">
+      <Label fx:id="lableTimeInMin22" layoutX="130.0" layoutY="298.0" opacity="0.66" text="Периодичность наблюдения, час" textFill="#006fff" visible="false">
          <font>
             <Font name="System Bold" size="11.0" />
          </font>
       </Label>
-      <Label fx:id="lableTimeInMin2111" layoutX="-14.0" layoutY="162.0" opacity="0.66" rotate="270.0" text="Вероятность" textFill="#006fff">
+      <Label fx:id="lableTimeInMin2111" layoutX="-14.0" layoutY="162.0" opacity="0.66" rotate="270.0" text="Вероятность" textFill="#006fff" visible="false">
          <font>
             <Font name="System Bold" size="11.0" />
          </font>

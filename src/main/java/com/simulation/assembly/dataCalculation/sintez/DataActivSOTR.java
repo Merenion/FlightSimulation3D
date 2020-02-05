@@ -30,4 +30,17 @@ public class DataActivSOTR   extends DataElement{
 //    public float j;
 
 
+    @Override
+    public String getStartDate() {
+        return "Относительная масса СТР = " + omSTR + "\n" +
+                "Средняя плотность компоновки приборов и агрегатов СТР, кг/м3 = " + plSTR + "\n" +
+                "Удельная мощность приборов и агрегатов СТР, Вт/кг = " + uwSTR + "\n" +
+                "Коэффицент (доля) теплоносителя в массе заправленной СТР = " + kmtnSTR;
+    }
+
+    @Override
+    public String getOtherDate() {
+        return "Масса СТР без теплоносителя = " + mSTRbtn + "\n" +
+                "Масса теплоносителя СТР = " + mtnSTR;
+    }
 }

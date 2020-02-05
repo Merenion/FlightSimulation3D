@@ -1,5 +1,6 @@
 package com.simulation.startMenu;
 
+import com.simulation.assembly.ControllerAssembly;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -68,5 +69,22 @@ public class StartMenu {
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node) actionEvent.getSource()).getScene().getWindow());
         stage.show();
+    }
+
+    public void onBtPrikidRaschet(ActionEvent actionEvent) {
+        try {
+            Stage stage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("/assembly/prikidochnRaschet.fxml"));
+            Scene scene = new Scene(root, 1159, 616);
+            stage.setResizable(false);
+            stage.setTitle("Прикидочный расчет");
+            stage.setScene(scene);
+            stage.showAndWait();
+
+            Stage stageThis = (Stage) forma.getScene().getWindow();
+            stageThis.close();
+        } catch (IOException e) {
+            ControllerAssembly.showInfo("Возникли технические неполадки");
+        }
     }
 }

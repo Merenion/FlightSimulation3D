@@ -35,7 +35,6 @@ public class CalculationOETK extends Calculation {
                     return object;
                 }
 
-
                 if (d.iN_yr<=0.6){
                     d.ouT_Lpzs_OETK = 6f;
                 }else if (d.iN_yr>0.6 && d.iN_yr<=0.9){

@@ -18,11 +18,22 @@ apply plugin: 'application'
 apply plugin: 'com.google.osdetector'
 
 group = 'com.simulation'
-version = '0.0.1-SNAPSHOT'
+version = '1'
 sourceCompatibility = '1.10'
 
 def platform = osdetector.os == 'osx' ? 'mac' : osdetector.os == 'windows' ? 'win' : osdetector.os
 
+//create a single Jar with all dependencies
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Implementation-Title': 'Gradle Jar File Example',
+                'Implementation-Version': version,
+                'Main-Class': 'com.simulation.startMenu.Main'
+    }
+    baseName = 'Adara'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
 repositories {
     mavenCentral()
     jcenter()

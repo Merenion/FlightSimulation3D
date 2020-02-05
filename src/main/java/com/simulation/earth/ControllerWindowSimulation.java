@@ -1,5 +1,6 @@
 package com.simulation.earth;
 
+import com.simulation.assembly.ControllerAssembly;
 import com.simulation.earth.drawServis.Line3D;
 import com.simulation.earth.drawServis.LineTo3D;
 import com.simulation.earth.manageSatellite.ManageSatellite;
@@ -20,6 +21,7 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -33,6 +35,7 @@ import javafx.scene.shape.Box;
 import javafx.scene.shape.Shape3D;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Translate;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.fxyz3d.geometry.Point3D;
 
@@ -753,6 +756,22 @@ public class ControllerWindowSimulation {
                 }
             };
             threadMonitorOperatichn.start();
+        }
+    }
+
+    public void actionShowWindowCalculSSO(ActionEvent actionEvent) {
+        try {
+            Stage stage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("/earth/SunSinhronOrbit.fxml"));
+            Scene scene = new Scene(root, 317, 216);
+            stage.setResizable(false);
+            stage.setTitle("Угол наклона орбиты");
+            stage.setScene(scene);
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(checkProjectionPathOnEarth.getScene().getWindow());
+            stage.showAndWait();
+        } catch (IOException e) {
+            ControllerAssembly.showInfo("Возникли технические неполадки");
         }
     }
 }

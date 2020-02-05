@@ -1,5 +1,6 @@
 package com.simulation.assembly.validateRestrictionSimple;
 
+import com.simulation.assembly.ControllerAssembly;
 import com.simulation.assembly.dataCalculation.simple.DataSimpleCalculation;
 import com.simulation.assembly.ValidateValue;
 import javafx.scene.control.TextField;
@@ -19,25 +20,30 @@ public class ValidateKaCc implements ValidateRestriction{
 
     @Override
     public boolean validate(DataSimpleCalculation objectData) {
-        boolean result = true;
-        if (ValidateValue.validFloat(editKAmassaKaCc.getText())){
-            objectData.setMassaKa(Float.valueOf(editKAmassaKaCc.getText()));
-        } else {
-            editKAmassaKaCc.setEffect(new ColorAdjust(0,0.2,0,0));
-            result = false;
+            boolean result = false;
+        try {
+            if (ValidateValue.validFloat(editKAmassaKaCc.getText())) {
+                objectData.setMassaKa(Float.valueOf(editKAmassaKaCc.getText()));
+            } else {
+                editKAmassaKaCc.setEffect(new ColorAdjust(0, 0.2, 0, 0));
+                result = false;
+            }
+            if (ValidateValue.validFloat(editPlotnKaCc.getText())) {
+                objectData.setPlotnost(Float.valueOf(editPlotnKaCc.getText()));
+            } else {
+                editPlotnKaCc.setEffect(new ColorAdjust(0, 0.2, 0, 0));
+                result = false;
+            }
+            if (ValidateValue.validFloat(editUdlinKaCc.getText())) {
+                objectData.setUdlinenie(Float.valueOf(editUdlinKaCc.getText()));
+            } else {
+                editUdlinKaCc.setEffect(new ColorAdjust(0, 0.2, 0, 0));
+                result = false;
+            }
+        } catch (Exception e) {
+            ControllerAssembly.showError("Проверьте исходные данные!");
         }
-        if (ValidateValue.validFloat(editPlotnKaCc.getText())){
-            objectData.setPlotnost(Float.valueOf(editPlotnKaCc.getText()));
-        } else {
-            editPlotnKaCc.setEffect(new ColorAdjust(0,0.2,0,0));
-            result = false;
-        }
-        if (ValidateValue.validFloat(editUdlinKaCc.getText())){
-            objectData.setUdlinenie(Float.valueOf(editUdlinKaCc.getText()));
-        } else {
-            editUdlinKaCc.setEffect(new ColorAdjust(0,0.2,0,0));
-            result = false;
-        }
+
         return result;
     }
 }

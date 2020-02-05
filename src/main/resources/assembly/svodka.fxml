@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="601.0" prefWidth="922.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.simulation.assembly.ControllerSvodka">
+   <children>
+      <TextArea fx:id="svodkaArea" layoutX="11.0" layoutY="7.0" prefHeight="587.0" prefWidth="900.0" />
+   </children>
+</AnchorPane>

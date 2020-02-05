@@ -22,8 +22,8 @@ public class Main extends Application {
     public void start(Stage stage) throws IOException {
         Main.stage = stage;
         Parent root = FXMLLoader.load(getClass().getResource("/startMenu/StartMenu.fxml"));
-        stage.setTitle("Выбор программы");
-        Scene scene= new Scene(root,847,518);
+        stage.setTitle("Выбор подпрограммы");
+        Scene scene= new Scene(root,1019,605);
         stage.setScene(scene);
         stage.show();
     }

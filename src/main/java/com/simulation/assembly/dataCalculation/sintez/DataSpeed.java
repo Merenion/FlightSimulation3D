@@ -51,4 +51,10 @@ public class DataSpeed   extends DataElement{
     public float Vaoo;//Скорость КА в апогее переходной орбиты для подготовки к захоронению
     public float aps; //Полурсь эллиптической переходной орбты для подготовки к захоронению
     public float di;  //изменение угола наклона плоскости орбиты
+
+
+    @Override
+    public String toString() {
+        return "Характеристическая скорость = "+ dV+"\n";
+    }
 }

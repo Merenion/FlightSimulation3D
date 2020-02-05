@@ -56,10 +56,11 @@ public class CalculationSpeed extends Calculation {
                 d.aps = (d.roo + d.ra) / 2;
                 d.Vaoo = (float) (d.V1 * Math.sqrt(d.Rs * (2 / d.ra - 1 / d.aps)));
                 d.dV5 = d.Vkr2 - d.Vaoo;
+                d.dV4 = 1.21443f;
                 //Добавка характеристической скорости для схода с опорной орбиты для
                 //захоронения КА
                 //Расчет общей характеристической скорости
-                d.dV = d.dV1 + d.dV2 + d.dV3 + d.dV5 + d.dV6;
+                d.dV = d.dV1 + d.dV2 + d.dV3+d.dV4 + d.dV5 + d.dV6;
             }
             CalculationKA.getInstance().calculation(new Object());
 

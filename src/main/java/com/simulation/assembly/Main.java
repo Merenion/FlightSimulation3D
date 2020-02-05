@@ -21,7 +21,8 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Main.stage = stage;
-        Parent root = FXMLLoader.load(getClass().getResource("/windowMainAssembly.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/sdsdsa.fxml"));
+//        Parent root = FXMLLoader.load(getClass().getResource("/assembly/prikidochnRaschet.fxml"));
         stage.setTitle("Выбор проектных характеристик КА");
         Scene scene= new Scene(root,1200,705);
         stage.setScene(scene);

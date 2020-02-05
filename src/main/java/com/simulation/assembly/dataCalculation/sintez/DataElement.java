@@ -9,7 +9,7 @@ public abstract class DataElement {
     private long id;
     private String nameElement = "non name";
     private boolean importData = false;
-    private boolean calculationMoment =false;
+    private boolean calculationMoment = false;
 
     public float m;
     public float v;
@@ -65,5 +65,29 @@ public abstract class DataElement {
 
     public void setCalculationMoment(boolean calculationMoment) {
         this.calculationMoment = calculationMoment;
+    }
+
+    public String getStartDate() {
+        return null;
+    }
+
+    public String getOtherDate() {
+        return null;
+    }
+
+    @Override
+    public String toString() {
+        return "\n" +
+                getType().getName() + "\n" +
+                "название элемента = \'" + nameElement + '\'' + "\n" +
+                "элемент заимствован или импортирован = " + importData + "\n" +
+                (getStartDate() != null && !importData ? "ИСХОДНЫЕ ДАННЫЕ:\n" + getStartDate() + "\n" : "") +
+                "ХАРАКТЕРИСТИКИ ЭЛЕМЕНТА:" + "\n" +
+                "масса = " + m + "\n" +
+                "объем = " + v + "\n" +
+                "энергопотребление = " + w + "\n" +
+                "момент инерции = " + j + "\n" +
+                (getOtherDate() != null? getOtherDate() + "\n" : "")+
+                "\n";
     }
 }

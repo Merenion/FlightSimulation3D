@@ -47,7 +47,7 @@
                   <ColorAdjust brightness="0.12" contrast="-0.1" hue="0.29" />
                </effect>
             </ImageView>
-            <Label layoutX="122.0" layoutY="4.0" text="Добавить в имеющиеся">
+            <Label layoutX="108.0" layoutY="4.0" text="Добавить составную часть КА">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
