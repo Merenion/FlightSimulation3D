@@ -111,6 +111,7 @@
                                                         <Label layoutX="140.0" layoutY="89.0" prefHeight="17.0" prefWidth="295.0" text="Удлинение КА" />
                                                         <Label layoutX="140.0" layoutY="121.0" prefHeight="17.0" prefWidth="295.0" text="Коэффициент рациональности компоновки" />
                                                         <TextField fx:id="iN_nonRes_kpoPO" layoutX="14.0" layoutY="53.0" prefHeight="25.0" prefWidth="103.0" text="70" />
+                                          <Button layoutX="163.0" layoutY="174.0" mnemonicParsing="false" onAction="#actionPodtverzdenieStartData" prefHeight="38.0" prefWidth="134.0" text="Подтвердить" />
                                                     </children>
                                                 </AnchorPane>
                                                 <AnchorPane fx:id="paneRestrictionCalculation" layoutX="500.0" layoutY="67.0" prefHeight="431.0" prefWidth="500.0">
@@ -172,7 +173,7 @@
                                                                                 <Label layoutX="116.0" layoutY="310.0" prefHeight="17.0" prefWidth="372.0" text="Коэф. превышения диаметра ОЭТК" />
                                                                                 <TextField fx:id="iN_kp2lOETK" layoutX="21.0" layoutY="339.0" prefHeight="25.0" prefWidth="79.0" text="0.2" />
                                                                                 <Label layoutX="116.0" layoutY="343.0" prefHeight="17.0" prefWidth="378.0" text="Коэф. уменьшения длины корпуса относительно фокусного расстояния" />
-                                                                                <Button fx:id="bt_calcul_OETK" layoutX="182.0" layoutY="468.0" mnemonicParsing="false" onAction="#actionCal_OETK" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
+                                                                                <Button fx:id="bt_calcul_OETK" layoutX="181.0" layoutY="472.0" mnemonicParsing="false" onAction="#actionCal_OETK" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
                                                                                 <Label layoutX="116.0" layoutY="376.0" prefHeight="17.0" prefWidth="211.0" text="Рабочая длина волны, мкм" />
                                                                                 <TextField fx:id="iN_yr" layoutX="21.0" layoutY="372.0" prefHeight="25.0" prefWidth="79.0" text="0.65" />
                                                                                 <TextField fx:id="iN_Lm" layoutX="21.0" layoutY="75.0" prefHeight="25.0" prefWidth="79.0" text="0.4" />
@@ -182,7 +183,6 @@
                                                                   <ImageInput />
                                                                </effect>
                                                             </Button>
-                                                            <Button layoutX="335.0" layoutY="468.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="50.0" text="Далее" />
                                                                             </children>
                                                                         </AnchorPane>
                                                                         <AnchorPane fx:id="pane_finishData_OETK" layoutX="500.0" prefHeight="495.0" prefWidth="500.0">
@@ -287,11 +287,7 @@
                                                                                     </toggleGroup>
                                                                                 </RadioButton>
                                                                                 <RadioButton layoutX="269.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveOETK" selected="true" text="Подлежат расчету" toggleGroup="$select_group_oetk" />
-                                                            <RadioButton layoutX="417.0" layoutY="10.0" mnemonicParsing="false" onAction="#haveOETK" text="Не использовать">
-                                                               <toggleGroup>
-                                                                  <ToggleGroup fx:id="select_group_oetk3" />
-                                                               </toggleGroup>
-                                                            </RadioButton>
+                                                            <RadioButton fx:id="choise_non_OETK" layoutX="417.0" layoutY="10.0" mnemonicParsing="false" onAction="#haveOETK" text="Не использовать" toggleGroup="$select_group_oetk" />
                                                                             </children>
                                                                         </Pane>
                                                                     </children></AnchorPane>
@@ -318,7 +314,7 @@
                                                                                 <Label layoutX="114.0" layoutY="99.0" prefHeight="17.0" prefWidth="255.0" text="Объем аппаратуры, м3" />
                                                                                 <Label layoutX="114.0" layoutY="132.0" prefHeight="17.0" prefWidth="282.0" text="Средняя мощность энергопотребления, Вт" />
                                                                                 <Label layoutX="114.0" layoutY="165.0" prefHeight="17.0" prefWidth="282.0" text="Момент инерции приборов(по КА, от поперечн. оси) кг м2" />
-                                                                                <Button layoutX="134.0" layoutY="222.0" mnemonicParsing="false" onAction="#actionCal_SPPE" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
+                                                                                <Button fx:id="bt_calcul_SPPE" layoutX="134.0" layoutY="222.0" mnemonicParsing="false" onAction="#actionCal_SPPE" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
                                                                                 <TextField fx:id="sPISPPI" layoutX="21.0" layoutY="62.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="75" />
                                                                                 <TextField fx:id="umSPPI" layoutX="21.0" layoutY="95.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="5" />
                                                                                 <TextField fx:id="uwSPPI" layoutX="21.0" layoutY="128.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="1" />
@@ -365,14 +361,15 @@
                                                                                 </AnchorPane>
                                                                             </children>
                                                                         </AnchorPane>
-                                                                        <Pane prefHeight="35.0" prefWidth="434.0">
+                                                                        <Pane prefHeight="35.0" prefWidth="507.0">
                                                                             <children>
-                                                                                <RadioButton fx:id="choise_have_SPPE" layoutX="86.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveSPPE" text="Известны (Заимсвованы)">
+                                                                                <RadioButton fx:id="choise_have_SPPE" layoutX="16.0" layoutY="12.0" mnemonicParsing="false" onAction="#haveSPPE" text="Известны (Заимсвованы)">
                                                                                     <toggleGroup>
                                                                                         <ToggleGroup fx:id="select_group_oetk1" />
                                                                                     </toggleGroup>
                                                                                 </RadioButton>
-                                                                                <RadioButton layoutX="269.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveSPPE" selected="true" text="Подлежат расчету" toggleGroup="$select_group_oetk1" />
+                                                                                <RadioButton layoutX="199.0" layoutY="12.0" mnemonicParsing="false" onAction="#haveSPPE" selected="true" text="Подлежат расчету" toggleGroup="$select_group_oetk1" />
+                                                            <RadioButton fx:id="choise_non_SPPE" layoutX="349.0" layoutY="13.0" mnemonicParsing="false" onAction="#haveSPPE" text="Не использовать" toggleGroup="$select_group_oetk1" />
                                                                             </children>
                                                                         </Pane>
                                                                     </children></AnchorPane>
@@ -414,7 +411,7 @@
                                                                                 <Label fx:id="vVRL" layoutX="25.0" layoutY="102.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                                 <Label fx:id="wVRL" layoutX="25.0" layoutY="135.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                                 <Label fx:id="jVRL" layoutX="25.0" layoutY="168.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
-                                                                                <Button layoutX="181.0" layoutY="209.0" mnemonicParsing="false" onAction="#actionCal_VRL" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
+                                                                                <Button fx:id="bt_calcul_VRL" layoutX="181.0" layoutY="209.0" mnemonicParsing="false" onAction="#actionCal_VRL" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
                                                                                 <Label fx:id="labelZaimVrl" layoutX="25.0" layoutY="451.0" prefHeight="20.0" prefWidth="444.0" text="Выбран взаимсвованный элемент - аааааааааааааааааааааааа" textFill="#4e57ff" visible="false">
                                                                                     <font>
                                                                                         <Font name="System Bold" size="14.0" />
@@ -460,11 +457,7 @@
                                                                                     </toggleGroup>
                                                                                 </RadioButton>
                                                                                 <RadioButton layoutX="269.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveVRL" text="Подлежат расчету" toggleGroup="$select_group_oetk2" />
-                                                            <RadioButton layoutX="419.0" layoutY="12.0" mnemonicParsing="false" onAction="#haveOETK" text="Не использовать">
-                                                               <toggleGroup>
-                                                                  <ToggleGroup fx:id="select_group_oetk31" />
-                                                               </toggleGroup>
-                                                            </RadioButton>
+                                                            <RadioButton fx:id="choise_non_VRL" layoutX="419.0" layoutY="12.0" mnemonicParsing="false" onAction="#haveVRL" text="Не использовать" toggleGroup="$select_group_oetk2" />
                                                                             </children>
                                                                         </Pane>
                                                                     </children></AnchorPane>
@@ -511,7 +504,7 @@
                                                                                 <Label fx:id="vSSD" layoutX="25.0" layoutY="100.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                                 <Label fx:id="wSSD" layoutX="25.0" layoutY="133.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                                 <Label fx:id="jSSD" layoutX="25.0" layoutY="166.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
-                                                                                <Button layoutX="181.0" layoutY="207.0" mnemonicParsing="false" onAction="#bt_calcul_SSD" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
+                                                                                <Button fx:id="bt_calcul_SSD" layoutX="181.0" layoutY="207.0" mnemonicParsing="false" onAction="#bt_calcul_SSD" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
                                                                                 <Label fx:id="labelZaimStkrp1" layoutX="28.0" layoutY="474.0" prefHeight="20.0" prefWidth="444.0" text="Выбран взаимсвованный элемент - аааааааааааааааааааааааа" textFill="#4e57ff" visible="false">
                                                                                     <font>
                                                                                         <Font name="System Bold" size="14.0" />
@@ -542,14 +535,15 @@
                                                                                 </AnchorPane>
                                                                             </children>
                                                                         </AnchorPane>
-                                                                        <Pane prefHeight="35.0" prefWidth="434.0">
+                                                                        <Pane prefHeight="35.0" prefWidth="507.0">
                                                                             <children>
-                                                                                <RadioButton fx:id="choise_have_SSD" layoutX="86.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveSSD" text="Известны (Заимсвованы)">
+                                                                                <RadioButton fx:id="choise_have_SSD" layoutX="14.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveSSD" text="Известны (Заимсвованы)">
                                                                                     <toggleGroup>
                                                                                         <ToggleGroup fx:id="select_group_ssd" />
                                                                                     </toggleGroup>
                                                                                 </RadioButton>
-                                                                                <RadioButton layoutX="269.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveSSD" selected="true" text="Подлежат расчету" toggleGroup="$select_group_ssd" />
+                                                                                <RadioButton layoutX="197.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveSSD" selected="true" text="Подлежат расчету" toggleGroup="$select_group_ssd" />
+                                                            <RadioButton fx:id="choise_non_SSD" layoutX="353.0" layoutY="12.0" mnemonicParsing="false" onAction="#haveSSD" text="Не использовать" toggleGroup="$select_group_ssd" />
                                                                             </children>
                                                                         </Pane>
                                                                     </children></AnchorPane>
@@ -589,7 +583,7 @@
                                                                                 <Label fx:id="vPrZA" layoutX="25.0" layoutY="102.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                                 <Label fx:id="wPrZA" layoutX="25.0" layoutY="135.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                                 <Label fx:id="jPrZA" layoutX="25.0" layoutY="168.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
-                                                                                <Button layoutX="181.0" layoutY="209.0" mnemonicParsing="false" onAction="#actionCal_OtherCa" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
+                                                                                <Button fx:id="bt_calcul_OtherCA" layoutX="181.0" layoutY="209.0" mnemonicParsing="false" onAction="#actionCal_OtherCa" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
                                                                                 <Label fx:id="labelZaimOtherCA" layoutX="25.0" layoutY="466.0" prefHeight="20.0" prefWidth="444.0" text="Выбран взаимсвованный элемент - аааааааааааааааааааааааа" textFill="#4e57ff" visible="false">
                                                                                     <font>
                                                                                         <Font name="System Bold" size="14.0" />
@@ -627,14 +621,15 @@
                                                                                 </AnchorPane>
                                                                             </children>
                                                                         </AnchorPane>
-                                                                        <Pane prefHeight="35.0" prefWidth="434.0">
+                                                                        <Pane prefHeight="35.0" prefWidth="507.0">
                                                                             <children>
-                                                                                <RadioButton fx:id="choise_have_OtherCA" layoutX="86.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveOtherCA" text="Известны (Заимсвованы)">
+                                                                                <RadioButton fx:id="choise_have_OtherCA" layoutX="17.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveOtherCA" text="Известны (Заимсвованы)">
                                                                                     <toggleGroup>
                                                                                         <ToggleGroup fx:id="select_group_oetk4" />
                                                                                     </toggleGroup>
                                                                                 </RadioButton>
-                                                                                <RadioButton layoutX="269.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveOtherCA" selected="true" text="Подлежат расчету" toggleGroup="$select_group_oetk4" />
+                                                                                <RadioButton layoutX="200.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveOtherCA" selected="true" text="Подлежат расчету" toggleGroup="$select_group_oetk4" />
+                                                            <RadioButton fx:id="choise_non_OtherCa" layoutX="355.0" layoutY="12.0" mnemonicParsing="false" onAction="#haveOtherCA" text="Не использовать" toggleGroup="$select_group_oetk4" />
                                                                             </children>
                                                                         </Pane>
                                                                     </children></AnchorPane>
@@ -717,7 +712,7 @@
                                                                                 <Label fx:id="vBVS" layoutX="25.0" layoutY="102.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                                 <Label fx:id="wBVS" layoutX="25.0" layoutY="135.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                                 <Label fx:id="jBVS" layoutX="25.0" layoutY="168.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
-                                                                                <Button layoutX="181.0" layoutY="209.0" mnemonicParsing="false" onAction="#bt_calcul_BVS" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
+                                                                                <Button fx:id="bt_calcul_BVS" layoutX="181.0" layoutY="209.0" mnemonicParsing="false" onAction="#bt_calcul_BVS" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
                                                                             </children>
                                                                         </AnchorPane>
                                                                         <AnchorPane layoutX="817.0" layoutY="501.0" prefHeight="75.0" prefWidth="160.0">
@@ -755,14 +750,15 @@
                                                                                 </AnchorPane>
                                                                             </children>
                                                                         </AnchorPane>
-                                                                        <Pane prefHeight="35.0" prefWidth="434.0">
+                                                                        <Pane prefHeight="35.0" prefWidth="507.0">
                                                                             <children>
-                                                                                <RadioButton fx:id="choise_have_BVS" layoutX="86.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveBVS" text="Известны (Заимсвованы)">
+                                                                                <RadioButton fx:id="choise_have_BVS" layoutX="16.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveBVS" text="Известны (Заимсвованы)">
                                                                                     <toggleGroup>
                                                                                         <ToggleGroup fx:id="select_group_ssd1" />
                                                                                     </toggleGroup>
                                                                                 </RadioButton>
-                                                                                <RadioButton layoutX="269.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveBVS" selected="true" text="Подлежат расчету" toggleGroup="$select_group_ssd1" />
+                                                                                <RadioButton layoutX="199.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveBVS" selected="true" text="Подлежат расчету" toggleGroup="$select_group_ssd1" />
+                                                            <RadioButton fx:id="choise_non_BVS" layoutX="352.0" layoutY="10.0" mnemonicParsing="false" onAction="#haveBVS" text="Не использовать" toggleGroup="$select_group_ssd1" />
                                                                             </children>
                                                                         </Pane>
                                                                     </children>
@@ -804,7 +800,7 @@
                                                                                 <Label fx:id="vSTKRP" layoutX="25.0" layoutY="102.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                                 <Label fx:id="wSTKRP" layoutX="25.0" layoutY="135.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                                 <Label fx:id="jSTKRP" layoutX="25.0" layoutY="168.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
-                                                                                <Button layoutX="181.0" layoutY="209.0" mnemonicParsing="false" onAction="#bt_calcul_STKRP" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
+                                                                                <Button fx:id="bt_calcul_STKRP" layoutX="181.0" layoutY="209.0" mnemonicParsing="false" onAction="#bt_calcul_STKRP" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
                                                                                 <Label fx:id="labelZaimStkrp" layoutX="28.0" layoutY="474.0" prefHeight="20.0" prefWidth="444.0" text="Выбран взаимсвованный элемент - аааааааааааааааааааааааа" textFill="#4e57ff" visible="false">
                                                                                     <font>
                                                                                         <Font name="System Bold" size="14.0" />
@@ -842,14 +838,15 @@
                                                                                 </AnchorPane>
                                                                             </children>
                                                                         </AnchorPane>
-                                                                        <Pane prefHeight="35.0" prefWidth="434.0">
+                                                                        <Pane prefHeight="35.0" prefWidth="507.0">
                                                                             <children>
-                                                                                <RadioButton fx:id="choise_have_STKRP" layoutX="86.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveSTKRP" text="Известны (Заимсвованы)">
+                                                                                <RadioButton fx:id="choise_have_STKRP" layoutX="16.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveSTKRP" text="Известны (Заимсвованы)">
                                                                                     <toggleGroup>
                                                                                         <ToggleGroup fx:id="select_group_ssd2" />
                                                                                     </toggleGroup>
                                                                                 </RadioButton>
-                                                                                <RadioButton layoutX="269.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveSTKRP" selected="true" text="Подлежат расчету" toggleGroup="$select_group_ssd2" />
+                                                                                <RadioButton layoutX="199.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveSTKRP" selected="true" text="Подлежат расчету" toggleGroup="$select_group_ssd2" />
+                                                            <RadioButton fx:id="choise_non_STKRP" layoutX="354.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveSTKRP" text="Не использовать" toggleGroup="$select_group_ssd2" />
                                                                             </children>
                                                                         </Pane>
                                                                     </children>
@@ -890,7 +887,7 @@
                                                                                 <Label fx:id="vKIS" layoutX="25.0" layoutY="102.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                                 <Label fx:id="wKIS" layoutX="25.0" layoutY="135.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                                 <Label fx:id="jKIS" layoutX="25.0" layoutY="168.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
-                                                                                <Button layoutX="181.0" layoutY="209.0" mnemonicParsing="false" onAction="#bt_calcul_BAKES" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
+                                                                                <Button fx:id="bt_calcul_BAKES" layoutX="181.0" layoutY="209.0" mnemonicParsing="false" onAction="#bt_calcul_BAKES" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
                                                                             </children>
                                                                         </AnchorPane>
                                                                         <AnchorPane layoutX="817.0" layoutY="512.0" prefHeight="75.0" prefWidth="160.0">
@@ -928,14 +925,15 @@
                                                                                 </AnchorPane>
                                                                             </children>
                                                                         </AnchorPane>
-                                                                        <Pane prefHeight="35.0" prefWidth="434.0">
+                                                                        <Pane prefHeight="35.0" prefWidth="507.0">
                                                                             <children>
-                                                                                <RadioButton fx:id="choise_have_KIS" layoutX="86.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveKIS" text="Известны (Заимсвованы)">
+                                                                                <RadioButton fx:id="choise_have_KIS" layoutX="16.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveKIS" text="Известны (Заимсвованы)">
                                                                                     <toggleGroup>
                                                                                         <ToggleGroup fx:id="select_group_ssd3" />
                                                                                     </toggleGroup>
                                                                                 </RadioButton>
-                                                                                <RadioButton layoutX="269.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveKIS" selected="true" text="Подлежат расчету" toggleGroup="$select_group_ssd3" />
+                                                                                <RadioButton layoutX="199.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveKIS" selected="true" text="Подлежат расчету" toggleGroup="$select_group_ssd3" />
+                                                            <RadioButton fx:id="choise_non_KIS" layoutX="356.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveKIS" text="Не использовать" toggleGroup="$select_group_ssd3" />
                                                                             </children>
                                                                         </Pane>
                                                                     </children>
@@ -976,7 +974,7 @@
                                                                                 <Label fx:id="vBITS" layoutX="25.0" layoutY="102.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                                 <Label fx:id="wBITS" layoutX="25.0" layoutY="135.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                                 <Label fx:id="jBITS" layoutX="25.0" layoutY="168.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
-                                                                                <Button layoutX="181.0" layoutY="209.0" mnemonicParsing="false" onAction="#bt_calcul_BETS" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
+                                                                                <Button fx:id="bt_calcul_BETS" layoutX="181.0" layoutY="209.0" mnemonicParsing="false" onAction="#bt_calcul_BETS" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
                                                                                 <Label fx:id="labelZaimBets" layoutX="28.0" layoutY="466.0" prefHeight="20.0" prefWidth="444.0" text="Выбран взаимсвованный элемент - аааааааааааааааааааааааа" textFill="#4e57ff" visible="false">
                                                                                     <font>
                                                                                         <Font name="System Bold" size="14.0" />
@@ -1014,14 +1012,15 @@
                                                                                 </AnchorPane>
                                                                             </children>
                                                                         </AnchorPane>
-                                                                        <Pane prefHeight="35.0" prefWidth="434.0">
+                                                                        <Pane prefHeight="35.0" prefWidth="507.0">
                                                                             <children>
-                                                                                <RadioButton fx:id="choise_have_BETS" layoutX="86.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveBETS" text="Известны (Заимсвованы)">
+                                                                                <RadioButton fx:id="choise_have_BETS" layoutX="21.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveBETS" text="Известны (Заимсвованы)">
                                                                                     <toggleGroup>
                                                                                         <ToggleGroup fx:id="select_group_ssd4" />
                                                                                     </toggleGroup>
                                                                                 </RadioButton>
-                                                                                <RadioButton layoutX="269.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveBETS" selected="true" text="Подлежат расчету" toggleGroup="$select_group_ssd4" />
+                                                                                <RadioButton layoutX="204.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveBETS" selected="true" text="Подлежат расчету" toggleGroup="$select_group_ssd4" />
+                                                            <RadioButton fx:id="choise_non_BETS" layoutX="366.0" layoutY="12.0" mnemonicParsing="false" onAction="#haveBETS" text="Не использовать" toggleGroup="$select_group_ssd4" />
                                                                             </children>
                                                                         </Pane>
                                                                     </children>
@@ -1062,7 +1061,7 @@
                                                                                 <Label fx:id="vPrBKU" layoutX="25.0" layoutY="102.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                                 <Label fx:id="wPrBKU" layoutX="25.0" layoutY="135.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                                 <Label fx:id="jPrBKU" layoutX="25.0" layoutY="168.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
-                                                                                <Button layoutX="181.0" layoutY="209.0" mnemonicParsing="false" onAction="#bt_calcul_OtherBKU" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
+                                                                                <Button fx:id="bt_calcul_OtherBKU" layoutX="181.0" layoutY="209.0" mnemonicParsing="false" onAction="#bt_calcul_OtherBKU" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
                                                                                 <Label fx:id="labelZaimOtherBku" layoutX="25.0" layoutY="467.0" prefHeight="20.0" prefWidth="444.0" text="Выбран взаимсвованный элемент - аааааааааааааааааааааааа" textFill="#4e57ff" visible="false">
                                                                                     <font>
                                                                                         <Font name="System Bold" size="14.0" />
@@ -1100,14 +1099,15 @@
                                                                                 </AnchorPane>
                                                                             </children>
                                                                         </AnchorPane>
-                                                                        <Pane prefHeight="35.0" prefWidth="434.0">
+                                                                        <Pane prefHeight="35.0" prefWidth="507.0">
                                                                             <children>
-                                                                                <RadioButton fx:id="choise_have_OtherBKU" layoutX="86.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveOtherBKU" text="Известны (Заимсвованы)">
+                                                                                <RadioButton fx:id="choise_have_OtherBKU" layoutX="23.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveOtherBKU" text="Известны (Заимсвованы)">
                                                                                     <toggleGroup>
                                                                                         <ToggleGroup fx:id="select_group_ssd5" />
                                                                                     </toggleGroup>
                                                                                 </RadioButton>
-                                                                                <RadioButton layoutX="269.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveOtherBKU" selected="true" text="Подлежат расчету" toggleGroup="$select_group_ssd5" />
+                                                                                <RadioButton layoutX="206.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveOtherBKU" selected="true" text="Подлежат расчету" toggleGroup="$select_group_ssd5" />
+                                                            <RadioButton fx:id="choise_non_OtherBKU" layoutX="362.0" layoutY="13.0" mnemonicParsing="false" onAction="#haveOtherBKU" text="Не использовать" toggleGroup="$select_group_ssd5" />
                                                                             </children>
                                                                         </Pane>
                                                                     </children>
@@ -1281,11 +1281,7 @@
                                                                                     </toggleGroup>
                                                                                 </RadioButton>
                                                                                 <RadioButton layoutX="269.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveSGK" selected="true" text="Подлежат расчету" toggleGroup="$select_group_ssd6" />
-                                                            <RadioButton layoutX="418.0" layoutY="12.0" mnemonicParsing="false" onAction="#haveOETK" text="Не использовать">
-                                                               <toggleGroup>
-                                                                  <ToggleGroup fx:id="select_group_oetk32" />
-                                                               </toggleGroup>
-                                                            </RadioButton>
+                                                            <RadioButton fx:id="choise_non_SGK" layoutX="418.0" layoutY="12.0" mnemonicParsing="false" onAction="#haveSGK" text="Не использовать" toggleGroup="$select_group_ssd6" />
                                                                             </children>
                                                                         </Pane>
                                                                     </children>
@@ -1328,7 +1324,7 @@
                                                                                 <Label layoutX="116.0" layoutY="197.0" prefHeight="17.0" prefWidth="372.0" text="Плотность конструкционного материала штанг, кг/м3" />
                                                                                 <TextField fx:id="kzsSSKM" layoutX="21.0" layoutY="226.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="30" />
                                                                                 <Label layoutX="116.0" layoutY="230.0" prefHeight="17.0" prefWidth="372.0" text="Коэф. заполнения штангССКМ конструкц. материалом, %" />
-                                                                                <Button layoutX="164.0" layoutY="301.0" mnemonicParsing="false" onAction="#bt_calcul_SSKM" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
+                                                                                <Button fx:id="bt_calcul_SSKM" layoutX="164.0" layoutY="301.0" mnemonicParsing="false" onAction="#bt_calcul_SSKM" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
                                                                             </children>
                                                                         </AnchorPane>
                                                                         <AnchorPane layoutX="500.0" layoutY="35.0" prefHeight="484.0" prefWidth="500.0">
@@ -1411,14 +1407,15 @@
                                                                                 </AnchorPane>
                                                                             </children>
                                                                         </AnchorPane>
-                                                                        <Pane prefHeight="35.0" prefWidth="434.0">
+                                                                        <Pane prefHeight="35.0" prefWidth="507.0">
                                                                             <children>
-                                                                                <RadioButton fx:id="choise_have_SSKM" layoutX="86.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveSSKM" text="Известны (Заимсвованы)">
+                                                                                <RadioButton fx:id="choise_have_SSKM" layoutX="20.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveSSKM" text="Известны (Заимсвованы)">
                                                                                     <toggleGroup>
                                                                                         <ToggleGroup fx:id="select_group_ssd7" />
                                                                                     </toggleGroup>
                                                                                 </RadioButton>
-                                                                                <RadioButton layoutX="269.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveSSKM" selected="true" text="Подлежат расчету" toggleGroup="$select_group_ssd7" />
+                                                                                <RadioButton layoutX="203.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveSSKM" selected="true" text="Подлежат расчету" toggleGroup="$select_group_ssd7" />
+                                                            <RadioButton fx:id="choise_non_SSKM" layoutX="353.0" layoutY="13.0" mnemonicParsing="false" onAction="#haveSSKM" text="Не использовать" toggleGroup="$select_group_ssd7" />
                                                                             </children>
                                                                         </Pane>
                                                                     </children>
@@ -1466,7 +1463,7 @@
                                                                                 <Label fx:id="vIPMV" layoutX="25.0" layoutY="100.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                                 <Label fx:id="wIPMV" layoutX="25.0" layoutY="133.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                                 <Label fx:id="jIPMV" layoutX="25.0" layoutY="166.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
-                                                                                <Button layoutX="181.0" layoutY="207.0" mnemonicParsing="false" onAction="#bt_calcul_IPMV" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
+                                                                                <Button fx:id="bt_calcul_IPMV" layoutX="181.0" layoutY="207.0" mnemonicParsing="false" onAction="#bt_calcul_IPMV" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
                                                                                 <Label layoutX="28.0" layoutY="474.0" prefHeight="20.0" prefWidth="444.0" text="Выбран взаимсвованный элемент - аааааааааааааааааааааааа" textFill="#4e57ff" visible="false">
                                                                                     <font>
                                                                                         <Font name="System Bold" size="14.0" />
@@ -1497,14 +1494,15 @@
                                                                                 </AnchorPane>
                                                                             </children>
                                                                         </AnchorPane>
-                                                                        <Pane prefHeight="35.0" prefWidth="434.0">
+                                                                        <Pane prefHeight="35.0" prefWidth="507.0">
                                                                             <children>
-                                                                                <RadioButton fx:id="choise_have_IPMV" layoutX="86.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveIPMV" text="Известны (Заимсвованы)">
+                                                                                <RadioButton fx:id="choise_have_IPMV" layoutX="26.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveIPMV" text="Известны (Заимсвованы)">
                                                                                     <toggleGroup>
                                                                                         <ToggleGroup fx:id="select_group_IPMV" />
                                                                                     </toggleGroup>
                                                                                 </RadioButton>
-                                                                                <RadioButton layoutX="269.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveIPMV" selected="true" text="Подлежат расчету" toggleGroup="$select_group_IPMV" />
+                                                                                <RadioButton layoutX="209.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveIPMV" selected="true" text="Подлежат расчету" toggleGroup="$select_group_IPMV" />
+                                                            <RadioButton fx:id="choise_non_IPMV" layoutX="361.0" layoutY="12.0" mnemonicParsing="false" onAction="#haveIPMV" text="Не использовать" toggleGroup="$select_group_IPMV" />
                                                                             </children>
                                                                         </Pane>
                                                                     </children></AnchorPane>
@@ -1551,7 +1549,7 @@
                                                                                 <Label fx:id="vBOKZ" layoutX="25.0" layoutY="100.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                                 <Label fx:id="wBOKZ" layoutX="25.0" layoutY="133.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                                 <Label fx:id="jBOKZ" layoutX="25.0" layoutY="166.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
-                                                                                <Button layoutX="181.0" layoutY="207.0" mnemonicParsing="false" onAction="#bt_calcul_BOKZ" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
+                                                                                <Button fx:id="bt_calcul_BOKZ" layoutX="181.0" layoutY="207.0" mnemonicParsing="false" onAction="#bt_calcul_BOKZ" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
                                                                                 <Label layoutX="28.0" layoutY="474.0" prefHeight="20.0" prefWidth="444.0" text="Выбран взаимсвованный элемент - аааааааааааааааааааааааа" textFill="#4e57ff" visible="false">
                                                                                     <font>
                                                                                         <Font name="System Bold" size="14.0" />
@@ -1582,14 +1580,15 @@
                                                                                 </AnchorPane>
                                                                             </children>
                                                                         </AnchorPane>
-                                                                        <Pane prefHeight="35.0" prefWidth="434.0">
+                                                                        <Pane prefHeight="35.0" prefWidth="507.0">
                                                                             <children>
-                                                                                <RadioButton fx:id="choise_have_BOKZ" layoutX="86.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveBOKZ" text="Известны (Заимсвованы)">
+                                                                                <RadioButton fx:id="choise_have_BOKZ" layoutX="22.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveBOKZ" text="Известны (Заимсвованы)">
                                                                                     <toggleGroup>
                                                                                         <ToggleGroup fx:id="select_group_BOKZ" />
                                                                                     </toggleGroup>
                                                                                 </RadioButton>
-                                                                                <RadioButton layoutX="269.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveBOKZ" selected="true" text="Подлежат расчету" toggleGroup="$select_group_BOKZ" />
+                                                                                <RadioButton layoutX="205.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveBOKZ" selected="true" text="Подлежат расчету" toggleGroup="$select_group_BOKZ" />
+                                                            <RadioButton fx:id="choise_non_BOKZ" layoutX="362.0" layoutY="12.0" mnemonicParsing="false" onAction="#haveBOKZ" text="Не использовать" toggleGroup="$select_group_BOKZ" />
                                                                             </children>
                                                                         </Pane>
                                                                     </children></AnchorPane>
@@ -1636,7 +1635,7 @@
                                                                                 <Label fx:id="vDO" layoutX="25.0" layoutY="100.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                                 <Label fx:id="wDO" layoutX="25.0" layoutY="133.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                                 <Label fx:id="jDO" layoutX="25.0" layoutY="166.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
-                                                                                <Button layoutX="181.0" layoutY="207.0" mnemonicParsing="false" onAction="#bt_calcul_DO" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
+                                                                                <Button fx:id="bt_calcul_DO" layoutX="181.0" layoutY="207.0" mnemonicParsing="false" onAction="#bt_calcul_DO" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
                                                                                 <Label layoutX="28.0" layoutY="474.0" prefHeight="20.0" prefWidth="444.0" text="Выбран взаимсвованный элемент - аааааааааааааааааааааааа" textFill="#4e57ff" visible="false">
                                                                                     <font>
                                                                                         <Font name="System Bold" size="14.0" />
@@ -1667,14 +1666,15 @@
                                                                                 </AnchorPane>
                                                                             </children>
                                                                         </AnchorPane>
-                                                                        <Pane prefHeight="35.0" prefWidth="434.0">
+                                                                        <Pane prefHeight="35.0" prefWidth="507.0">
                                                                             <children>
-                                                                                <RadioButton fx:id="choise_have_DO" layoutX="86.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveDO" text="Известны (Заимсвованы)">
+                                                                                <RadioButton fx:id="choise_have_DO" layoutX="12.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveDO" text="Известны (Заимсвованы)">
                                                                                     <toggleGroup>
                                                                                         <ToggleGroup fx:id="select_group_DO" />
                                                                                     </toggleGroup>
                                                                                 </RadioButton>
-                                                                                <RadioButton layoutX="269.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveDO" selected="true" text="Подлежат расчету" toggleGroup="$select_group_DO" />
+                                                                                <RadioButton layoutX="195.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveDO" selected="true" text="Подлежат расчету" toggleGroup="$select_group_DO" />
+                                                            <RadioButton fx:id="choise_non_DO" layoutX="359.0" layoutY="12.0" mnemonicParsing="false" onAction="#haveDO" text="Не использовать" toggleGroup="$select_group_DO" />
                                                                             </children>
                                                                         </Pane>
                                                                     </children></AnchorPane>
@@ -1721,7 +1721,7 @@
                                                                                 <Label fx:id="vDUS" layoutX="25.0" layoutY="100.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                                 <Label fx:id="wDUS" layoutX="25.0" layoutY="133.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                                 <Label fx:id="jDUS" layoutX="25.0" layoutY="166.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
-                                                                                <Button layoutX="181.0" layoutY="207.0" mnemonicParsing="false" onAction="#bt_calcul_DUS" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
+                                                                                <Button fx:id="bt_calcul_DUS" layoutX="181.0" layoutY="207.0" mnemonicParsing="false" onAction="#bt_calcul_DUS" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
                                                                                 <Label layoutX="28.0" layoutY="474.0" prefHeight="20.0" prefWidth="444.0" text="Выбран взаимсвованный элемент - аааааааааааааааааааааааа" textFill="#4e57ff" visible="false">
                                                                                     <font>
                                                                                         <Font name="System Bold" size="14.0" />
@@ -1752,14 +1752,15 @@
                                                                                 </AnchorPane>
                                                                             </children>
                                                                         </AnchorPane>
-                                                                        <Pane prefHeight="35.0" prefWidth="434.0">
+                                                                        <Pane prefHeight="35.0" prefWidth="507.0">
                                                                             <children>
-                                                                                <RadioButton fx:id="choise_have_DUS" layoutX="86.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveDUS" text="Известны (Заимсвованы)">
+                                                                                <RadioButton fx:id="choise_have_DUS" layoutX="22.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveDUS" text="Известны (Заимсвованы)">
                                                                                     <toggleGroup>
                                                                                         <ToggleGroup fx:id="select_group_DUS" />
                                                                                     </toggleGroup>
                                                                                 </RadioButton>
-                                                                                <RadioButton layoutX="269.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveDUS" selected="true" text="Подлежат расчету" toggleGroup="$select_group_DUS" />
+                                                                                <RadioButton layoutX="205.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveDUS" selected="true" text="Подлежат расчету" toggleGroup="$select_group_DUS" />
+                                                            <RadioButton fx:id="choise_non_DOU" layoutX="363.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveDUS" text="Не использовать" toggleGroup="$select_group_DUS" />
                                                                             </children>
                                                                         </Pane>
                                                                     </children></AnchorPane>
@@ -1812,7 +1813,7 @@
                                                                                 <Label fx:id="vEVTI" layoutX="25.0" layoutY="168.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                                 <Label layoutX="109.0" layoutY="200.0" prefHeight="17.0" prefWidth="372.0" text="Момент инерции ЭВТИ, &quot;размазанной&quot; по объему КА, кг м2" />
                                                                                 <Label fx:id="jEVTI" layoutX="25.0" layoutY="201.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
-                                                                                <Button layoutX="181.0" layoutY="242.0" mnemonicParsing="false" onAction="#bt_calcul_PasivSOTR" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
+                                                                                <Button fx:id="bt_calcul_PasivSOTR" layoutX="181.0" layoutY="242.0" mnemonicParsing="false" onAction="#bt_calcul_PasivSOTR" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
                                                                                 <Label fx:id="labelZaimPasivSotr" layoutX="25.0" layoutY="448.0" prefHeight="20.0" prefWidth="444.0" text="Выбран взаимсвованный элемент - аааааааааааааааааааааааа" textFill="#4e57ff" visible="false">
                                                                                     <font>
                                                                                         <Font name="System Bold" size="14.0" />
@@ -1850,14 +1851,15 @@
                                                                                 </AnchorPane>
                                                                             </children>
                                                                         </AnchorPane>
-                                                                        <Pane prefHeight="35.0" prefWidth="434.0">
+                                                                        <Pane prefHeight="35.0" prefWidth="507.0">
                                                                             <children>
-                                                                                <RadioButton fx:id="choise_have_Pasivv" layoutX="86.0" layoutY="11.0" mnemonicParsing="false" onAction="#havePasiv" text="Известны (Заимсвованы)">
+                                                                                <RadioButton fx:id="choise_have_Pasivv" layoutX="28.0" layoutY="11.0" mnemonicParsing="false" onAction="#havePasiv" text="Известны (Заимсвованы)">
                                                                                     <toggleGroup>
                                                                                         <ToggleGroup fx:id="select_group_ssd8" />
                                                                                     </toggleGroup>
                                                                                 </RadioButton>
-                                                                                <RadioButton layoutX="269.0" layoutY="11.0" mnemonicParsing="false" onAction="#havePasiv" selected="true" text="Подлежат расчету" toggleGroup="$select_group_ssd8" />
+                                                                                <RadioButton layoutX="211.0" layoutY="11.0" mnemonicParsing="false" onAction="#havePasiv" selected="true" text="Подлежат расчету" toggleGroup="$select_group_ssd8" />
+                                                            <RadioButton fx:id="choise_non_PasivSOTR" layoutX="361.0" layoutY="12.0" mnemonicParsing="false" onAction="#havePasiv" text="Не использовать" toggleGroup="$select_group_ssd8" />
                                                                             </children>
                                                                         </Pane>
                                                                     </children></AnchorPane>
@@ -1903,7 +1905,7 @@
                                                                                 <Label fx:id="wSTRact" layoutX="25.0" layoutY="201.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                                 <Label layoutX="109.0" layoutY="233.0" prefHeight="17.0" prefWidth="372.0" text="Момент инерции СТР, &quot;размазанной&quot; по объему КА, кг м2" />
                                                                                 <Label fx:id="jSTR" layoutX="25.0" layoutY="234.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
-                                                                                <Button layoutX="73.0" layoutY="275.0" mnemonicParsing="false" onAction="#bt_calcul_ActivSOTR" prefHeight="37.0" prefWidth="138.0" text="Расчитать" />
+                                                                                <Button fx:id="bt_calcul_ActivSOTR" layoutX="73.0" layoutY="275.0" mnemonicParsing="false" onAction="#bt_calcul_ActivSOTR" prefHeight="37.0" prefWidth="138.0" text="Расчитать" />
                                                                                 <Button disable="true" layoutX="237.0" layoutY="275.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="138.0" text="Вторая итерация" visible="false" />
                                                                                 <Label fx:id="labelZaimActivSotr" layoutX="28.0" layoutY="449.0" prefHeight="20.0" prefWidth="444.0" text="Выбран взаимсвованный элемент - аааааааааааааааааааааааа" textFill="#4e57ff" visible="false">
                                                                                     <font>
@@ -1940,14 +1942,15 @@
                                                                                 <AnchorPane layoutX="-1.0" layoutY="39.0" prefHeight="375.0" prefWidth="553.0" />
                                                                             </children>
                                                                         </AnchorPane>
-                                                                        <Pane prefHeight="35.0" prefWidth="434.0">
+                                                                        <Pane prefHeight="35.0" prefWidth="507.0">
                                                                             <children>
-                                                                                <RadioButton fx:id="choise_have_Activ" layoutX="86.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveActiv" text="Известны (Заимсвованы)">
+                                                                                <RadioButton fx:id="choise_have_Activ" layoutX="20.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveActiv" text="Известны (Заимсвованы)">
                                                                                     <toggleGroup>
                                                                                         <ToggleGroup fx:id="select_group_ssd9" />
                                                                                     </toggleGroup>
                                                                                 </RadioButton>
-                                                                                <RadioButton layoutX="269.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveActiv" selected="true" text="Подлежат расчету" toggleGroup="$select_group_ssd9" />
+                                                                                <RadioButton layoutX="203.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveActiv" selected="true" text="Подлежат расчету" toggleGroup="$select_group_ssd9" />
+                                                            <RadioButton fx:id="choise_non_ActivSOTR" layoutX="351.0" layoutY="12.0" mnemonicParsing="false" onAction="#haveActiv" text="Не использовать" toggleGroup="$select_group_ssd9" />
                                                                             </children>
                                                                         </Pane>
                                                                     </children></AnchorPane>
@@ -2125,7 +2128,7 @@
                                                                                 <Label fx:id="lAB" layoutX="25.0" layoutY="201.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                                 <Label fx:id="jAB1" layoutX="25.0" layoutY="234.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                                 <Label fx:id="jAB_KA" layoutX="25.0" layoutY="267.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
-                                                                                <Button layoutX="181.0" layoutY="313.0" mnemonicParsing="false" onAction="#bt_calcul_AcumBet" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
+                                                                                <Button fx:id="bt_calcul_AcumBet" layoutX="181.0" layoutY="313.0" mnemonicParsing="false" onAction="#bt_calcul_AcumBet" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
                                                                             </children>
                                                                         </AnchorPane>
                                                                         <AnchorPane layoutX="817.0" layoutY="512.0" prefHeight="75.0" prefWidth="160.0">
@@ -2163,14 +2166,15 @@
                                                                                 </AnchorPane>
                                                                             </children>
                                                                         </AnchorPane>
-                                                                        <Pane prefHeight="35.0" prefWidth="434.0">
+                                                                        <Pane prefHeight="35.0" prefWidth="507.0">
                                                                             <children>
-                                                                                <RadioButton fx:id="choise_have_Acum" layoutX="86.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveAcum" text="Известны (Заимсвованы)">
+                                                                                <RadioButton fx:id="choise_have_Acum" layoutX="22.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveAcum" text="Известны (Заимсвованы)">
                                                                                     <toggleGroup>
                                                                                         <ToggleGroup fx:id="select_group_ssd10" />
                                                                                     </toggleGroup>
                                                                                 </RadioButton>
-                                                                                <RadioButton layoutX="269.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveAcum" selected="true" text="Подлежат расчету" toggleGroup="$select_group_ssd10" />
+                                                                                <RadioButton layoutX="205.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveAcum" selected="true" text="Подлежат расчету" toggleGroup="$select_group_ssd10" />
+                                                            <RadioButton fx:id="choise_non_AcumBet" layoutX="347.0" layoutY="12.0" mnemonicParsing="false" onAction="#haveAcum" text="Не использовать" toggleGroup="$select_group_ssd10" />
                                                                             </children>
                                                                         </Pane>
                                                                         <Button layoutX="913.0" layoutY="5.0" mnemonicParsing="false" onAction="#actionShowHelpInfoForAcum" prefHeight="39.0" prefWidth="80.0" text=" Справочная &#10;информация">
@@ -2242,7 +2246,7 @@
                                                                                 <Label fx:id="vKASsum" layoutX="25.0" layoutY="362.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                                 <Label layoutX="109.0" layoutY="392.0" prefHeight="17.0" prefWidth="372.0" text="Приведенный момент инерции КАС, кг/м2" />
                                                                                 <Label fx:id="jKASsum" layoutX="25.0" layoutY="393.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
-                                                                                <Button layoutX="181.0" layoutY="441.0" mnemonicParsing="false" onAction="#bt_calcul_KAS" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
+                                                                                <Button fx:id="bt_calcul_KAS" layoutX="181.0" layoutY="441.0" mnemonicParsing="false" onAction="#bt_calcul_KAS" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
                                                                                 <Label fx:id="labelZaimKas" layoutX="25.0" layoutY="484.0" prefHeight="20.0" prefWidth="444.0" text="Выбран взаимсвованный элемент - аааааааааааааааааааааааа" textFill="#4e57ff" visible="false">
                                                                                     <font>
                                                                                         <Font name="System Bold" size="14.0" />
@@ -2280,14 +2284,15 @@
                                                                                 </AnchorPane>
                                                                             </children>
                                                                         </AnchorPane>
-                                                                        <Pane prefHeight="35.0" prefWidth="434.0">
+                                                                        <Pane prefHeight="35.0" prefWidth="507.0">
                                                                             <children>
-                                                                                <RadioButton fx:id="choise_have_KAS" layoutX="86.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveKAS" text="Известны (Заимсвованы)">
+                                                                                <RadioButton fx:id="choise_have_KAS" layoutX="16.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveKAS" text="Известны (Заимсвованы)">
                                                                                     <toggleGroup>
                                                                                         <ToggleGroup fx:id="select_group_ssd11" />
                                                                                     </toggleGroup>
                                                                                 </RadioButton>
-                                                                                <RadioButton layoutX="269.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveKAS" selected="true" text="Подлежат расчету" toggleGroup="$select_group_ssd11" />
+                                                                                <RadioButton layoutX="199.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveKAS" selected="true" text="Подлежат расчету" toggleGroup="$select_group_ssd11" />
+                                                            <RadioButton fx:id="choise_non_KAS" layoutX="344.0" layoutY="12.0" mnemonicParsing="false" onAction="#haveKAS" text="Не использовать" toggleGroup="$select_group_ssd11" />
                                                                             </children>
                                                                         </Pane>
                                                                     </children></AnchorPane>
@@ -2339,7 +2344,7 @@
                                                                                 <Label fx:id="dPSB1" layoutX="25.0" layoutY="234.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                                 <Label fx:id="jPSB1" layoutX="25.0" layoutY="267.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                                 <Label fx:id="jPSB_KA" layoutX="25.0" layoutY="300.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
-                                                                                <Button layoutX="181.0" layoutY="380.0" mnemonicParsing="false" onAction="#bt_calcul_SunBet" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
+                                                                                <Button fx:id="bt_calcul_SunBet" layoutX="181.0" layoutY="380.0" mnemonicParsing="false" onAction="#bt_calcul_SunBet" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
                                                                                 <Label fx:id="labelZaimSunBet" layoutX="25.0" layoutY="479.0" prefHeight="20.0" prefWidth="444.0" text="Выбран взаимсвованный элемент - аааааааааааааааааааааааа" textFill="#4e57ff" visible="false">
                                                                                     <font>
                                                                                         <Font name="System Bold" size="14.0" />
@@ -2374,14 +2379,15 @@
                                                                                 </ImageView>
                                                                             </children>
                                                                         </AnchorPane>
-                                                                        <Pane prefHeight="35.0" prefWidth="434.0">
+                                                                        <Pane prefHeight="35.0" prefWidth="507.0">
                                                                             <children>
-                                                                                <RadioButton fx:id="choise_have_Sun" layoutX="86.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveSun" text="Известны (Заимсвованы)">
+                                                                                <RadioButton fx:id="choise_have_Sun" layoutX="24.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveSun" text="Известны (Заимсвованы)">
                                                                                     <toggleGroup>
                                                                                         <ToggleGroup fx:id="select_group_ssd12" />
                                                                                     </toggleGroup>
                                                                                 </RadioButton>
-                                                                                <RadioButton layoutX="269.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveSun" selected="true" text="Подлежат расчету" toggleGroup="$select_group_ssd12" />
+                                                                                <RadioButton layoutX="207.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveSun" selected="true" text="Подлежат расчету" toggleGroup="$select_group_ssd12" />
+                                                            <RadioButton fx:id="choise_non_Sun" layoutX="354.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveSun" text="Не использовать" toggleGroup="$select_group_ssd12" />
                                                                             </children>
                                                                         </Pane>
                                                                     </children>
@@ -2586,7 +2592,7 @@
                                                                                 <Label layoutX="109.0" layoutY="92.0" prefHeight="17.0" prefWidth="372.0" text="Масса конструкции КДУ, кг" />
                                                                                 <Label fx:id="mKDU" layoutX="25.0" layoutY="69.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                                                 <Label fx:id="mkKDU" layoutX="25.0" layoutY="93.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
-                                                                                <Button layoutX="181.0" layoutY="450.0" mnemonicParsing="false" onAction="#bt_calcul_KDU" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
+                                                                                <Button fx:id="bt_calcul_KDU" layoutX="181.0" layoutY="450.0" mnemonicParsing="false" onAction="#bt_calcul_KDU" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
                                                                                 <Label layoutX="109.0" layoutY="117.0" prefHeight="17.0" prefWidth="372.0" text="Объем окислителя, м3" />
                                                                                 <Label layoutX="109.0" layoutY="141.0" prefHeight="17.0" prefWidth="372.0" text="Объем горючего, м3" />
                                                                                 <Label fx:id="Vok" layoutX="25.0" layoutY="118.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
@@ -2650,14 +2656,15 @@
                                                                                 </AnchorPane>
                                                                             </children>
                                                                         </AnchorPane>
-                                                                        <Pane prefHeight="35.0" prefWidth="434.0">
+                                                                        <Pane prefHeight="35.0" prefWidth="507.0">
                                                                             <children>
-                                                                                <RadioButton fx:id="choise_have_kdu" layoutX="86.0" layoutY="11.0" mnemonicParsing="false" onAction="#havekdu" text="Известны (Заимсвованы)">
+                                                                                <RadioButton fx:id="choise_have_kdu" layoutX="23.0" layoutY="11.0" mnemonicParsing="false" onAction="#havekdu" text="Известны (Заимсвованы)">
                                                                                     <toggleGroup>
                                                                                         <ToggleGroup fx:id="select_group_ssd111" />
                                                                                     </toggleGroup>
                                                                                 </RadioButton>
-                                                                                <RadioButton layoutX="269.0" layoutY="11.0" mnemonicParsing="false" onAction="#havekdu" selected="true" text="Подлежат расчету" toggleGroup="$select_group_ssd111" />
+                                                                                <RadioButton layoutX="206.0" layoutY="11.0" mnemonicParsing="false" onAction="#havekdu" selected="true" text="Подлежат расчету" toggleGroup="$select_group_ssd111" />
+                                                            <RadioButton fx:id="choise_non_KDU" layoutX="354.0" layoutY="11.0" mnemonicParsing="false" onAction="#havekdu" text="Не использовать" toggleGroup="$select_group_ssd111" />
                                                                             </children>
                                                                         </Pane>
                                                                     </children></AnchorPane>
@@ -2700,7 +2707,7 @@
                                                         <Label fx:id="mkKA" layoutX="25.0" layoutY="69.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                         <Label fx:id="vkKA" layoutX="25.0" layoutY="102.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                         <Label fx:id="jkKA" layoutX="25.0" layoutY="135.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
-                                                        <Button layoutX="181.0" layoutY="171.0" mnemonicParsing="false" onAction="#bt_calcul_konstr" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
+                                                        <Button fx:id="bt_calcul_konstr" layoutX="181.0" layoutY="171.0" mnemonicParsing="false" onAction="#bt_calcul_konstr" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
                                                         <Label fx:id="labelZaimKonstr" layoutX="25.0" layoutY="509.0" prefHeight="20.0" prefWidth="444.0" text="Выбран взаимсвованный элемент - аааааааааааааааааааааааа" textFill="#4e57ff" visible="false">
                                                             <font>
                                                                 <Font name="System Bold" size="14.0" />
@@ -2715,9 +2722,9 @@
                                                         <Button layoutX="80.0" layoutY="39.0" mnemonicParsing="false" onAction="#exporttKonstr" prefHeight="25.0" prefWidth="68.0" text="Экспорт" />
                                                     </children>
                                                 </AnchorPane>
-                                                <AnchorPane fx:id="pane_zaimsv_Konstr" prefHeight="528.0" prefWidth="1000.0" visible="false">
+                                                <AnchorPane fx:id="pane_zaimsv_Konstr" prefHeight="558.0" prefWidth="1000.0" visible="false">
                                                     <children>
-                                                        <ImageView fitHeight="531.0" fitWidth="507.0" layoutY="-2.0">
+                                                        <ImageView fitHeight="561.0" fitWidth="507.0" layoutY="-2.0">
                                                             <image>
                                                                 <Image url="@assembly/white.PNG" />
                                                             </image>
@@ -2725,7 +2732,7 @@
                                                                 <ColorAdjust contrast="0.23" hue="0.24" saturation="0.36" />
                                                             </effect>
                                                         </ImageView>
-                                                        <ImageView fitHeight="531.0" fitWidth="493.0" layoutX="507.0" layoutY="-1.0">
+                                                        <ImageView fitHeight="559.0" fitWidth="493.0" layoutX="507.0" layoutY="-1.0">
                                                             <image>
                                                                 <Image url="@assembly/white.PNG" />
                                                             </image>
@@ -2738,14 +2745,15 @@
                                                         </AnchorPane>
                                                     </children>
                                                 </AnchorPane>
-                                                <Pane prefHeight="35.0" prefWidth="434.0">
+                                                <Pane prefHeight="35.0" prefWidth="507.0">
                                                     <children>
-                                                        <RadioButton fx:id="choise_have_Konstr" layoutX="86.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveKonstr" text="Известны (Заимсвованы)">
+                                                        <RadioButton fx:id="choise_have_Konstr" layoutX="19.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveKonstr" text="Известны (Заимсвованы)">
                                                             <toggleGroup>
                                                                 <ToggleGroup fx:id="select_group_ssd13" />
                                                             </toggleGroup>
                                                         </RadioButton>
-                                                        <RadioButton layoutX="269.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveKonstr" selected="true" text="Подлежат расчету" toggleGroup="$select_group_ssd13" />
+                                                        <RadioButton layoutX="202.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveKonstr" selected="true" text="Подлежат расчету" toggleGroup="$select_group_ssd13" />
+                                          <RadioButton fx:id="choise_non_Konstr" layoutX="351.0" layoutY="12.0" mnemonicParsing="false" onAction="#haveKonstr" text="Не использовать" toggleGroup="$select_group_ssd13" />
                                                     </children>
                                                 </Pane>
                                             </children></AnchorPane>
@@ -2781,7 +2789,7 @@
                                                         <Label fx:id="mBKS" layoutX="25.0" layoutY="57.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                         <Label fx:id="vBKS" layoutX="25.0" layoutY="90.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                         <Label fx:id="jBKS" layoutX="25.0" layoutY="124.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
-                                                        <Button layoutX="181.0" layoutY="165.0" mnemonicParsing="false" onAction="#bt_calcul_BKS" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
+                                                        <Button fx:id="bt_calcul_BKS" layoutX="181.0" layoutY="165.0" mnemonicParsing="false" onAction="#bt_calcul_BKS" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
                                                         <Label fx:id="labelZaimBksAndAfu" layoutX="25.0" layoutY="495.0" prefHeight="20.0" prefWidth="444.0" text="Выбран взаимсвованный элемент - аааааааааааааааааааааааа" textFill="#4e57ff" visible="false">
                                                             <font>
                                                                 <Font name="System Bold" size="14.0" />
@@ -2819,14 +2827,15 @@
                                                         </AnchorPane>
                                                     </children>
                                                 </AnchorPane>
-                                                <Pane prefHeight="35.0" prefWidth="434.0">
+                                                <Pane prefHeight="35.0" prefWidth="507.0">
                                                     <children>
-                                                        <RadioButton fx:id="choise_have_BKS" layoutX="86.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveBKS" text="Известны (Заимсвованы)">
+                                                        <RadioButton fx:id="choise_have_BKS" layoutX="22.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveBKS" text="Известны (Заимсвованы)">
                                                             <toggleGroup>
                                                                 <ToggleGroup fx:id="select_group_bks" />
                                                             </toggleGroup>
                                                         </RadioButton>
-                                                        <RadioButton layoutX="269.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveBKS" selected="true" text="Подлежат расчету" toggleGroup="$select_group_bks" />
+                                                        <RadioButton layoutX="205.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveBKS" selected="true" text="Подлежат расчету" toggleGroup="$select_group_bks" />
+                                          <RadioButton fx:id="choise_non_BKS" layoutX="357.0" layoutY="12.0" mnemonicParsing="false" onAction="#haveBKS" text="Не использовать" toggleGroup="$select_group_bks" />
                                                     </children>
                                                 </Pane>
                                             </children></AnchorPane>
@@ -2862,7 +2871,7 @@
                                                         <Label fx:id="mAFU" layoutX="25.0" layoutY="54.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                         <Label fx:id="vAFU" layoutX="25.0" layoutY="87.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                         <Label fx:id="jAFU" layoutX="25.0" layoutY="120.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
-                                                        <Button layoutX="181.0" layoutY="160.0" mnemonicParsing="false" onAction="#bt_calcul_AFU" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
+                                                        <Button fx:id="bt_calcul_AFU" layoutX="181.0" layoutY="160.0" mnemonicParsing="false" onAction="#bt_calcul_AFU" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
                                                         <Label fx:id="labelZaimBksAndAfu1" layoutX="25.0" layoutY="495.0" prefHeight="20.0" prefWidth="444.0" text="Выбран взаимсвованный элемент - аааааааааааааааааааааааа" textFill="#4e57ff" visible="false">
                                                             <font>
                                                                 <Font name="System Bold" size="14.0" />
@@ -2900,100 +2909,16 @@
                                                         </AnchorPane>
                                                     </children>
                                                 </AnchorPane>
-                                                <Pane prefHeight="35.0" prefWidth="434.0">
+                                                <Pane prefHeight="35.0" prefWidth="507.0">
                                                     <children>
-                                                        <RadioButton fx:id="choise_have_AFU" layoutX="86.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveAFU" text="Известны (Заимсвованы)" />
-                                                        <RadioButton layoutX="269.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveAFU" selected="true" text="Подлежат расчету">
+                                                        <RadioButton fx:id="choise_have_AFU" layoutX="16.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveAFU" text="Известны (Заимсвованы)">
                                              <toggleGroup>
                                                                 <ToggleGroup fx:id="select_group_afu" />
                                              </toggleGroup></RadioButton>
+                                                        <RadioButton layoutX="199.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveAFU" selected="true" text="Подлежат расчету" toggleGroup="$select_group_afu" />
+                                          <RadioButton fx:id="choise_non_AFU" layoutX="353.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveAFU" text="Не использовать" toggleGroup="$select_group_afu" />
                                                     </children>
                                                 </Pane>
-                                            </children></AnchorPane>
-                                    </content>
-                                </Tab>
-                                <Tab text="Прочие элементы">
-                                    <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                            <children>
-                                                <AnchorPane fx:id="pane_zaimsv_AFh" prefHeight="528.0" prefWidth="1000.0" visible="false">
-                                                    <children>
-                                                        <ImageView fitHeight="561.0" fitWidth="507.0" layoutY="-2.0">
-                                                            <image>
-                                                                <Image url="@assembly/white.PNG" />
-                                                            </image>
-                                                            <effect>
-                                                                <ColorAdjust contrast="0.23" hue="0.24" saturation="0.36" />
-                                                            </effect>
-                                                        </ImageView>
-                                                        <ImageView fitHeight="560.0" fitWidth="493.0" layoutX="507.0" layoutY="-1.0">
-                                                            <image>
-                                                                <Image url="@assembly/white.PNG" />
-                                                            </image>
-                                                            <effect>
-                                                                <ColorAdjust contrast="1.0" hue="0.2" saturation="0.36" />
-                                                            </effect>
-                                                        </ImageView>
-                                                        <AnchorPane layoutX="29.0" layoutY="42.0" prefHeight="375.0" prefWidth="553.0">
-                                                            <fx:include source="assembly/importAFU.fxml" />
-                                                        </AnchorPane>
-                                                    </children>
-                                                </AnchorPane>
-                                            </children></AnchorPane>
-                                    </content>
-                                </Tab>
-                                <Tab text="Добавить новые элементы">
-                                    <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                            <children>
-                                                <AnchorPane prefHeight="537.0" prefWidth="500.0">
-                                                    <children>
-                                                        <Label layoutX="176.0" layoutY="14.0" text="Исходные данные:">
-                                                            <font>
-                                                                <Font name="System Bold" size="16.0" />
-                                                            </font>
-                                                        </Label>
-                                                        <Button layoutX="165.0" layoutY="354.0" mnemonicParsing="false" onAction="#addOtherKA" prefHeight="25.0" prefWidth="148.0" text="Добавить" />
-                                                        <TableView fx:id="tableOtherKA" layoutX="20.0" layoutY="50.0" prefHeight="273.0" prefWidth="465.0">
-                                                            <columns>
-                                                                <TableColumn fx:id="columnOtherKAname" prefWidth="135.0" text="Название элемента" />
-                                                                <TableColumn fx:id="columnOtherKAm" prefWidth="57.0" text="Масса" />
-                                                                <TableColumn fx:id="columnOtherKAv" prefWidth="65.0" text="Обьем" />
-                                                                <TableColumn fx:id="columnOtherKAw" prefWidth="123.0" text="Мощ.Электр.Пт." />
-                                                                <TableColumn fx:id="columnOtherKAj" prefWidth="83.0" text="Момент" />
-                                                            </columns>
-                                                        </TableView>
-                                                        <Button layoutX="330.0" layoutY="354.0" mnemonicParsing="false" onAction="#removeOtherKA" text="×">
-                                                            <effect>
-                                                                <ColorAdjust saturation="0.09" />
-                                                            </effect>
-                                                        </Button>
-                                                    </children>
-                                                </AnchorPane>
-                                                <AnchorPane layoutX="507.0" prefHeight="535.0" prefWidth="493.0">
-                                                    <children>
-                                                        <Label layoutX="222.0" layoutY="14.0" text="Расчет:">
-                                                            <font>
-                                                                <Font name="System Bold" size="16.0" />
-                                                            </font>
-                                                        </Label>
-                                                        <Label layoutX="106.0" layoutY="60.0" prefHeight="17.0" prefWidth="372.0" text="Общая масса добавленных элементов, кг" />
-                                                        <Label layoutX="106.0" layoutY="93.0" prefHeight="17.0" prefWidth="372.0" text="Объем, занимаемый добавленными элементами, м3" />
-                                                        <Label layoutX="106.0" layoutY="126.0" prefHeight="17.0" prefWidth="372.0" text="Приведенный момент инерции добавленных элементов, кг м2" />
-                                                        <Label layoutX="106.0" layoutY="159.0" prefHeight="17.0" prefWidth="372.0" text="Мощность электропотребления добавленных элементов, Вт" textAlignment="JUSTIFY" />
-                                                        <Label fx:id="mPrKA" layoutX="22.0" layoutY="61.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
-                                                        <Label fx:id="vPrKA" layoutX="22.0" layoutY="94.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
-                                                        <Label fx:id="jPrKA" layoutX="22.0" layoutY="127.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
-                                                        <Label fx:id="wPrKA" layoutX="22.0" layoutY="160.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
-                                                        <Button layoutX="181.0" layoutY="415.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="138.0" text="Расчет" visible="false" />
-                                                    </children>
-                                                </AnchorPane>
-                                                <AnchorPane layoutX="817.0" layoutY="541.0" prefHeight="75.0" prefWidth="160.0">
-                                                    <children>
-                                                        <Button layoutY="39.0" mnemonicParsing="false" onAction="#importOtherKa" prefHeight="25.0" prefWidth="68.0" text="Импорт" />
-                                                        <Button layoutX="80.0" layoutY="39.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="68.0" text="Экспорт" />
-                                                    </children>
-                                                </AnchorPane>
                                             </children></AnchorPane>
                                     </content>
                                 </Tab>
@@ -3069,16 +2994,72 @@
                                                         </AnchorPane>
                                                     </children>
                                                 </AnchorPane>
-                                                <Pane prefHeight="35.0" prefWidth="434.0">
+                                                <Pane prefHeight="35.0" prefWidth="507.0">
                                                     <children>
-                                                        <RadioButton fx:id="choise_have_Rezerv" layoutX="86.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveRezerv" text="Известны (Заимсвованы)">
+                                                        <RadioButton fx:id="choise_have_Rezerv" layoutX="14.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveRezerv" text="Известны (Заимсвованы)">
                                                             <toggleGroup>
                                                                 <ToggleGroup fx:id="select_group_ssd14" />
                                                             </toggleGroup>
                                                         </RadioButton>
-                                                        <RadioButton layoutX="269.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveRezerv" selected="true" text="Подлежат расчету" toggleGroup="$select_group_ssd14" />
+                                                        <RadioButton layoutX="197.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveRezerv" selected="true" text="Подлежат расчету" toggleGroup="$select_group_ssd14" />
+                                          <RadioButton fx:id="choise_non_Rezerv" layoutX="346.0" layoutY="12.0" mnemonicParsing="false" onAction="#haveRezerv" text="Не использовать" toggleGroup="$select_group_ssd14" />
                                                     </children>
                                                 </Pane>
+                                            </children></AnchorPane>
+                                    </content>
+                                </Tab>
+                                <Tab text="Добавить новые элементы">
+                                    <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                            <children>
+                                                <AnchorPane prefHeight="537.0" prefWidth="500.0">
+                                                    <children>
+                                                        <Label layoutX="176.0" layoutY="14.0" text="Исходные данные:">
+                                                            <font>
+                                                                <Font name="System Bold" size="16.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Button layoutX="165.0" layoutY="354.0" mnemonicParsing="false" onAction="#addOtherKA" prefHeight="25.0" prefWidth="148.0" text="Добавить" />
+                                                        <TableView fx:id="tableOtherKA" layoutX="20.0" layoutY="50.0" prefHeight="273.0" prefWidth="465.0">
+                                                            <columns>
+                                                                <TableColumn fx:id="columnOtherKAname" prefWidth="135.0" text="Название элемента" />
+                                                                <TableColumn fx:id="columnOtherKAm" prefWidth="57.0" text="Масса" />
+                                                                <TableColumn fx:id="columnOtherKAv" prefWidth="65.0" text="Обьем" />
+                                                                <TableColumn fx:id="columnOtherKAw" prefWidth="123.0" text="Мощ.Электр.Пт." />
+                                                                <TableColumn fx:id="columnOtherKAj" prefWidth="83.0" text="Момент" />
+                                                            </columns>
+                                                        </TableView>
+                                                        <Button layoutX="330.0" layoutY="354.0" mnemonicParsing="false" onAction="#removeOtherKA" text="×">
+                                                            <effect>
+                                                                <ColorAdjust saturation="0.09" />
+                                                            </effect>
+                                                        </Button>
+                                                    </children>
+                                                </AnchorPane>
+                                                <AnchorPane layoutX="507.0" prefHeight="535.0" prefWidth="493.0">
+                                                    <children>
+                                                        <Label layoutX="222.0" layoutY="14.0" text="Расчет:">
+                                                            <font>
+                                                                <Font name="System Bold" size="16.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Label layoutX="106.0" layoutY="60.0" prefHeight="17.0" prefWidth="372.0" text="Общая масса добавленных элементов, кг" />
+                                                        <Label layoutX="106.0" layoutY="93.0" prefHeight="17.0" prefWidth="372.0" text="Объем, занимаемый добавленными элементами, м3" />
+                                                        <Label layoutX="106.0" layoutY="126.0" prefHeight="17.0" prefWidth="372.0" text="Приведенный момент инерции добавленных элементов, кг м2" />
+                                                        <Label layoutX="106.0" layoutY="159.0" prefHeight="17.0" prefWidth="372.0" text="Мощность электропотребления добавленных элементов, Вт" textAlignment="JUSTIFY" />
+                                                        <Label fx:id="mPrKA" layoutX="22.0" layoutY="61.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
+                                                        <Label fx:id="vPrKA" layoutX="22.0" layoutY="94.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
+                                                        <Label fx:id="jPrKA" layoutX="22.0" layoutY="127.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
+                                                        <Label fx:id="wPrKA" layoutX="22.0" layoutY="160.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
+                                                        <Button layoutX="181.0" layoutY="415.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="138.0" text="Расчет" visible="false" />
+                                                    </children>
+                                                </AnchorPane>
+                                                <AnchorPane layoutX="817.0" layoutY="541.0" prefHeight="75.0" prefWidth="160.0">
+                                                    <children>
+                                                        <Button layoutY="39.0" mnemonicParsing="false" onAction="#importOtherKa" prefHeight="25.0" prefWidth="68.0" text="Импорт" />
+                                                        <Button layoutX="80.0" layoutY="39.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="68.0" text="Экспорт" />
+                                                    </children>
+                                                </AnchorPane>
                                             </children></AnchorPane>
                                     </content>
                                 </Tab>
@@ -3107,27 +3088,25 @@
                                                         <Label fx:id="rez_simple_KA_pl" layoutX="25.0" layoutY="231.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                     </children>
                                                 </AnchorPane>
-                                                <AnchorPane layoutX="520.0" prefHeight="431.0" prefWidth="480.0">
+                                                <AnchorPane layoutX="507.0" prefHeight="553.0" prefWidth="493.0">
                                                     <children>
-                                                        <Label layoutX="165.0" layoutY="14.0" text="Результат">
+                                                        <Label layoutX="209.0" layoutY="14.0" text="Результат">
                                                             <font>
                                                                 <Font name="System Bold" size="16.0" />
                                                             </font>
                                                         </Label>
-                                                        <Label layoutX="109.0" layoutY="68.0" prefHeight="17.0" prefWidth="372.0" text="Расчетное текущее значение массы КА" />
-                                                        <Label layoutX="109.0" layoutY="101.0" prefHeight="17.0" prefWidth="372.0" text="Расчетное текущее значение обьема КА" />
-                                                        <Label layoutX="109.0" layoutY="164.0" prefHeight="17.0" prefWidth="372.0" text="Расчетное текущее значение средней длины КА" />
-                                                        <Label layoutX="109.0" layoutY="197.0" prefHeight="17.0" prefWidth="372.0" text="Максимальное значение момента инерции КА" />
-                                                        <Label fx:id="rez_KA_massa" layoutX="25.0" layoutY="69.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
-                                                        <Label fx:id="rez_KA_v" layoutX="25.0" layoutY="102.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
-                                                        <Label fx:id="rez_KA_l" layoutX="25.0" layoutY="165.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
-                                                        <Label fx:id="rez_KA_mom" layoutX="25.0" layoutY="198.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
-                                                        <Label layoutX="109.0" layoutY="132.0" prefHeight="17.0" prefWidth="372.0" text="Расчетное текущее значение среднего диаметра КА" />
-                                                        <Label fx:id="rez_KA_d" layoutX="25.0" layoutY="133.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
-                                                        <Label layoutX="109.0" layoutY="230.0" prefHeight="17.0" prefWidth="372.0" text="Среднесуточная мощность электропотребления" />
-                                                        <Label fx:id="ouT_jKA0111" layoutX="25.0" layoutY="231.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
-                                                        <Button layoutX="139.0" layoutY="314.0" mnemonicParsing="false" onAction="#actionIteration" prefHeight="37.0" prefWidth="206.0" text="Итерация" />
-                                                        <Button layoutX="139.0" layoutY="260.0" mnemonicParsing="false" onAction="#actionShowParamRezult" prefHeight="37.0" prefWidth="206.0" text="Показать расчетные параметры" />
+                                                        <Button layoutX="144.0" layoutY="502.0" mnemonicParsing="false" onAction="#actionIteration" prefHeight="37.0" prefWidth="206.0" text="Итерация" />
+                                                        <Button layoutX="144.0" layoutY="448.0" mnemonicParsing="false" onAction="#actionShowParamRezult" prefHeight="37.0" prefWidth="206.0" text="Показать расчетные параметры" />
+                                          <TableView fx:id="tableRezultElementKA" layoutX="3.0" layoutY="47.0" prefHeight="389.0" prefWidth="487.0">
+                                            <columns>
+                                              <TableColumn fx:id="columnAllElementKA_Type" prefWidth="109.0" text="Тип" />
+                                              <TableColumn fx:id="columnAllElementKA_IsZaimstv" prefWidth="71.0" text="заимств." />
+                                                <TableColumn fx:id="columnAllElementKA_m" prefWidth="74.0" text="m" />
+                                                <TableColumn fx:id="columnAllElementKA_v" prefWidth="75.0" text="v" />
+                                                <TableColumn fx:id="columnAllElementKA_w" prefWidth="73.0" text="w" />
+                                                <TableColumn fx:id="columnAllElementKA_j" prefWidth="79.0" text="J" />
+                                            </columns>
+                                          </TableView>
                                                     </children>
                                                 </AnchorPane>
                                             </children></AnchorPane>
@@ -3136,7 +3115,7 @@
                             </tabs>
                         </TabPane>
                         <Line endX="-59.0" endY="560.0" layoutX="1059.0" layoutY="112.0" startX="-58.0" startY="-111.0" />
-                        <VBox layoutX="1006.0" layoutY="28.0" prefHeight="597.0" prefWidth="184.0">
+                        <VBox layoutX="1006.0" layoutY="28.0" prefHeight="597.0" prefWidth="184.0" visible="false">
                             <children>
                                 <Pane prefHeight="21.0" prefWidth="189.0">
                                     <children>
@@ -3697,6 +3676,160 @@
                             </font>
                         </Label>
                   <Button layoutX="1054.0" layoutY="644.0" mnemonicParsing="false" onAction="#actionShowSvodka" prefHeight="25.0" prefWidth="87.0" text="Сводка" />
+                  <VBox layoutX="999.0" layoutY="449.0" prefHeight="173.0" prefWidth="200.0">
+                     <children>
+                        <Pane prefHeight="17.0" prefWidth="200.0">
+                           <children>
+                              <Label layoutX="12.0" layoutY="-1.0" text="Коэф.Рац.Компоновк.">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="eek_koef_rac_komp" layoutX="144.0" layoutY="-1.0" text="Не задано" textFill="#760097">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Pane prefHeight="17.0" prefWidth="200.0">
+                           <children>
+                              <Label layoutX="12.0" layoutY="-1.0" text="Плот.Заполн.Отсеков">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="eek_koef_plotn_zapoln_otsek" layoutX="144.0" layoutY="-1.0" text="Не задано" textFill="#760097">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Pane prefHeight="17.0" prefWidth="200.0">
+                           <children>
+                              <Label layoutX="12.0" layoutY="-1.0" text="Удлинение">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="eek_udlin" layoutX="144.0" layoutY="-1.0" text="Не задано" textFill="#760097">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Pane prefHeight="17.0" prefWidth="200.0" visible="false">
+                           <children>
+                              <Label layoutX="12.0" layoutY="-1.0" text="Коэф.Рац.Компоновк.">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="144.0" layoutY="-1.0" text="Не задано">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Pane prefHeight="17.0" prefWidth="200.0">
+                           <children>
+                              <Label layoutX="12.0" layoutY="-1.0" text="Масса">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="rez_KA_massa" layoutX="144.0" layoutY="-1.0" text="Не Расчит." textFill="#004dff">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Pane prefHeight="17.0" prefWidth="200.0">
+                           <children>
+                              <Label layoutX="12.0" layoutY="-1.0" text="Объем">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="rez_KA_v" layoutX="144.0" layoutY="-1.0" text="Не Расчит." textFill="#004dff">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Pane prefHeight="17.0" prefWidth="200.0">
+                           <children>
+                              <Label layoutX="12.0" layoutY="-1.0" text="Средний диаметр">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="rez_KA_d" layoutX="144.0" layoutY="-1.0" text="Не Расчит." textFill="#004dff">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Pane prefHeight="17.0" prefWidth="200.0">
+                           <children>
+                              <Label layoutX="12.0" layoutY="-1.0" text="Средняя длина">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="rez_KA_l" layoutX="144.0" layoutY="-1.0" text="Не Расчит." textFill="#004dff">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Pane prefHeight="17.0" prefWidth="200.0">
+                           <children>
+                              <Label layoutX="12.0" layoutY="-1.0" text="Момент инерции">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="rez_KA_mom" layoutX="144.0" layoutY="-1.0" text="Не Расчит." textFill="#004dff">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Pane prefHeight="17.0" prefWidth="200.0">
+                           <children>
+                              <Label layoutX="12.0" layoutY="-1.0" text="Электропотреблен.">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="ouT_jKA0111" layoutX="144.0" layoutY="-1.0" text="Не Расчит." textFill="#004dff">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                     </children>
+                  </VBox>
+                  <Label layoutX="1018.0" layoutY="419.0" text="Расчетные характеристики">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <TableView fx:id="tableElementKA" layoutX="1001.0" layoutY="-2.0" prefHeight="414.0" prefWidth="200.0">
+                    <columns>
+                      <TableColumn fx:id="columnElementKA" prefWidth="199.0" text="Составные части КА" />
+                    </columns>
+                  </TableView>
                     </children></AnchorPane>
                 <AnchorPane layoutX="1.0" layoutY="588.0" prefHeight="87.0" prefWidth="812.0">
                     <children>

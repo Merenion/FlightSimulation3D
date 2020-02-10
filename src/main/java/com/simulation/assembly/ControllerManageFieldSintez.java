@@ -1,16 +1,17 @@
 package com.simulation.assembly;
 
 import com.simulation.assembly.calculation.ca.CalculationKA;
+import com.simulation.assembly.dataCalculation.sintez.DataCommonParameters;
 import com.simulation.assembly.dataCalculation.sintez.DataOtherKA;
 import com.simulation.assembly.dataCalculation.sintez.ViewDataOtherKA;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 
 public class ControllerManageFieldSintez extends ControllerAssemblyField {
-
 
     /**
      * показать результаты прикидочного расчета
@@ -34,12 +35,20 @@ public class ControllerManageFieldSintez extends ControllerAssemblyField {
         rez_simple_KA_mom.setText(String.valueOf(CalculationKA.getInstance().getDataCommonParameters().jKA0));
         rez_simple_KA_v.setText(String.valueOf(CalculationKA.getInstance().getDataCommonParameters().vKA0));
 
-        rez_KA_massa.setText(String.valueOf(CalculationKA.getInstance().getDataCommonParameters().mKA));
+        rez_KA_massa.setText(String.valueOf((CalculationKA.getInstance().getDataCommonParameters().mKA)));
         rez_KA_v.setText(String.valueOf(CalculationKA.getInstance().getDataCommonParameters().vKA));
         rez_KA_d.setText(String.valueOf(CalculationKA.getInstance().getDataCommonParameters().dKA));
         rez_KA_l.setText(String.valueOf(CalculationKA.getInstance().getDataCommonParameters().lKA));
         rez_KA_mom.setText(String.valueOf(CalculationKA.getInstance().getDataCommonParameters().jKA));
         ouT_jKA0111.setText(String.valueOf(CalculationKA.getInstance().getDataCommonParameters().wKA_wsSEP));
+
+        showStartData();
+    }
+
+    public void showStartData () {
+        eek_koef_plotn_zapoln_otsek.setText(String.valueOf(((DataCommonParameters) TabTypeSintez.RESULT.getDataElement()).kpoPO));
+        eek_koef_rac_komp.setText(String.valueOf(((DataCommonParameters) TabTypeSintez.RESULT.getDataElement()).krkKA));
+        eek_udlin.setText(String.valueOf(((DataCommonParameters) TabTypeSintez.RESULT.getDataElement()).udlKA));
     }
 
     /**
@@ -232,12 +241,12 @@ public class ControllerManageFieldSintez extends ControllerAssemblyField {
      * показать результаты СОТР
      */
     public void showSOTRResult() {
-        mSOTR.setText(String.valueOf(CalculationKA.getInstance().getDataSOTR().mSOTR));
+        mSOTR.setText(String.valueOf(CalculationKA.getInstance().getDataSOTR().m));
         mSOTRbtn.setText(String.valueOf(CalculationKA.getInstance().getDataSOTR().mSOTRbtn));
         mtnSTR.setText(String.valueOf(CalculationKA.getInstance().getDataSOTR().mtnSTR));
-        vSOTR.setText(String.valueOf(CalculationKA.getInstance().getDataSOTR().vSOTR));
+        vSOTR.setText(String.valueOf(CalculationKA.getInstance().getDataSOTR().v));
         jSOTR.setText(String.valueOf(CalculationKA.getInstance().getDataSOTR().j));
-        wSTR.setText(String.valueOf(CalculationKA.getInstance().getDataSOTR().wSTR));
+        wSTR.setText(String.valueOf(CalculationKA.getInstance().getDataSOTR().w));
     }
 
     /**
@@ -1111,7 +1120,6 @@ public class ControllerManageFieldSintez extends ControllerAssemblyField {
         } else {
             isHaveRestriction.setSelected(false);
         }
-        choiseActionHaveRestriction(new ActionEvent());
     }
 
     /**

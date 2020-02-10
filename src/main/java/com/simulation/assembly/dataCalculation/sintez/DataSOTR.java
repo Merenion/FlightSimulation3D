@@ -17,10 +17,10 @@ public class DataSOTR   extends DataElement{
         return TabTypeSintez.SOTR;
     }
 
-    public float mSOTR;
+//    public float m;
     public float mSOTRbtn;
     public float mtnSTR;
-    public float vSOTR;
+//    public float v;
 //    public float j;
-    public float wSTR;
+//    public float w;
 }

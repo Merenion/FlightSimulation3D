@@ -921,7 +921,7 @@ public enum TabTypeSintez {
     MASOGABARITN_AND_ENERGET_PARAMETERS{
         @Override
         public String getName() {
-            return "Массогабаритные и энергетические характеристики";
+            return "КДУ - Массогабаритные и энергетические характеристики";
         }
 
         @Override

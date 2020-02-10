@@ -67,78 +67,76 @@ public class CalculationKA extends Calculation {
     public Object calculation(Object object) {
         dataCommonParameters.mKA =
                 //Масса целевой аппаратуры, кг
-                +dataOETK.m                                      //Масса ОЭТК, кг
-                        + dataSPPE.m                                      //Масса СППИ
-                        + dataVRL.m                                       //Масса ВРЛ
-                        + dataOtherCA.m                                      //Масса прочих элементов ЦА
+                + (dataOETK.isNeedUvyzka()?dataOETK.m:0)                                      //Масса ОЭТК, кг
+                        + (dataSPPE.isNeedUvyzka()?dataSPPE.m:0)                                     //Масса СППИ
+                        + (dataVRL.isNeedUvyzka()?dataVRL.m:0)                                        //Масса ВРЛ
+                        + (dataOtherCA.isNeedUvyzka()?dataOtherCA.m:0)                                      //Масса прочих элементов ЦА
 //                        Масса БКУ, кг
-                        + dataSudSGK.m                                       //Масса СГК
-                        + dataSSKM.m                                      //Масса ССКМ, кг
-                        + dataSTKRP.m                                     //Масса СТКРП, кг
-                        + dataBAKES.m                                       //Масса КИС, кг
-                        + dataBETS.m                                      //Масса БИТС, кг
-                        + dataBVS.m                                       //Масса КИС, кг
-                        + dataOtherBKU.m                                     //Масса прочих элементов БКУ
+                        + (dataSudSGK.isNeedUvyzka()?dataSudSGK.m:0)                                       //Масса СГК
+                        + (dataSSKM.isNeedUvyzka()?dataSSKM.m:0)                                    //Масса ССКМ, кг
+                        + (dataSTKRP.isNeedUvyzka()?dataSTKRP.m:0)                                  //Масса СТКРП, кг
+                        + (dataBAKES.isNeedUvyzka()?dataBAKES.m:0)                                      //Масса КИС, кг
+                        + (dataBETS.isNeedUvyzka()?dataBETS.m:0)                                   //Масса БИТС, кг
+                        + (dataBVS.isNeedUvyzka()?dataBVS.m:0)                                     //Масса КИС, кг
+                        + (dataOtherBKU.isNeedUvyzka()?dataOtherBKU.m:0)                                   //Масса прочих элементов БКУ
 //                        Масса СОТР
-                        + dataPasivSOTR.m                                         //Масса ЭВТИ, кг
-                        + dataActivSOTR.m                                          //Масса СТР, кг
+                        + (dataPasivSOTR.isNeedUvyzka()?dataPasivSOTR.m:0)                                         //Масса ЭВТИ, кг
+                        + (dataActivSOTR.isNeedUvyzka()?dataActivSOTR.m:0)                                         //Масса СТР, кг
 //                        Масса СЭП
-                        + dataAcumBetSEP.m                                           //Масса всех АБ, кг
-                        + dataKAS.m   //Суммарная масса КАС с корпусными частями и проч. эл-тами
-                        + dataSumBetSEP.m                                          //Масса панелей СБ
+                        + (dataAcumBetSEP.isNeedUvyzka()?dataAcumBetSEP.m:0)                                          //Масса всех АБ, кг
+                        + (dataKAS.isNeedUvyzka()?dataKAS.m:0)   //Суммарная масса КАС с корпусными частями и проч. эл-тами
+                        + (dataSumBetSEP.isNeedUvyzka()?dataSumBetSEP.m:0)                                       //Масса панелей СБ
 //                        Масса КДУ
-                        + dataMassTopl.m                                         //Масса топлива КДУ
-                        + dataKDU.m                                         //Масса конструкции КДУ
-                        + dataKonstrKA.m                                          //Масса конструкции КА
-                        + dataAFU.m                                     //Масса БКС и АФУ, кг
-                        + dataBKS.m
-                        + dataOtherKA.m
-                        + dataRezervKA.m
-                        + dataSSD.m
-                        + dataIPMV.m
-                        + dataBOKZ.m
-                        + dataDO.m
-                        + dataDUS.m
-                        + dataAFU.m
-                        + dataBKS.m
+                        + (dataMassTopl.isNeedUvyzka()?dataMassTopl.m:0)                                        //Масса топлива КДУ
+                        + (dataKDU.isNeedUvyzka()?dataKDU.m:0)                                       //Масса конструкции КДУ
+                        + (dataKonstrKA.isNeedUvyzka()?dataKonstrKA.m:0)                                         //Масса конструкции КА
+                        + (dataAFU.isNeedUvyzka()?dataAFU.m:0)                                     //Масса БКС и АФУ, кг
+                        + (dataBKS.isNeedUvyzka()?dataBKS.m:0)
+                        + (dataOtherKA.isNeedUvyzka()?dataOtherKA.m:0)
+                        + (dataRezervKA.isNeedUvyzka()?dataRezervKA.m:0)
+                        + (dataSSD.isNeedUvyzka()?dataSSD.m:0)
+                        + (dataIPMV.isNeedUvyzka()?dataIPMV.m:0)
+                        + (dataBOKZ.isNeedUvyzka()?dataBOKZ.m:0)
+                        + (dataDO.isNeedUvyzka()?dataDO.m:0)
+                        + (dataDUS.isNeedUvyzka()?dataDUS.m:0)
         ;
 
         //Расчет текущих объемов КА
         dataCommonParameters.vKA =
-                +dataOETK.v                             //Объем корпуса спецотсека КА
-                        + (dataSPPE.v                                 //Объем СППИ
-                        + dataVRL.v                                  //Объем ВРЛ
-                        + dataOtherCA.v                                 //Объем прочих элементов ЦА
+                +(dataOETK.isNeedUvyzka()?dataOETK.v:0)                             //Объем корпуса спецотсека КА
+                        + ((dataSPPE.isNeedUvyzka()?dataSPPE.v:0)                              //Объем СППИ
+                        + (dataVRL.isNeedUvyzka()?dataVRL.v:0)                                 //Объем ВРЛ
+                        + (dataOtherCA.isNeedUvyzka()?dataOtherCA.v:0)                               //Объем прочих элементов ЦА
 //                        Масса БКУ, кг
-                        + dataSudSGK.v                                  //Объем СГК
-                        + dataSSKM.v                                 //Объем ССКМ, м3
-                        + dataSTKRP.v                                 //Объем СТКРП, м3
-                        + dataBAKES.v                                   //Объем КИС, м3
+                        + (dataSudSGK.isNeedUvyzka()?dataSudSGK.v:0)                                 //Объем СГК
+                        + (dataSSKM.isNeedUvyzka()?dataSSKM.v:0)                               //Объем ССКМ, м3
+                        + (dataSTKRP.isNeedUvyzka()?dataSTKRP.v:0)                                 //Объем СТКРП, м3
+                        + (dataBAKES.isNeedUvyzka()?dataBAKES.v:0)                                  //Объем КИС, м3
 
-                        + dataSSD.v
-                        + dataIPMV.v
-                        + dataBOKZ.v
-                        + dataDO.v
-                        + dataDUS.v
+                        + (dataSSD.isNeedUvyzka()?dataSSD.v:0)
+                        + (dataIPMV.isNeedUvyzka()?dataIPMV.v:0)
+                        + (dataBOKZ.isNeedUvyzka()?dataBOKZ.v:0)
+                        + (dataDO.isNeedUvyzka()?dataDO.v:0)
+                        + (dataDUS.isNeedUvyzka()?dataDUS.v:0)
 
-                        + dataBETS.v                                  //Объем БИТС, м3
-                        + dataBVS.v                                   //Объем КИС, м3
-                        + dataOtherBKU.v)                                 //Объем прочих элементов БКУ
+                        + (dataBETS.isNeedUvyzka()?dataBETS.v:0)                                 //Объем БИТС, м3
+                        + (dataBVS.isNeedUvyzka()?dataBVS.v:0)                                  //Объем КИС, м3
+                        + (dataOtherBKU.isNeedUvyzka()?dataOtherBKU.v:0))                                 //Объем прочих элементов БКУ
                         / (dataCommonParameters.kpoPO / 100)
 //        Объем СОТР
-                        + dataPasivSOTR.v                                  //Объем ЭВТИ, м3
-                        + dataActivSOTR.v                                   //Объем СОТР, м3
+                        + (dataPasivSOTR.isNeedUvyzka()?dataPasivSOTR.v:0)                                 //Объем ЭВТИ, м3
+                        + (dataActivSOTR.isNeedUvyzka()?dataActivSOTR.v:0)                                   //Объем СОТР, м3
                         / (dataCommonParameters.kpoPO / 100)
 //        объем СЭП
-                        + dataAcumBetSEP.v                                    //Объем всех АБ
-                        + dataKAS.v         //Объем КАС с учетом корпусных частей и прочих элементов
+                        + (dataAcumBetSEP.isNeedUvyzka()?dataAcumBetSEP.v:0)                                    //Объем всех АБ
+                        + (dataKAS.isNeedUvyzka()?dataKAS.v:0)        //Объем КАС с учетом корпусных частей и прочих элементов
                         / (dataCommonParameters.kpoPO / 100)
-                        + dataKDU.v       //Объем Отсека КА, где располагается КДУ
-                        + dataKonstrKA.v                                   //Объем конструкции КА
-                        + (dataAFU.v
-                        + dataBKS.v
-                        + dataOtherKA.v
-                        + dataRezervKA.v)                              //Объем БКС и АФУ, м3
+                        + (dataKDU.isNeedUvyzka()?dataKDU.v:0)       //Объем Отсека КА, где располагается КДУ
+                        + (dataKonstrKA.isNeedUvyzka()?dataKonstrKA.v:0)                                  //Объем конструкции КА
+                        + ((dataAFU.isNeedUvyzka()?dataAFU.v:0)
+                        + (dataBKS.isNeedUvyzka()?dataBKS.v:0)
+                        + (dataOtherKA.isNeedUvyzka()?dataOtherKA.v:0)
+                        + (dataRezervKA.isNeedUvyzka()?dataRezervKA.v:0))                              //Объем БКС и АФУ, м3
                         / (dataCommonParameters.kpoPO / 100);
 
         //Расчет текущих габаритов КА
@@ -150,66 +148,81 @@ public class CalculationKA extends Calculation {
         //Расчет максимального моментаинерции КА
         dataCommonParameters.jKA =
                 //Приведенный момент инерци целевой аппаратуры, кг
-                (dataOETK.j     //Момент инерции ОЭТК, кг м2
-                        + dataSPPE.j     //Момент инерции СППИ
-                        + dataVRL.j      //Момент инерции ВРЛ
-                        + dataOtherCA.j     //Момент инерции прочих элементов ЦА
+                ((dataOETK.isNeedUvyzka()?dataOETK.j:0)     //Момент инерции ОЭТК, кг м2
+                        + (dataSPPE.isNeedUvyzka()?dataSPPE.j:0)     //Момент инерции СППИ
+                        + (dataVRL.isNeedUvyzka()?dataVRL.j:0)      //Момент инерции ВРЛ
+                        + (dataOtherCA.isNeedUvyzka()?dataOtherCA.j:0)     //Момент инерции прочих элементов ЦА
                         //Приведенный момент инерции БКУ, кг м2
-                        + dataSudSGK.j      //Момент инерции СГК
-                        + dataSSKM.j     //Момент инерции ССКМ, кг м2
-                        + dataSTKRP.j    //Момент инерции СТКРП, кг м2
-                        + dataBAKES.j      //Момент инерции КИС, кг м2
-                        + dataBETS.j     //Момент инерции БИТС, кг м2
-                        + dataBVS.j      //Момент инерции КИС, кг м2
-                        + dataOtherBKU.j    //Момент инерции прочих элементов БКУ
+                        + (dataSudSGK.isNeedUvyzka()?dataSudSGK.j:0)      //Момент инерции СГК
+                        + (dataSSKM.isNeedUvyzka()?dataSSKM.j:0)     //Момент инерции ССКМ, кг м2
+                        + (dataSTKRP.isNeedUvyzka()?dataSTKRP.j:0)   //Момент инерции СТКРП, кг м2
+                        + (dataBAKES.isNeedUvyzka()?dataBAKES.j:0)      //Момент инерции КИС, кг м2
+                        + (dataBETS.isNeedUvyzka()?dataBETS.j:0)     //Момент инерции БИТС, кг м2
+                        + (dataBVS.isNeedUvyzka()?dataBVS.j:0)      //Момент инерции КИС, кг м2
+                        + (dataOtherBKU.isNeedUvyzka()?dataOtherBKU.j:0)    //Момент инерции прочих элементов БКУ
 
-                        + dataSSD.j
-                        + dataIPMV.j
-                        + dataBOKZ.j
-                        + dataDO.j
-                        + dataDUS.j
+                        + (dataSSD.isNeedUvyzka()?dataSSD.j:0)
+                        + (dataIPMV.isNeedUvyzka()?dataIPMV.j:0)
+                        + (dataBOKZ.isNeedUvyzka()?dataBOKZ.j:0)
+                        + (dataDO.isNeedUvyzka()?dataDO.j:0)
+                        + (dataDUS.isNeedUvyzka()?dataDUS.j:0)
 
                         //Момент инерции СОТР
-                        + dataPasivSOTR.j     //Момент инерции ЭВТИ, кг м2
+                        + (dataPasivSOTR.isNeedUvyzka()?dataPasivSOTR.j:0)     //Момент инерции ЭВТИ, кг м2
+                        + (dataActivSOTR.isNeedUvyzka()?dataActivSOTR.j:0)     //Момент инерции STR, кг м2
 //                        + dataSOTR.j     //Максимальное значение момента инерции СОТР,
                         //приведенного к габаритам КА, кг м2
                         //Момент инерции СЭП
-                        + dataAcumBetSEP.j    //Момент инерции АБ в форме куба относительно поперечной оси КА
-                        + dataKAS.j   //Приведенный момент инерции КАС с корпусом и прочими элеметами
-                        + dataSumBetSEP.j   //Момент инерции всех панелей СБ относительно поперечной оси КА
+                        + (dataAcumBetSEP.isNeedUvyzka()?dataAcumBetSEP.j:0)    //Момент инерции АБ в форме куба относительно поперечной оси КА
+                        + (dataKAS.isNeedUvyzka()?dataKAS.j:0)   //Приведенный момент инерции КАС с корпусом и прочими элеметами
+                        + (dataSumBetSEP.isNeedUvyzka()?dataSumBetSEP.j:0)   //Момент инерции всех панелей СБ относительно поперечной оси КА
                         //Момент инерции КДУ
-                        + dataKDU.j
+                        + (dataKDU.isNeedUvyzka()?dataKDU.j:0)
                 )
                         / dataCommonParameters.krkKA
-                        + dataKonstrKA.j      //Момент инерции  конструкции КА
-                        + dataAFU.j      //Приведенный момент инерции БКС
-                        + dataAFU.j     //Приведенный момент инерции АФУ
-                        + dataOtherKA.j
-                        + dataRezervKA.j
+                        + (dataKonstrKA.isNeedUvyzka()?dataKonstrKA.j:0)      //Момент инерции  конструкции КА
+                        + (dataBKS.isNeedUvyzka()?dataBKS.j:0)      //Приведенный момент инерции БКС
+                        + (dataAFU.isNeedUvyzka()?dataAFU.j:0)     //Приведенный момент инерции АФУ
+                        + (dataOtherKA.isNeedUvyzka()?dataOtherKA.j:0)
+                        + (dataRezervKA.isNeedUvyzka()?dataRezervKA.j:0)
         ;
 
         //Расчет текущего значения среднесуточной мощности электропотребления КА
         //без собственного потребления СЭП
         dataCommonParameters.wKA_wsSEP =
-                //Среднесуточная мощность целевой аппаратуры, Вт
-                +dataOETK.w     //Среднесуточная мощность ОЭТК, Вт
-                        + dataSPPE.w     //Среднесуточная мощность СППИ
-                        + dataVRL.w      //Среднесуточная мощность ВРЛ
-                        + dataOtherCA.w     //Среднесуточная мощность прочих элементов ЦА
-                        //Масса БКУ, кг
-                        + dataSudSGK.w      //Среднесуточная мощность СГК
-
-                        + dataSSKM.w    //Среднесуточная мощность ССКМ, Вт
-                        + dataSTKRP.w    //Среднесуточная мощность СТКРП, Вт
-                        + dataBAKES.w      //Среднесуточная мощность КИС, Вт
-                        + dataBETS.w     //Среднесуточная мощность БИТС, Вт
-                        + dataBVS.w      //Среднесуточная мощность КИС, Вт
-                        + dataOtherBKU.w    //Среднесуточная мощность прочих элементов БКУ
-
-                        + dataActivSOTR.w      //Среднесуточная мощность СОТР, Вт
-                        + dataKDU.w     //Среднесуточная мощность автоматики КДУ
-                        + dataOtherKA.w
-                        + dataRezervKA.w;
+                //Масса целевой аппаратуры, кг
+                + (dataOETK.isNeedUvyzka()?dataOETK.w:0)                                      //Масса ОЭТК, кг
+                        + (dataSPPE.isNeedUvyzka()?dataSPPE.w:0)                                     //Масса СППИ
+                        + (dataVRL.isNeedUvyzka()?dataVRL.w:0)                                        //Масса ВРЛ
+                        + (dataOtherCA.isNeedUvyzka()?dataOtherCA.w:0)                                      //Масса прочих элементов ЦА
+//                        Масса БКУ, кг
+                        + (dataSudSGK.isNeedUvyzka()?dataSudSGK.w:0)                                       //Масса СГК
+                        + (dataSSKM.isNeedUvyzka()?dataSSKM.w:0)                                    //Масса ССКМ, кг
+                        + (dataSTKRP.isNeedUvyzka()?dataSTKRP.w:0)                                  //Масса СТКРП, кг
+                        + (dataBAKES.isNeedUvyzka()?dataBAKES.w:0)                                      //Масса КИС, кг
+                        + (dataBETS.isNeedUvyzka()?dataBETS.w:0)                                   //Масса БИТС, кг
+                        + (dataBVS.isNeedUvyzka()?dataBVS.w:0)                                     //Масса КИС, кг
+                        + (dataOtherBKU.isNeedUvyzka()?dataOtherBKU.w:0)                                   //Масса прочих элементов БКУ
+//                        Масса СОТР
+                        + (dataPasivSOTR.isNeedUvyzka()?dataPasivSOTR.w:0)                                         //Масса ЭВТИ, кг
+                        + (dataActivSOTR.isNeedUvyzka()?dataActivSOTR.w:0)                                         //Масса СТР, кг
+//                        Масса СЭП
+                        + (dataAcumBetSEP.isNeedUvyzka()?dataAcumBetSEP.w:0)                                          //Масса всех АБ, кг
+                        + (dataKAS.isNeedUvyzka()?dataKAS.w:0)   //Суммарная масса КАС с корпусными частями и проч. эл-тами
+                        + (dataSumBetSEP.isNeedUvyzka()?dataSumBetSEP.w:0)                                       //Масса панелей СБ
+//                        Масса КДУ
+                        + (dataMassTopl.isNeedUvyzka()?dataMassTopl.w:0)                                        //Масса топлива КДУ
+                        + (dataKDU.isNeedUvyzka()?dataKDU.w:0)                                       //Масса конструкции КДУ
+                        + (dataKonstrKA.isNeedUvyzka()?dataKonstrKA.w:0)                                         //Масса конструкции КА
+                        + (dataAFU.isNeedUvyzka()?dataAFU.w:0)                                     //Масса БКС и АФУ, кг
+                        + (dataBKS.isNeedUvyzka()?dataBKS.w:0)
+                        + (dataOtherKA.isNeedUvyzka()?dataOtherKA.w:0)
+                        + (dataRezervKA.isNeedUvyzka()?dataRezervKA.w:0)
+                        + (dataSSD.isNeedUvyzka()?dataSSD.w:0)
+                        + (dataIPMV.isNeedUvyzka()?dataIPMV.w:0)
+                        + (dataBOKZ.isNeedUvyzka()?dataBOKZ.w:0)
+                        + (dataDO.isNeedUvyzka()?dataDO.w:0)
+                        + (dataDUS.isNeedUvyzka()?dataDUS.w:0);
 
         if (dataCommonParameters.isHaveRestriction) {
             if (dataCommonParameters.mKA > dataCommonParameters.mKA0) {

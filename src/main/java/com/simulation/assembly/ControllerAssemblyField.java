@@ -1,15 +1,23 @@
 package com.simulation.assembly;
 
 import com.simulation.assembly.calculation.Calculation;
+import com.simulation.assembly.calculation.ca.CalculationKA;
 import com.simulation.assembly.dataCalculation.simple.DataSimpleCalculation;
 import com.simulation.assembly.dataCalculation.sintez.*;
 import com.simulation.assembly.validateRestrictionSimple.ValidateRestriction;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Camera;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ControllerAssemblyField {
 
@@ -1180,6 +1188,46 @@ public class ControllerAssemblyField {
     public AnchorPane pane_zaimsv_Rezerv;
     public RadioButton choise_have_Rezerv;
 
+    public Label eek_koef_rac_komp;
+    public Label eek_koef_plotn_zapoln_otsek;
+    public Label eek_udlin;
+
+    public TableView<ViewElementKA> tableElementKA;
+    public TableColumn<ViewElementKA, String> columnElementKA;
+
+    public TableView<ViewElementKA> tableRezultElementKA;
+    public TableColumn<ViewElementKA, String> columnAllElementKA_Type;
+    public TableColumn<ViewElementKA, String> columnAllElementKA_IsZaimstv;
+    public TableColumn<ViewElementKA, String> columnAllElementKA_m;
+    public TableColumn<ViewElementKA, String> columnAllElementKA_v;
+    public TableColumn<ViewElementKA, String> columnAllElementKA_w;
+    public TableColumn<ViewElementKA, String> columnAllElementKA_j;
+
+    List<DataElement> allElementKA = new ArrayList<>();
+
+    public void initTableAllElementKA() {
+        try {
+            columnAllElementKA_Type.setCellValueFactory(new PropertyValueFactory<ViewElementKA, String>("type"));
+            columnAllElementKA_IsZaimstv.setCellValueFactory(new PropertyValueFactory<ViewElementKA, String>("zaimstv"));
+            columnAllElementKA_m.setCellValueFactory(new PropertyValueFactory<ViewElementKA, String>("m"));
+            columnAllElementKA_v.setCellValueFactory(new PropertyValueFactory<ViewElementKA, String>("v"));
+            columnAllElementKA_w.setCellValueFactory(new PropertyValueFactory<ViewElementKA, String>("w"));
+            columnAllElementKA_j.setCellValueFactory(new PropertyValueFactory<ViewElementKA, String>("j"));
+
+            columnElementKA.setCellValueFactory(new PropertyValueFactory<ViewElementKA, String>("type"));
+
+            ObservableList<ViewElementKA> list = FXCollections.observableArrayList();
+
+            for (DataElement dataElement : allElementKA) {
+                list.add(ViewElementKA.validateDataElementKA(dataElement));
+            }
+            tableRezultElementKA.setItems(list);
+            tableElementKA.setItems(list);
+        } catch (Exception e) {
+            ControllerAssembly.showError("Инициализация прочих элементов КА не удалась");
+        }
+    }
+
     /**
      * Выбор формы на вкладке ОГРАНИЧЕНИЯ - синтез (есть ограничения, нету)
      *
@@ -1187,15 +1235,23 @@ public class ControllerAssemblyField {
      */
     public void choiseActionHaveRestriction(ActionEvent actionEvent) {
         if (isHaveRestriction.isSelected()) {
+            ((DataCommonParameters) TabTypeSintez.RESULT.getDataElement()).isHaveRestriction=true;
             paneRestriction.setVisible(true);
             paneStartDataRestriction.setVisible(false);
             paneRestrictionCalculation.setVisible(true);
             ControllerAssembly.getInstance().onProgressRestr(false);
+            eek_koef_plotn_zapoln_otsek.setText("Не задано");
+            eek_koef_rac_komp.setText("Не задано");
+            eek_udlin.setText("Не задано");
         } else {
+            ((DataCommonParameters) TabTypeSintez.RESULT.getDataElement()).isHaveRestriction=false;
             paneRestriction.setVisible(false);
             paneStartDataRestriction.setVisible(true);
             paneRestrictionCalculation.setVisible(false);
             ControllerAssembly.getInstance().onProgressRestr(true);
+            eek_koef_plotn_zapoln_otsek.setText("Не задано");
+            eek_koef_rac_komp.setText("Не задано");
+            eek_udlin.setText("Не задано");
         }
     }
 

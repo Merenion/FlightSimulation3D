@@ -31,17 +31,17 @@ public class CalculationSOTR extends Calculation {
             if (!getType().getDataElement().isImportData()) {
 
 
-                d.mSOTR = dataPasivSOTR.m + dataActivSOTR.mtnSTR + dataActivSOTR.mSTRbtn;
+                d.m = dataPasivSOTR.m + dataActivSOTR.mtnSTR + dataActivSOTR.mSTRbtn;
                 //Масса СОТР без теплоносителя, кг
-                d.mSOTRbtn = d.mSOTR - dataActivSOTR.mtnSTR;
+                d.mSOTRbtn = d.m - dataActivSOTR.mtnSTR;
                 //Масса теплоносителя СТР, кг
                 d.mtnSTR = dataActivSOTR.mtnSTR;
                 //Объем ЭВТИ, приборов и агрегатов СТР, м3
-                d.vSOTR = dataPasivSOTR.v + dataActivSOTR.v;
+                d.v = dataPasivSOTR.v + dataActivSOTR.v;
                 //Приведенный момент инерци СОТР, кг м2
                 d.j = d.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
                 //Мощность приборов и агрегатов СТР, Вт/кг
-                d.wSTR = dataActivSOTR.w;
+                d.w = dataActivSOTR.w;
             }
             if (d.isCalculationMoment()){
                 d.j = d.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);

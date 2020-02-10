@@ -43,4 +43,6 @@ public class DataActivSOTR   extends DataElement{
         return "Масса СТР без теплоносителя = " + mSTRbtn + "\n" +
                 "Масса теплоносителя СТР = " + mtnSTR;
     }
+
+
 }

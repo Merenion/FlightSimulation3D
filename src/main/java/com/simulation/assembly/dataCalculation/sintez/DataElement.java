@@ -10,6 +10,7 @@ public abstract class DataElement {
     private String nameElement = "non name";
     private boolean importData = false;
     private boolean calculationMoment = false;
+    private boolean notUse = false;
 
     public float m;
     public float v;
@@ -75,19 +76,42 @@ public abstract class DataElement {
         return null;
     }
 
+    public boolean isNotUse() {
+        return notUse;
+    }
+
+    public void setNotUse(boolean notUse) {
+        this.notUse = notUse;
+    }
+
     @Override
     public String toString() {
-        return "\n" +
-                getType().getName() + "\n" +
-                "название элемента = \'" + nameElement + '\'' + "\n" +
-                "элемент заимствован или импортирован = " + importData + "\n" +
-                (getStartDate() != null && !importData ? "ИСХОДНЫЕ ДАННЫЕ:\n" + getStartDate() + "\n" : "") +
-                "ХАРАКТЕРИСТИКИ ЭЛЕМЕНТА:" + "\n" +
-                "масса = " + m + "\n" +
-                "объем = " + v + "\n" +
-                "энергопотребление = " + w + "\n" +
-                "момент инерции = " + j + "\n" +
-                (getOtherDate() != null? getOtherDate() + "\n" : "")+
-                "\n";
+
+        if (notUse){
+            return "\n" +
+                    getType().getName() + "\n" +
+                    "Не используется" + "\n" ;
+        }else {
+            return "\n" +
+                    getType().getName() + "\n" +
+                    "название элемента = \'" + nameElement + '\'' + "\n" +
+                    "элемент заимствован или импортирован = " + importData + "\n" +
+                    (getStartDate() != null && !importData ? "ИСХОДНЫЕ ДАННЫЕ:\n" + getStartDate() + "\n" : "") +
+                    "ХАРАКТЕРИСТИКИ ЭЛЕМЕНТА:" + "\n" +
+                    "масса = " + m + "\n" +
+                    "объем = " + v + "\n" +
+                    "энергопотребление = " + w + "\n" +
+                    "момент инерции = " + j + "\n" +
+                    (getOtherDate() != null ? getOtherDate() + "\n" : "") +
+                    "\n";
+        }
+    }
+
+    public boolean isAfterCalculation () {
+        return m != 0 || v != 0 || w != 0;
+    }
+
+    public boolean isNeedUvyzka () {
+        return isAfterCalculation() && !notUse;
     }
 }

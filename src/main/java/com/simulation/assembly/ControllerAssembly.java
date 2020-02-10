@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
@@ -42,6 +43,7 @@ public class ControllerAssembly extends ControllerImport {
 
     private static List<String> messConsoleSimple = new ArrayList<>();
     private static List<String> messConsoleSintez = new ArrayList<>();
+
 
 
     private File openFile;
@@ -378,6 +380,7 @@ public class ControllerAssembly extends ControllerImport {
         } catch (Exception e) {
             ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.RESTRICTION);
         }
+        showStartData();
         showConsoleSintezDebug();
     }
 
@@ -394,7 +397,9 @@ public class ControllerAssembly extends ControllerImport {
                 calculationOETK.calculation(CalculationKA.getInstance().getDataOETK());
                 onProgressOetk(true);
                 showOetkResult();
-
+                allElementKA.add(calculationOETK.getType().getDataElement());
+                initTableAllElementKA();
+                actionShowParamRezult(new ActionEvent());
             }
         } catch (Exception e) {
             ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.OETK);
@@ -414,6 +419,10 @@ public class ControllerAssembly extends ControllerImport {
                 calculationSGK.getType().getDataElement().setImportData(false);
                 calculationSGK.calculation(CalculationKA.getInstance().getDataSudSGK());
                 showSgkResult();
+
+                allElementKA.add(calculationSGK.getType().getDataElement());
+                initTableAllElementKA();
+                actionShowParamRezult(new ActionEvent());
             }
         } catch (Exception e) {
             ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.SUD_SGK);
@@ -471,6 +480,9 @@ public class ControllerAssembly extends ControllerImport {
                 calculationSPPE.calculation(CalculationKA.getInstance().getDataSPPE());
                 onProgressSppe(true);
                 showSPEEResult();
+                allElementKA.add(calculationSPPE.getType().getDataElement());
+                initTableAllElementKA();
+                actionShowParamRezult(new ActionEvent());
             }
         } catch (Exception e) {
             ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.SPPE);
@@ -486,6 +498,9 @@ public class ControllerAssembly extends ControllerImport {
                 calculationVRL.calculation(CalculationKA.getInstance().getDataVRL());
                 onProgressVrl(true);
                 showVRLResult();
+                allElementKA.add(calculationVRL.getType().getDataElement());
+                initTableAllElementKA();
+                actionShowParamRezult(new ActionEvent());
             }
         } catch (Exception e) {
             ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.VRL);
@@ -501,6 +516,9 @@ public class ControllerAssembly extends ControllerImport {
                 calculationOtherCA.calculation(CalculationKA.getInstance().getDataOtherCA());
                 onProgressOtherCa(true);
                 showOtherCAResult();
+                allElementKA.add(calculationOtherCA.getType().getDataElement());
+                initTableAllElementKA();
+                actionShowParamRezult(new ActionEvent());
             }
         } catch (Exception e) {
             ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.OTHER_ELEMENTS_CA);
@@ -514,6 +532,7 @@ public class ControllerAssembly extends ControllerImport {
             calculationCA.calculation(CalculationKA.getInstance().getDataCa());
             onProgressCa(true);
             showCAResult();
+
         } catch (Exception e) {
             ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.CA);
         }
@@ -527,6 +546,9 @@ public class ControllerAssembly extends ControllerImport {
                 calculationSSKM.getType().getDataElement().setImportData(false);
                 calculationSSKM.calculation(CalculationKA.getInstance().getDataSSKM());
                 showSSKMResult();
+                allElementKA.add(calculationSSKM.getType().getDataElement());
+                initTableAllElementKA();
+                actionShowParamRezult(new ActionEvent());
             }
         } catch (Exception e) {
             ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.SUD_SSKM);
@@ -541,6 +563,9 @@ public class ControllerAssembly extends ControllerImport {
                 calculationSTKRP.getType().getDataElement().setImportData(false);
                 calculationSTKRP.calculation(CalculationKA.getInstance().getDataSTKRP());
                 showSTKRPResult();
+                allElementKA.add(calculationSTKRP.getType().getDataElement());
+                initTableAllElementKA();
+                actionShowParamRezult(new ActionEvent());
             }
         } catch (Exception e) {
             ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.STKRP);
@@ -555,6 +580,9 @@ public class ControllerAssembly extends ControllerImport {
                 calculationBAKES.getType().getDataElement().setImportData(false);
                 calculationBAKES.calculation(CalculationKA.getInstance().getDataBAKES());
                 showKISResult();
+                allElementKA.add(calculationBAKES.getType().getDataElement());
+                initTableAllElementKA();
+                actionShowParamRezult(new ActionEvent());
             }
         } catch (Exception e) {
             ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.BAKIS);
@@ -569,6 +597,9 @@ public class ControllerAssembly extends ControllerImport {
                 calculationBETS.getType().getDataElement().setImportData(false);
                 calculationBETS.calculation(CalculationKA.getInstance().getDataBETS());
                 showBETSResult();
+                allElementKA.add(calculationBETS.getType().getDataElement());
+                initTableAllElementKA();
+                actionShowParamRezult(new ActionEvent());
             }
         } catch (Exception e) {
             ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.BETS);
@@ -583,6 +614,9 @@ public class ControllerAssembly extends ControllerImport {
                 calculationBVS.getType().getDataElement().setImportData(false);
                 calculationBVS.calculation(CalculationKA.getInstance().getDataBVS());
                 showBVSResult();
+                allElementKA.add(calculationBVS.getType().getDataElement());
+                initTableAllElementKA();
+                actionShowParamRezult(new ActionEvent());
             }
         } catch (Exception e) {
             ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.BVS);
@@ -597,6 +631,9 @@ public class ControllerAssembly extends ControllerImport {
                 calculationOtherBKU.getType().getDataElement().setImportData(false);
                 calculationOtherBKU.calculation(CalculationKA.getInstance().getDataOtherBKU());
                 showOtherBKUResult();
+                allElementKA.add(calculationOtherBKU.getType().getDataElement());
+                initTableAllElementKA();
+                actionShowParamRezult(new ActionEvent());
             }
         } catch (Exception e) {
             ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.OTHER_ELEMENTS_BKU);
@@ -623,6 +660,9 @@ public class ControllerAssembly extends ControllerImport {
                 calculationPasivSOTR.getType().getDataElement().setImportData(false);
                 calculationPasivSOTR.calculation(CalculationKA.getInstance().getDataPasivSOTR());
                 showPasivSOTRResult();
+                allElementKA.add(calculationPasivSOTR.getType().getDataElement());
+                initTableAllElementKA();
+                actionShowParamRezult(new ActionEvent());
             }
         } catch (Exception e) {
             ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.PASSIV_ELEMENT_SOTR);
@@ -637,6 +677,9 @@ public class ControllerAssembly extends ControllerImport {
                 calculationActivSOTR.getType().getDataElement().setImportData(false);
                 calculationActivSOTR.calculation(CalculationKA.getInstance().getDataActivSOTR());
                 showActivSOTRResult();
+                allElementKA.add(calculationActivSOTR.getType().getDataElement());
+                initTableAllElementKA();
+                actionShowParamRezult(new ActionEvent());
             }
         } catch (Exception e) {
             ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.ACTIV_ELEMENT_SOTR);
@@ -676,6 +719,9 @@ public class ControllerAssembly extends ControllerImport {
                 calculationAcumBet.getType().getDataElement().setImportData(false);
                 calculationAcumBet.calculation(CalculationKA.getInstance().getDataAcumBetSEP());
                 showAcumBat();
+                allElementKA.add(calculationAcumBet.getType().getDataElement());
+                initTableAllElementKA();
+                actionShowParamRezult(new ActionEvent());
             }
         } catch (Exception e) {
             ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.AKUM_BATTERIES);
@@ -690,6 +736,9 @@ public class ControllerAssembly extends ControllerImport {
                 calculationKAS.getType().getDataElement().setImportData(false);
                 calculationKAS.calculation(CalculationKA.getInstance().getDataKAS());
                 showKAS();
+                allElementKA.add(calculationKAS.getType().getDataElement());
+                initTableAllElementKA();
+                actionShowParamRezult(new ActionEvent());
             }
         } catch (Exception e) {
             ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.KAS);
@@ -704,6 +753,9 @@ public class ControllerAssembly extends ControllerImport {
                 calculationSUNbet.getType().getDataElement().setImportData(false);
                 calculationSUNbet.calculation(CalculationKA.getInstance().getDataSumBetSEP());
                 showSunBet();
+                allElementKA.add(calculationSUNbet.getType().getDataElement());
+                initTableAllElementKA();
+                actionShowParamRezult(new ActionEvent());
             }
         } catch (Exception e) {
             ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.SUN_BATTERIES);
@@ -732,6 +784,9 @@ public class ControllerAssembly extends ControllerImport {
                 calculationMTop.getType().getDataElement().setImportData(false);
                 calculationMTop.calculation(CalculationKA.getInstance().getDataMassTopl());
                 showMassTopl();
+                allElementKA.add(calculationMTop.getType().getDataElement());
+                initTableAllElementKA();
+                actionShowParamRezult(new ActionEvent());
             }
         } catch (Exception e) {
             ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.MASS_TOPLIVA);
@@ -746,6 +801,9 @@ public class ControllerAssembly extends ControllerImport {
                 calculationKDU.getType().getDataElement().setImportData(false);
                 calculationKDU.calculation(CalculationKA.getInstance().getDataKDU());
                 showKDU();
+                allElementKA.add(calculationKDU.getType().getDataElement());
+                initTableAllElementKA();
+                actionShowParamRezult(new ActionEvent());
             }
         } catch (Exception e) {
             ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.MASOGABARITN_AND_ENERGET_PARAMETERS);
@@ -760,6 +818,9 @@ public class ControllerAssembly extends ControllerImport {
                 calculationKonstrKA.getType().getDataElement().setImportData(false);
                 calculationKonstrKA.calculation(CalculationKA.getInstance().getDataKonstrKA());
                 showKonstrKA();
+                allElementKA.add(calculationKonstrKA.getType().getDataElement());
+                initTableAllElementKA();
+                actionShowParamRezult(new ActionEvent());
             }
         } catch (Exception e) {
             ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.KONSTR);
@@ -787,6 +848,9 @@ public class ControllerAssembly extends ControllerImport {
                 calculationRezerv.getType().getDataElement().setImportData(false);
                 calculationRezerv.calculation(CalculationKA.getInstance().getDataRezervKA());
                 showRezerv();
+                allElementKA.add(calculationRezerv.getType().getDataElement());
+                initTableAllElementKA();
+                actionShowParamRezult(new ActionEvent());
             }
         } catch (Exception e) {
             ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.RETHERV);
@@ -801,6 +865,9 @@ public class ControllerAssembly extends ControllerImport {
                 calculationSSD.getType().getDataElement().setImportData(false);
                 calculationSSD.calculation(CalculationKA.getInstance().getDataSSD());
                 showSSD();
+                allElementKA.add(calculationSSD.getType().getDataElement());
+                initTableAllElementKA();
+                actionShowParamRezult(new ActionEvent());
             }
         } catch (Exception e) {
             ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.SSD);
@@ -815,6 +882,9 @@ public class ControllerAssembly extends ControllerImport {
                 calculationIPMV.getType().getDataElement().setImportData(false);
                 calculationIPMV.calculation(CalculationKA.getInstance().getDataIPMV());
                 showIPMV();
+                allElementKA.add(calculationIPMV.getType().getDataElement());
+                initTableAllElementKA();
+                actionShowParamRezult(new ActionEvent());
             }
         } catch (Exception e) {
             ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.IPMV);
@@ -829,6 +899,9 @@ public class ControllerAssembly extends ControllerImport {
                 calculationBOKZ.getType().getDataElement().setImportData(false);
                 calculationBOKZ.calculation(CalculationKA.getInstance().getDataBOKZ());
                 showBOKZ();
+                allElementKA.add(calculationBOKZ.getType().getDataElement());
+                initTableAllElementKA();
+                actionShowParamRezult(new ActionEvent());
             }
         } catch (Exception e) {
             ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.BOKZ);
@@ -843,6 +916,9 @@ public class ControllerAssembly extends ControllerImport {
                 calculationDO.getType().getDataElement().setImportData(false);
                 calculationDO.calculation(CalculationKA.getInstance().getDataDO());
                 showDO();
+                allElementKA.add(calculationDO.getType().getDataElement());
+                initTableAllElementKA();
+                actionShowParamRezult(new ActionEvent());
             }
         } catch (Exception e) {
             ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.DO);
@@ -857,6 +933,9 @@ public class ControllerAssembly extends ControllerImport {
                 calculationDUS.getType().getDataElement().setImportData(false);
                 calculationDUS.calculation(CalculationKA.getInstance().getDataDUS());
                 showDUS();
+                allElementKA.add(calculationDUS.getType().getDataElement());
+                initTableAllElementKA();
+                actionShowParamRezult(new ActionEvent());
             }
         } catch (Exception e) {
             ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.DUS);
@@ -871,6 +950,9 @@ public class ControllerAssembly extends ControllerImport {
                 calculationBKS.getType().getDataElement().setImportData(false);
                 calculationBKS.calculation(CalculationKA.getInstance().getDataBKS());
                 showBKS();
+                allElementKA.add(calculationBKS.getType().getDataElement());
+                initTableAllElementKA();
+                actionShowParamRezult(new ActionEvent());
             }
         } catch (Exception e) {
             ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.BKS);
@@ -885,19 +967,12 @@ public class ControllerAssembly extends ControllerImport {
                 calculationAFU.getType().getDataElement().setImportData(false);
                 calculationAFU.calculation(CalculationKA.getInstance().getDataAFU());
                 showAFU();
+                allElementKA.add(calculationAFU.getType().getDataElement());
+                initTableAllElementKA();
+                actionShowParamRezult(new ActionEvent());
             }
         } catch (Exception e) {
             ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Не верно введенные данные!", TabTypeSintez.AFU);
-        }
-        showConsoleSintezDebug();
-    }
-
-    public void bt_calcul_Rezult_all(ActionEvent actionEvent) {
-        try {
-            CalculationKA.getInstance().calculation(new Object());
-            showSinezKA();
-        } catch (Exception e) {
-            ControllerAssembly.addMessInConsoleSintez(MessegeType.ERROR, "Неизвестная ошибка", TabTypeSintez.RESULT);
         }
         showConsoleSintezDebug();
     }
@@ -910,7 +985,6 @@ public class ControllerAssembly extends ControllerImport {
         fileChooser.getExtensionFilters().add(extFilter);
         File file = fileChooser.showSaveDialog(Main.getStage());
     }
-
 
 
     private void updateSaveBt() {
@@ -1042,13 +1116,13 @@ public class ControllerAssembly extends ControllerImport {
 
     public void removeOtherKA(ActionEvent actionEvent) {
         String nameDataElement = ((ViewDataOtherKA) tableOtherKA.getSelectionModel().getSelectedItem()).getNameElement();
-        if (nameDataElement == null){
+        if (nameDataElement == null) {
             return;
         }
         DataElement dataElementE = null;
         SaveXmlObject<DataElement> saveXmlObject = new SaveXmlObject<>();
-        for (DataElement dataElement:CalculationKA.getInstance().getDataOtherKA().getOthers()){
-            if (dataElement.getNameElement().equals(nameDataElement))   {
+        for (DataElement dataElement : CalculationKA.getInstance().getDataOtherKA().getOthers()) {
+            if (dataElement.getNameElement().equals(nameDataElement)) {
                 dataElementE = dataElement;
             }
         }
@@ -1064,43 +1138,80 @@ public class ControllerAssembly extends ControllerImport {
 
     public void actionIteration(ActionEvent actionEvent) {
         try {
-            calculationOETK.calculation(new DataOETK());
-            calculationSPPE.calculation(new DataSPPE());
-            calculationVRL.calculation(new DataVRL());
-            calculationSSD.calculation(new DataSSD());
-            calculationOtherCA.calculation(new DataOtherCA());
+            if (TabTypeSintez.OETK.getDataElement().isNeedUvyzka())
+                calculationOETK.calculation(new DataOETK());
+            if (TabTypeSintez.SPPE.getDataElement().isNeedUvyzka())
+                calculationSPPE.calculation(new DataSPPE());
+            if (TabTypeSintez.VRL.getDataElement().isNeedUvyzka())
+                calculationVRL.calculation(new DataVRL());
+            if (TabTypeSintez.SSD.getDataElement().isNeedUvyzka())
+                calculationSSD.calculation(new DataSSD());
+            if (TabTypeSintez.OTHER_ELEMENTS_CA.getDataElement().isNeedUvyzka())
+                calculationOtherCA.calculation(new DataOtherCA());
+
             calculationCA.calculation(new DataCa());
-            calculationBVS.calculation(new DataBVS());
-            calculationSTKRP.calculation(new DataSTKRP());
-            calculationBAKES.calculation(new DataBAKES());
-            calculationBETS.calculation(new DataBETS());
+
+            if (TabTypeSintez.BVS.getDataElement().isNeedUvyzka())
+                calculationBVS.calculation(new DataBVS());
+            if (TabTypeSintez.STKRP.getDataElement().isNeedUvyzka())
+                calculationSTKRP.calculation(new DataSTKRP());
+            if (TabTypeSintez.BAKIS.getDataElement().isNeedUvyzka())
+                calculationBAKES.calculation(new DataBAKES());
+            if (TabTypeSintez.BETS.getDataElement().isNeedUvyzka())
+                calculationBETS.calculation(new DataBETS());
+            if (TabTypeSintez.OTHER_ELEMENTS_BKU.getDataElement().isNeedUvyzka())
+                calculationOtherBKU.calculation(new DataOtherBKU());
+
             calculationBKU.calculation(new DataBKU());
-            calculationBKU.calculation(new DataBKU());
-            calculationSGK.calculation(new DataSudSGK());
-            calculationSSKM.calculation(new DataSSKM());
-            calculationIPMV.calculation(new DataIPMV());
-            calculationBOKZ.calculation(new DataBOKZ());
-            calculationDO.calculation(new DataDO());
-            calculationDUS.calculation(new DataDUS());
-            calculationPasivSOTR.calculation(new DataPasivSOTR());
-            calculationActivSOTR.calculation(new DataActivSOTR());
+
+            if (TabTypeSintez.SUD_SGK.getDataElement().isNeedUvyzka())
+                calculationSGK.calculation(new DataSudSGK());
+            if (TabTypeSintez.SUD_SSKM.getDataElement().isNeedUvyzka())
+                calculationSSKM.calculation(new DataSSKM());
+            if (TabTypeSintez.IPMV.getDataElement().isNeedUvyzka())
+                calculationIPMV.calculation(new DataIPMV());
+            if (TabTypeSintez.BOKZ.getDataElement().isNeedUvyzka())
+                calculationBOKZ.calculation(new DataBOKZ());
+            if (TabTypeSintez.DO.getDataElement().isNeedUvyzka())
+                calculationDO.calculation(new DataDO());
+            if (TabTypeSintez.DUS.getDataElement().isNeedUvyzka())
+                calculationDUS.calculation(new DataDUS());
+            if (TabTypeSintez.PASSIV_ELEMENT_SOTR.getDataElement().isNeedUvyzka())
+                calculationPasivSOTR.calculation(new DataPasivSOTR());
+            if (TabTypeSintez.ACTIV_ELEMENT_SOTR.getDataElement().isNeedUvyzka())
+                calculationActivSOTR.calculation(new DataActivSOTR());
+
             calculationSOTR.calculation(new DataSOTR());
-            calculationElectrTehnSEP.calculation(new DataElectHaraktSEP());
-            calculationAcumBet.calculation(new DataAcumBetSEP());
-            calculationKAS.calculation(new DataKAS());
-            calculationSUNbet.calculation(new DataSumBetSEP());
-            calculationSpeed.calculation(new DataSpeed());
-            calculationMTop.calculation(new DataMassTopl());
-            calculationKDU.calculation(new DataKDU());
-            calculationKonstrKA.calculation(new DataKonstrKA());
-            calculationBKS.calculation(new DataBKS());
-            calculationAFU.calculation(new DataAFU());
-            calculationOtherKA.calculation(new DataOtherKA());
-            calculationRezerv.calculation(new DataRezervKA());
+
+            if (TabTypeSintez.AKUM_BATTERIES.getDataElement().isNeedUvyzka())
+                calculationElectrTehnSEP.calculation(new DataElectHaraktSEP());
+            if (TabTypeSintez.AKUM_BATTERIES.getDataElement().isNeedUvyzka())
+                calculationAcumBet.calculation(new DataAcumBetSEP());
+            if (TabTypeSintez.KAS.getDataElement().isNeedUvyzka())
+                calculationKAS.calculation(new DataKAS());
+            if (TabTypeSintez.SUN_BATTERIES.getDataElement().isNeedUvyzka())
+                calculationSUNbet.calculation(new DataSumBetSEP());
+            if (TabTypeSintez.MASOGABARITN_AND_ENERGET_PARAMETERS.getDataElement().isNeedUvyzka())
+                calculationSpeed.calculation(new DataSpeed());
+            if (TabTypeSintez.MASOGABARITN_AND_ENERGET_PARAMETERS.getDataElement().isNeedUvyzka())
+                calculationMTop.calculation(new DataMassTopl());
+            if (TabTypeSintez.MASOGABARITN_AND_ENERGET_PARAMETERS.getDataElement().isNeedUvyzka())
+                calculationKDU.calculation(new DataKDU());
+            if (TabTypeSintez.KONSTR.getDataElement().isNeedUvyzka())
+                calculationKonstrKA.calculation(new DataKonstrKA());
+            if (TabTypeSintez.BKS.getDataElement().isNeedUvyzka())
+                calculationBKS.calculation(new DataBKS());
+            if (TabTypeSintez.AFU.getDataElement().isNeedUvyzka())
+                calculationAFU.calculation(new DataAFU());
+            if (TabTypeSintez.OTHER_ELEMENT_KA.getDataElement().isNeedUvyzka())
+                calculationOtherKA.calculation(new DataOtherKA());
+            if (TabTypeSintez.RETHERV.getDataElement().isNeedUvyzka())
+                calculationRezerv.calculation(new DataRezervKA());
             actionShowParamRezult(new ActionEvent());
             showALL();
             startShowALL();
-        }catch (Exception e){
+            initTableAllElementKA();
+        } catch (Exception e) {
             showError("Ошибка при расчете - итерации");
         }
     }
@@ -1177,6 +1288,17 @@ public class ControllerAssembly extends ControllerImport {
         } catch (IOException e) {
             ControllerAssembly.showInfo("Возникли технические неполадки");
         }
+    }
+
+    public void actionPodtverzdenieStartData(ActionEvent actionEvent) {
+        try {
+            ((DataCommonParameters) TabTypeSintez.RESULT.getDataElement()).krkKA = ValidateValue.conversionTextToFloat(iN_nonRes_krkKA.getText());
+            ((DataCommonParameters) TabTypeSintez.RESULT.getDataElement()).kpoPO = ValidateValue.conversionTextToFloat(iN_nonRes_kpoPO.getText());
+            ((DataCommonParameters) TabTypeSintez.RESULT.getDataElement()).udlKA = ValidateValue.conversionTextToFloat(iN_nonRes_udlKA.getText());
+        } catch (Exception e) {
+            ControllerAssembly.showError("Проверьте введеные данные.");
+        }
+        showStartData();
     }
 
 //    public void addOtherKaElement(ActionEvent actionEvent) {
