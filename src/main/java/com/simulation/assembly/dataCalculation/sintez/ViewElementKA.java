@@ -27,6 +27,9 @@ public class ViewElementKA {
         viewElementKA.setId(String.valueOf(dataElement.getId()));
         viewElementKA.setNameElement(String.valueOf(dataElement.getNameElement()));
         viewElementKA.setType(String.valueOf(dataElement.getType().getName()));
+        if (dataElement instanceof DataOtherKA)
+            viewElementKA.setType(String.valueOf(dataElement.getNameElement()));
+
 
         return viewElementKA;
     }

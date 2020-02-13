@@ -33,4 +33,22 @@ public class DataSSKM  extends DataElement{
 //    public float j;     //момент инерции ССКМ
 
 //    public float v;     //обьем ССКМ
+
+    @Override
+    public String getStartDate() {
+        return "Доля масса ССКМ от массы КА, % = " + kmSSKM + "\n" +
+                "Удельная мощность аппаратуры ССКМ, Вт/кг = " + uwSSKM + "\n" +
+                "Доля массs штанг ССКМ от массы ССКМ, % = " + kmsSSKM + "\n" +
+                "Плотность компоновки аппаратуры ССКМ, кг/м3 = " + plaSSKM + "\n" +
+                "Плотность конструкционного материала штанг ССКМ, кг/м3 = " + plsSSKM + "\n" +
+                "Коэффициент заполнения штанг ССКМ конструкционным материалом, % = " + kzsSSKM;
+    }
+
+    @Override
+    public String getOtherDate() {
+        return "Масса аппаратуры ССКМ, кг = " + maSSKM + "\n" +
+                "Масса штанг ССКМ, кг = " + msSSKM + "\n" +
+                "Объем аппаратуры ССКМ, м3 = " + vaSSKM + "\n" +
+                "Обем штанг ССКМ, кг = " + vsSSKM;
+    }
 }

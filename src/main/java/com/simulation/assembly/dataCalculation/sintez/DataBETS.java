@@ -25,4 +25,11 @@ public class DataBETS  extends DataElement{
 //    public float v;
 //    public float w;
 //    public float j;
+
+    @Override
+    public String getStartDate() {
+        return "Доля масса БИТС от массы КА, % = " + kmBITS + "\n" +
+                "Удельная мощность энергопотребления приборов БИТС, Вт/кг = " + uwBITS + "\n" +
+                "Средняя плотность компоновки приборов БИТС, кг/м3 = " + plBITS;
+    }
 }

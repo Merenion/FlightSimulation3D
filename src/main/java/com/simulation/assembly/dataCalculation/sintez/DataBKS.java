@@ -24,4 +24,10 @@ public class DataBKS extends DataElement{
 //    public float m;
 //    public float v;
 //    public float jBKS;
+
+    @Override
+    public String getStartDate() {
+        return "Относительная масса БКС,% = " + omBKS + "\n" +
+                "Плотность компоновки БКС, кг/м3 = " + plBKS;
+    }
 }

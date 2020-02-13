@@ -35,6 +35,10 @@ public class ImportActivSOTR extends ImportElement {
 
     private TabTypeSintez tabTypeSintez = TabTypeSintez.ACTIV_ELEMENT_SOTR;                                               //
 
+    public TabTypeSintez getTabTypeSintez() {
+        return tabTypeSintez;
+    }
+
     @Override
     public void addElement(ActionEvent actionEvent) {
         try {
@@ -53,6 +57,9 @@ public class ImportActivSOTR extends ImportElement {
 
     @Override
     public void selectElement(ActionEvent actionEvent) {
+        if (!ControllerAssembly.checkstartDataKAandShowErrorMess()){
+            return;
+        }
         try {
 
             DataActivSOTR data = (DataActivSOTR) tableChoise.getSelectionModel().getSelectedItem();                       //
@@ -65,15 +72,17 @@ public class ImportActivSOTR extends ImportElement {
             data.getType().getCalculation().predCalculation();
 
             if (data.isCalculationMoment()) {
-                data.j = (float) ((data.m / (12 * ((dc.dKA / 2) + dc.lKA))) * (3 * Math.pow((dc.dKA / 2), 2) * ((dc.dKA / 2) + 2 * dc.lKA) + Math.pow(dc.lKA, 2) * ((3 * dc.dKA / 2) + dc.lKA)));
+                data.j = (float) data.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
             }
 
             CalculationKA.getInstance().setDataActivSOTR(data);                                                      //                                                   //
             CalculationKA.getInstance().calculation(new Object());
 
+            if (data.isCalculationMoment()) {
+                data.j = data.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
+            }
             showParametersOfSelectElement(data);
-
-            ControllerAssembly.getInstance().onProgressOetk(true);
+            super.selectElement(actionEvent);
         } catch (Exception e) {
             ControllerAssembly.showError("Техническая ошибка.");
             return;

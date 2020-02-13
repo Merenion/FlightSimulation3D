@@ -25,4 +25,11 @@ public class DataAFU extends DataElement{
 //    public float m;
 //    public float v;
 //    public float jAFU;
+
+    @Override
+    public String getStartDate() {
+        return "Относительная масса АФУ,% = " + omAFU + "\n" +
+                "Плотность компоновки АФУ, кг/м3 = " + plAFU;
+    }
+
 }

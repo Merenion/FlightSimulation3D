@@ -21,4 +21,6 @@ public class DataCa  extends DataElement{
 //    public float v; //Расчет объема ЦА
 //    public float j; //Расчет мометна инерции ЦА
 //    public float w; //Мощность энергопотребления ЦА, Вт
+
+
 }

@@ -28,7 +28,12 @@ public class ImportMassTopl extends ImportElement {
 
     private List<DataElement> listLoad = new ArrayList<>();
 
-    private TabTypeSintez tabTypeSintez = TabTypeSintez.MASS_TOPLIVA;                                               //
+    private TabTypeSintez tabTypeSintez = TabTypeSintez.MASS_TOPLIVA;                                                   //
+
+    public TabTypeSintez getTabTypeSintez() {
+        return tabTypeSintez;
+    }
+    //
 
     @Override
     public void addElement(ActionEvent actionEvent) {
@@ -61,6 +66,9 @@ public class ImportMassTopl extends ImportElement {
 
     @Override
     public void selectElement(ActionEvent actionEvent) {
+        if (!ControllerAssembly.checkstartDataKAandShowErrorMess()) {
+            return;
+        }
         DataMassTopl data = (DataMassTopl) tableChoise.getSelectionModel().getSelectedItem();                       //
         if (data==null){
             ControllerAssembly.showError("Не выбрано не одного элемента.");
@@ -79,6 +87,7 @@ public class ImportMassTopl extends ImportElement {
         Stage stage = (Stage) btSelect.getScene().getWindow();
         stage.close();
         ControllerAssembly.getInstance().onLabelZaimMassT(data.getNameElement());
+        super.selectElement(actionEvent);
     }
 
     @FXML

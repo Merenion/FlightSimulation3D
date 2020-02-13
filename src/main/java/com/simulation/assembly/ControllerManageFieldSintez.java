@@ -1,9 +1,7 @@
 package com.simulation.assembly;
 
 import com.simulation.assembly.calculation.ca.CalculationKA;
-import com.simulation.assembly.dataCalculation.sintez.DataCommonParameters;
-import com.simulation.assembly.dataCalculation.sintez.DataOtherKA;
-import com.simulation.assembly.dataCalculation.sintez.ViewDataOtherKA;
+import com.simulation.assembly.dataCalculation.sintez.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -412,6 +410,7 @@ public class ControllerManageFieldSintez extends ControllerAssemblyField {
      * SSD
      */
     public void showSSD() {
+        DataSSD dataSSD = CalculationKA.getInstance().getDataSSD();
         mSSD.setText(String.valueOf(CalculationKA.getInstance().getDataSSD().m));
         vSSD.setText(String.valueOf(CalculationKA.getInstance().getDataSSD().v));
         jSSD.setText(String.valueOf(CalculationKA.getInstance().getDataSSD().j));
@@ -1128,6 +1127,7 @@ public class ControllerManageFieldSintez extends ControllerAssemblyField {
      * @return
      */
     public void startShowOETK() {
+        DataOETK dataOETK = CalculationKA.getInstance().getDataOETK();
         iN_Lm.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().iN_Lm));
         iN_H.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().iN_H));
         iN_Delta.setText(String.valueOf(CalculationKA.getInstance().getDataOETK().iN_Delta));

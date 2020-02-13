@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SaveXmlObject<T> {
-    public final static String pathDomain = System.getProperty("user.home") + "\\sintez";
+    public final static String pathDomain = System.getProperty("user.home") + "\\adara";
 
 
     public SaveXmlObject() {

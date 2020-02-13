@@ -2,6 +2,8 @@ package com.simulation.assembly.controllersImport;
 
 import com.simulation.assembly.ControllerAssembly;
 import com.simulation.assembly.SaveXmlObject;
+import com.simulation.assembly.TabTypeSintez;
+import com.simulation.assembly.calculation.ca.CalculationKA;
 import com.simulation.assembly.dataCalculation.sintez.DataElement;
 import com.simulation.assembly.dataCalculation.sintez.DataOETK;
 import javafx.event.ActionEvent;
@@ -13,7 +15,10 @@ import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import javax.xml.crypto.Data;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class ImportElement {
 
@@ -27,9 +32,16 @@ public abstract class ImportElement {
     public TextField nameElement;
     public TableColumn<DataElement,String> columnChoise;
 
+    //
+
+    public abstract TabTypeSintez getTabTypeSintez();
+
     public abstract void initialize();
 
     public void selectElement(ActionEvent actionEvent) {
+        CalculationKA.getInstance().getAllElementKA().add(getTabTypeSintez().getDataElement());
+        ControllerAssembly.getInstance().initTableAllElementKA();
+        ControllerAssembly.getInstance().actionShowParamRezult(new ActionEvent());
 
     }
 

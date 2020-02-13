@@ -4,7 +4,22 @@ import com.simulation.assembly.calculation.ca.CalculationKA;
 import com.simulation.assembly.dataCalculation.sintez.*;
 import javafx.event.ActionEvent;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ControllerImport extends ControllerZaimstv {
+
+    private void upd (DataElement dataElement) {
+        if (dataElement.isNeedUvyzka()) {
+            CalculationKA.getInstance().getAllElementKA().add(dataElement);
+        }
+        List<DataElement> datum = new ArrayList<>(CalculationKA.getInstance().getAllElementKA());
+        for (DataElement d:datum){
+            CalculationKA.getInstance().getAllElementKA().add(d.getType().getDataElement());
+        }
+        initTableAllElementKA();
+        actionShowParamRezult(new ActionEvent());
+    }
 
     public void importSSD(ActionEvent actionEvent) {
         try {
@@ -17,7 +32,8 @@ public class ControllerImport extends ControllerZaimstv {
 //            ControllerAssembly.getInstance().onProgressRestr(true);
             startShowALL();
             showALL();
-            ControllerAssembly.showInfo("Данные успешно импортированны.");
+            ControllerAssembly.showInfo("Данные успешно импортированны. \nНеобходим ПЕРЕРАСЧЕТ!");
+            upd(ob);
         } catch (Exception e) {
             e.printStackTrace();
             ControllerAssembly.showError("Ошибка при импорте.");
@@ -35,7 +51,8 @@ public class ControllerImport extends ControllerZaimstv {
 //            ControllerAssembly.getInstance().onProgressRestr(true);
             startShowALL();
             showALL();
-            ControllerAssembly.showInfo("Данные успешно импортированны.");
+            ControllerAssembly.showInfo("Данные успешно импортированны. \nНеобходим ПЕРЕРАСЧЕТ!");
+            upd(ob);
         } catch (Exception e) {
             e.printStackTrace();
             ControllerAssembly.showError("Ошибка при импорте.");
@@ -54,7 +71,8 @@ public class ControllerImport extends ControllerZaimstv {
 //            ControllerAssembly.getInstance().onProgressRestr(true);
             startShowALL();
             showALL();
-            ControllerAssembly.showInfo("Данные успешно импортированны.");
+            ControllerAssembly.showInfo("Данные успешно импортированны. \nНеобходим ПЕРЕРАСЧЕТ!");
+            upd(ob);
         } catch (Exception e) {
             e.printStackTrace();
             ControllerAssembly.showError("Ошибка при импорте.");
@@ -72,7 +90,8 @@ public class ControllerImport extends ControllerZaimstv {
 //            ControllerAssembly.getInstance().onProgressRestr(true);
             startShowALL();
             showALL();
-            ControllerAssembly.showInfo("Данные успешно импортированны.");
+            ControllerAssembly.showInfo("Данные успешно импортированны. \nНеобходим ПЕРЕРАСЧЕТ!");
+            upd(ob);
         } catch (Exception e) {
             e.printStackTrace();
             ControllerAssembly.showError("Ошибка при импорте.");
@@ -90,7 +109,8 @@ public class ControllerImport extends ControllerZaimstv {
 //            ControllerAssembly.getInstance().onProgressRestr(true);
             startShowALL();
             showALL();
-            ControllerAssembly.showInfo("Данные успешно импортированны.");
+            ControllerAssembly.showInfo("Данные успешно импортированны. \nНеобходим ПЕРЕРАСЧЕТ!");
+            upd(ob);
         } catch (Exception e) {
             e.printStackTrace();
             ControllerAssembly.showError("Ошибка при импорте.");
@@ -108,7 +128,8 @@ public class ControllerImport extends ControllerZaimstv {
 //            ControllerAssembly.getInstance().onProgressRestr(true);
             startShowALL();
             showALL();
-            ControllerAssembly.showInfo("Данные успешно импортированны.");
+            ControllerAssembly.showInfo("Данные успешно импортированны. \nНеобходим ПЕРЕРАСЧЕТ!");
+            upd(ob);
         } catch (Exception e) {
             e.printStackTrace();
             ControllerAssembly.showError("Ошибка при импорте.");
@@ -126,7 +147,8 @@ public class ControllerImport extends ControllerZaimstv {
 //            ControllerAssembly.getInstance().onProgressRestr(true);
             startShowALL();
             showALL();
-            ControllerAssembly.showInfo("Данные успешно импортированны.");
+            ControllerAssembly.showInfo("Данные успешно импортированны. \nНеобходим ПЕРЕРАСЧЕТ!");
+            upd(ob);
         } catch (Exception e) {
             e.printStackTrace();
             ControllerAssembly.showError("Ошибка при импорте.");
@@ -144,7 +166,8 @@ public class ControllerImport extends ControllerZaimstv {
             ControllerAssembly.getInstance().onProgressRestr(true);
             startShowALL();
             showALL();
-            ControllerAssembly.showInfo("Данные успешно импортированны.");
+            ControllerAssembly.showInfo("Данные успешно импортированны. \nНеобходим ПЕРЕРАСЧЕТ!");
+            upd(ob);
         } catch (Exception e) {
             e.printStackTrace();
             ControllerAssembly.showError("Ошибка при импорте.");
@@ -162,7 +185,8 @@ public class ControllerImport extends ControllerZaimstv {
             ControllerAssembly.getInstance().onProgressOetk(true);
             startShowALL();
             showALL();
-            ControllerAssembly.showInfo("Данные успешно импортированны.");
+            ControllerAssembly.showInfo("Данные успешно импортированны. \nНеобходим ПЕРЕРАСЧЕТ!");
+            upd(ob);
         } catch (Exception e) {
             ControllerAssembly.showError("Ошибка при импорте.");
         }
@@ -179,7 +203,8 @@ public class ControllerImport extends ControllerZaimstv {
             ControllerAssembly.getInstance().onProgressSppe(true);
             startShowALL();
             showALL();
-            ControllerAssembly.showInfo("Данные успешно импортированны.");
+            ControllerAssembly.showInfo("Данные успешно импортированны. \nНеобходим ПЕРЕРАСЧЕТ!");
+            upd(ob);
         } catch (Exception e) {
             ControllerAssembly.showError("Ошибка при импорте.");
         }
@@ -196,7 +221,8 @@ public class ControllerImport extends ControllerZaimstv {
             ControllerAssembly.getInstance().onProgressVrl(true);
             startShowALL();
             showALL();
-            ControllerAssembly.showInfo("Данные успешно импортированны.");
+            ControllerAssembly.showInfo("Данные успешно импортированны. \nНеобходим ПЕРЕРАСЧЕТ!");
+            upd(ob);
         } catch (Exception e) {
             ControllerAssembly.showError("Ошибка при импорте.");
         }
@@ -213,7 +239,8 @@ public class ControllerImport extends ControllerZaimstv {
             ControllerAssembly.getInstance().onProgressOtherCa(true);
             startShowALL();
             showALL();
-            ControllerAssembly.showInfo("Данные успешно импортированны.");
+            ControllerAssembly.showInfo("Данные успешно импортированны. \nНеобходим ПЕРЕРАСЧЕТ!");
+            upd(ob);
         } catch (Exception e) {
             ControllerAssembly.showError("Ошибка при импорте.");
         }
@@ -229,7 +256,8 @@ public class ControllerImport extends ControllerZaimstv {
             CalculationKA.getInstance().calculation(new Object());
             startShowALL();
             showALL();
-            ControllerAssembly.showInfo("Данные успешно импортированны.");
+            ControllerAssembly.showInfo("Данные успешно импортированны. \nНеобходим ПЕРЕРАСЧЕТ!");
+            upd(ob);
         } catch (Exception e) {
             ControllerAssembly.showError("Ошибка при импорте.");
         }
@@ -245,7 +273,8 @@ public class ControllerImport extends ControllerZaimstv {
             CalculationKA.getInstance().calculation(new Object());
             startShowALL();
             showALL();
-            ControllerAssembly.showInfo("Данные успешно импортированны.");
+            ControllerAssembly.showInfo("Данные успешно импортированны. \nНеобходим ПЕРЕРАСЧЕТ!");
+            upd(ob);
         } catch (Exception e) {
             ControllerAssembly.showError("Ошибка при импорте.");
         }
@@ -261,7 +290,8 @@ public class ControllerImport extends ControllerZaimstv {
             CalculationKA.getInstance().calculation(new Object());
             startShowALL();
             showALL();
-            ControllerAssembly.showInfo("Данные успешно импортированны.");
+            ControllerAssembly.showInfo("Данные успешно импортированны. \nНеобходим ПЕРЕРАСЧЕТ!");
+            upd(ob);
         } catch (Exception e) {
             ControllerAssembly.showError("Ошибка при импорте.");
         }
@@ -277,7 +307,8 @@ public class ControllerImport extends ControllerZaimstv {
             CalculationKA.getInstance().calculation(new Object());
             startShowALL();
             showALL();
-            ControllerAssembly.showInfo("Данные успешно импортированны.");
+            ControllerAssembly.showInfo("Данные успешно импортированны. \nНеобходим ПЕРЕРАСЧЕТ!");
+            upd(ob);
         } catch (Exception e) {
             ControllerAssembly.showError("Ошибка при импорте.");
         }
@@ -293,7 +324,8 @@ public class ControllerImport extends ControllerZaimstv {
             CalculationKA.getInstance().calculation(new Object());
             startShowALL();
             showALL();
-            ControllerAssembly.showInfo("Данные успешно импортированны.");
+            ControllerAssembly.showInfo("Данные успешно импортированны. \nНеобходим ПЕРЕРАСЧЕТ!");
+            upd(ob);
         } catch (Exception e) {
             ControllerAssembly.showError("Ошибка при импорте.");
         }
@@ -309,7 +341,8 @@ public class ControllerImport extends ControllerZaimstv {
             CalculationKA.getInstance().calculation(new Object());
             startShowALL();
             showALL();
-            ControllerAssembly.showInfo("Данные успешно импортированны.");
+            ControllerAssembly.showInfo("Данные успешно импортированны. \nНеобходим ПЕРЕРАСЧЕТ!");
+            upd(ob);
         } catch (Exception e) {
             ControllerAssembly.showError("Ошибка при импорте.");
         }
@@ -325,7 +358,8 @@ public class ControllerImport extends ControllerZaimstv {
             CalculationKA.getInstance().calculation(new Object());
             startShowALL();
             showALL();
-            ControllerAssembly.showInfo("Данные успешно импортированны.");
+            ControllerAssembly.showInfo("Данные успешно импортированны. \nНеобходим ПЕРЕРАСЧЕТ!");
+            upd(ob);
         } catch (Exception e) {
             ControllerAssembly.showError("Ошибка при импорте.");
         }
@@ -341,7 +375,8 @@ public class ControllerImport extends ControllerZaimstv {
             CalculationKA.getInstance().calculation(new Object());
             startShowALL();
             showALL();
-            ControllerAssembly.showInfo("Данные успешно импортированны.");
+            ControllerAssembly.showInfo("Данные успешно импортированны. \nНеобходим ПЕРЕРАСЧЕТ!");
+            upd(ob);
         } catch (Exception e) {
             ControllerAssembly.showError("Ошибка при импорте.");
         }
@@ -357,7 +392,8 @@ public class ControllerImport extends ControllerZaimstv {
             CalculationKA.getInstance().calculation(new Object());
             startShowALL();
             showALL();
-            ControllerAssembly.showInfo("Данные успешно импортированны.");
+            ControllerAssembly.showInfo("Данные успешно импортированны. \nНеобходим ПЕРЕРАСЧЕТ!");
+            upd(ob);
         } catch (Exception e) {
             ControllerAssembly.showError("Ошибка при импорте.");
         }
@@ -373,7 +409,8 @@ public class ControllerImport extends ControllerZaimstv {
             CalculationKA.getInstance().calculation(new Object());
             startShowALL();
             showALL();
-            ControllerAssembly.showInfo("Данные успешно импортированны.");
+            ControllerAssembly.showInfo("Данные успешно импортированны. \nНеобходим ПЕРЕРАСЧЕТ!");
+            upd(ob);
         } catch (Exception e) {
             ControllerAssembly.showError("Ошибка при импорте.");
         }
@@ -389,7 +426,8 @@ public class ControllerImport extends ControllerZaimstv {
             CalculationKA.getInstance().calculation(new Object());
             startShowALL();
             showALL();
-            ControllerAssembly.showInfo("Данные успешно импортированны.");
+            ControllerAssembly.showInfo("Данные успешно импортированны. \nНеобходим ПЕРЕРАСЧЕТ!");
+            upd(ob);
         } catch (Exception e) {
             ControllerAssembly.showError("Ошибка при импорте.");
         }
@@ -405,7 +443,8 @@ public class ControllerImport extends ControllerZaimstv {
             CalculationKA.getInstance().calculation(new Object());
             startShowALL();
             showALL();
-            ControllerAssembly.showInfo("Данные успешно импортированны.");
+            ControllerAssembly.showInfo("Данные успешно импортированны. \nНеобходим ПЕРЕРАСЧЕТ!");
+            upd(ob);
         } catch (Exception e) {
             ControllerAssembly.showError("Ошибка при импорте.");
         }
@@ -421,7 +460,8 @@ public class ControllerImport extends ControllerZaimstv {
             CalculationKA.getInstance().calculation(new Object());
             startShowALL();
             showALL();
-            ControllerAssembly.showInfo("Данные успешно импортированны.");
+            ControllerAssembly.showInfo("Данные успешно импортированны. \nНеобходим ПЕРЕРАСЧЕТ!");
+            upd(ob);
         } catch (Exception e) {
             ControllerAssembly.showError("Ошибка при импорте.");
         }
@@ -437,7 +477,8 @@ public class ControllerImport extends ControllerZaimstv {
             CalculationKA.getInstance().calculation(new Object());
             startShowALL();
             showALL();
-            ControllerAssembly.showInfo("Данные успешно импортированны.");
+            ControllerAssembly.showInfo("Данные успешно импортированны. \nНеобходим ПЕРЕРАСЧЕТ!");
+            upd(ob);
         } catch (Exception e) {
             ControllerAssembly.showError("Ошибка при импорте.");
         }
@@ -453,7 +494,8 @@ public class ControllerImport extends ControllerZaimstv {
             CalculationKA.getInstance().calculation(new Object());
             startShowALL();
             showALL();
-            ControllerAssembly.showInfo("Данные успешно импортированны.");
+            ControllerAssembly.showInfo("Данные успешно импортированны. \nНеобходим ПЕРЕРАСЧЕТ!");
+            upd(ob);
         } catch (Exception e) {
             ControllerAssembly.showError("Ошибка при импорте.");
         }
@@ -469,7 +511,8 @@ public class ControllerImport extends ControllerZaimstv {
             CalculationKA.getInstance().calculation(new Object());
             startShowALL();
             showALL();
-            ControllerAssembly.showInfo("Данные успешно импортированны.");
+            ControllerAssembly.showInfo("Данные успешно импортированны. \nНеобходим ПЕРЕРАСЧЕТ!");
+            upd(ob);
         } catch (Exception e) {
             ControllerAssembly.showError("Ошибка при импорте.");
         }
@@ -485,7 +528,8 @@ public class ControllerImport extends ControllerZaimstv {
             CalculationKA.getInstance().calculation(new Object());
             startShowALL();
             showALL();
-            ControllerAssembly.showInfo("Данные успешно импортированны.");
+            ControllerAssembly.showInfo("Данные успешно импортированны. \nНеобходим ПЕРЕРАСЧЕТ!");
+            upd(ob);
         } catch (Exception e) {
             ControllerAssembly.showError("Ошибка при импорте.");
         }
@@ -501,7 +545,8 @@ public class ControllerImport extends ControllerZaimstv {
             CalculationKA.getInstance().calculation(new Object());
             startShowALL();
             showALL();
-            ControllerAssembly.showInfo("Данные успешно импортированны.");
+            ControllerAssembly.showInfo("Данные успешно импортированны. \nНеобходим ПЕРЕРАСЧЕТ!");
+            upd(ob);
         } catch (Exception e) {
             ControllerAssembly.showError("Ошибка при импорте.");
         }
@@ -517,7 +562,8 @@ public class ControllerImport extends ControllerZaimstv {
             CalculationKA.getInstance().calculation(new Object());
             startShowALL();
             showALL();
-            ControllerAssembly.showInfo("Данные успешно импортированны.");
+            ControllerAssembly.showInfo("Данные успешно импортированны. \nНеобходим ПЕРЕРАСЧЕТ!");
+            upd(ob);
         } catch (Exception e) {
             ControllerAssembly.showError("Ошибка при импорте.");
         }
@@ -533,7 +579,8 @@ public class ControllerImport extends ControllerZaimstv {
             CalculationKA.getInstance().calculation(new Object());
             startShowALL();
             showALL();
-            ControllerAssembly.showInfo("Данные успешно импортированны.");
+            ControllerAssembly.showInfo("Данные успешно импортированны. \nНеобходим ПЕРЕРАСЧЕТ!");
+            upd(ob);
         } catch (Exception e) {
             ControllerAssembly.showError("Ошибка при импорте.");
         }

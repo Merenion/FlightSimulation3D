@@ -17,6 +17,8 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * класс дял работы со спутником.
@@ -295,6 +297,10 @@ public class ControllerParametersSatellite {
         satellite.setMaxLengthProjectionOnPlanet(Integer.parseInt(lengthPathonEarth.getText()));
         satellite.setMaxLengthOrbit(Integer.parseInt(lengthOrbit.getText()));
         satellite.setName(nameSatellite.getText());
+        Satellite testSatelite = new SatelliteWithParametersCA(new StorageOrbitParameters(),new CaParameters());
+        List<Satellite> satellites = new ArrayList<>(manageSatellite.getAllSatelites());
+        manageSatellite.getAllSatelites().clear();
+        manageSatellite.getAllSatelites().addAll(satellites);
         Stage stage = (Stage) nameSatellite.getScene().getWindow();
         stage.close();
     }

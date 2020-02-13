@@ -26,4 +26,17 @@ public class DataPasivSOTR  extends DataElement{
 //    public float m;
 //    public float v;
 //    public float j;
+
+    @Override
+    public String getStartDate() {
+        return "Удельная масса ЭВТИ, кг/м2 = " + umEVTI + "\n" +
+                "Средняя толщина матов ЭВТИ, мм = " + tEVTI + "\n" +
+                "Коэффициент покрытия ЭВТИ  наружной поверхности КА, % = " + kpEVTI;
+    }
+
+    @Override
+    public String getOtherDate() {
+        return "Средняя площадь наружной поверхности КА, м2 = " + sKA + "\n" +
+                "Средняя площадь ЭВТИ, м2 = " + sEVTI;
+    }
 }

@@ -69,10 +69,10 @@ public class CalculationOETK extends Calculation {
                 d.ouT_d2_OETK= d.m_const *d.ouT_d1_OETK;
                 //момент
                 CalculationKA.getInstance().calculation(new Object());
-                d.j = (float) ((d.m /(12*((dc.dKA/2)+dc.lKA)))*(3*Math.pow((dc.dKA/2),2)*((dc.dKA/2)+2*dc.lKA)+Math.pow(dc.lKA,2)*((3*dc.dKA/2)+dc.lKA)));
+                d.j = (float) d.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
 
                 if (d.isCalculationMoment()){
-                    d.j = (float) ((d.m /(12*((dc.dKA/2)+dc.lKA)))*(3*Math.pow((dc.dKA/2),2)*((dc.dKA/2)+2*dc.lKA)+Math.pow(dc.lKA,2)*((3*dc.dKA/2)+dc.lKA)));
+                    d.j = (float) d.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);;
                 }
                 CalculationKA.getInstance().calculation(new Object());
 

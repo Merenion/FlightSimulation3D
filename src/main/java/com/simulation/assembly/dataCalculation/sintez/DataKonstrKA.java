@@ -23,4 +23,11 @@ public class DataKonstrKA   extends DataElement{
 //    public float m;
 //    public float v;
 //    public float j;
+
+    @Override
+    public String getStartDate() {
+        return "Относительная масса конструкции КА, % = " + omkKA + "\n" +
+                "Плотность материала конструкции КА, кг/м3 = " + plmkKA + "\n" +
+                "Коэффициент пустотности конструкции КА, % = " + kpkKA;
+    }
 }

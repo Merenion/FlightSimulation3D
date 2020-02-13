@@ -23,7 +23,12 @@ public class ImportOETK extends ImportElement {
 
     private List<DataElement> listLoad = new ArrayList<>();
 
-    private TabTypeSintez tabTypeSintez = TabTypeSintez.OETK;                                               //
+    private TabTypeSintez tabTypeSintez = TabTypeSintez.OETK;                                                      //
+
+    public TabTypeSintez getTabTypeSintez() {
+        return tabTypeSintez;
+    }
+    //
 
     @Override
     public void addElement(ActionEvent actionEvent) {
@@ -43,6 +48,9 @@ public class ImportOETK extends ImportElement {
 
     @Override
     public void selectElement(ActionEvent actionEvent) {
+        if (!ControllerAssembly.checkstartDataKAandShowErrorMess()) {
+            return;
+        }
         try {
 
             DataOETK data = (DataOETK) tableChoise.getSelectionModel().getSelectedItem();                       //
@@ -55,14 +63,21 @@ public class ImportOETK extends ImportElement {
             data.getType().getCalculation().predCalculation();
 
             if (data.isCalculationMoment()) {
-                data.j = (float) ((data.m / (12 * ((dc.dKA / 2) + dc.lKA))) * (3 * Math.pow((dc.dKA / 2), 2) * ((dc.dKA / 2) + 2 * dc.lKA) + Math.pow(dc.lKA, 2) * ((3 * dc.dKA / 2) + dc.lKA)));
+                data.j = (float) data.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
             }
 
             CalculationKA.getInstance().setDataOETK(data);                                                      //                                                   //
             CalculationKA.getInstance().calculation(new Object());
 
-            showParametersOfSelectElement(data);
+            if (data.isCalculationMoment()) {
+                data.j = (float) data.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
+            }
 
+            showParametersOfSelectElement(data);
+            super.selectElement(actionEvent);
+            if (data.isCalculationMoment()) {
+                data.j = data.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
+            }
             ControllerAssembly.getInstance().onProgressOetk(true);
         } catch (Exception e) {
             ControllerAssembly.showError("Техническая ошибка.");

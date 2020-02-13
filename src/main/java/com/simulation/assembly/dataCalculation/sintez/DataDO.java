@@ -17,7 +17,14 @@ public class DataDO extends DataElement {
         return  TabTypeSintez.DO;
     }
 
-    public float km;  //Доля масса от массы КА, %
+    public float km;  //Доля массы от массы КА, %
     public float uw;  //Удельная мощность энергопотребления, Вт/кг
     public float pl;  //Средняя плотность, кг/м3
+
+    @Override
+    public String getStartDate() {
+        return "Доля массы от массы КА, % = " + km + "\n" +
+                "Удельная мощность энергопотребления, Вт/кг = " + uw + "\n" +
+                "Средняя плотность, кг/м3 = " + pl;
+    }
 }

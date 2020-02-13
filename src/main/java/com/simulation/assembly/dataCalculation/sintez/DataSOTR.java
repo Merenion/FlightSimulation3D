@@ -23,4 +23,10 @@ public class DataSOTR   extends DataElement{
 //    public float v;
 //    public float j;
 //    public float w;
+
+    @Override
+    public String getOtherDate() {
+        return "Масса СОТР (без теплоносителя), кг = " + mSOTRbtn + "\n" +
+                "Масса теплоносителя, кг = " + mtnSTR;
+    }
 }

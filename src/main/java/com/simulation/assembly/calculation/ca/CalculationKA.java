@@ -1,6 +1,7 @@
 package com.simulation.assembly.calculation.ca;
 
 import com.simulation.assembly.ControllerAssembly;
+import com.simulation.assembly.HashSetForElementsKA;
 import com.simulation.assembly.TabTypeSintez;
 import com.simulation.assembly.calculation.Calculation;
 import com.simulation.assembly.dataCalculation.sintez.*;
@@ -9,6 +10,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import java.util.Set;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -58,6 +60,18 @@ public class CalculationKA extends Calculation {
     private DataBOKZ dataBOKZ;
     private DataDO dataDO;
     private DataDUS dataDUS;
+
+
+
+    private Set<DataElement> allElementKA = new HashSetForElementsKA<>();
+
+    public Set<DataElement> getAllElementKA() {
+        return allElementKA;
+    }
+
+    public void setAllElementKA(Set<DataElement> allElementKA) {
+        this.allElementKA = allElementKA;
+    }
 
     public CalculationKA() {
         init();
@@ -131,13 +145,15 @@ public class CalculationKA extends Calculation {
                         + (dataAcumBetSEP.isNeedUvyzka()?dataAcumBetSEP.v:0)                                    //Объем всех АБ
                         + (dataKAS.isNeedUvyzka()?dataKAS.v:0)        //Объем КАС с учетом корпусных частей и прочих элементов
                         / (dataCommonParameters.kpoPO / 100)
+                        + (dataSumBetSEP.isNeedUvyzka()?dataSumBetSEP.v:0)                                    //Объем всех АБ
+
                         + (dataKDU.isNeedUvyzka()?dataKDU.v:0)       //Объем Отсека КА, где располагается КДУ
                         + (dataKonstrKA.isNeedUvyzka()?dataKonstrKA.v:0)                                  //Объем конструкции КА
                         + ((dataAFU.isNeedUvyzka()?dataAFU.v:0)
                         + (dataBKS.isNeedUvyzka()?dataBKS.v:0)
-                        + (dataOtherKA.isNeedUvyzka()?dataOtherKA.v:0)
                         + (dataRezervKA.isNeedUvyzka()?dataRezervKA.v:0))                              //Объем БКС и АФУ, м3
-                        / (dataCommonParameters.kpoPO / 100);
+                        / (dataCommonParameters.kpoPO / 100)
+                        + (dataOtherKA.isNeedUvyzka()?dataOtherKA.v:0);
 
         //Расчет текущих габаритов КА
         //Расчет среднего диаметра КА
@@ -225,20 +241,25 @@ public class CalculationKA extends Calculation {
                         + (dataDUS.isNeedUvyzka()?dataDUS.w:0);
 
         if (dataCommonParameters.isHaveRestriction) {
-            if (dataCommonParameters.mKA > dataCommonParameters.mKA0) {
+            if (dataCommonParameters.mKA > dataCommonParameters.mKA0 && !ControllerAssembly.getInstance().isShowMessM) {
                 ControllerAssembly.showInfo("Расчетная масса КА превысила ограничение.\nПоменяйте ограничения и пересчитайте их\nлибо подберите элементы с иными параметрами.");
+                ControllerAssembly.getInstance().isShowMessM=true;
             }
-            if (dataCommonParameters.vKA > dataCommonParameters.vKA0) {
+            if (dataCommonParameters.vKA > dataCommonParameters.vKA0 && !ControllerAssembly.getInstance().isShowMessV) {
                 ControllerAssembly.showInfo("Расчетный обьем КА превысил ограничение.\nПоменяйте ограничения и пересчитайте их\nлибо подберите элементы с иными параметрами.");
+                ControllerAssembly.getInstance().isShowMessV=true;
             }
-            if (dataCommonParameters.jKA > dataCommonParameters.jKA0) {
+            if (dataCommonParameters.jKA > dataCommonParameters.jKA0 && !ControllerAssembly.getInstance().isShowMessJ) {
                 ControllerAssembly.showInfo("Расчетный момент КА превысил ограничение.\nПоменяйте ограничения и пересчитайте их\nлибо подберите элементы с иными параметрами.");
+                ControllerAssembly.getInstance().isShowMessJ=true;
             }
-            if (dataCommonParameters.dKA > dataCommonParameters.dKA0) {
+            if (dataCommonParameters.dKA > dataCommonParameters.dKA0 && !ControllerAssembly.getInstance().isShowMessD) {
                 ControllerAssembly.showInfo("Расчетный диаметр КА превысил ограничение.\nПоменяйте ограничения и пересчитайте их\nлибо подберите элементы с иными параметрами.");
+                ControllerAssembly.getInstance().isShowMessD=true;
             }
-            if (dataCommonParameters.lKA > dataCommonParameters.lKA0) {
+            if (dataCommonParameters.lKA > dataCommonParameters.lKA0 && !ControllerAssembly.getInstance().isShowMessL) {
                 ControllerAssembly.showInfo("Расчетная длина КА превысила ограничение.\nПоменяйте ограничения и пересчитайте их\nлибо подберите элементы с иными параметрами.");
+                ControllerAssembly.getInstance().isShowMessL=true;
             }
         }
         return null;
@@ -285,6 +306,7 @@ public class CalculationKA extends Calculation {
         dataBOKZ = new DataBOKZ();
         dataDO = new DataDO();
         dataDUS = new DataDUS();
+        allElementKA  = new HashSetForElementsKA<>();
     }
 
     public static CalculationKA getInstance() {
@@ -296,7 +318,8 @@ public class CalculationKA extends Calculation {
 
     @Override
     public String toString() {
-        return "ПРОТОКОЛ РАБОТЫ ПРОГРАММЫ" + "\n" +
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("ПРОТОКОЛ РАБОТЫ ПРОГРАММЫ" + "\n" +
 
                 dataCommonParameters +
                 dataOETK +
@@ -325,13 +348,16 @@ public class CalculationKA extends Calculation {
                 dataKonstrKA +
                 dataBKS +
                 dataAFU +
-                dataOtherKA +
                 dataRezervKA +
                 dataSSD +
                 dataIPMV +
                 dataBOKZ +
                 dataDO +
-                dataDUS;
+                dataDUS);
+        for (DataElement dataElement:dataOtherKA.getOthers()){
+            stringBuilder.append(dataElement.toString());
+        }
+        return stringBuilder.toString();
     }
 
     public DataCommonParameters getDataCommonParameters() {

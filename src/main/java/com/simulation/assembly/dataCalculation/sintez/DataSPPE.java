@@ -28,4 +28,12 @@ public class DataSPPE  extends DataElement{
 //    public float v;     //обьем сппи
 //    public float w;     //мощность энергопотр. сппи
 //    public float j;     //момент инерции сппи
+
+    @Override
+    public String getStartDate() {
+        return "Скорость передачи нформации = " + sPI + "\n" +
+                "Удельная масса СППИ = " + umSPPI + "\n" +
+                "Удельная мощность СППИ = " + uwSPPI + "\n" +
+                "Плотность аппаратуры СППИ = " + plSPPI;
+    }
 }

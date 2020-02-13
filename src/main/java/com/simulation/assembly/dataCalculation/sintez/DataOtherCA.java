@@ -26,4 +26,11 @@ public class DataOtherCA  extends DataElement{
 //    public float v;
 //    public float w;
 //    public float j;
+
+    @Override
+    public String getStartDate() {
+        return "Доля по массе прочих элементов ЦА, % = " + kPrZA + "\n" +
+                "Удельная мощность электропотребления прочих элементов ЦА, Вт/кг = " + uwPrZA + "\n" +
+                "Средняя плотность компоновки прочих элементов ЦА = " + plPrZA;
+    }
 }

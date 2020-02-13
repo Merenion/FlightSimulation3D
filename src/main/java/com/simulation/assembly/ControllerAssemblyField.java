@@ -17,7 +17,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ControllerAssemblyField {
 
@@ -1203,7 +1205,7 @@ public class ControllerAssemblyField {
     public TableColumn<ViewElementKA, String> columnAllElementKA_w;
     public TableColumn<ViewElementKA, String> columnAllElementKA_j;
 
-    List<DataElement> allElementKA = new ArrayList<>();
+
 
     public void initTableAllElementKA() {
         try {
@@ -1218,7 +1220,7 @@ public class ControllerAssemblyField {
 
             ObservableList<ViewElementKA> list = FXCollections.observableArrayList();
 
-            for (DataElement dataElement : allElementKA) {
+            for (DataElement dataElement : CalculationKA.getInstance().getAllElementKA()) {
                 list.add(ViewElementKA.validateDataElementKA(dataElement));
             }
             tableRezultElementKA.setItems(list);

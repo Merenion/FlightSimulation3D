@@ -25,4 +25,12 @@ public class DataBAKES  extends DataElement{
 //    public float v;
 //    public float w;
 //    public float j;
+
+    @Override
+    public String getStartDate() {
+        return "Доля масса КИС от массы КА, % = " + kmKIS + "\n" +
+                "Удельная мощность энергопотребления приборов КИС, Вт/кг = " + uwKIS + "\n" +
+                "Средняя плотность компоновки приборов КИС, кг/м3 = " + plKIS;
+    }
+
 }

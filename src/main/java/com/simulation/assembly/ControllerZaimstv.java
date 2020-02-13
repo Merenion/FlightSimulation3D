@@ -14,6 +14,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ControllerZaimstv extends ControllerExport {
 
@@ -67,8 +69,9 @@ public class ControllerZaimstv extends ControllerExport {
     public Button bt_calcul_konstr;
     public Button bt_calcul_BKS;
     public Button bt_calcul_AFU;
+    public Button bt_calcul_Rezerv;
 
-    private void showWindow (String path,String title){
+    private void showWindow(String path, String title) {
         try {
             Stage stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource(path));
@@ -86,195 +89,236 @@ public class ControllerZaimstv extends ControllerExport {
 
 
     public void haveSSD(ActionEvent actionEvent) {
-        if (choise_have_SSD.isSelected()){
+        if (choise_have_SSD.isSelected()) {
             pane_zaimsv_ssd.setVisible(true);
-        }else {
+        } else {
             pane_zaimsv_ssd.setVisible(false);
         }
-        if (choise_non_SSD.isSelected()){
+        CalculationKA.getInstance().setDataSSD(new DataSSD());
+        if (choise_non_SSD.isSelected()) {
             TabTypeSintez.SSD.getDataElement().setNotUse(true);
             bt_calcul_SSD.setDisable(true);
-            allElementKA.remove(TabTypeSintez.SSD.getDataElement());
-        }else {
+            CalculationKA.getInstance().getAllElementKA().remove(TabTypeSintez.SSD.getDataElement());
+
+        } else {
             TabTypeSintez.SSD.getDataElement().setNotUse(false);
             bt_calcul_SSD.setDisable(false);
         }
-        CalculationKA.getInstance().setDataSSD(new DataSSD());
         showSSD();
+        removeElementFromTable(TabTypeSintez.SSD.getDataElement());
+
         initTableAllElementKA();
+        CalculationKA.getInstance().calculation(new Object());
+        ControllerAssembly.getInstance().showSinezKA();
     }
 
     public void haveIPMV(ActionEvent actionEvent) {
-        if (choise_have_IPMV.isSelected()){
+        if (choise_have_IPMV.isSelected()) {
             pane_zaimsv_IPMV.setVisible(true);
-        }else {
+        } else {
             pane_zaimsv_IPMV.setVisible(false);
         }
-        if (choise_non_IPMV.isSelected()){
+        CalculationKA.getInstance().setDataIPMV(new DataIPMV());
+        if (choise_non_IPMV.isSelected()) {
             TabTypeSintez.IPMV.getDataElement().setNotUse(true);
             bt_calcul_IPMV.setDisable(true);
-            allElementKA.remove(TabTypeSintez.IPMV.getDataElement());
-        }else {
+            CalculationKA.getInstance().getAllElementKA().remove(TabTypeSintez.IPMV.getDataElement());
+        } else {
             TabTypeSintez.IPMV.getDataElement().setNotUse(false);
             bt_calcul_IPMV.setDisable(false);
         }
-        CalculationKA.getInstance().setDataIPMV(new DataIPMV());
         showIPMV();
+        removeElementFromTable(TabTypeSintez.IPMV.getDataElement());
+
         initTableAllElementKA();
+        CalculationKA.getInstance().calculation(new Object());
+        ControllerAssembly.getInstance().showSinezKA();
     }
 
     public void haveBOKZ(ActionEvent actionEvent) {
-        if (choise_have_BOKZ.isSelected()){
+        if (choise_have_BOKZ.isSelected()) {
             pane_zaimsv_BOKZ.setVisible(true);
-        }else {
+        } else {
             pane_zaimsv_BOKZ.setVisible(false);
         }
-        if (choise_non_BOKZ.isSelected()){
+        CalculationKA.getInstance().setDataBOKZ(new DataBOKZ());
+        if (choise_non_BOKZ.isSelected()) {
             TabTypeSintez.BOKZ.getDataElement().setNotUse(true);
             bt_calcul_BOKZ.setDisable(true);
-            allElementKA.remove(TabTypeSintez.BOKZ.getDataElement());
-        }else {
+            CalculationKA.getInstance().getAllElementKA().remove(TabTypeSintez.BOKZ.getDataElement());
+        } else {
             TabTypeSintez.BOKZ.getDataElement().setNotUse(false);
             bt_calcul_BOKZ.setDisable(false);
         }
-        CalculationKA.getInstance().setDataBOKZ(new DataBOKZ());
         showBOKZ();
+        removeElementFromTable(TabTypeSintez.BOKZ.getDataElement());
+
         initTableAllElementKA();
+        CalculationKA.getInstance().calculation(new Object());
+        ControllerAssembly.getInstance().showSinezKA();
     }
 
     public void haveDO(ActionEvent actionEvent) {
-        if (choise_have_DO.isSelected()){
+        if (choise_have_DO.isSelected()) {
             pane_zaimsv_DO.setVisible(true);
-        }else {
+        } else {
             pane_zaimsv_DO.setVisible(false);
         }
-        if (choise_non_DO.isSelected()){
+        CalculationKA.getInstance().setDataDO(new DataDO());
+        if (choise_non_DO.isSelected()) {
             TabTypeSintez.DO.getDataElement().setNotUse(true);
             bt_calcul_DO.setDisable(true);
-            allElementKA.remove(TabTypeSintez.DO.getDataElement());
-        }else {
+            CalculationKA.getInstance().getAllElementKA().remove(TabTypeSintez.DO.getDataElement());
+        } else {
             TabTypeSintez.DO.getDataElement().setNotUse(false);
             bt_calcul_DO.setDisable(false);
         }
-        CalculationKA.getInstance().setDataDO(new DataDO());
         showDO();
+        removeElementFromTable(TabTypeSintez.DO.getDataElement());
+
         initTableAllElementKA();
+        CalculationKA.getInstance().calculation(new Object());
+        ControllerAssembly.getInstance().showSinezKA();
     }
 
     public void haveDUS(ActionEvent actionEvent) {
-        if (choise_have_DUS.isSelected()){
+        if (choise_have_DUS.isSelected()) {
             pane_zaimsv_DUS.setVisible(true);
-        }else {
+        } else {
             pane_zaimsv_DUS.setVisible(false);
         }
-        if (choise_non_DOU.isSelected()){
+        CalculationKA.getInstance().setDataDUS(new DataDUS());
+        if (choise_non_DOU.isSelected()) {
             TabTypeSintez.DUS.getDataElement().setNotUse(true);
             bt_calcul_DUS.setDisable(true);
-            allElementKA.remove(TabTypeSintez.DUS.getDataElement());
-        }else {
+            CalculationKA.getInstance().getAllElementKA().remove(TabTypeSintez.DUS.getDataElement());
+        } else {
             TabTypeSintez.DUS.getDataElement().setNotUse(false);
             bt_calcul_DUS.setDisable(false);
         }
-        CalculationKA.getInstance().setDataDUS(new DataDUS());
         showDUS();
+        removeElementFromTable(TabTypeSintez.DUS.getDataElement());
+
         initTableAllElementKA();
+        CalculationKA.getInstance().calculation(new Object());
+        ControllerAssembly.getInstance().showSinezKA();
     }
 
     public void haveBKS(ActionEvent actionEvent) {
-        if (choise_have_BKS.isSelected()){
+        if (choise_have_BKS.isSelected()) {
             pane_zaimsv_BKS.setVisible(true);
-        }else {
+        } else {
             pane_zaimsv_BKS.setVisible(false);
         }
-        if (choise_non_BKS.isSelected()){
+        CalculationKA.getInstance().setDataBKS(new DataBKS());
+        if (choise_non_BKS.isSelected()) {
             TabTypeSintez.BKS.getDataElement().setNotUse(true);
             bt_calcul_BKS.setDisable(true);
-            allElementKA.remove(TabTypeSintez.BKS.getDataElement());
-        }else {
+            CalculationKA.getInstance().getAllElementKA().remove(TabTypeSintez.BKS.getDataElement());
+        } else {
             TabTypeSintez.BKS.getDataElement().setNotUse(false);
             bt_calcul_BKS.setDisable(false);
         }
-        CalculationKA.getInstance().setDataBKS(new DataBKS());
         showBKS();
+        removeElementFromTable(TabTypeSintez.BKS.getDataElement());
+
         initTableAllElementKA();
+        CalculationKA.getInstance().calculation(new Object());
+        ControllerAssembly.getInstance().showSinezKA();
     }
 
     public void haveAFU(ActionEvent actionEvent) {
-        if (choise_have_AFU.isSelected()){
+        if (choise_have_AFU.isSelected()) {
             pane_zaimsv_AFU.setVisible(true);
-        }else {
+        } else {
             pane_zaimsv_AFU.setVisible(false);
         }
-        if (choise_non_AFU.isSelected()){
+        CalculationKA.getInstance().setDataAFU(new DataAFU());
+        if (choise_non_AFU.isSelected()) {
             TabTypeSintez.AFU.getDataElement().setNotUse(true);
             bt_calcul_AFU.setDisable(true);
-            allElementKA.remove(TabTypeSintez.AFU.getDataElement());
-        }else {
+            CalculationKA.getInstance().getAllElementKA().remove(TabTypeSintez.AFU.getDataElement());
+        } else {
             TabTypeSintez.AFU.getDataElement().setNotUse(false);
             bt_calcul_AFU.setDisable(false);
         }
-        CalculationKA.getInstance().setDataAFU(new DataAFU());
         showAFU();
+        removeElementFromTable(TabTypeSintez.AFU.getDataElement());
+
         initTableAllElementKA();
+        CalculationKA.getInstance().calculation(new Object());
+        ControllerAssembly.getInstance().showSinezKA();
     }
 
     public void haveOETK(ActionEvent actionEvent) {
 //        showWindow("/assembly/importOETK.fxml", "Заимсвованные элементы - ОЕТК");
-        if (choise_have_OETK.isSelected()){
+        if (choise_have_OETK.isSelected()) {
             pane_zaimsv_oetk.setVisible(true);
-        }else {
+        } else {
             pane_zaimsv_oetk.setVisible(false);
         }
-        if (choise_non_OETK.isSelected()){
+        CalculationKA.getInstance().setDataOETK(new DataOETK());
+        if (choise_non_OETK.isSelected()) {
             TabTypeSintez.OETK.getDataElement().setNotUse(true);
             bt_calcul_OETK.setDisable(true);
-            allElementKA.remove(TabTypeSintez.OETK.getDataElement());
-        }else {
+            CalculationKA.getInstance().getAllElementKA().remove(TabTypeSintez.OETK.getDataElement());
+        } else {
             TabTypeSintez.OETK.getDataElement().setNotUse(false);
             bt_calcul_OETK.setDisable(false);
         }
-        CalculationKA.getInstance().setDataOETK(new DataOETK());
         showOetkResult();
+        removeElementFromTable(TabTypeSintez.OETK.getDataElement());
+
         initTableAllElementKA();
+        CalculationKA.getInstance().calculation(new Object());
+        ControllerAssembly.getInstance().showSinezKA();
     }
 
     public void haveSPPE(ActionEvent actionEvent) {
-        if (choise_have_SPPE.isSelected()){
+        if (choise_have_SPPE.isSelected()) {
             pane_zaimsv_SPPE.setVisible(true);
-        }else {
+        } else {
             pane_zaimsv_SPPE.setVisible(false);
         }
-        if (choise_non_SPPE.isSelected()){
+        CalculationKA.getInstance().setDataSPPE(new DataSPPE());
+        if (choise_non_SPPE.isSelected()) {
             TabTypeSintez.SPPE.getDataElement().setNotUse(true);
             bt_calcul_SPPE.setDisable(true);
-            allElementKA.remove(TabTypeSintez.SPPE.getDataElement());
-        }else {
+            CalculationKA.getInstance().getAllElementKA().remove(TabTypeSintez.SPPE.getDataElement());
+        } else {
             TabTypeSintez.SPPE.getDataElement().setNotUse(false);
             bt_calcul_SPPE.setDisable(false);
         }
-        CalculationKA.getInstance().setDataSPPE(new DataSPPE());
         showSPEEResult();
+        removeElementFromTable(TabTypeSintez.SPPE.getDataElement());
+
         initTableAllElementKA();
+        CalculationKA.getInstance().calculation(new Object());
+        ControllerAssembly.getInstance().showSinezKA();
 //        showWindow("/assembly/importSPPE.fxml", "Заимсвованные элементы - "+ TabTypeSintez.SPPE.getName());
     }
 
     public void haveSSKM(ActionEvent actionEvent) {
-        if (choise_have_SSKM.isSelected()){
+        if (choise_have_SSKM.isSelected()) {
             pane_zaimsv_sskm.setVisible(true);
-        }else {
+        } else {
             pane_zaimsv_sskm.setVisible(false);
         }
-        if (choise_non_SSKM.isSelected()){
+        CalculationKA.getInstance().setDataSSKM(new DataSSKM());
+        if (choise_non_SSKM.isSelected()) {
             TabTypeSintez.SUD_SSKM.getDataElement().setNotUse(true);
             bt_calcul_SSKM.setDisable(true);
-            allElementKA.remove(TabTypeSintez.SUD_SSKM.getDataElement());
-        }else {
+            CalculationKA.getInstance().getAllElementKA().remove(TabTypeSintez.SUD_SSKM.getDataElement());
+        } else {
             TabTypeSintez.SUD_SSKM.getDataElement().setNotUse(false);
             bt_calcul_SSKM.setDisable(false);
         }
-        CalculationKA.getInstance().setDataSSKM(new DataSSKM());
         showSSKMResult();
+        removeElementFromTable(TabTypeSintez.SUD_SSKM.getDataElement());
+
         initTableAllElementKA();
+        CalculationKA.getInstance().calculation(new Object());
+        ControllerAssembly.getInstance().showSinezKA();
 //        showWindow("/assembly/importSSKM.fxml", "Заимсвованные элементы - "+ TabTypeSintez.SUD_SSKM.getName());
     }
 
@@ -282,314 +326,407 @@ public class ControllerZaimstv extends ControllerExport {
     }
 
     public void haveVRL(ActionEvent actionEvent) {
-        if (choise_have_VRL.isSelected()){
+        if (choise_have_VRL.isSelected()) {
             pane_zaimsv_VRL.setVisible(true);
-        }else {
+        } else {
             pane_zaimsv_VRL.setVisible(false);
         }
-        if (choise_non_VRL.isSelected()){
+        CalculationKA.getInstance().setDataVRL(new DataVRL());
+        if (choise_non_VRL.isSelected()) {
             TabTypeSintez.VRL.getDataElement().setNotUse(true);
             bt_calcul_VRL.setDisable(true);
-            allElementKA.remove(TabTypeSintez.VRL.getDataElement());
-        }else {
+            CalculationKA.getInstance().getAllElementKA().remove(TabTypeSintez.VRL.getDataElement());
+        } else {
             TabTypeSintez.VRL.getDataElement().setNotUse(false);
             bt_calcul_VRL.setDisable(false);
         }
-        CalculationKA.getInstance().setDataVRL(new DataVRL());
         showVRLResult();
+        removeElementFromTable(TabTypeSintez.VRL.getDataElement());
+
         initTableAllElementKA();
+        CalculationKA.getInstance().calculation(new Object());
+        ControllerAssembly.getInstance().showSinezKA();
     }
 
     public void haveOtherCA(ActionEvent actionEvent) {
-        if (choise_have_OtherCA.isSelected()){
+        if (choise_have_OtherCA.isSelected()) {
             pane_zaimsv_OtherCA.setVisible(true);
-        }else {
+        } else {
             pane_zaimsv_OtherCA.setVisible(false);
         }
-        if (choise_non_OtherCa.isSelected()){
+        CalculationKA.getInstance().setDataOtherCA(new DataOtherCA());
+        if (choise_non_OtherCa.isSelected()) {
             TabTypeSintez.OTHER_ELEMENTS_CA.getDataElement().setNotUse(true);
             bt_calcul_OtherCA.setDisable(true);
-            allElementKA.remove(TabTypeSintez.OTHER_ELEMENTS_CA.getDataElement());
-        }else {
+            CalculationKA.getInstance().getAllElementKA().remove(TabTypeSintez.OTHER_ELEMENTS_CA.getDataElement());
+        } else {
             TabTypeSintez.OTHER_ELEMENTS_CA.getDataElement().setNotUse(false);
             bt_calcul_OtherCA.setDisable(false);
         }
-        CalculationKA.getInstance().setDataOtherCA(new DataOtherCA());
         showOtherCAResult();
+        removeElementFromTable(TabTypeSintez.OTHER_ELEMENTS_CA.getDataElement());
+
         initTableAllElementKA();
+        CalculationKA.getInstance().calculation(new Object());
+        ControllerAssembly.getInstance().showSinezKA();
     }
 
     public void haveBVS(ActionEvent actionEvent) {
-        if (choise_have_BVS.isSelected()){
+        if (choise_have_BVS.isSelected()) {
             pane_zaimsv_BVS.setVisible(true);
-        }else {
+        } else {
             pane_zaimsv_BVS.setVisible(false);
         }
-        if (choise_non_BVS.isSelected()){
+        CalculationKA.getInstance().setDataBVS(new DataBVS());
+        if (choise_non_BVS.isSelected()) {
             TabTypeSintez.BVS.getDataElement().setNotUse(true);
             bt_calcul_BVS.setDisable(true);
-            allElementKA.remove(TabTypeSintez.BVS.getDataElement());
-        }else {
+            CalculationKA.getInstance().getAllElementKA().remove(TabTypeSintez.BVS.getDataElement());
+        } else {
             TabTypeSintez.BVS.getDataElement().setNotUse(false);
             bt_calcul_BVS.setDisable(false);
         }
-        CalculationKA.getInstance().setDataBVS(new DataBVS());
         showBVSResult();
+        removeElementFromTable(TabTypeSintez.BVS.getDataElement());
+
         initTableAllElementKA();
+        CalculationKA.getInstance().calculation(new Object());
+        ControllerAssembly.getInstance().showSinezKA();
     }
 
     public void haveSTKRP(ActionEvent actionEvent) {
-        if (choise_have_STKRP.isSelected()){
+        if (choise_have_STKRP.isSelected()) {
             pane_zaimsv_STKRP.setVisible(true);
-        }else {
+        } else {
             pane_zaimsv_STKRP.setVisible(false);
         }
-        if (choise_non_STKRP.isSelected()){
+        CalculationKA.getInstance().setDataSTKRP(new DataSTKRP());
+        if (choise_non_STKRP.isSelected()) {
             TabTypeSintez.STKRP.getDataElement().setNotUse(true);
             bt_calcul_STKRP.setDisable(true);
-            allElementKA.remove(TabTypeSintez.STKRP.getDataElement());
-        }else {
+            CalculationKA.getInstance().getAllElementKA().remove(TabTypeSintez.STKRP.getDataElement());
+        } else {
             TabTypeSintez.STKRP.getDataElement().setNotUse(false);
             bt_calcul_STKRP.setDisable(false);
         }
-        CalculationKA.getInstance().setDataSTKRP(new DataSTKRP());
         showSTKRPResult();
+        removeElementFromTable(TabTypeSintez.STKRP.getDataElement());
+
         initTableAllElementKA();
+        CalculationKA.getInstance().calculation(new Object());
+        ControllerAssembly.getInstance().showSinezKA();
     }
 
     public void haveBAKES(ActionEvent actionEvent) {
-        if (choise_have_KIS.isSelected()){
+        if (choise_have_KIS.isSelected()) {
             pane_zaimsv_KIS.setVisible(true);
-        }else {
+        } else {
             pane_zaimsv_KIS.setVisible(false);
         }
-        if (choise_non_KIS.isSelected()){
+        CalculationKA.getInstance().setDataBAKES(new DataBAKES());
+        if (choise_non_KIS.isSelected()) {
             TabTypeSintez.BAKIS.getDataElement().setNotUse(true);
             bt_calcul_BAKES.setDisable(true);
-            allElementKA.remove(TabTypeSintez.BAKIS.getDataElement());
-        }else {
+            CalculationKA.getInstance().getAllElementKA().remove(TabTypeSintez.BAKIS.getDataElement());
+        } else {
             TabTypeSintez.BAKIS.getDataElement().setNotUse(false);
             bt_calcul_BAKES.setDisable(false);
         }
-        CalculationKA.getInstance().setDataBAKES(new DataBAKES());
         showKISResult();
+        removeElementFromTable(TabTypeSintez.BAKIS.getDataElement());
+
         initTableAllElementKA();
+        CalculationKA.getInstance().calculation(new Object());
+        ControllerAssembly.getInstance().showSinezKA();
     }
 
     public void haveKIS(ActionEvent actionEvent) {
-        if (choise_have_KIS.isSelected()){
+        if (choise_have_KIS.isSelected()) {
             pane_zaimsv_KIS.setVisible(true);
-        }else {
+        } else {
             pane_zaimsv_KIS.setVisible(false);
         }
-        if (choise_non_KIS.isSelected()){
+        CalculationKA.getInstance().setDataBAKES(new DataBAKES());
+        if (choise_non_KIS.isSelected()) {
             TabTypeSintez.BAKIS.getDataElement().setNotUse(true);
             bt_calcul_BAKES.setDisable(true);
-            allElementKA.remove(TabTypeSintez.BAKIS.getDataElement());
-        }else {
+            CalculationKA.getInstance().getAllElementKA().remove(TabTypeSintez.BAKIS.getDataElement());
+        } else {
             TabTypeSintez.BAKIS.getDataElement().setNotUse(false);
             bt_calcul_BAKES.setDisable(false);
         }
-        CalculationKA.getInstance().setDataBAKES(new DataBAKES());
         showKISResult();
+        removeElementFromTable(TabTypeSintez.BAKIS.getDataElement());
+
         initTableAllElementKA();
+        CalculationKA.getInstance().calculation(new Object());
+        ControllerAssembly.getInstance().showSinezKA();
     }
 
     public void haveBETS(ActionEvent actionEvent) {
-        if (choise_have_BETS.isSelected()){
+        if (choise_have_BETS.isSelected()) {
             pane_zaimsv_BETS.setVisible(true);
-        }else {
+        } else {
             pane_zaimsv_BETS.setVisible(false);
         }
-        if (choise_non_BETS.isSelected()){
+        CalculationKA.getInstance().setDataBETS(new DataBETS());
+        if (choise_non_BETS.isSelected()) {
             TabTypeSintez.BETS.getDataElement().setNotUse(true);
             bt_calcul_BETS.setDisable(true);
-            allElementKA.remove(TabTypeSintez.BETS.getDataElement());
-        }else {
+            CalculationKA.getInstance().getAllElementKA().remove(TabTypeSintez.BETS.getDataElement());
+        } else {
             TabTypeSintez.BETS.getDataElement().setNotUse(false);
             bt_calcul_BETS.setDisable(false);
         }
-        CalculationKA.getInstance().setDataBETS(new DataBETS());
         showBETSResult();
+        removeElementFromTable(TabTypeSintez.BETS.getDataElement());
+
         initTableAllElementKA();
+        CalculationKA.getInstance().calculation(new Object());
+        ControllerAssembly.getInstance().showSinezKA();
     }
 
     public void haveOtherBKU(ActionEvent actionEvent) {
-        if (choise_have_OtherBKU.isSelected()){
+        if (choise_have_OtherBKU.isSelected()) {
             pane_zaimsv_OtherBKU.setVisible(true);
-        }else {
+        } else {
             pane_zaimsv_OtherBKU.setVisible(false);
         }
-        if (choise_non_OtherBKU.isSelected()){
+        CalculationKA.getInstance().setDataOtherBKU(new DataOtherBKU());
+        if (choise_non_OtherBKU.isSelected()) {
             TabTypeSintez.OTHER_ELEMENTS_BKU.getDataElement().setNotUse(true);
             bt_calcul_OtherBKU.setDisable(true);
-            allElementKA.remove(TabTypeSintez.OTHER_ELEMENTS_BKU.getDataElement());
-        }else {
+            CalculationKA.getInstance().getAllElementKA().remove(TabTypeSintez.OTHER_ELEMENTS_BKU.getDataElement());
+        } else {
             TabTypeSintez.OTHER_ELEMENTS_BKU.getDataElement().setNotUse(false);
             bt_calcul_OtherBKU.setDisable(false);
         }
-        CalculationKA.getInstance().setDataOtherBKU(new DataOtherBKU());
         showOtherBKUResult();
+        removeElementFromTable(TabTypeSintez.OTHER_ELEMENTS_BKU.getDataElement());
+
         initTableAllElementKA();
+        CalculationKA.getInstance().calculation(new Object());
+        ControllerAssembly.getInstance().showSinezKA();
     }
 
     public void haveSGK(ActionEvent actionEvent) {
-        if (choise_have_SGK.isSelected()){
+        if (choise_have_SGK.isSelected()) {
             pane_zaimsv_SGK.setVisible(true);
-        }else {
+        } else {
             pane_zaimsv_SGK.setVisible(false);
         }
-        if (choise_non_SGK.isSelected()){
+        CalculationKA.getInstance().setDataSudSGK(new DataSudSGK());
+        if (choise_non_SGK.isSelected()) {
             TabTypeSintez.SUD_SGK.getDataElement().setNotUse(true);
             bt_calcul_SGK.setDisable(true);
-            allElementKA.remove(TabTypeSintez.SUD_SGK.getDataElement());
-        }else {
+            CalculationKA.getInstance().getAllElementKA().remove(TabTypeSintez.SUD_SGK.getDataElement());
+        } else {
             TabTypeSintez.SUD_SGK.getDataElement().setNotUse(false);
             bt_calcul_SGK.setDisable(false);
         }
-        CalculationKA.getInstance().setDataSudSGK(new DataSudSGK());
         showSgkResult();
+        
+        removeElementFromTable(TabTypeSintez.SUD_SGK.getDataElement());
+
         initTableAllElementKA();
+        CalculationKA.getInstance().calculation(new Object());
+        ControllerAssembly.getInstance().showSinezKA();
     }
 
     public void havePasivSOTR(ActionEvent actionEvent) {
-        if (choise_have_Pasivv.isSelected()){
+        if (choise_have_Pasivv.isSelected()) {
             pane_zaimsv_Pasivv.setVisible(true);
-        }else {
+        } else {
             pane_zaimsv_Pasivv.setVisible(false);
         }
-        if (choise_non_PasivSOTR.isSelected()){
+        CalculationKA.getInstance().setDataPasivSOTR(new DataPasivSOTR());
+        if (choise_non_PasivSOTR.isSelected()) {
             TabTypeSintez.PASSIV_ELEMENT_SOTR.getDataElement().setNotUse(true);
             bt_calcul_PasivSOTR.setDisable(true);
-            allElementKA.remove(TabTypeSintez.PASSIV_ELEMENT_SOTR.getDataElement());
-        }else {
+            CalculationKA.getInstance().getAllElementKA().remove(TabTypeSintez.PASSIV_ELEMENT_SOTR.getDataElement());
+        } else {
             TabTypeSintez.PASSIV_ELEMENT_SOTR.getDataElement().setNotUse(false);
             bt_calcul_PasivSOTR.setDisable(false);
         }
-        CalculationKA.getInstance().setDataPasivSOTR(new DataPasivSOTR());
         showPasivSOTRResult();
+        removeElementFromTable(TabTypeSintez.PASSIV_ELEMENT_SOTR.getDataElement());
+
         initTableAllElementKA();
+        CalculationKA.getInstance().calculation(new Object());
+        ControllerAssembly.getInstance().showSinezKA();
     }
 
     public void havePasiv(ActionEvent actionEvent) {
-        if (choise_have_Pasivv.isSelected()){
-            pane_zaimsv_Pasivv.setVisible(true);
-        }else {
-            pane_zaimsv_Pasivv.setVisible(false);
-        }
-        if (choise_non_PasivSOTR.isSelected()){
-            TabTypeSintez.PASSIV_ELEMENT_SOTR.getDataElement().setNotUse(true);
-        }else {
-            TabTypeSintez.PASSIV_ELEMENT_SOTR.getDataElement().setNotUse(false);
-        }
+        havePasivSOTR(actionEvent);
     }
 
     public void haveActivSOTR(ActionEvent actionEvent) {
-        if (choise_have_Activ.isSelected()){
+        if (choise_have_Activ.isSelected()) {
             pane_zaimsv_Activ.setVisible(true);
-        }else {
+        } else {
             pane_zaimsv_Activ.setVisible(false);
         }
-        if (choise_non_ActivSOTR.isSelected()){
+        CalculationKA.getInstance().setDataActivSOTR(new DataActivSOTR());
+        if (choise_non_ActivSOTR.isSelected()) {
             TabTypeSintez.ACTIV_ELEMENT_SOTR.getDataElement().setNotUse(true);
-        }else {
+            bt_calcul_ActivSOTR.setDisable(true);
+            CalculationKA.getInstance().getAllElementKA().remove(TabTypeSintez.ACTIV_ELEMENT_SOTR.getDataElement());
+        } else {
             TabTypeSintez.ACTIV_ELEMENT_SOTR.getDataElement().setNotUse(false);
+            bt_calcul_ActivSOTR.setDisable(false);
         }
+        showActivSOTRResult();
+        removeElementFromTable(TabTypeSintez.ACTIV_ELEMENT_SOTR.getDataElement());
+
+        initTableAllElementKA();
+        CalculationKA.getInstance().calculation(new Object());
+        ControllerAssembly.getInstance().showSinezKA();
     }
 
     public void haveActiv(ActionEvent actionEvent) {
-        if (choise_have_Activ.isSelected()){
-            pane_zaimsv_Activ.setVisible(true);
-        }else {
-            pane_zaimsv_Activ.setVisible(false);
-        }
-        if (choise_non_ActivSOTR.isSelected()){
-            TabTypeSintez.ACTIV_ELEMENT_SOTR.getDataElement().setNotUse(true);
-        }else {
-            TabTypeSintez.ACTIV_ELEMENT_SOTR.getDataElement().setNotUse(false);
-        }
+        haveActivSOTR(actionEvent);
     }
 
 
     public void haveAcum(ActionEvent actionEvent) {
-        if (choise_have_Acum.isSelected()){
+        if (choise_have_Acum.isSelected()) {
             pane_zaimsv_Acum.setVisible(true);
-        }else {
+        } else {
             pane_zaimsv_Acum.setVisible(false);
         }
-        if (choise_non_AcumBet.isSelected()){
+        CalculationKA.getInstance().setDataAcumBetSEP(new DataAcumBetSEP());
+        if (choise_non_AcumBet.isSelected()) {
             TabTypeSintez.AKUM_BATTERIES.getDataElement().setNotUse(true);
-        }else {
+            bt_calcul_AcumBet.setDisable(true);
+            CalculationKA.getInstance().getAllElementKA().remove(TabTypeSintez.AKUM_BATTERIES.getDataElement());
+        } else {
             TabTypeSintez.AKUM_BATTERIES.getDataElement().setNotUse(false);
+            bt_calcul_AcumBet.setDisable(false);
         }
+        showAcumBat();
+        removeElementFromTable(TabTypeSintez.AKUM_BATTERIES.getDataElement());
+
+        initTableAllElementKA();
+        CalculationKA.getInstance().calculation(new Object());
+        ControllerAssembly.getInstance().showSinezKA();
     }
 
     public void haveKAS(ActionEvent actionEvent) {
-        if (choise_have_KAS.isSelected()){
+        if (choise_have_KAS.isSelected()) {
             pane_zaimsv_KAS.setVisible(true);
-        }else {
+        } else {
             pane_zaimsv_KAS.setVisible(false);
         }
-        if (choise_non_KAS.isSelected()){
+        CalculationKA.getInstance().setDataKAS(new DataKAS());
+        if (choise_non_KAS.isSelected()) {
             TabTypeSintez.KAS.getDataElement().setNotUse(true);
-        }else {
+            bt_calcul_KAS.setDisable(true);
+            CalculationKA.getInstance().getAllElementKA().remove(TabTypeSintez.KAS.getDataElement());
+        } else {
             TabTypeSintez.KAS.getDataElement().setNotUse(false);
+            bt_calcul_KAS.setDisable(false);
         }
+        showKAS();
+        removeElementFromTable(TabTypeSintez.KAS.getDataElement());
+
+        initTableAllElementKA();
+        CalculationKA.getInstance().calculation(new Object());
+        ControllerAssembly.getInstance().showSinezKA();
     }
 
     public void haveSun(ActionEvent actionEvent) {
-        if (choise_have_Sun.isSelected()){
+        if (choise_have_Sun.isSelected()) {
             pane_zaimsv_Sun.setVisible(true);
-        }else {
+        } else {
             pane_zaimsv_Sun.setVisible(false);
         }
-        if (choise_non_Sun.isSelected()){
+        CalculationKA.getInstance().setDataSumBetSEP(new DataSumBetSEP());
+        if (choise_non_Sun.isSelected()) {
             TabTypeSintez.SUN_BATTERIES.getDataElement().setNotUse(true);
-        }else {
+            bt_calcul_SunBet.setDisable(true);
+            CalculationKA.getInstance().getAllElementKA().remove(TabTypeSintez.SUN_BATTERIES.getDataElement());
+        } else {
             TabTypeSintez.SUN_BATTERIES.getDataElement().setNotUse(false);
+            bt_calcul_SunBet.setDisable(false);
         }
+        showSunBet();
+        removeElementFromTable(TabTypeSintez.SUN_BATTERIES.getDataElement());
+
+        initTableAllElementKA();
+        CalculationKA.getInstance().calculation(new Object());
+        ControllerAssembly.getInstance().showSinezKA();
     }
 
     public void havekdu(ActionEvent actionEvent) {
-        if (choise_have_kdu.isSelected()){
+        if (choise_have_kdu.isSelected()) {
             pane_zaimsv_kdu.setVisible(true);
-        }else {
+        } else {
             pane_zaimsv_kdu.setVisible(false);
         }
-        if (choise_non_KDU.isSelected()){
+        CalculationKA.getInstance().setDataKDU(new DataKDU());
+        if (choise_non_KDU.isSelected()) {
             TabTypeSintez.MASOGABARITN_AND_ENERGET_PARAMETERS.getDataElement().setNotUse(true);
-        }else {
+            bt_calcul_KDU.setDisable(true);
+            CalculationKA.getInstance().getAllElementKA().remove(TabTypeSintez.MASOGABARITN_AND_ENERGET_PARAMETERS.getDataElement());
+        } else {
             TabTypeSintez.MASOGABARITN_AND_ENERGET_PARAMETERS.getDataElement().setNotUse(false);
+            bt_calcul_KDU.setDisable(false);
         }
+        showKDU();
+        removeElementFromTable(TabTypeSintez.MASOGABARITN_AND_ENERGET_PARAMETERS.getDataElement());
+
+        initTableAllElementKA();
+        CalculationKA.getInstance().calculation(new Object());
+        ControllerAssembly.getInstance().showSinezKA();
     }
 
     public void haveKonstr(ActionEvent actionEvent) {
-        if (choise_have_Konstr.isSelected()){
+        if (choise_have_Konstr.isSelected()) {
             pane_zaimsv_Konstr.setVisible(true);
-        }else {
+        } else {
             pane_zaimsv_Konstr.setVisible(false);
         }
-        if (choise_non_Konstr.isSelected()){
+        CalculationKA.getInstance().setDataKonstrKA(new DataKonstrKA());
+        if (choise_non_Konstr.isSelected()) {
             TabTypeSintez.KONSTR.getDataElement().setNotUse(true);
-        }else {
+            bt_calcul_konstr.setDisable(true);
+            CalculationKA.getInstance().getAllElementKA().remove(TabTypeSintez.KONSTR.getDataElement());
+        } else {
             TabTypeSintez.KONSTR.getDataElement().setNotUse(false);
+            bt_calcul_konstr.setDisable(false);
         }
+        showKonstrKA();
+        removeElementFromTable(TabTypeSintez.KONSTR.getDataElement());
+
+        initTableAllElementKA();
+        CalculationKA.getInstance().calculation(new Object());
+        ControllerAssembly.getInstance().showSinezKA();
     }
 
     public void haveRezerv(ActionEvent actionEvent) {
-        if (choise_have_Rezerv.isSelected()){
+        if (choise_have_Rezerv.isSelected()) {
             pane_zaimsv_Rezerv.setVisible(true);
-        }else {
+        } else {
             pane_zaimsv_Rezerv.setVisible(false);
         }
-        if (choise_non_Rezerv.isSelected()){
+        CalculationKA.getInstance().setDataRezervKA(new DataRezervKA());
+        if (choise_non_Rezerv.isSelected()) {
             TabTypeSintez.RETHERV.getDataElement().setNotUse(true);
-        }else {
+            bt_calcul_Rezerv.setDisable(true);
+            CalculationKA.getInstance().getAllElementKA().remove(TabTypeSintez.RETHERV.getDataElement());
+        } else {
             TabTypeSintez.RETHERV.getDataElement().setNotUse(false);
+            bt_calcul_Rezerv.setDisable(false);
         }
+        showRezerv();
+        removeElementFromTable(TabTypeSintez.RETHERV.getDataElement());
+
+        initTableAllElementKA();
+        CalculationKA.getInstance().calculation(new Object());
+        ControllerAssembly.getInstance().showSinezKA();
     }
 
-    private void onLabelZaim (String name, Label label) {
+    private void onLabelZaim(String name, Label label) {
 //        if (name==null){
 //            label.setVisible(false);
 //            return;
@@ -598,96 +735,109 @@ public class ControllerZaimstv extends ControllerExport {
 //        label.setText("Выбран взаимсвованный элемент - "+name);
     }
 
-    public void onLabelZaimOetk (String name) {
-        onLabelZaim(name,labelZaimOetk);
+
+    private void removeElementFromTable (TabTypeSintez tabTypeSintez) {
+        List<DataElement> dataElements = new ArrayList<>(CalculationKA.getInstance().getAllElementKA());
+        for (DataElement dataElement:dataElements){
+            if (dataElement.getType().equals(tabTypeSintez))
+                CalculationKA.getInstance().getAllElementKA().remove(dataElement);
+        }
     }
 
-    public void onLabelZaimSppe (String name) {
-        onLabelZaim(name,labelZaimSppe);
+    private void removeElementFromTable (DataElement dataElement) {
+        removeElementFromTable(dataElement.getType());
+    }
+
+    public void onLabelZaimOetk(String name) {
+        onLabelZaim(name, labelZaimOetk);
+    }
+
+    public void onLabelZaimSppe(String name) {
+        onLabelZaim(name, labelZaimSppe);
     }
 
     public void onLabelZaimVrl(String name) {
-        onLabelZaim(name,labelZaimVrl);
+        onLabelZaim(name, labelZaimVrl);
     }
 
-    public void onLabelZaimOtherCa (String name) {
-        onLabelZaim(name,labelZaimOtherCA);
+    public void onLabelZaimOtherCa(String name) {
+        onLabelZaim(name, labelZaimOtherCA);
     }
 
-    public void onLabelZaimSgk (String name) {
-        onLabelZaim(name,labelZaimSgk);
+    public void onLabelZaimSgk(String name) {
+        onLabelZaim(name, labelZaimSgk);
     }
 
-    public void onLabelZaimSskm (String name) {
-        onLabelZaim(name,labelZaimSSKM);
+    public void onLabelZaimSskm(String name) {
+        onLabelZaim(name, labelZaimSSKM);
     }
 
-    public void onLabelZaimStkrp (String name) {
-        onLabelZaim(name,labelZaimStkrp);
+    public void onLabelZaimStkrp(String name) {
+        onLabelZaim(name, labelZaimStkrp);
     }
 
-    public void onLabelZaimBaKis (String name) {
-        onLabelZaim(name,labelZaimBaKis);
+    public void onLabelZaimBaKis(String name) {
+        onLabelZaim(name, labelZaimBaKis);
     }
 
-    public void onLabelZaimBets (String name) {
-        onLabelZaim(name,labelZaimBets);
+    public void onLabelZaimBets(String name) {
+        onLabelZaim(name, labelZaimBets);
     }
 
-    public void onLabelZaimBvs (String name) {
-        onLabelZaim(name,labelZaimBvs);
+    public void onLabelZaimBvs(String name) {
+        onLabelZaim(name, labelZaimBvs);
     }
 
-    public void onLabelZaimOtherBku (String name) {
-        onLabelZaim(name,labelZaimOtherBku);
+    public void onLabelZaimOtherBku(String name) {
+        onLabelZaim(name, labelZaimOtherBku);
     }
 
-    public void onLabelZaimOtherPasivSotr (String name) {
-        onLabelZaim(name,labelZaimPasivSotr);
+    public void onLabelZaimOtherPasivSotr(String name) {
+        onLabelZaim(name, labelZaimPasivSotr);
     }
 
     public void onLabelZaimActivSotr(String name) {
-        onLabelZaim(name,labelZaimActivSotr);
+        onLabelZaim(name, labelZaimActivSotr);
     }
 
-    public void onLabelZaimOtherEleHarSep (String name) {
-        onLabelZaim(name,labelZaimElHarSep);
+    public void onLabelZaimOtherEleHarSep(String name) {
+        onLabelZaim(name, labelZaimElHarSep);
     }
 
     public void onLabelZaimAcumBet(String name) {
-        onLabelZaim(name,labelZaimAcumBet);
+        onLabelZaim(name, labelZaimAcumBet);
     }
 
     public void onLabelZaimKas(String name) {
-        onLabelZaim(name,labelZaimKas);
+        onLabelZaim(name, labelZaimKas);
     }
 
-    public void onLabelZaimSunBet (String name) {
-        onLabelZaim(name,labelZaimSunBet);
+    public void onLabelZaimSunBet(String name) {
+        onLabelZaim(name, labelZaimSunBet);
     }
 
-    public void onLabelZaimSunSpeed (String name) {
-        onLabelZaim(name,labelZaimSpeed);
+    public void onLabelZaimSunSpeed(String name) {
+        onLabelZaim(name, labelZaimSpeed);
     }
 
-    public void onLabelZaimMassT (String name) {
-        onLabelZaim(name,labelZaimMassT);
+    public void onLabelZaimMassT(String name) {
+        onLabelZaim(name, labelZaimMassT);
     }
 
-    public void onLabelZaimKDU (String name) {
-        onLabelZaim(name,labelZaimKDU);
+    public void onLabelZaimKDU(String name) {
+        onLabelZaim(name, labelZaimKDU);
     }
 
-    public void onLabelZaimKonstr (String name) {
-        onLabelZaim(name,labelZaimKonstr);
+    public void onLabelZaimKonstr(String name) {
+        onLabelZaim(name, labelZaimKonstr);
     }
 
-    public void onLabelZaimBKSandAfu (String name) {
-        onLabelZaim(name,labelZaimBksAndAfu);
+    public void onLabelZaimBKSandAfu(String name) {
+        onLabelZaim(name, labelZaimBksAndAfu);
     }
 
-    public void onLabelZaimRezerv (String name) {
-        onLabelZaim(name,labelZaimRezerv);
+    public void onLabelZaimRezerv(String name) {
+        onLabelZaim(name, labelZaimRezerv);
     }
 
     public void actionShowParamRezult(ActionEvent actionEvent) {

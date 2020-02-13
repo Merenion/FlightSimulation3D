@@ -22,6 +22,14 @@ public class DataVRL  extends DataElement{
     public float uwVRL;      //удельная мощность ВРЛ
     public float plVRL;    //Плотность аппаратуры ВРЛ
 
+    @Override
+    public String getStartDate() {
+        return "Скорость передачи нформации = " + sPI + "\n" +
+                "удельная масса ВРЛ = " + umVRL + "\n" +
+                "удельная мощность ВРЛ = " + uwVRL + "\n" +
+                "Плотность аппаратуры ВРЛ = " + plVRL;
+    }
+
     //выходные
 //    public float m;
 //    public float v;

@@ -2,6 +2,7 @@ package com.simulation.assembly.controllersImport.add;
 
 import com.simulation.assembly.ControllerAssembly;
 import com.simulation.assembly.SaveXmlObject;
+import com.simulation.assembly.TabTypeSintez;
 import com.simulation.assembly.ValidateValue;
 import com.simulation.assembly.dataCalculation.sintez.DataElement;
 import com.simulation.assembly.dataCalculation.sintez.DataOtherKA;
@@ -107,6 +108,12 @@ public class AddElementOtherKA extends AddElement{
                 data.j_calculation=true;
             }
             data.nameElement = nameElement.getText();
+            for (DataOtherKA dataOtherKA:((DataOtherKA)TabTypeSintez.OTHER_ELEMENT_KA.getDataElement()).getOthers()) {
+                if (dataOtherKA.getNameElement().equals(data.nameElement)){
+                    ControllerAssembly.showError("Элемент с таким названием уже добавлен");
+                    return;
+                }
+            }
         } catch (Exception e) {
             ControllerAssembly.showError("Не верно введеные данные.");
             return;

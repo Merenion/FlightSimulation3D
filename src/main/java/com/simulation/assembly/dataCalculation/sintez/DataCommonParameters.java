@@ -37,6 +37,12 @@ public class DataCommonParameters  extends DataElement{
     public  float jKA;
     public  float wKA_wsSEP; //Среднесуточная мощность целевой аппаратуры, Вт
 
+    @Override
+    public String getStartDate() {
+        return "Коэффициент рациональности компоновки = " + krkKA + "\n" +
+                "Плотность заполнения приборных отсеков аппаратурой % = " + kpoPO + "\n" +
+                "Удлинение КА = " + udlKA;
+    }
 
     @Override
     public String toString() {

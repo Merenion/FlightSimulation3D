@@ -29,7 +29,12 @@ public class ImportElectrHarSEP extends ImportElement {
 
     private List<DataElement> listLoad = new ArrayList<>();
 
-    private TabTypeSintez tabTypeSintez = TabTypeSintez.ELECTROTEH_PARAM;                                               //
+    private TabTypeSintez tabTypeSintez = TabTypeSintez.ELECTROTEH_PARAM;                                                     //
+
+    public TabTypeSintez getTabTypeSintez() {
+        return tabTypeSintez;
+    }
+    //
 
     @Override
     public void addElement(ActionEvent actionEvent) {
@@ -62,6 +67,9 @@ public class ImportElectrHarSEP extends ImportElement {
 
     @Override
     public void selectElement(ActionEvent actionEvent) {
+        if (!ControllerAssembly.checkstartDataKAandShowErrorMess()) {
+            return;
+        }
         DataElectHaraktSEP data = (DataElectHaraktSEP) tableChoise.getSelectionModel().getSelectedItem();                       //
         if (data==null){
             ControllerAssembly.showError("Не выбрано не одного элемента.");
@@ -80,6 +88,7 @@ public class ImportElectrHarSEP extends ImportElement {
         Stage stage = (Stage) btSelect.getScene().getWindow();
         stage.close();
         ControllerAssembly.getInstance().onLabelZaimOtherEleHarSep(data.getNameElement());
+        super.selectElement(actionEvent);
     }
 
     @FXML

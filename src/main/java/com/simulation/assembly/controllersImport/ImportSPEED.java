@@ -25,7 +25,12 @@ public class ImportSPEED extends ImportElement {
 
     private List<DataElement> listLoad = new ArrayList<>();
 
-    private TabTypeSintez tabTypeSintez = TabTypeSintez.SPEED;                                               //
+    private TabTypeSintez tabTypeSintez = TabTypeSintez.SPEED;                                                      //
+
+    public TabTypeSintez getTabTypeSintez() {
+        return tabTypeSintez;
+    }
+    //
 
     @Override
     public void addElement(ActionEvent actionEvent) {
@@ -54,6 +59,9 @@ public class ImportSPEED extends ImportElement {
 
     @Override
     public void selectElement(ActionEvent actionEvent) {
+        if (!ControllerAssembly.checkstartDataKAandShowErrorMess()) {
+            return;
+        }
         DataSpeed data = (DataSpeed) tableChoise.getSelectionModel().getSelectedItem();                       //
         if (data==null){
             ControllerAssembly.showError("Не выбрано не одного элемента.");
@@ -72,6 +80,7 @@ public class ImportSPEED extends ImportElement {
         Stage stage = (Stage) btSelect.getScene().getWindow();
         stage.close();
         ControllerAssembly.getInstance().onLabelZaimSunSpeed(data.getNameElement());
+        super.selectElement(actionEvent);
     }
 
     @FXML

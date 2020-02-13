@@ -25,4 +25,11 @@ public class DataSTKRP  extends DataElement{
 //    public float v;
 //    public float w;
 //    public float j;
+
+    @Override
+    public String getStartDate() {
+        return "Доля масса СТКРП от массы КА, % = " + kmSTKRP + "\n" +
+                "Удельная мощность энергопотребления, Вт/кг = " + uwSTKRP + "\n" +
+                "Средняя плотность СТКРП, кг/м3 = " + plSTKRP;
+    }
 }

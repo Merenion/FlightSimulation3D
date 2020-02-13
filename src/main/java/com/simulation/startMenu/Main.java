@@ -24,6 +24,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/startMenu/StartMenu.fxml"));
         stage.setTitle("Выбор подпрограммы");
         Scene scene= new Scene(root,1019,605);
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }

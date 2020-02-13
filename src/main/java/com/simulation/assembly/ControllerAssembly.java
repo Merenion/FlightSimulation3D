@@ -10,6 +10,7 @@ import com.simulation.assembly.validateRestrictionSimple.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -97,6 +98,7 @@ public class ControllerAssembly extends ControllerImport {
         calculationDUS = new CalculationDUS();
         calculationBKS = new CalkulationBKS();
         calculationAFU = new CalkulationAFU();
+        CalculationKA.getInstance().init();
 
         controllerAssembly = this;
 
@@ -384,6 +386,14 @@ public class ControllerAssembly extends ControllerImport {
         showConsoleSintezDebug();
     }
 
+    public static boolean checkstartDataKAandShowErrorMess () {
+        if (((DataCommonParameters) TabTypeSintez.RESULT.getDataElement()).krkKA==0 && ((DataCommonParameters) TabTypeSintez.RESULT.getDataElement()).kpoPO==0 && ((DataCommonParameters) TabTypeSintez.RESULT.getDataElement()).udlKA==0){
+            ControllerAssembly.showError("Коэффициент рациональности компоновки или\nплотность заполнения аппаратурой или\nудлинение КА не задано.");
+            return false;
+        }
+        return true;
+    }
+
     /**
      * Кнопка ОЕТК - синтез
      *
@@ -392,12 +402,15 @@ public class ControllerAssembly extends ControllerImport {
     public void actionCal_OETK(ActionEvent actionEvent) {
         try {
             if (validateOETK()) {
+                if (!checkstartDataKAandShowErrorMess()){
+                    return;
+                }
                 ControllerAssembly.getInstance().onLabelZaimOetk(null);
                 calculationOETK.getType().getDataElement().setImportData(false);
                 calculationOETK.calculation(CalculationKA.getInstance().getDataOETK());
                 onProgressOetk(true);
                 showOetkResult();
-                allElementKA.add(calculationOETK.getType().getDataElement());
+                CalculationKA.getInstance().getAllElementKA().add(calculationOETK.getType().getDataElement());
                 initTableAllElementKA();
                 actionShowParamRezult(new ActionEvent());
             }
@@ -415,12 +428,15 @@ public class ControllerAssembly extends ControllerImport {
     public void actionCal_SGK(ActionEvent actionEvent) {
         try {
             if (validateSGK()) {
+                if (!checkstartDataKAandShowErrorMess()){
+                    return;
+                }
                 ControllerAssembly.getInstance().onLabelZaimSgk(null);
                 calculationSGK.getType().getDataElement().setImportData(false);
                 calculationSGK.calculation(CalculationKA.getInstance().getDataSudSGK());
                 showSgkResult();
 
-                allElementKA.add(calculationSGK.getType().getDataElement());
+                CalculationKA.getInstance().getAllElementKA().add(calculationSGK.getType().getDataElement());
                 initTableAllElementKA();
                 actionShowParamRezult(new ActionEvent());
             }
@@ -475,12 +491,15 @@ public class ControllerAssembly extends ControllerImport {
     public void actionCal_SPPE(ActionEvent actionEvent) {
         try {
             if (validateSPPE()) {
+                if (!checkstartDataKAandShowErrorMess()){
+                    return;
+                }
                 ControllerAssembly.getInstance().onLabelZaimSppe(null);
                 calculationSPPE.getType().getDataElement().setImportData(false);
                 calculationSPPE.calculation(CalculationKA.getInstance().getDataSPPE());
                 onProgressSppe(true);
                 showSPEEResult();
-                allElementKA.add(calculationSPPE.getType().getDataElement());
+                CalculationKA.getInstance().getAllElementKA().add(calculationSPPE.getType().getDataElement());
                 initTableAllElementKA();
                 actionShowParamRezult(new ActionEvent());
             }
@@ -493,12 +512,15 @@ public class ControllerAssembly extends ControllerImport {
     public void actionCal_VRL(ActionEvent actionEvent) {
         try {
             if (validateVRL()) {
+                if (!checkstartDataKAandShowErrorMess()){
+                    return;
+                }
                 ControllerAssembly.getInstance().onLabelZaimVrl(null);
                 calculationVRL.getType().getDataElement().setImportData(false);
                 calculationVRL.calculation(CalculationKA.getInstance().getDataVRL());
                 onProgressVrl(true);
                 showVRLResult();
-                allElementKA.add(calculationVRL.getType().getDataElement());
+                CalculationKA.getInstance().getAllElementKA().add(calculationVRL.getType().getDataElement());
                 initTableAllElementKA();
                 actionShowParamRezult(new ActionEvent());
             }
@@ -511,12 +533,15 @@ public class ControllerAssembly extends ControllerImport {
     public void actionCal_OtherCa(ActionEvent actionEvent) {
         try {
             if (validateOtherCA()) {
+                if (!checkstartDataKAandShowErrorMess()){
+                    return;
+                }
                 ControllerAssembly.getInstance().onLabelZaimOtherCa(null);
                 calculationOtherCA.getType().getDataElement().setImportData(false);
                 calculationOtherCA.calculation(CalculationKA.getInstance().getDataOtherCA());
                 onProgressOtherCa(true);
                 showOtherCAResult();
-                allElementKA.add(calculationOtherCA.getType().getDataElement());
+                CalculationKA.getInstance().getAllElementKA().add(calculationOtherCA.getType().getDataElement());
                 initTableAllElementKA();
                 actionShowParamRezult(new ActionEvent());
             }
@@ -528,6 +553,9 @@ public class ControllerAssembly extends ControllerImport {
 
     public void actionCal_CA(ActionEvent actionEvent) {
         try {
+            if (!checkstartDataKAandShowErrorMess()){
+                return;
+            }
             calculationCA.getType().getDataElement().setImportData(false);
             calculationCA.calculation(CalculationKA.getInstance().getDataCa());
             onProgressCa(true);
@@ -542,11 +570,14 @@ public class ControllerAssembly extends ControllerImport {
     public void bt_calcul_SSKM(ActionEvent actionEvent) {
         try {
             if (validateSSKM()) {
+                if (!checkstartDataKAandShowErrorMess()){
+                    return;
+                }
                 ControllerAssembly.getInstance().onLabelZaimSskm(null);
                 calculationSSKM.getType().getDataElement().setImportData(false);
                 calculationSSKM.calculation(CalculationKA.getInstance().getDataSSKM());
                 showSSKMResult();
-                allElementKA.add(calculationSSKM.getType().getDataElement());
+                CalculationKA.getInstance().getAllElementKA().add(calculationSSKM.getType().getDataElement());
                 initTableAllElementKA();
                 actionShowParamRezult(new ActionEvent());
             }
@@ -559,11 +590,14 @@ public class ControllerAssembly extends ControllerImport {
     public void bt_calcul_STKRP(ActionEvent actionEvent) {
         try {
             if (validateSTKRP()) {
+                if (!checkstartDataKAandShowErrorMess()){
+                    return;
+                }
                 ControllerAssembly.getInstance().onLabelZaimStkrp(null);
                 calculationSTKRP.getType().getDataElement().setImportData(false);
                 calculationSTKRP.calculation(CalculationKA.getInstance().getDataSTKRP());
                 showSTKRPResult();
-                allElementKA.add(calculationSTKRP.getType().getDataElement());
+                CalculationKA.getInstance().getAllElementKA().add(calculationSTKRP.getType().getDataElement());
                 initTableAllElementKA();
                 actionShowParamRezult(new ActionEvent());
             }
@@ -576,11 +610,14 @@ public class ControllerAssembly extends ControllerImport {
     public void bt_calcul_BAKES(ActionEvent actionEvent) {
         try {
             if (validateBAKES()) {
+                if (!checkstartDataKAandShowErrorMess()){
+                    return;
+                }
                 ControllerAssembly.getInstance().onLabelZaimBaKis(null);
                 calculationBAKES.getType().getDataElement().setImportData(false);
                 calculationBAKES.calculation(CalculationKA.getInstance().getDataBAKES());
                 showKISResult();
-                allElementKA.add(calculationBAKES.getType().getDataElement());
+                CalculationKA.getInstance().getAllElementKA().add(calculationBAKES.getType().getDataElement());
                 initTableAllElementKA();
                 actionShowParamRezult(new ActionEvent());
             }
@@ -593,11 +630,14 @@ public class ControllerAssembly extends ControllerImport {
     public void bt_calcul_BETS(ActionEvent actionEvent) {
         try {
             if (validateBETS()) {
+                if (!checkstartDataKAandShowErrorMess()){
+                    return;
+                }
                 ControllerAssembly.getInstance().onLabelZaimBets(null);
                 calculationBETS.getType().getDataElement().setImportData(false);
                 calculationBETS.calculation(CalculationKA.getInstance().getDataBETS());
                 showBETSResult();
-                allElementKA.add(calculationBETS.getType().getDataElement());
+                CalculationKA.getInstance().getAllElementKA().add(calculationBETS.getType().getDataElement());
                 initTableAllElementKA();
                 actionShowParamRezult(new ActionEvent());
             }
@@ -610,11 +650,14 @@ public class ControllerAssembly extends ControllerImport {
     public void bt_calcul_BVS(ActionEvent actionEvent) {
         try {
             if (validateBVS()) {
+                if (!checkstartDataKAandShowErrorMess()){
+                    return;
+                }
                 ControllerAssembly.getInstance().onLabelZaimBvs(null);
                 calculationBVS.getType().getDataElement().setImportData(false);
                 calculationBVS.calculation(CalculationKA.getInstance().getDataBVS());
                 showBVSResult();
-                allElementKA.add(calculationBVS.getType().getDataElement());
+                CalculationKA.getInstance().getAllElementKA().add(calculationBVS.getType().getDataElement());
                 initTableAllElementKA();
                 actionShowParamRezult(new ActionEvent());
             }
@@ -627,11 +670,14 @@ public class ControllerAssembly extends ControllerImport {
     public void bt_calcul_OtherBKU(ActionEvent actionEvent) {
         try {
             if (validateOtherBKU()) {
+                if (!checkstartDataKAandShowErrorMess()){
+                    return;
+                }
                 ControllerAssembly.getInstance().onLabelZaimOtherBku(null);
                 calculationOtherBKU.getType().getDataElement().setImportData(false);
                 calculationOtherBKU.calculation(CalculationKA.getInstance().getDataOtherBKU());
                 showOtherBKUResult();
-                allElementKA.add(calculationOtherBKU.getType().getDataElement());
+                CalculationKA.getInstance().getAllElementKA().add(calculationOtherBKU.getType().getDataElement());
                 initTableAllElementKA();
                 actionShowParamRezult(new ActionEvent());
             }
@@ -643,6 +689,9 @@ public class ControllerAssembly extends ControllerImport {
 
     public void bt_calcul_BKU(ActionEvent actionEvent) {
         try {
+            if (!checkstartDataKAandShowErrorMess()){
+                return;
+            }
             ControllerAssembly.getInstance().onLabelZaimOtherBku(null);
             calculationBKU.getType().getDataElement().setImportData(false);
             calculationBKU.calculation(CalculationKA.getInstance().getDataBKU());
@@ -656,11 +705,14 @@ public class ControllerAssembly extends ControllerImport {
     public void bt_calcul_PasivSOTR(ActionEvent actionEvent) {
         try {
             if (validatePasivSOTR()) {
+                if (!checkstartDataKAandShowErrorMess()){
+                    return;
+                }
                 ControllerAssembly.getInstance().onLabelZaimOtherPasivSotr(null);
                 calculationPasivSOTR.getType().getDataElement().setImportData(false);
                 calculationPasivSOTR.calculation(CalculationKA.getInstance().getDataPasivSOTR());
                 showPasivSOTRResult();
-                allElementKA.add(calculationPasivSOTR.getType().getDataElement());
+                CalculationKA.getInstance().getAllElementKA().add(calculationPasivSOTR.getType().getDataElement());
                 initTableAllElementKA();
                 actionShowParamRezult(new ActionEvent());
             }
@@ -673,11 +725,14 @@ public class ControllerAssembly extends ControllerImport {
     public void bt_calcul_ActivSOTR(ActionEvent actionEvent) {
         try {
             if (validateActivSOTR()) {
+                if (!checkstartDataKAandShowErrorMess()){
+                    return;
+                }
                 ControllerAssembly.getInstance().onLabelZaimActivSotr(null);
                 calculationActivSOTR.getType().getDataElement().setImportData(false);
                 calculationActivSOTR.calculation(CalculationKA.getInstance().getDataActivSOTR());
                 showActivSOTRResult();
-                allElementKA.add(calculationActivSOTR.getType().getDataElement());
+                CalculationKA.getInstance().getAllElementKA().add(calculationActivSOTR.getType().getDataElement());
                 initTableAllElementKA();
                 actionShowParamRezult(new ActionEvent());
             }
@@ -689,6 +744,9 @@ public class ControllerAssembly extends ControllerImport {
 
     public void bt_calcul_SOTR(ActionEvent actionEvent) {
         try {
+            if (!checkstartDataKAandShowErrorMess()){
+                return;
+            }
             calculationSOTR.getType().getDataElement().setImportData(false);
             calculationSOTR.calculation(CalculationKA.getInstance().getDataSOTR());
             showSOTRResult();
@@ -701,6 +759,9 @@ public class ControllerAssembly extends ControllerImport {
     public void bt_calcul_electrTehnSEP(ActionEvent actionEvent) {
         try {
             if (validateElectTehHarakSEP()) {
+                if (!checkstartDataKAandShowErrorMess()){
+                    return;
+                }
                 ControllerAssembly.getInstance().onLabelZaimOtherEleHarSep(null);
                 calculationElectrTehnSEP.getType().getDataElement().setImportData(false);
                 calculationElectrTehnSEP.calculation(CalculationKA.getInstance().getDataElectHaraktSEP());
@@ -715,11 +776,14 @@ public class ControllerAssembly extends ControllerImport {
     public void bt_calcul_AcumBet(ActionEvent actionEvent) {
         try {
             if (validateAcumBat()) {
+                if (!checkstartDataKAandShowErrorMess()){
+                    return;
+                }
                 ControllerAssembly.getInstance().onLabelZaimAcumBet(null);
                 calculationAcumBet.getType().getDataElement().setImportData(false);
                 calculationAcumBet.calculation(CalculationKA.getInstance().getDataAcumBetSEP());
                 showAcumBat();
-                allElementKA.add(calculationAcumBet.getType().getDataElement());
+                CalculationKA.getInstance().getAllElementKA().add(calculationAcumBet.getType().getDataElement());
                 initTableAllElementKA();
                 actionShowParamRezult(new ActionEvent());
             }
@@ -732,11 +796,14 @@ public class ControllerAssembly extends ControllerImport {
     public void bt_calcul_KAS(ActionEvent actionEvent) {
         try {
             if (validateKAS()) {
+                if (!checkstartDataKAandShowErrorMess()){
+                    return;
+                }
                 ControllerAssembly.getInstance().onLabelZaimKas(null);
                 calculationKAS.getType().getDataElement().setImportData(false);
                 calculationKAS.calculation(CalculationKA.getInstance().getDataKAS());
                 showKAS();
-                allElementKA.add(calculationKAS.getType().getDataElement());
+                CalculationKA.getInstance().getAllElementKA().add(calculationKAS.getType().getDataElement());
                 initTableAllElementKA();
                 actionShowParamRezult(new ActionEvent());
             }
@@ -749,11 +816,14 @@ public class ControllerAssembly extends ControllerImport {
     public void bt_calcul_SunBet(ActionEvent actionEvent) {
         try {
             if (validateSunBet()) {
+                if (!checkstartDataKAandShowErrorMess()){
+                    return;
+                }
                 ControllerAssembly.getInstance().onLabelZaimSunBet(null);
                 calculationSUNbet.getType().getDataElement().setImportData(false);
                 calculationSUNbet.calculation(CalculationKA.getInstance().getDataSumBetSEP());
                 showSunBet();
-                allElementKA.add(calculationSUNbet.getType().getDataElement());
+                CalculationKA.getInstance().getAllElementKA().add(calculationSUNbet.getType().getDataElement());
                 initTableAllElementKA();
                 actionShowParamRezult(new ActionEvent());
             }
@@ -766,6 +836,9 @@ public class ControllerAssembly extends ControllerImport {
     public void bt_calcul_speed(ActionEvent actionEvent) {
         try {
             if (validateSpeed()) {
+                if (!checkstartDataKAandShowErrorMess()){
+                    return;
+                }
                 ControllerAssembly.getInstance().onLabelZaimSunSpeed(null);
                 calculationSpeed.getType().getDataElement().setImportData(false);
                 calculationSpeed.calculation(CalculationKA.getInstance().getDataSpeed());
@@ -780,11 +853,14 @@ public class ControllerAssembly extends ControllerImport {
     public void bt_calcul_mTop(ActionEvent actionEvent) {
         try {
             if (validateMassTopl()) {
+                if (!checkstartDataKAandShowErrorMess()){
+                    return;
+                }
                 ControllerAssembly.getInstance().onLabelZaimMassT(null);
                 calculationMTop.getType().getDataElement().setImportData(false);
                 calculationMTop.calculation(CalculationKA.getInstance().getDataMassTopl());
                 showMassTopl();
-                allElementKA.add(calculationMTop.getType().getDataElement());
+                CalculationKA.getInstance().getAllElementKA().add(calculationMTop.getType().getDataElement());
                 initTableAllElementKA();
                 actionShowParamRezult(new ActionEvent());
             }
@@ -797,11 +873,14 @@ public class ControllerAssembly extends ControllerImport {
     public void bt_calcul_KDU(ActionEvent actionEvent) {
         try {
             if (validateKDU()) {
+                if (!checkstartDataKAandShowErrorMess()){
+                    return;
+                }
                 ControllerAssembly.getInstance().onLabelZaimKDU(null);
                 calculationKDU.getType().getDataElement().setImportData(false);
                 calculationKDU.calculation(CalculationKA.getInstance().getDataKDU());
                 showKDU();
-                allElementKA.add(calculationKDU.getType().getDataElement());
+                CalculationKA.getInstance().getAllElementKA().add(calculationKDU.getType().getDataElement());
                 initTableAllElementKA();
                 actionShowParamRezult(new ActionEvent());
             }
@@ -814,11 +893,14 @@ public class ControllerAssembly extends ControllerImport {
     public void bt_calcul_konstr(ActionEvent actionEvent) {
         try {
             if (validateKonstrKA()) {
+                if (!checkstartDataKAandShowErrorMess()){
+                    return;
+                }
                 ControllerAssembly.getInstance().onLabelZaimKonstr(null);
                 calculationKonstrKA.getType().getDataElement().setImportData(false);
                 calculationKonstrKA.calculation(CalculationKA.getInstance().getDataKonstrKA());
                 showKonstrKA();
-                allElementKA.add(calculationKonstrKA.getType().getDataElement());
+                CalculationKA.getInstance().getAllElementKA().add(calculationKonstrKA.getType().getDataElement());
                 initTableAllElementKA();
                 actionShowParamRezult(new ActionEvent());
             }
@@ -844,11 +926,14 @@ public class ControllerAssembly extends ControllerImport {
     public void bt_calcul_Rezerv(ActionEvent actionEvent) {
         try {
             if (validateRezerv()) {
+                if (!checkstartDataKAandShowErrorMess()){
+                    return;
+                }
                 ControllerAssembly.getInstance().onLabelZaimRezerv(null);
                 calculationRezerv.getType().getDataElement().setImportData(false);
                 calculationRezerv.calculation(CalculationKA.getInstance().getDataRezervKA());
                 showRezerv();
-                allElementKA.add(calculationRezerv.getType().getDataElement());
+                CalculationKA.getInstance().getAllElementKA().add(calculationRezerv.getType().getDataElement());
                 initTableAllElementKA();
                 actionShowParamRezult(new ActionEvent());
             }
@@ -861,11 +946,14 @@ public class ControllerAssembly extends ControllerImport {
     public void bt_calcul_SSD(ActionEvent actionEvent) {
         try {
             if (validateSSD()) {
+                if (!checkstartDataKAandShowErrorMess()){
+                    return;
+                }
 //                ControllerAssembly.getInstance().onLabelZaimKonstr(null);
                 calculationSSD.getType().getDataElement().setImportData(false);
                 calculationSSD.calculation(CalculationKA.getInstance().getDataSSD());
                 showSSD();
-                allElementKA.add(calculationSSD.getType().getDataElement());
+                CalculationKA.getInstance().getAllElementKA().add(calculationSSD.getType().getDataElement());
                 initTableAllElementKA();
                 actionShowParamRezult(new ActionEvent());
             }
@@ -878,11 +966,14 @@ public class ControllerAssembly extends ControllerImport {
     public void bt_calcul_IPMV(ActionEvent actionEvent) {
         try {
             if (validateIPMV()) {
+                if (!checkstartDataKAandShowErrorMess()){
+                    return;
+                }
 //                ControllerAssembly.getInstance().onLabelZaimKonstr(null);
                 calculationIPMV.getType().getDataElement().setImportData(false);
                 calculationIPMV.calculation(CalculationKA.getInstance().getDataIPMV());
                 showIPMV();
-                allElementKA.add(calculationIPMV.getType().getDataElement());
+                CalculationKA.getInstance().getAllElementKA().add(calculationIPMV.getType().getDataElement());
                 initTableAllElementKA();
                 actionShowParamRezult(new ActionEvent());
             }
@@ -895,11 +986,14 @@ public class ControllerAssembly extends ControllerImport {
     public void bt_calcul_BOKZ(ActionEvent actionEvent) {
         try {
             if (validateBOKZ()) {
+                if (!checkstartDataKAandShowErrorMess()){
+                    return;
+                }
 //                ControllerAssembly.getInstance().onLabelZaimKonstr(null);
                 calculationBOKZ.getType().getDataElement().setImportData(false);
                 calculationBOKZ.calculation(CalculationKA.getInstance().getDataBOKZ());
                 showBOKZ();
-                allElementKA.add(calculationBOKZ.getType().getDataElement());
+                CalculationKA.getInstance().getAllElementKA().add(calculationBOKZ.getType().getDataElement());
                 initTableAllElementKA();
                 actionShowParamRezult(new ActionEvent());
             }
@@ -912,11 +1006,14 @@ public class ControllerAssembly extends ControllerImport {
     public void bt_calcul_DO(ActionEvent actionEvent) {
         try {
             if (validateDO()) {
+                if (!checkstartDataKAandShowErrorMess()){
+                    return;
+                }
 //                ControllerAssembly.getInstance().onLabelZaimKonstr(null);
                 calculationDO.getType().getDataElement().setImportData(false);
                 calculationDO.calculation(CalculationKA.getInstance().getDataDO());
                 showDO();
-                allElementKA.add(calculationDO.getType().getDataElement());
+                CalculationKA.getInstance().getAllElementKA().add(calculationDO.getType().getDataElement());
                 initTableAllElementKA();
                 actionShowParamRezult(new ActionEvent());
             }
@@ -929,11 +1026,14 @@ public class ControllerAssembly extends ControllerImport {
     public void bt_calcul_DUS(ActionEvent actionEvent) {
         try {
             if (validateDUS()) {
+                if (!checkstartDataKAandShowErrorMess()){
+                    return;
+                }
 //                ControllerAssembly.getInstance().onLabelZaimKonstr(null);
                 calculationDUS.getType().getDataElement().setImportData(false);
                 calculationDUS.calculation(CalculationKA.getInstance().getDataDUS());
                 showDUS();
-                allElementKA.add(calculationDUS.getType().getDataElement());
+                CalculationKA.getInstance().getAllElementKA().add(calculationDUS.getType().getDataElement());
                 initTableAllElementKA();
                 actionShowParamRezult(new ActionEvent());
             }
@@ -946,11 +1046,14 @@ public class ControllerAssembly extends ControllerImport {
     public void bt_calcul_BKS(ActionEvent actionEvent) {
         try {
             if (validateBKS()) {
+                if (!checkstartDataKAandShowErrorMess()){
+                    return;
+                }
 //                ControllerAssembly.getInstance().onLabelZaimKonstr(null);
                 calculationBKS.getType().getDataElement().setImportData(false);
                 calculationBKS.calculation(CalculationKA.getInstance().getDataBKS());
                 showBKS();
-                allElementKA.add(calculationBKS.getType().getDataElement());
+                CalculationKA.getInstance().getAllElementKA().add(calculationBKS.getType().getDataElement());
                 initTableAllElementKA();
                 actionShowParamRezult(new ActionEvent());
             }
@@ -963,11 +1066,14 @@ public class ControllerAssembly extends ControllerImport {
     public void bt_calcul_AFU(ActionEvent actionEvent) {
         try {
             if (validateAFU()) {
+                if (!checkstartDataKAandShowErrorMess()){
+                    return;
+                }
 //                ControllerAssembly.getInstance().onLabelZaimKonstr(null);
                 calculationAFU.getType().getDataElement().setImportData(false);
                 calculationAFU.calculation(CalculationKA.getInstance().getDataAFU());
                 showAFU();
-                allElementKA.add(calculationAFU.getType().getDataElement());
+                CalculationKA.getInstance().getAllElementKA().add(calculationAFU.getType().getDataElement());
                 initTableAllElementKA();
                 actionShowParamRezult(new ActionEvent());
             }
@@ -981,7 +1087,7 @@ public class ControllerAssembly extends ControllerImport {
         FileChooser fileChooser = new FileChooser();//Класс работы с диалогом выборки и сохранения
         fileChooser.setTitle("Save Document");//Заголовок диалога
         FileChooser.ExtensionFilter extFilter =
-                new FileChooser.ExtensionFilter("project", "*.sintez");//Расширение
+                new FileChooser.ExtensionFilter("project", "*.adara");//Расширение
         fileChooser.getExtensionFilters().add(extFilter);
         File file = fileChooser.showSaveDialog(Main.getStage());
     }
@@ -1001,6 +1107,8 @@ public class ControllerAssembly extends ControllerImport {
         CalculationKA.getInstance().init();
         showALL();
         startShowALL();
+        initTableAllElementKA();
+        actionShowParamRezult(new ActionEvent());
         showInfo("Новый проект создан.");
     }
 
@@ -1009,12 +1117,12 @@ public class ControllerAssembly extends ControllerImport {
         fileChooser.setTitle("Open Project");//Заголовок диалога
 
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("sintez", "*.sintez"));
+                new FileChooser.ExtensionFilter("adara", "*.adara"));
         File file = fileChooser.showOpenDialog(Main.getStage());
         if (file != null) {
             openFile = file;
             updateSaveBt();
-            if (file.getName().contains(".sintez")) {
+            if (file.getName().contains(".adara")) {
                 SaveXmlObject<CalculationKA> saveXmlObject = new SaveXmlObject<>();
                 try {
                     CalculationKA calculationKA = (CalculationKA) saveXmlObject.readObject(file, CalculationKA.class);
@@ -1023,13 +1131,18 @@ public class ControllerAssembly extends ControllerImport {
                     startShowALL();
                     showInfo("Проект открыт");
                 } catch (JAXBException e) {
-                    showError("Этот файл не поддерживается\nВыберите файл с расширением .sintez");
+                    showError("Этот файл не поддерживается\nВыберите файл с расширением .adara");
                 }
             } else {
-                showError("Этот файл не поддерживается\nВыберите файл с расширением .sintez");
+                showError("Этот файл не поддерживается\nВыберите файл с расширением .adara");
             }
         }
-
+        List<DataElement> datum = new ArrayList<>(CalculationKA.getInstance().getAllElementKA());
+        for (DataElement d:datum){
+            CalculationKA.getInstance().getAllElementKA().add(d.getType().getDataElement());
+        }
+        initTableAllElementKA();
+        actionShowParamRezult(new ActionEvent());
     }
 
     public void actionSaveProject(ActionEvent actionEvent) {
@@ -1047,7 +1160,7 @@ public class ControllerAssembly extends ControllerImport {
             FileChooser fileChooser = new FileChooser();//Класс работы с диалогом выборки и сохранения
             fileChooser.setTitle("Save Document");//Заголовок диалога
             FileChooser.ExtensionFilter extFilter =
-                    new FileChooser.ExtensionFilter("sintez", "*.sintez");//Расширение
+                    new FileChooser.ExtensionFilter("adara", "*.adara");//Расширение
             fileChooser.getExtensionFilters().add(extFilter);
             File file = fileChooser.showSaveDialog(Main.getStage());
             if (file != null) {
@@ -1093,6 +1206,9 @@ public class ControllerAssembly extends ControllerImport {
     }
 
     public void addOtherKA(ActionEvent actionEvent) {
+        if (!ControllerAssembly.checkstartDataKAandShowErrorMess()) {
+            return;
+        }
         AddElement addElement = new AddElementOtherKA();
         DataOtherKA newData = new DataOtherKA();
         addElement.addElementNotSave(newData);
@@ -1110,6 +1226,10 @@ public class ControllerAssembly extends ControllerImport {
         } catch (Exception e) {
             ControllerAssembly.showError("Ошибка при добавлении элемента");
         }
+        CalculationKA.getInstance().getAllElementKA().add(newData);
+        initTableAllElementKA();
+        actionShowParamRezult(new ActionEvent());
+
         initotherKA();
         showOtherKA();
     }
@@ -1132,11 +1252,27 @@ public class ControllerAssembly extends ControllerImport {
         } catch (Exception e) {
             ControllerAssembly.showError("Ошибка при расчете прочих элементов");
         }
+        if (dataElementE!=null){
+            CalculationKA.getInstance().getAllElementKA().remove(dataElementE);
+        }
+        initTableAllElementKA();
+        actionShowParamRezult(new ActionEvent());
         initotherKA();
         showOtherKA();
     }
 
+    public boolean isShowMessM;
+    public boolean isShowMessV;
+    public boolean isShowMessJ;
+    public boolean isShowMessD;
+    public boolean isShowMessL;
+
     public void actionIteration(ActionEvent actionEvent) {
+        isShowMessM = false;
+        isShowMessV = false;
+        isShowMessJ = false;
+        isShowMessD = false;
+        isShowMessL = false;
         try {
             if (TabTypeSintez.OETK.getDataElement().isNeedUvyzka())
                 calculationOETK.calculation(new DataOETK());
@@ -1299,6 +1435,21 @@ public class ControllerAssembly extends ControllerImport {
             ControllerAssembly.showError("Проверьте введеные данные.");
         }
         showStartData();
+    }
+
+    public void aboutProgram(ActionEvent actionEvent) throws IOException {
+        System.out.println("action bt info project");
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("/startMenu/AboutTheProgram.fxml"));
+        Parent root = fxmlLoader.load();
+        Stage stage= new Stage();
+        stage.setTitle("О программе");
+        stage.setResizable(false);
+        Scene scene = new Scene(root, 695, 443);
+        stage.setScene(scene);
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner((paneRestriction.getScene().getWindow()));
+        stage.show();
     }
 
 //    public void addOtherKaElement(ActionEvent actionEvent) {

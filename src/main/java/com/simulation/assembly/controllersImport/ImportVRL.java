@@ -30,7 +30,12 @@ public class ImportVRL extends ImportElement {
 
     private List<DataElement> listLoad = new ArrayList<>();
 
-    private TabTypeSintez tabTypeSintez = TabTypeSintez.VRL;                                               //
+    private TabTypeSintez tabTypeSintez = TabTypeSintez.VRL;                                                 //
+
+    public TabTypeSintez getTabTypeSintez() {
+        return tabTypeSintez;
+    }
+    //
 
     @Override
     public void addElement(ActionEvent actionEvent) {
@@ -50,6 +55,9 @@ public class ImportVRL extends ImportElement {
 
     @Override
     public void selectElement(ActionEvent actionEvent) {
+        if (!ControllerAssembly.checkstartDataKAandShowErrorMess()) {
+            return;
+        }
         try {
             DataVRL data = (DataVRL) tableChoise.getSelectionModel().getSelectedItem();                       //
             DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
@@ -61,12 +69,16 @@ public class ImportVRL extends ImportElement {
             data.getType().getCalculation().predCalculation();
 
             if (data.isCalculationMoment()) {
-                data.j = (float) ((data.m / (12 * ((dc.dKA / 2) + dc.lKA))) * (3 * Math.pow((dc.dKA / 2), 2) * ((dc.dKA / 2) + 2 * dc.lKA) + Math.pow(dc.lKA, 2) * ((3 * dc.dKA / 2) + dc.lKA)));
+                data.j = (float) data.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
             }
 
             CalculationKA.getInstance().setDataVRL(data);                                                      //                                                   //
             CalculationKA.getInstance().calculation(new Object());
+            if (data.isCalculationMoment()) {
+                data.j = data.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
+            }
             showParametersOfSelectElement(data);
+            super.selectElement(actionEvent);
 
 //        ControllerAssembly.getInstance().onProgressOetk(true);
         } catch (Exception e) {

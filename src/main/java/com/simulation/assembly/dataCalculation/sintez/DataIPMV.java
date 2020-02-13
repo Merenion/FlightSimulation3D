@@ -17,7 +17,14 @@ public class DataIPMV extends DataElement {
         return  TabTypeSintez.IPMV;
     }
 
-    public float km;  //Доля масса от массы КА, %
+    public float km;  //Доля массы от массы КА, %
     public float uw;  //Удельная мощность энергопотребления, Вт/кг
     public float pl;  //Средняя плотность, кг/м3
+
+    @Override
+    public String getStartDate() {
+        return "Доля массы от массы КА, % = " + km + "\n" +
+                "Удельная мощность энергопотребления, Вт/кг = " + uw + "\n" +
+                "Средняя плотность, кг/м3 = " + pl;
+    }
 }

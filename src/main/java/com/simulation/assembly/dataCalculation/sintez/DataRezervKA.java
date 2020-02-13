@@ -25,4 +25,11 @@ public class DataRezervKA  extends DataElement{
 //    public float v;
 //    public float j;
 //    public float w;
+
+    @Override
+    public String getStartDate() {
+        return "Относительная масса резерва масс КА, % = " + omRmKA + "\n" +
+                "Плотность компоновки резерва масс КА, кг/м3 = " + plRmKA + "\n" +
+                "Удельная мощность электропотребления резерва масс КА, Вт/кг = " + uwRmKA;
+    }
 }

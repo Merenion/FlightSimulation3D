@@ -24,7 +24,12 @@ public class ImportSPPE extends ImportElement {
 
     private List<DataElement> listLoad = new ArrayList<>();
 
-    private TabTypeSintez tabTypeSintez = TabTypeSintez.SPPE;                                               //
+    private TabTypeSintez tabTypeSintez = TabTypeSintez.SPPE;                                                //
+
+    public TabTypeSintez getTabTypeSintez() {
+        return tabTypeSintez;
+    }
+    //
 
     @Override
     public void addElement(ActionEvent actionEvent) {
@@ -44,6 +49,9 @@ public class ImportSPPE extends ImportElement {
 
     @Override
     public void selectElement(ActionEvent actionEvent) {
+        if (!ControllerAssembly.checkstartDataKAandShowErrorMess()) {
+            return;
+        }
         try {
             DataSPPE data = (DataSPPE) tableChoise.getSelectionModel().getSelectedItem();                       //
             DataCommonParameters dc = CalculationKA.getInstance().getDataCommonParameters();
@@ -55,15 +63,18 @@ public class ImportSPPE extends ImportElement {
             data.getType().getCalculation().predCalculation();
 
             if (data.isCalculationMoment()) {
-                data.j = (float) ((data.m / (12 * ((dc.dKA / 2) + dc.lKA))) * (3 * Math.pow((dc.dKA / 2), 2) * ((dc.dKA / 2) + 2 * dc.lKA) + Math.pow(dc.lKA, 2) * ((3 * dc.dKA / 2) + dc.lKA)));
+                data.j = (float) data.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
             }
 
             CalculationKA.getInstance().setDataSPPE(data);                                                      //                                                   //
             CalculationKA.getInstance().calculation(new Object());
-
+            if (data.isCalculationMoment()) {
+                data.j = data.m * ((dc.dKA * dc.dKA) / 16 + (dc.lKA * dc.lKA) / 12);
+            }
             showParametersOfSelectElement(data);
 //        ControllerAssembly.getInstance().startShowALL();
             ControllerAssembly.getInstance().onProgressSppe(true);
+            super.selectElement(actionEvent);
         } catch (Exception e) {
             ControllerAssembly.showError("Техническая ошибка.");
             return;

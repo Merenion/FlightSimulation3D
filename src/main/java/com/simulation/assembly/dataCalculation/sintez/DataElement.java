@@ -7,7 +7,7 @@ import java.util.Objects;
 public abstract class DataElement {
 
     private long id;
-    private String nameElement = "non name";
+    private String nameElement = "Рассчитанный элемент";
     private boolean importData = false;
     private boolean calculationMoment = false;
     private boolean notUse = false;

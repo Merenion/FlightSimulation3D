@@ -32,6 +32,27 @@ public class DataOtherKA  extends DataElement{
 //    public float j;
 //    public float w;
 
+
+    @Override
+    public String toString() {
+        if (isNotUse()){
+            return "\n" +
+                    getType().getName() + "\n" +
+                    "Не используется" + "\n" ;
+        }else {
+            return "\n" +
+                    getNameElement() + "\n" +
+                    (getStartDate() != null && !isImportData() ? "ИСХОДНЫЕ ДАННЫЕ:\n" + getStartDate() + "\n" : "") +
+                    "ХАРАКТЕРИСТИКИ ЭЛЕМЕНТА:" + "\n" +
+                    "масса = " + m + "\n" +
+                    "объем = " + v + "\n" +
+                    "энергопотребление = " + w + "\n" +
+                    "момент инерции = " + j + "\n" +
+                    (getOtherDate() != null ? getOtherDate() + "\n" : "") +
+                    "\n";
+        }
+    }
+
     private boolean massProc = false;
 
     public boolean isMassProc() {

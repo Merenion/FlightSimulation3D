@@ -43,7 +43,7 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
+                        <MenuItem mnemonicParsing="false" onAction="#aboutProgram" text="О программе" />
                     </items>
                 </Menu>
             </menus>
@@ -310,10 +310,10 @@
                                                                                         <Font name="System Bold" size="16.0" />
                                                                                     </font>
                                                                                 </Label>
-                                                                                <Label layoutX="114.0" layoutY="66.0" prefHeight="17.0" prefWidth="220.0" text="Масса СППИ, кг" />
-                                                                                <Label layoutX="114.0" layoutY="99.0" prefHeight="17.0" prefWidth="255.0" text="Объем аппаратуры, м3" />
-                                                                                <Label layoutX="114.0" layoutY="132.0" prefHeight="17.0" prefWidth="282.0" text="Средняя мощность энергопотребления, Вт" />
-                                                                                <Label layoutX="114.0" layoutY="165.0" prefHeight="17.0" prefWidth="282.0" text="Момент инерции приборов(по КА, от поперечн. оси) кг м2" />
+                                                                                <Label layoutX="114.0" layoutY="66.0" prefHeight="17.0" prefWidth="259.0" text="Скорость передачи информации, Мбит/с" />
+                                                                                <Label layoutX="114.0" layoutY="99.0" prefHeight="17.0" prefWidth="255.0" text="Удельная масса аппаратуры кг/Мбит/с" />
+                                                                                <Label layoutX="114.0" layoutY="132.0" prefHeight="17.0" prefWidth="311.0" text="Удельная мощность энергопотребления, Вт/Мбит/с" />
+                                                                                <Label layoutX="114.0" layoutY="165.0" prefHeight="17.0" prefWidth="282.0" text="Средняя плотность компоновки приборов, кг/м3" />
                                                                                 <Button fx:id="bt_calcul_SPPE" layoutX="134.0" layoutY="222.0" mnemonicParsing="false" onAction="#actionCal_SPPE" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
                                                                                 <TextField fx:id="sPISPPI" layoutX="21.0" layoutY="62.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="75" />
                                                                                 <TextField fx:id="umSPPI" layoutX="21.0" layoutY="95.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="5" />
@@ -451,12 +451,12 @@
                                                                         </AnchorPane>
                                                                         <Pane layoutX="-65.0" prefHeight="35.0" prefWidth="572.0">
                                                                             <children>
-                                                                                <RadioButton fx:id="choise_have_VRL" layoutX="86.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveVRL" selected="true" text="Известны (Заимсвованы)">
+                                                                                <RadioButton fx:id="choise_have_VRL" layoutX="86.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveVRL" text="Известны (Заимсвованы)">
                                                                                     <toggleGroup>
                                                                                         <ToggleGroup fx:id="select_group_oetk2" />
                                                                                     </toggleGroup>
                                                                                 </RadioButton>
-                                                                                <RadioButton layoutX="269.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveVRL" text="Подлежат расчету" toggleGroup="$select_group_oetk2" />
+                                                                                <RadioButton layoutX="269.0" layoutY="11.0" mnemonicParsing="false" onAction="#haveVRL" selected="true" text="Подлежат расчету" toggleGroup="$select_group_oetk2" />
                                                             <RadioButton fx:id="choise_non_VRL" layoutX="419.0" layoutY="12.0" mnemonicParsing="false" onAction="#haveVRL" text="Не использовать" toggleGroup="$select_group_oetk2" />
                                                                             </children>
                                                                         </Pane>
@@ -1939,7 +1939,12 @@
                                                                                         <ColorAdjust contrast="1.0" hue="0.2" saturation="0.36" />
                                                                                     </effect>
                                                                                 </ImageView>
-                                                                                <AnchorPane layoutX="-1.0" layoutY="39.0" prefHeight="375.0" prefWidth="553.0" />
+                                                                                <AnchorPane layoutX="-1.0" layoutY="39.0" prefHeight="375.0" prefWidth="987.0" />
+                                                            <Label fx:id="labelNonAcces1" layoutX="240.0" layoutY="97.0" text="Находится в разработке" textFill="#424097">
+                                                               <font>
+                                                                  <Font name="System Bold" size="48.0" />
+                                                               </font>
+                                                            </Label>
                                                                             </children>
                                                                         </AnchorPane>
                                                                         <Pane prefHeight="35.0" prefWidth="507.0">
@@ -2377,6 +2382,9 @@
                                                                                         <ColorAdjust contrast="1.0" hue="0.2" saturation="0.36" />
                                                                                     </effect>
                                                                                 </ImageView>
+                                                                                <AnchorPane fx:id="deddedef" layoutX="16.0" layoutY="40.0" prefHeight="426.0" prefWidth="915.0">
+                                                                                    <fx:include source="assembly/importSunBet.fxml" />
+                                                                                </AnchorPane>
                                                                             </children>
                                                                         </AnchorPane>
                                                                         <Pane prefHeight="35.0" prefWidth="507.0">
@@ -2421,7 +2429,7 @@
                                                                                 <TextField fx:id="iRN" layoutX="21.0" layoutY="122.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="98" />
                                                                                 <Label layoutX="116.0" layoutY="126.0" prefHeight="17.0" prefWidth="372.0" text="Угол наклона исходной орбиты(после отделения),град" />
                                                                                 <TextField fx:id="Ha" layoutX="21.0" layoutY="192.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="730" />
-                                                                                <Label layoutX="116.0" layoutY="196.0" prefHeight="17.0" prefWidth="372.0" text="высота исходной круговой орбиты КА,км" />
+                                                                                <Label layoutX="116.0" layoutY="196.0" prefHeight="17.0" prefWidth="372.0" text="высота рабочей круговой орбиты КА,км" />
                                                                                 <TextField fx:id="iKA" layoutX="21.0" layoutY="225.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="98.3" />
                                                                                 <Label layoutX="116.0" layoutY="229.0" prefHeight="17.0" prefWidth="372.0" text="Угол наклона рабочей орбиты КА,град" />
                                                                                 <TextField fx:id="dV6" layoutX="21.0" layoutY="258.0" onKeyReleased="#actionEditMainValidateAndNotZero" prefHeight="25.0" prefWidth="79.0" text="100" />
@@ -2956,7 +2964,7 @@
                                                         <Label fx:id="vRmKA" layoutX="25.0" layoutY="102.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                         <Label fx:id="jRmKA" layoutX="25.0" layoutY="135.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
                                                         <Label fx:id="wRmKA" layoutX="25.0" layoutY="168.0" prefHeight="17.0" prefWidth="70.0" text="0.000" />
-                                                        <Button layoutX="181.0" layoutY="213.0" mnemonicParsing="false" onAction="#bt_calcul_Rezerv" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
+                                                        <Button fx:id="bt_calcul_Rezerv" layoutX="181.0" layoutY="213.0" mnemonicParsing="false" onAction="#bt_calcul_Rezerv" prefHeight="37.0" prefWidth="138.0" text="Расчет" />
                                                         <Label fx:id="labelZaimRezerv" layoutX="25.0" layoutY="495.0" prefHeight="20.0" prefWidth="444.0" text="Выбран взаимсвованный элемент - аааааааааааааааааааааааа" textFill="#4e57ff" visible="false">
                                                             <font>
                                                                 <Font name="System Bold" size="14.0" />
@@ -3095,9 +3103,8 @@
                                                                 <Font name="System Bold" size="16.0" />
                                                             </font>
                                                         </Label>
-                                                        <Button layoutX="144.0" layoutY="502.0" mnemonicParsing="false" onAction="#actionIteration" prefHeight="37.0" prefWidth="206.0" text="Итерация" />
-                                                        <Button layoutX="144.0" layoutY="448.0" mnemonicParsing="false" onAction="#actionShowParamRezult" prefHeight="37.0" prefWidth="206.0" text="Показать расчетные параметры" />
-                                          <TableView fx:id="tableRezultElementKA" layoutX="3.0" layoutY="47.0" prefHeight="389.0" prefWidth="487.0">
+                                                        <Button layoutX="144.0" layoutY="498.0" mnemonicParsing="false" onAction="#actionIteration" prefHeight="37.0" prefWidth="206.0" text="Итерация" />
+                                          <TableView fx:id="tableRezultElementKA" layoutX="3.0" layoutY="47.0" prefHeight="421.0" prefWidth="487.0">
                                             <columns>
                                               <TableColumn fx:id="columnAllElementKA_Type" prefWidth="109.0" text="Тип" />
                                               <TableColumn fx:id="columnAllElementKA_IsZaimstv" prefWidth="71.0" text="заимств." />
@@ -3827,7 +3834,7 @@
                   </Label>
                   <TableView fx:id="tableElementKA" layoutX="1001.0" layoutY="-2.0" prefHeight="414.0" prefWidth="200.0">
                     <columns>
-                      <TableColumn fx:id="columnElementKA" prefWidth="199.0" text="Составные части КА" />
+                      <TableColumn fx:id="columnElementKA" prefWidth="350.0" text="Составные части КА                             " />
                     </columns>
                   </TableView>
                     </children></AnchorPane>

@@ -26,4 +26,10 @@ public class DataOtherBKU   extends DataElement{
 //    public float w;
 //    public float j;
 
+    @Override
+    public String getStartDate() {
+        return "Доля по массе прочих элементов БКУ, % = " + kPrBKU + "\n" +
+                "Удельная мощность электропотребления прочих элементов БКУ, Вт/кг = " + uwPrBKU + "\n" +
+                "Средняя плотность компоновки прочих элементов БКУ = " + plPrBKU;
+    }
 }
